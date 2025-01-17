@@ -122,6 +122,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &15231732
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 15231733}
+  m_Layer: 0
+  m_Name: Spell Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &15231733
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15231732}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.044, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1609989568}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &611094026
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,7 +354,7 @@ GameObject:
   - component: {fileID: 1609989564}
   - component: {fileID: 1609989563}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Test Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -343,8 +374,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alphaMovementSpd: 2.5
   jumpSpd: 300
-  fallSpd: 0
+  fallSpd: 2.5
   lowJumpSpd: 2
+  spellSpawn: {fileID: 15231733}
+  spellAttack: {fileID: 2672976769280851066, guid: 74acdbccee3a400428fb35b62880d330, type: 3}
+  activeSpell: {fileID: 15231732}
+  timer: 1
 --- !u!54 &1609989564
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -455,7 +490,8 @@ Transform:
   m_LocalPosition: {x: 1.2029607, y: 1.6, z: 1.2126709}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 15231733}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1661647775
