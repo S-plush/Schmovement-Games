@@ -24,6 +24,8 @@ public class AlphaMovement : MonoBehaviour
     private Aiming aiming;
     //private Vector3 horizontalMovement;
 
+    public GameObject Inventory;
+
     void Start()
     {
         alpha = GetComponent<Rigidbody>();
@@ -34,29 +36,25 @@ public class AlphaMovement : MonoBehaviour
     {
         Debug.Log("rotation is " + rotationPoint.rotation.z);
 
-        //probably a better way to have the player shoot while moving than what I have it set up rn
+        //fixed by removing unnessisary lines of code
 
         if (Input.GetKey(KeyCode.D))
         {
             this.gameObject.transform.Translate(new Vector3(alphaMovementSpd * Time.deltaTime, 0, 0));
 
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                Shoot();
-            }
         }
         else if (Input.GetKey(KeyCode.A))
         {
             this.gameObject.transform.Translate(new Vector3(-alphaMovementSpd * Time.deltaTime, 0, 0));
 
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                Shoot();
-            }
         }
-        else if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Shoot();
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            Inventory.SetActive(!Inventory.activeSelf);
         }
 
         Debug.Log("fall speed is " + fallSpd);//this is to sort of help reset the jump
