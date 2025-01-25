@@ -4862,10 +4862,10 @@ MonoBehaviour:
   alphaMovementSpd: 2.5
   jumpSpd: 300
   fallSpd: 2.5
-  lowJumpSpd: 2
   spellSpawn: {fileID: 2044074515}
   spellAttack: {fileID: 2672976769280851066, guid: 74acdbccee3a400428fb35b62880d330, type: 3}
-  activeSpell: {fileID: 2044074514}
+  activeSpell1: {fileID: 2044074514}
+  activeSpell2: {fileID: 0}
   rotationPoint: {fileID: 127111805}
   timer: 1.5
   Inventory: {fileID: 748279675}
@@ -4879,7 +4879,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}

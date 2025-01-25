@@ -4,7 +4,7 @@ using System.Net.Http.Headers;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Scriptable object/Spell")]
-public class Spell : ScriptableObject
+public abstract class Spell : ScriptableObject
 {
 
     [Header("Gameplay atributes")]
@@ -13,10 +13,15 @@ public class Spell : ScriptableObject
     public bool directional;
     public int rangeValue;
     public int damageValue;
-    public int knockbackValue;
+    public float knockbackValue;
 
     [Header("Other Atributes")]
     public Sprite image;
+
+    public void KnockBack()
+    {
+
+    }
 }
 
 public enum SpellType

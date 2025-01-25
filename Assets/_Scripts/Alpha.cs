@@ -1,28 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
-public class AlphaMovement : MonoBehaviour
+public class Alpha : MonoBehaviour
 {
     public float alphaMovementSpd = 3.5f;
     public float jumpSpd = 5f;
     public float fallSpd = 2.5f;
-    public float lowJumpSpd = 2f;
 
     //set up for this test build, but will need to have an abstract class for all the spells
     public Transform spellSpawn; //spawn point for spell's attack
     public GameObject spellAttack; //for the spell effect/attack prefab
-    public GameObject activeSpell; //for rn the spell's spawnpoint is what's used for this
-    public Transform rotationPoint;
+    public GameObject activeSpell1; //for rn the spell's spawnpoint is what's used for this
+    public GameObject activeSpell2; //for rn the spell's spawnpoint is what's used for this
+    public Transform rotationPoint; 
     public float timer;
 
-    private float lastShot; //cooldown for the spell
+    private float lastShot; //cooldown for the spell 1
     private bool isGrounded;
     private Rigidbody alpha;
     private BoxCollider boxCollider;
     private Aiming aiming;
-    //private Vector3 horizontalMovement;
 
     public GameObject Inventory;
 
@@ -30,13 +30,28 @@ public class AlphaMovement : MonoBehaviour
     {
         alpha = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
+        Inventory.SetActive(false);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        Debug.Log("rotation is " + rotationPoint.rotation.z);
+        //Debug.Log("rotation is " + rotationPoint.rotation.z);
 
         //fixed by removing unnessisary lines of code
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            ShootSpell1();
+        }
+        else if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            ShootSpell2();
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            OpenMenu();
+        }
 
         if (Input.GetKey(KeyCode.D))
         {
@@ -48,16 +63,8 @@ public class AlphaMovement : MonoBehaviour
             this.gameObject.transform.Translate(new Vector3(-alphaMovementSpd * Time.deltaTime, 0, 0));
 
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            Shoot();
-        }
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            Inventory.SetActive(!Inventory.activeSelf);
-        }
 
-        Debug.Log("fall speed is " + fallSpd);//this is to sort of help reset the jump
+        //Debug.Log("fall speed is " + fallSpd);
 
         //isGrounded makes it so the player isn't able to spam the jump button while in mid-air
         if (Input.GetButtonDown("Jump") && isGrounded)
@@ -89,9 +96,23 @@ public class AlphaMovement : MonoBehaviour
         }
     }
 
-    void Shoot()
+    void OpenMenu()
     {
-        if(activeSpell.activeInHierarchy)
+        if (!Inventory.activeInHierarchy)
+        {
+            Inventory.SetActive(true);
+            Time.timeScale = 0.0f;
+        }
+        else if (Inventory.activeInHierarchy)
+        {
+            Inventory.SetActive(false);
+            Time.timeScale = 1.0f;
+        }
+    }
+
+    void ShootSpell1()
+    {
+        if(activeSpell1.activeInHierarchy)
         {
             if(Time.time - lastShot < timer)
             {
@@ -135,5 +156,10 @@ public class AlphaMovement : MonoBehaviour
             GameObject g = Instantiate(spellAttack, spellSpawn.position, spellSpawn.rotation);
             Destroy(g, 0.5f);
         }
+    }
+
+    void ShootSpell2()
+    {
+
     }
 }
