@@ -26,14 +26,30 @@ public class Alpha : MonoBehaviour
 
     public GameObject Inventory;
 
+    public HealthBar healthBar;
+    public int maxHealth;
+    private int currentHealth;
+
+    public ManaBar manaBar;
+    public int maxMana;
+    private int currentMana;
+
     void Start()
     {
         alpha = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
         Inventory.SetActive(false);
+
+        maxHealth = 5; /////////////////////////////////input from file later
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+
+        maxMana = 5; ///////////////////////////////////input from file later
+        currentMana = maxMana;
+        manaBar.SetMaxMana(maxMana);
     }
 
-    private void FixedUpdate()
+    private void Update()  //changed to Update from FixedUpdate, this fixed issue with unresposive mouse buttons (while also not needing a bunch of exta code). Does it break anything?
     {
         //Debug.Log("rotation is " + rotationPoint.rotation.z);
 
@@ -42,10 +58,12 @@ public class Alpha : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             ShootSpell1();
+            //useMana(1);  moved to shootSpell1() to only take mana when the spell is actually cast
         }
         else if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             ShootSpell2();
+            TakeDamage(1); //////////////////////////////////////////////////////remove this line
         }
 
         if (Input.GetKeyDown(KeyCode.I))
@@ -119,7 +137,9 @@ public class Alpha : MonoBehaviour
                 return;
             }
 
-            if(rotationPoint.rotation.z < .2f && rotationPoint.rotation.z > -.19f)
+            useMana(1);
+
+            if (rotationPoint.rotation.z < .2f && rotationPoint.rotation.z > -.19f)
             {
                 alpha.velocity = new Vector3(-3f, 0, 0);
             }
@@ -161,5 +181,19 @@ public class Alpha : MonoBehaviour
     void ShootSpell2()
     {
 
+    }
+
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        healthBar.SetHealth(currentHealth);
+    }
+
+    void useMana(int lostMana)
+    {
+        currentMana -= lostMana;
+
+        manaBar.SetMana(currentMana);
     }
 }
