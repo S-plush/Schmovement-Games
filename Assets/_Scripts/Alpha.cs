@@ -13,16 +13,17 @@ public class Alpha : MonoBehaviour
     //set up for this test build, but will need to have an abstract class for all the spells
     public Transform spellSpawn; //spawn point for spell's attack
     public GameObject spellAttack; //for the spell effect/attack prefab
-    public GameObject activeSpell1; //for rn the spell's spawnpoint is what's used for this
-    public GameObject activeSpell2; //for rn the spell's spawnpoint is what's used for this
+    public GameObject spellAttack2; //for the spell2 effect/attack prefab 
+    public GameObject activeSpell; //for rn the spell's spawnpoint is what's used for this
     public Transform rotationPoint; 
-    public float timer;
+    public float timer; //for spell
 
     private float lastShot; //cooldown for the spell 1
     private bool isGrounded;
     private Rigidbody alpha;
     private BoxCollider boxCollider;
-    private Aiming aiming;
+    private ExplosionSpell explosion;
+    //private Aiming aiming; //might not need this here
 
     public GameObject Inventory;
 
@@ -38,6 +39,7 @@ public class Alpha : MonoBehaviour
     {
         alpha = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
+        explosion = spellAttack.GetComponent<ExplosionSpell>();
         Inventory.SetActive(false);
 
         maxHealth = 5; /////////////////////////////////input from file later
@@ -49,19 +51,17 @@ public class Alpha : MonoBehaviour
         manaBar.SetMaxMana(maxMana);
     }
 
-    private void Update()  //changed to Update from FixedUpdate, this fixed issue with unresposive mouse buttons (while also not needing a bunch of exta code). Does it break anything?
+    private void Update()
     {
         //Debug.Log("rotation is " + rotationPoint.rotation.z);
-
-        //fixed by removing unnessisary lines of code
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             ShootSpell1();
-            //useMana(1);  moved to shootSpell1() to only take mana when the spell is actually cast
         }
         else if (Input.GetKeyDown(KeyCode.Mouse1))
         {
+            Debug.Log("I'm being pressed");
             ShootSpell2();
             TakeDamage(1); //////////////////////////////////////////////////////remove this line
         }
@@ -87,9 +87,6 @@ public class Alpha : MonoBehaviour
         //isGrounded makes it so the player isn't able to spam the jump button while in mid-air
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            //by changing jumpSpd and fallSpd, we should be able to change jump physics
-            //to make it feel right
-
             alpha.AddForce(Vector3.up * jumpSpd);
 
             if (alpha.velocity.y > 0)
@@ -130,7 +127,7 @@ public class Alpha : MonoBehaviour
 
     void ShootSpell1()
     {
-        if(activeSpell1.activeInHierarchy)
+        if(activeSpell.activeInHierarchy)
         {
             if(Time.time - lastShot < timer)
             {
@@ -138,49 +135,73 @@ public class Alpha : MonoBehaviour
             }
 
             useMana(1);
-
-            if (rotationPoint.rotation.z < .2f && rotationPoint.rotation.z > -.19f)
-            {
-                alpha.velocity = new Vector3(-3f, 0, 0);
-            }
-            else if(rotationPoint.rotation.z < -.2f && rotationPoint.rotation.z > -.49f)
-            {
-                alpha.velocity = new Vector3(-3f, 3f, 0);
-            }
-            else if (rotationPoint.rotation.z < -.5f && rotationPoint.rotation.z > -.79f)
-            {
-                alpha.velocity = new Vector3(0, 3f, 0);
-            }
-            else if (rotationPoint.rotation.z < -.8f && rotationPoint.rotation.z > -.94f)
-            {
-                alpha.velocity = new Vector3(3f, 3f, 0);
-            }
-            else if (rotationPoint.rotation.z < -.95f || rotationPoint.rotation.z > .95f)
-            {
-                alpha.velocity = new Vector3(3f, 0, 0);
-            }
-            else if (rotationPoint.rotation.z < .94f && rotationPoint.rotation.z > .81f)
-            {
-                alpha.velocity = new Vector3(3f, -3f, 0);
-            }
-            else if (rotationPoint.rotation.z < .8f && rotationPoint.rotation.z > .5f)
-            {
-                alpha.velocity = new Vector3(0, -3f, 0);
-            }
-            else if (rotationPoint.rotation.z < .49f && rotationPoint.rotation.z > .21f)
-            {
-                alpha.velocity = new Vector3(-3f, -3f, 0);
-            }
-
-            lastShot = Time.time;
+            //rn this is for the explosion spell
+            explosion.alpha = this; //for some reason I can't put the player onto the explosion object so this is a supplement for that
+            explosion.Aiming();
             GameObject g = Instantiate(spellAttack, spellSpawn.position, spellSpawn.rotation);
+            lastShot = Time.time;
             Destroy(g, 0.5f);
         }
     }
 
     void ShootSpell2()
     {
+        if (activeSpell.activeInHierarchy)
+        {
+            if (Time.time - lastShot < timer)
+            {
+                return;
+            }
+            Debug.Log("I'm in...");
+            GameObject g = Instantiate(spellAttack2, spellSpawn.position, spellSpawn.rotation);
 
+            //g.GetComponent<Rigidbody>().velocity = new Vector3(rotationPoint.rotation.z, 0, 0) * 20f;
+
+            //if (rotationPoint.rotation.z < .2f && rotationPoint.rotation.z > -.19f)
+            //{
+            //    //spell goes right
+            //    g.GetComponent<Rigidbody>().velocity = Vector3.right * 20f;
+            //}
+            //else if (rotationPoint.rotation.z < -.2f && rotationPoint.rotation.z > -.49f)
+            //{
+            //    //spell goes down right
+            //    g.GetComponent<Rigidbody>().velocity = new Vector3(1f, -1f, 0) * 20f;
+            //}
+            //else if (rotationPoint.rotation.z < -.5f && rotationPoint.rotation.z > -.79f)
+            //{
+            //    //spell goes down
+            //    g.GetComponent<Rigidbody>().velocity = Vector3.down * 20f;
+            //}
+            //else if (rotationPoint.rotation.z < -.8f && rotationPoint.rotation.z > -.94f)
+            //{
+            //    //spell goes down left
+            //    g.GetComponent<Rigidbody>().velocity = new Vector3(-1f, -1f, 0) * 20f;
+            //}
+            //else if (rotationPoint.rotation.z < -.95f || rotationPoint.rotation.z > .95f)
+            //{
+            //    //spell goes left
+            //    g.GetComponent<Rigidbody>().velocity = Vector3.left * 20f;
+            //}
+            //else if (rotationPoint.rotation.z < .94f && rotationPoint.rotation.z > .81f)
+            //{
+            //    //spell goes up left
+            //    g.GetComponent<Rigidbody>().velocity = new Vector3(-1f, 1f, 0) * 20f;
+            //}
+            //else if (rotationPoint.rotation.z < .8f && rotationPoint.rotation.z > .5f)
+            //{
+            //    //spell goes up
+            //    g.GetComponent<Rigidbody>().velocity = Vector3.up * 20f;
+            //}
+            //else if (rotationPoint.rotation.z < .49f && rotationPoint.rotation.z > .21f)
+            //{
+            //    //spell goes up right
+            //    g.GetComponent<Rigidbody>().velocity = new Vector3(1f, 1f, 0) * 20f;
+            //}
+
+            lastShot = Time.time;
+            Destroy(g, 1f);
+
+        }
     }
 
     void TakeDamage(int damage)
