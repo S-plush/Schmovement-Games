@@ -73,12 +73,12 @@ public class Alpha : MonoBehaviour
 
         if (Input.GetKey(KeyCode.D))
         {
-            this.gameObject.transform.Translate(new Vector3(alphaMovementSpd * Time.deltaTime, 0, 0));
+            this.gameObject.transform.Translate(new Vector3(0, 0, alphaMovementSpd * Time.deltaTime));
 
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            this.gameObject.transform.Translate(new Vector3(-alphaMovementSpd * Time.deltaTime, 0, 0));
+            this.gameObject.transform.Translate(new Vector3(0, 0, -alphaMovementSpd * Time.deltaTime));
 
         }
 
@@ -133,6 +133,7 @@ public class Alpha : MonoBehaviour
             {
                 return;
             }
+
             useMana(1);
             //rn this is for the explosion spell
             explosion.alpha = this; //for some reason I can't put the player onto the explosion object so this is a supplement for that

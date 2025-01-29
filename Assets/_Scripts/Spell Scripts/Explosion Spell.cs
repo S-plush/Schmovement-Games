@@ -12,8 +12,6 @@ public class ExplosionSpell : MonoBehaviour
 
     public void Aiming()
     {
-        spell.knockbackValue = 3f;
-
         if (alpha.rotationPoint.rotation.z < .2f && alpha.rotationPoint.rotation.z > -.19f)
         {
             //spell goes right
@@ -27,7 +25,7 @@ public class ExplosionSpell : MonoBehaviour
         else if (alpha.rotationPoint.rotation.z < -.5f && alpha.rotationPoint.rotation.z > -.79f)
         {
             //spell goes down
-            alpha.GetComponent<Rigidbody>().velocity = new Vector3(0, spell.knockbackValue, 0);
+            alpha.GetComponent<Rigidbody>().velocity = new Vector3(0, spell.knockbackValue * 1.5f, 0);
         }
         else if (alpha.rotationPoint.rotation.z < -.8f && alpha.rotationPoint.rotation.z > -.94f)
         {
