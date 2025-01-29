@@ -133,7 +133,6 @@ public class Alpha : MonoBehaviour
             {
                 return;
             }
-
             useMana(1);
             //rn this is for the explosion spell
             explosion.alpha = this; //for some reason I can't put the player onto the explosion object so this is a supplement for that
