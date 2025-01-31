@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using TMPro;
 
 public class Alpha : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class Alpha : MonoBehaviour
     public GameObject spellAttack; //for the spell effect/attack prefab
     public GameObject spellAttack2; //for the spell2 effect/attack prefab 
     public GameObject activeSpell; //for rn the spell's spawnpoint is what's used for this
-    public Transform rotationPoint; 
+    public Transform rotationPoint;
     public float timer; //for spell
 
     private float lastShot; //cooldown for the spell 1
@@ -27,6 +28,8 @@ public class Alpha : MonoBehaviour
 
     public GameObject Inventory;
 
+    public GameObject HUD;
+
     public HealthBar healthBar;
     public int maxHealth;
     private int currentHealth;
@@ -35,12 +38,23 @@ public class Alpha : MonoBehaviour
     public int maxMana;
     private int currentMana;
 
+    public TMP_Text stimCountText;
+    public int stimCount;
+    public int manaFromStim;
+    public int healthFromStim;
+
     void Start()
     {
         alpha = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
         explosion = spellAttack.GetComponent<ExplosionSpell>();
+
         Inventory.SetActive(false);
+        HUD.SetActive(true);
+        stimCount = 3; /////////////////////////////////input from file later
+        stimCountText.text = stimCount + "\n\nStims";
+        healthFromStim = 3; ////////////////////////////input from file later
+        manaFromStim = 1; //////////////////////////////input from file later
 
         maxHealth = 5; /////////////////////////////////input from file later
         currentHealth = maxHealth;
@@ -57,18 +71,35 @@ public class Alpha : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            ShootSpell1();
+            if (currentMana > 0) //check if out of mana
+            {
+                if (Time.timeScale != 0.0f) //check if inventory is open
+                {
+                    ShootSpell1();
+                }
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            Debug.Log("I'm being pressed");
-            ShootSpell2();
-            TakeDamage(1); //////////////////////////////////////////////////////remove this line
+            if (currentMana > 0) //check if out of mana
+            {
+                if (Time.timeScale != 0.0f) //check if inventory is open
+                {
+                    Debug.Log("I'm being pressed");
+                    ShootSpell2();
+                    TakeDamage(1); //////////////////////////////////////////////////////remove this line
+                }
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I)) //open inventory keybind
         {
             OpenMenu();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q)) //use of stim keybind
+        {
+            UseStim();
         }
 
         if (Input.GetKey(KeyCode.D))
@@ -105,7 +136,7 @@ public class Alpha : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground")
         {
             isGrounded = true;
         }
@@ -115,11 +146,13 @@ public class Alpha : MonoBehaviour
     {
         if (!Inventory.activeInHierarchy)
         {
+            //HUD.SetActive(false);
             Inventory.SetActive(true);
             Time.timeScale = 0.0f;
         }
         else if (Inventory.activeInHierarchy)
         {
+            //HUD.SetActive(true);
             Inventory.SetActive(false);
             Time.timeScale = 1.0f;
         }
@@ -127,9 +160,9 @@ public class Alpha : MonoBehaviour
 
     void ShootSpell1()
     {
-        if(activeSpell.activeInHierarchy)
+        if (activeSpell.activeInHierarchy)
         {
-            if(Time.time - lastShot < timer)
+            if (Time.time - lastShot < timer)
             {
                 return;
             }
@@ -204,6 +237,43 @@ public class Alpha : MonoBehaviour
         }
     }
 
+    void UseStim()
+    {
+        if (Time.timeScale != 0.0f)
+        {
+            if (stimCount > 0)
+            {
+                stimCount -= 1;
+                stimCountText.text = stimCount + "\n\nStims";
+
+                if (currentHealth + healthFromStim > maxHealth) //if health exceeds max health condition
+                {
+                    currentHealth = maxHealth;
+                    healthBar.SetHealth(maxHealth);
+                }
+                else
+                {
+                    currentHealth += healthFromStim;
+                    healthBar.SetHealth(currentHealth);
+                }
+
+                if (currentMana + manaFromStim > maxMana) //if mana exceeds max mana condition
+                {
+                    currentMana = maxMana;
+                    manaBar.SetMana(maxMana);
+                }
+                else
+                {
+                    currentMana += manaFromStim;
+                    manaBar.SetMana(currentMana);
+                }
+            }
+            else
+            {
+                // play empty (out of stims) sound and flash red
+            }
+        }
+    }
     void TakeDamage(int damage)
     {
         currentHealth -= damage;
