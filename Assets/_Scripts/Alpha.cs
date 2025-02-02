@@ -17,6 +17,7 @@ public class Alpha : MonoBehaviour
     public GameObject spellAttack2; //for the spell2 effect/attack prefab 
     public GameObject activeSpell; //for rn the spell's spawnpoint is what's used for this
     public Transform rotationPoint;
+    public Vector3 aimingDirection;
     public float timer; //for spell
 
     private float lastShot; //cooldown for the spell 1
@@ -24,7 +25,9 @@ public class Alpha : MonoBehaviour
     private Rigidbody alpha;
     private BoxCollider boxCollider;
     private ExplosionSpell explosion;
-    //private Aiming aiming; //might not need this here
+    
+    private bool isMovingLeft = false;
+    private bool isMovingRight = false;
 
     public GameObject Inventory;
 
@@ -85,9 +88,8 @@ public class Alpha : MonoBehaviour
             {
                 if (Time.timeScale != 0.0f) //check if inventory is open
                 {
-                    Debug.Log("I'm being pressed");
+                    //Debug.Log("I'm being pressed");
                     ShootSpell2();
-                    TakeDamage(1); //////////////////////////////////////////////////////remove this line
                 }
             }
         }
@@ -102,16 +104,9 @@ public class Alpha : MonoBehaviour
             UseStim();
         }
 
-        if (Input.GetKey(KeyCode.D))
-        {
-            this.gameObject.transform.Translate(new Vector3(0, 0, alphaMovementSpd * Time.deltaTime));
-
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            this.gameObject.transform.Translate(new Vector3(0, 0, -alphaMovementSpd * Time.deltaTime));
-
-        }
+        //this is for the FixedUpdate to help get rid of the jitteriness
+        isMovingLeft = Input.GetKey(KeyCode.A);
+        isMovingRight = Input.GetKey(KeyCode.D);
 
         //Debug.Log("fall speed is " + fallSpd);
 
@@ -119,18 +114,24 @@ public class Alpha : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             alpha.AddForce(Vector3.up * jumpSpd);
-
-            if (alpha.velocity.y > 0)
-            {
-                Debug.Log("i'm working!");
-                alpha.velocity += Vector3.up * Physics.gravity.y * (fallSpd - 1) * Time.deltaTime;
-            }
-
             isGrounded = false;
             float tempFallSpd = fallSpd;
             fallSpd = 0.5f; //this is to sort of help reset the jump
-            Debug.Log("fall speed is now " + fallSpd);
+            //Debug.Log("fall speed is now " + fallSpd);
             fallSpd = tempFallSpd;
+        }
+    }
+
+    //to help get rid of the jitteriness
+    private void FixedUpdate()
+    {
+        if (isMovingLeft)
+        {
+            this.gameObject.transform.Translate(new Vector3(0, 0, -alphaMovementSpd * Time.deltaTime));
+        }
+        else if(isMovingRight)
+        {
+            this.gameObject.transform.Translate(new Vector3(0, 0, alphaMovementSpd * Time.deltaTime));
         }
     }
 
@@ -185,51 +186,12 @@ public class Alpha : MonoBehaviour
             {
                 return;
             }
+
             Debug.Log("I'm in...");
             GameObject g = Instantiate(spellAttack2, spellSpawn.position, spellSpawn.rotation);
-
-            //g.GetComponent<Rigidbody>().velocity = new Vector3(rotationPoint.rotation.z, 0, 0) * 20f;
-
-            //if (rotationPoint.rotation.z < .2f && rotationPoint.rotation.z > -.19f)
-            //{
-            //    //spell goes right
-            //    g.GetComponent<Rigidbody>().velocity = Vector3.right * 20f;
-            //}
-            //else if (rotationPoint.rotation.z < -.2f && rotationPoint.rotation.z > -.49f)
-            //{
-            //    //spell goes down right
-            //    g.GetComponent<Rigidbody>().velocity = new Vector3(1f, -1f, 0) * 20f;
-            //}
-            //else if (rotationPoint.rotation.z < -.5f && rotationPoint.rotation.z > -.79f)
-            //{
-            //    //spell goes down
-            //    g.GetComponent<Rigidbody>().velocity = Vector3.down * 20f;
-            //}
-            //else if (rotationPoint.rotation.z < -.8f && rotationPoint.rotation.z > -.94f)
-            //{
-            //    //spell goes down left
-            //    g.GetComponent<Rigidbody>().velocity = new Vector3(-1f, -1f, 0) * 20f;
-            //}
-            //else if (rotationPoint.rotation.z < -.95f || rotationPoint.rotation.z > .95f)
-            //{
-            //    //spell goes left
-            //    g.GetComponent<Rigidbody>().velocity = Vector3.left * 20f;
-            //}
-            //else if (rotationPoint.rotation.z < .94f && rotationPoint.rotation.z > .81f)
-            //{
-            //    //spell goes up left
-            //    g.GetComponent<Rigidbody>().velocity = new Vector3(-1f, 1f, 0) * 20f;
-            //}
-            //else if (rotationPoint.rotation.z < .8f && rotationPoint.rotation.z > .5f)
-            //{
-            //    //spell goes up
-            //    g.GetComponent<Rigidbody>().velocity = Vector3.up * 20f;
-            //}
-            //else if (rotationPoint.rotation.z < .49f && rotationPoint.rotation.z > .21f)
-            //{
-            //    //spell goes up right
-            //    g.GetComponent<Rigidbody>().velocity = new Vector3(1f, 1f, 0) * 20f;
-            //}
+            Vector3 aimingDirection = FindObjectOfType<Aiming>().AimDirection();
+            Rigidbody rg = g.GetComponent<Rigidbody>();
+            rg.velocity = new Vector3(aimingDirection.x, aimingDirection.y, 0) * 20f;
 
             lastShot = Time.time;
             Destroy(g, 1f);

@@ -1015,10 +1015,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proto_Humanoid
       objectReference: {fileID: 0}
+    - target: {fileID: 4479004361983087995, guid: a25a2247c7629e34c91f8b31f3fcd4e9, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6529941747973226258, guid: a25a2247c7629e34c91f8b31f3fcd4e9, type: 3}
       propertyPath: HUD
       value: 
       objectReference: {fileID: 1798179875}
+    - target: {fileID: 6529941747973226258, guid: a25a2247c7629e34c91f8b31f3fcd4e9, type: 3}
+      propertyPath: jumpSpd
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 6529941747973226258, guid: a25a2247c7629e34c91f8b31f3fcd4e9, type: 3}
       propertyPath: manaBar
       value: 

@@ -5,6 +5,8 @@ using UnityEngine;
 public class ExplosionSpell : MonoBehaviour
 {
     //public Transform rotationAimingPoint;
+    public bool pushedRight = false;
+    public bool pushedLeft = false;
     public Spell spell;
 
     [HideInInspector]
@@ -14,42 +16,42 @@ public class ExplosionSpell : MonoBehaviour
     {
         if (alpha.rotationPoint.rotation.z < .2f && alpha.rotationPoint.rotation.z > -.19f)
         {
-            //spell goes right
+            //spell is aimed right
             alpha.GetComponent<Rigidbody>().velocity = new Vector3(-spell.knockbackValue, 0, 0);
         }
         else if (alpha.rotationPoint.rotation.z < -.2f && alpha.rotationPoint.rotation.z > -.49f)
         {
-            //spell goes down right
+            //spell is aimed down right
             alpha.GetComponent<Rigidbody>().velocity = new Vector3(-spell.knockbackValue, spell.knockbackValue, 0);
         }
         else if (alpha.rotationPoint.rotation.z < -.5f && alpha.rotationPoint.rotation.z > -.79f)
         {
-            //spell goes down
+            //spell is aimed down
             alpha.GetComponent<Rigidbody>().velocity = new Vector3(0, spell.knockbackValue * 1.5f, 0);
         }
         else if (alpha.rotationPoint.rotation.z < -.8f && alpha.rotationPoint.rotation.z > -.94f)
         {
-            //spell goes down left
+            //spell is aimed down left
             alpha.GetComponent<Rigidbody>().velocity = new Vector3(spell.knockbackValue, spell.knockbackValue, 0);
         }
         else if (alpha.rotationPoint.rotation.z < -.95f || alpha.rotationPoint.rotation.z > .95f)
         {
-            //spell goes left
+            //spell is aimed left
             alpha.GetComponent<Rigidbody>().velocity = new Vector3(spell.knockbackValue, 0, 0);
         }
         else if (alpha.rotationPoint.rotation.z < .94f && alpha.rotationPoint.rotation.z > .81f)
         {
-            //spell goes up left
+            //spell is aimed up left
             alpha.GetComponent<Rigidbody>().velocity = new Vector3(spell.knockbackValue, spell.knockbackValue, 0);
         }
         else if (alpha.rotationPoint.rotation.z < .8f && alpha.rotationPoint.rotation.z > .5f)
         {
-            //spell goes up
+            //spell is aimed up
             alpha.GetComponent<Rigidbody>().velocity = new Vector3(0, -spell.knockbackValue, 0);
         }
         else if (alpha.rotationPoint.rotation.z < .49f && alpha.rotationPoint.rotation.z > .21f)
         {
-            //spell goes up right
+            //spell is aimed up right
             alpha.GetComponent<Rigidbody>().velocity = new Vector3(-spell.knockbackValue, -spell.knockbackValue, 0);
         }
     }
