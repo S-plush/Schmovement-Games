@@ -23500,7 +23500,7 @@ GameObject:
   - component: {fileID: 574355431}
   - component: {fileID: 574355430}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: WallUpToExit2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23831,12 +23831,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 574355429}
   serializedVersion: 2
-  m_LocalRotation: {x: -1.6731473e-12, y: 6.072304e-18, z: -0.0000036292704, w: 1}
-  m_LocalPosition: {x: 226.52872, y: 52.011833, z: 28.023102}
+  m_LocalRotation: {x: 0.0000025662807, y: -0.7071068, z: -0.000002566283, w: 0.7071068}
+  m_LocalPosition: {x: -19.023134, y: 48.54782, z: 216.42865}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1202588059}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &578156794
 Mesh:
@@ -59814,6 +59814,8 @@ Transform:
   - {fileID: 368555970}
   - {fileID: 151456858}
   - {fileID: 978550254}
+  - {fileID: 1701449545}
+  - {fileID: 574355435}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1204023421
@@ -84093,7 +84095,7 @@ GameObject:
   - component: {fileID: 1701449541}
   - component: {fileID: 1701449540}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: AboveSecret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84424,12 +84426,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1701449539}
   serializedVersion: 2
-  m_LocalRotation: {x: -1.6731473e-12, y: 6.072304e-18, z: -0.0000036292704, w: 1}
-  m_LocalPosition: {x: 193.5, y: 83, z: 28.023102}
+  m_LocalRotation: {x: 0.0000025662807, y: -0.7071068, z: -0.000002566283, w: 0.7071068}
+  m_LocalPosition: {x: -19.023119, y: 79.53599, z: 183.39992}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1202588059}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1711429036
 GameObject:
@@ -107124,5 +107126,3 @@ SceneRoots:
   - {fileID: 2048541784}
   - {fileID: 273608778}
   - {fileID: 896052115}
-  - {fileID: 574355435}
-  - {fileID: 1701449545}
