@@ -1,17 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
-public class BasicJumpEnemy : MonoBehaviour {
-
+public class BasicShooterEnemy : MonoBehaviour
+{
     public GameObject player;
     private GameObject enemy;
 
     [SerializeField] private float atkFrequency;
-
-    [SerializeField] private float forwardVelocity;
-    [SerializeField] private float upwardVelocity;
 
     private Rigidbody enemyRB;
     private float timer;
@@ -20,15 +17,16 @@ public class BasicJumpEnemy : MonoBehaviour {
     private bool facingRight;
     private bool facingLeft;
 
-    // Start is called before the first frame update
+    private bool inRange;
+
     void Start() {
         enemy = this.gameObject;
         enemyRB = GetComponent<Rigidbody>();
         timer = 0;
-
+        inRange = false;
     }
 
-    // Update is called once per frame
+    // Start is called before the first frame update
     void Update() {
 
         facePlayer();
@@ -39,7 +37,7 @@ public class BasicJumpEnemy : MonoBehaviour {
         delay += Time.deltaTime;
 
         while (timer >= atkFrequency) {
-            jumpAttack();
+            shootAttack();
             timer -= atkFrequency;
         }
     }
@@ -58,21 +56,30 @@ public class BasicJumpEnemy : MonoBehaviour {
         }
     }
 
-    void jumpAttack() {
+    void moveToPlayer() {
+        if(Vector3.Distance(enemy.transform.position, player.transform.position) > 20f) {
+            inRange = false;
+            Vector3 pos = Vector3.MoveTowards(transform.position, player.transform.position, 10f * Time.deltaTime);
+
+            enemyRB.MovePosition(pos);
+        }
+        else {
+            timer = 0;
+            inRange = true;
+
+            while (timer >= atkFrequency) {
+                shootAttack();
+                timer -= atkFrequency;
+            }
+        }
+    }
+
+    void shootAttack() {
 
         delay = 0;
 
-        if (facingRight) {
-            Debug.Log("jumped");
 
-            enemyRB.velocity = new Vector3(forwardVelocity, upwardVelocity, 0);
-        } else if (facingLeft) {
-            Debug.Log("jumped");
 
-            enemyRB.velocity = new Vector3(-forwardVelocity, upwardVelocity, 0);
-
-        }
 
     }
-
 }
