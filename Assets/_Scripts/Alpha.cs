@@ -54,7 +54,7 @@ public class Alpha : MonoBehaviour
 
         Inventory.SetActive(false);
         HUD.SetActive(true);
-        stimCount = 3; /////////////////////////////////input from file later
+        stimCount = 30; /////////////////////////////////input from file later
         stimCountText.text = stimCount + "\n\nStims";
         healthFromStim = 3; ////////////////////////////input from file later
         manaFromStim = 1; //////////////////////////////input from file later
@@ -102,6 +102,23 @@ public class Alpha : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q)) //use of stim keybind
         {
             UseStim();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            //switchToLoadout1
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            //switchToLoadout2
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            //switchToLoadout3
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            //switchToLoadout4
         }
 
         //this is for the FixedUpdate to help get rid of the jitteriness
