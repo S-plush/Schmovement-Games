@@ -5,54 +5,20 @@ using UnityEngine;
 //we can rename this script to an appropriate spell name later
 public class ShootingSpell : MonoBehaviour
 {
-    public Transform rotationAimingPoint;
-    public Alpha alpha;
+    public Spell spell;
+    public GameObject spellObject;
+    public Transform spellSpawnPoint;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    [HideInInspector] public Alpha alpha;
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    private Vector3 aimingDirection;
 
     public void Aiming()
     {
-        if (rotationAimingPoint.rotation.z < .2f && rotationAimingPoint.rotation.z > -.19f)
-        {
-            //spell goes right
-        }
-        else if (rotationAimingPoint.rotation.z < -.2f && rotationAimingPoint.rotation.z > -.49f)
-        {
-            //spell goes down right
-        }
-        else if (rotationAimingPoint.rotation.z < -.5f && rotationAimingPoint.rotation.z > -.79f)
-        {
-            //spell goes down
-        }
-        else if (rotationAimingPoint.rotation.z < -.8f && rotationAimingPoint.rotation.z > -.94f)
-        {
-            //spell goes down left
-        }
-        else if (rotationAimingPoint.rotation.z < -.95f || rotationAimingPoint.rotation.z > .95f)
-        {
-            //spell goes left
-        }
-        else if (rotationAimingPoint.rotation.z < .94f && rotationAimingPoint.rotation.z > .81f)
-        {
-            //spell goes up left
-        }
-        else if (rotationAimingPoint.rotation.z < .8f && rotationAimingPoint.rotation.z > .5f)
-        {
-            //spell goes up
-        }
-        else if (rotationAimingPoint.rotation.z < .49f && rotationAimingPoint.rotation.z > .21f)
-        {
-            //spell goes up right
-        }
+        GameObject g = Instantiate(alpha.spellAttack2, alpha.spellSpawn.position, alpha.spellSpawn.rotation);
+        Rigidbody rg = g.GetComponent<Rigidbody>();
+        aimingDirection = FindObjectOfType<Aiming>().AimDirection();
+        rg.velocity = new Vector3(aimingDirection.x, aimingDirection.y, 0) * 20f;
+        Destroy(g, 1f);
     }
 }

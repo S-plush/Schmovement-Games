@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8515356480129621510}
   - component: {fileID: 5914424241250419261}
   - component: {fileID: -4201477253607707233}
+  - component: {fileID: -6726570949841539479}
   m_Layer: 0
   m_Name: test projectile
   m_TagString: Untagged
@@ -133,3 +134,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &-6726570949841539479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4895964845930759792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7854a20a1205e742bdd9db13d049cdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell: {fileID: 0}
+  spellObject: {fileID: 4895964845930759792}
+  spellSpawnPoint: {fileID: 0}
+  alpha: {fileID: 0}

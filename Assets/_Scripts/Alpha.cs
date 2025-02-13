@@ -25,9 +25,10 @@ public class Alpha : MonoBehaviour
     private Rigidbody alpha;
     private BoxCollider boxCollider;
     private ExplosionSpell explosion;
+    private ShootingSpell shootingSpell;
     
-    private bool isMovingLeft = false;
-    private bool isMovingRight = false;
+    [HideInInspector] public bool isMovingLeft = false;
+    [HideInInspector] public bool isMovingRight = false;
 
     public GameObject Inventory;
 
@@ -144,10 +145,24 @@ public class Alpha : MonoBehaviour
     {
         if (isMovingLeft)
         {
+            if (explosion.pushed && explosion.pushedRight)
+            {
+                alpha.velocity = Vector3.zero;
+                explosion.pushed = false;
+                explosion.pushedRight = false;
+            }
+
             this.gameObject.transform.Translate(new Vector3(0, 0, -alphaMovementSpd * Time.deltaTime));
         }
         else if(isMovingRight)
         {
+            if (explosion.pushed && explosion.pushedLeft)
+            {
+                alpha.velocity = Vector3.zero;
+                explosion.pushed = false;
+                explosion.pushedLeft = false;
+            }
+
             this.gameObject.transform.Translate(new Vector3(0, 0, alphaMovementSpd * Time.deltaTime));
         }
     }
@@ -186,7 +201,9 @@ public class Alpha : MonoBehaviour
             }
 
             useMana(1);
+
             //rn this is for the explosion spell
+            explosion.pushed = false;
             explosion.alpha = this; //for some reason I can't put the player onto the explosion object so this is a supplement for that
             explosion.Aiming();
             GameObject g = Instantiate(spellAttack, spellSpawn.position, spellSpawn.rotation);
@@ -206,10 +223,10 @@ public class Alpha : MonoBehaviour
 
             Debug.Log("I'm in...");
             GameObject g = Instantiate(spellAttack2, spellSpawn.position, spellSpawn.rotation);
-            Vector3 aimingDirection = FindObjectOfType<Aiming>().AimDirection();
+            aimingDirection = FindObjectOfType<Aiming>().AimDirection();
             Rigidbody rg = g.GetComponent<Rigidbody>();
             rg.velocity = new Vector3(aimingDirection.x, aimingDirection.y, 0) * 20f;
-
+            //shootingSpell.Aiming();
             lastShot = Time.time;
             Destroy(g, 1f);
 
