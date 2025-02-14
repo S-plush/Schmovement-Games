@@ -15,7 +15,7 @@ public class Loadout : MonoBehaviour
     public int whichSlotIsThis; //1 or 2 depending on if this is the first or second slot of a given loadout
     public int whichLoudoutSetIsThis; //1-4 depending on which loadout this slot is from
 
-    public int currentLoadoutSelected = 1; //needs to be updated when player presses keys to swap loadouts
+    [HideInInspector] public int currentLoadoutSelected; //needs to be updated in Alpha Script when player presses keys to swap loadouts !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     public Sprite defaultBox;
 
@@ -26,10 +26,12 @@ public class Loadout : MonoBehaviour
     }
 
     // Update is called once per frame
+    
     void Update()
     {
         //now need to add more statements to check which loudout is active with whichLoudoutSetIsThis, so it knows which to pull from... this will have to be saved some other way though,
         //as currently this gameObject is disabled during gameplay and it is unknown as to which loadout the player has selected (add 1-4 keys in player script)
+        //and other issues since writing to a file about implemetation here...
         if (whichLoudoutSetIsThis == currentLoadoutSelected)
         {
             if (this.transform.childCount > 0)
@@ -58,4 +60,5 @@ public class Loadout : MonoBehaviour
             }
         }
     }
+    
 }
