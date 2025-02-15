@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1285458311310225056}
   - component: {fileID: 5913238882214018934}
+  - component: {fileID: 207681278813225272}
   m_Layer: 0
   m_Name: InventoryManager
   m_TagString: Untagged
@@ -91,3 +92,28 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   inventorySpellPrefab: {fileID: 8098043691620961122, guid: dbe2d79e04a6aeb47a68fad96c8cf343, type: 3}
+--- !u!114 &207681278813225272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2782939748750390917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2eb96c3eda2cac40abf87b56e2f62af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadout1Left: {fileID: 0}
+  loadout1Right: {fileID: 0}
+  loadout2Left: {fileID: 0}
+  loadout2Right: {fileID: 0}
+  loadout3Left: {fileID: 0}
+  loadout3Right: {fileID: 0}
+  loadout4Left: {fileID: 0}
+  loadout4Right: {fileID: 0}
+  defaultBox: {fileID: 21300000, guid: fc9b0f3631ec0da4db3ed489f7814ccc, type: 3}
+  HUDSlot1: {fileID: 0}
+  HUDSlot2: {fileID: 0}
+  Explosion: {fileID: 11400000, guid: 6de52e9e8a99da54cb483fd162293029, type: 2}
+  Lightning: {fileID: 11400000, guid: e1da2a1e742d6e248b1e8cf5bae5a94e, type: 2}

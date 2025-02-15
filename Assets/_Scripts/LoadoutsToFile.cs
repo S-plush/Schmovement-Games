@@ -30,7 +30,6 @@ public class LoadoutsToFile : MonoBehaviour
     public Image HUDSlot1; //ref to the left spell slot on HUD
     public Image HUDSlot2; //ref to the right spell slot on HUD
 
-
     //add spells here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public Spell Explosion;
     public Spell Lightning;
@@ -43,11 +42,8 @@ public class LoadoutsToFile : MonoBehaviour
        
     }
 
-    public void Update()
+    public void saveLoadoutsToFile()
     {
-        if(Input.GetKeyDown(KeyCode.I))
-        {
-
             string dataIn = "";
 
             //first loadout being saved (written to file)
@@ -119,21 +115,17 @@ public class LoadoutsToFile : MonoBehaviour
 
             if (loadout4Right.transform.childCount > 0)
             {
-                dataIn += loadout4Right.transform.GetChild(0).gameObject.GetComponent<InventorySpell>().spell.name;
+                dataIn += loadout4Right.transform.GetChild(0).gameObject.GetComponent<InventorySpell>().spell.name + "\n";
             }
             else
             {
-                dataIn += "empty";
+                dataIn += "empty\n";
             }
 
             
             WriteToFile(dataIn);
 
             //Debug.Log(ReadFromFile());
-
-            switchLoadouts(3); //put this line in Alpha script!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-        }
     }
 
 

@@ -47,6 +47,8 @@ public class Alpha : MonoBehaviour
     public int manaFromStim;
     public int healthFromStim;
 
+    public GameObject InventoryManager;
+
     void Start()
     {
         alpha = GetComponent<Rigidbody>();
@@ -95,9 +97,11 @@ public class Alpha : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.I)) //open inventory keybind
+        if (Input.GetKeyDown(KeyCode.I)) //open inventory keybind (also saves spells that are in loadout slots when inventory is opened/closed)
         {
             OpenMenu();
+
+            InventoryManager.GetComponent<LoadoutsToFile>().saveLoadoutsToFile();
         }
 
         if (Input.GetKeyDown(KeyCode.Q)) //use of stim keybind
@@ -105,21 +109,22 @@ public class Alpha : MonoBehaviour
             UseStim();
         }
 
+        //keybinds for switching to different loadout slots
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            //switchToLoadout1
+            InventoryManager.GetComponent<LoadoutsToFile>().switchLoadouts(1);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            //switchToLoadout2
+            InventoryManager.GetComponent<LoadoutsToFile>().switchLoadouts(2);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            //switchToLoadout3
+            InventoryManager.GetComponent<LoadoutsToFile>().switchLoadouts(3);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            //switchToLoadout4
+            InventoryManager.GetComponent<LoadoutsToFile>().switchLoadouts(4);
         }
 
         //this is for the FixedUpdate to help get rid of the jitteriness
