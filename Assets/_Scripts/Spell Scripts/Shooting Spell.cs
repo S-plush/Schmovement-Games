@@ -21,4 +21,21 @@ public class ShootingSpell : MonoBehaviour
         rg.velocity = new Vector3(aimingDirection.x, aimingDirection.y, 0) * 20f;
         Destroy(g, 1f);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Enemy")
+        {
+
+        }
+        else if(other.gameObject.tag == "Destructable Wall")
+        {
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 }

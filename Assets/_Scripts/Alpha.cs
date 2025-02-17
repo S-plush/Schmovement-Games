@@ -10,6 +10,7 @@ public class Alpha : MonoBehaviour
     public float alphaMovementSpd = 3.5f;
     public float jumpSpd = 5f;
     public float fallSpd = 2.5f;
+    public float dashPush = 5;
 
     //set up for this test build, but will need to have an abstract class for all the spells
     public Transform spellSpawn; //spawn point for spell's attack
@@ -19,9 +20,13 @@ public class Alpha : MonoBehaviour
     public Transform rotationPoint;
     public Vector3 aimingDirection;
     public float timer; //for spell
+    public float delayInput; //to fix immediate movement from knockback
 
     private float lastShot; //cooldown for the spell 1
+    private float startingTime;
     private bool isGrounded;
+    private bool hasDashed = false;
+    private bool canDoubleJump = false;
     private Rigidbody alpha;
     private BoxCollider boxCollider;
     private ExplosionSpell explosion;
@@ -133,6 +138,17 @@ public class Alpha : MonoBehaviour
 
         //Debug.Log("fall speed is " + fallSpd);
 
+        //this is to use double jump
+        if (Input.GetButtonDown("Jump") && canDoubleJump)
+        {
+            alpha.velocity = Vector3.zero;
+            alpha.AddForce(Vector3.up * jumpSpd);
+            float tempFallSpd = fallSpd;
+            fallSpd = 0.5f; //this is to sort of help reset the jump
+            fallSpd = tempFallSpd;
+            canDoubleJump = false;
+        }
+
         //isGrounded makes it so the player isn't able to spam the jump button while in mid-air
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
@@ -142,6 +158,13 @@ public class Alpha : MonoBehaviour
             fallSpd = 0.5f; //this is to sort of help reset the jump
             //Debug.Log("fall speed is now " + fallSpd);
             fallSpd = tempFallSpd;
+            canDoubleJump = true;
+        }
+
+        //this is to use dash
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            StartCoroutine(Dash());
         }
     }
 
@@ -150,22 +173,25 @@ public class Alpha : MonoBehaviour
     {
         if (isMovingLeft)
         {
-            if (explosion.pushed && explosion.pushedRight)
+            //this makes it so after the knockback from a spell the player is immediately able to move forward or backwards
+            if (explosion.pushed && explosion.pushedRight && Time.time - startingTime < delayInput)
             {
                 alpha.velocity = Vector3.zero;
                 explosion.pushed = false;
                 explosion.pushedRight = false;
+                startingTime = Time.time;
             }
 
             this.gameObject.transform.Translate(new Vector3(0, 0, -alphaMovementSpd * Time.deltaTime));
         }
         else if(isMovingRight)
         {
-            if (explosion.pushed && explosion.pushedLeft)
+            if (explosion.pushed && explosion.pushedLeft && Time.time - startingTime < delayInput)
             {
                 alpha.velocity = Vector3.zero;
                 explosion.pushed = false;
                 explosion.pushedLeft = false;
+                startingTime = Time.time;
             }
 
             this.gameObject.transform.Translate(new Vector3(0, 0, alphaMovementSpd * Time.deltaTime));
@@ -177,7 +203,22 @@ public class Alpha : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             isGrounded = true;
+            hasDashed = false;
         }
+    }
+
+    private IEnumerator Dash()
+    {
+        if (this.gameObject.transform.rotation.y == 90 && !hasDashed || isMovingRight && !hasDashed)
+        {
+            alpha.useGravity = false;
+            alpha.velocity = new Vector3(transform.localScale.x * dashPush, 0, 0);
+            hasDashed = true;
+        }
+
+        yield return new WaitForSeconds(0.5f);
+        alpha.velocity = Vector3.zero;
+        alpha.useGravity = true;
     }
 
     void OpenMenu()
@@ -226,7 +267,6 @@ public class Alpha : MonoBehaviour
                 return;
             }
 
-            Debug.Log("I'm in...");
             GameObject g = Instantiate(spellAttack2, spellSpawn.position, spellSpawn.rotation);
             aimingDirection = FindObjectOfType<Aiming>().AimDirection();
             Rigidbody rg = g.GetComponent<Rigidbody>();

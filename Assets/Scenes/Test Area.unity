@@ -1082,6 +1082,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1223848159}
     - target: {fileID: 6529941747973226258, guid: a25a2247c7629e34c91f8b31f3fcd4e9, type: 3}
+      propertyPath: dashPush
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6529941747973226258, guid: a25a2247c7629e34c91f8b31f3fcd4e9, type: 3}
       propertyPath: Inventory
       value: 
       objectReference: {fileID: 748279675}
@@ -1089,6 +1093,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1473692312}
+    - target: {fileID: 6529941747973226258, guid: a25a2247c7629e34c91f8b31f3fcd4e9, type: 3}
+      propertyPath: delayInput
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6529941747973226258, guid: a25a2247c7629e34c91f8b31f3fcd4e9, type: 3}
       propertyPath: stimCountText
       value: 
