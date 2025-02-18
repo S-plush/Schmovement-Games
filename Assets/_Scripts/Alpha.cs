@@ -139,14 +139,17 @@ public class Alpha : MonoBehaviour
         //Debug.Log("fall speed is " + fallSpd);
 
         //this is to use double jump
-        if (Input.GetButtonDown("Jump") && canDoubleJump)
+        if (canDoubleJump)
         {
-            alpha.velocity = Vector3.zero;
-            alpha.AddForce(Vector3.up * jumpSpd);
-            float tempFallSpd = fallSpd;
-            fallSpd = 0.5f; //this is to sort of help reset the jump
-            fallSpd = tempFallSpd;
-            canDoubleJump = false;
+            if (Input.GetButtonDown("Jump"))
+            {
+                alpha.velocity = Vector3.zero;
+                alpha.AddForce(Vector3.up * jumpSpd);
+                float tempFallSpd = fallSpd;
+                fallSpd = 0.5f; //this is to sort of help reset the jump
+                fallSpd = tempFallSpd;
+                canDoubleJump = false;
+            }
         }
 
         //isGrounded makes it so the player isn't able to spam the jump button while in mid-air

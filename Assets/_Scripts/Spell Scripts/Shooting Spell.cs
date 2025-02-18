@@ -28,7 +28,7 @@ public class ShootingSpell : MonoBehaviour
         {
 
         }
-        else if(other.gameObject.tag == "Destructable Wall")
+        else if(other.gameObject.tag == "Destructible Wall")
         {
             Destroy(other.gameObject);
             Destroy(gameObject);
