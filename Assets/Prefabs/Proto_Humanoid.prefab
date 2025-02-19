@@ -157,7 +157,7 @@ Transform:
   m_GameObject: {fileID: 5250315055352416283}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 10.490067, y: 0.16000003, z: -2.840108}
+  m_LocalPosition: {x: 10, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -232,15 +232,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 933edd814490e5447a50706ad54d2103, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.8401089
+      value: 48.91
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 933edd814490e5447a50706ad54d2103, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.84
+      value: 1.36
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 933edd814490e5447a50706ad54d2103, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.49006557
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 933edd814490e5447a50706ad54d2103, type: 3}
       propertyPath: m_LocalRotation.w
@@ -371,9 +371,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9550e839ab4350b4599e7010cb3fb0b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alphaMovementSpd: 3.5
-  jumpSpd: 300
+  alphaMovementSpd: 7
+  jumpSpd: 400
   fallSpd: 2.5
+  dashPush: 5
   spellSpawn: {fileID: 8030328350577544493}
   spellAttack: {fileID: 2672976769280851066, guid: 74acdbccee3a400428fb35b62880d330, type: 3}
   spellAttack2: {fileID: 4895964845930759792, guid: 140fa3356da50d544b260646335da7e3, type: 3}
@@ -381,6 +382,7 @@ MonoBehaviour:
   rotationPoint: {fileID: 5168139915450088161}
   aimingDirection: {x: 0, y: 0, z: 0}
   timer: 1.5
+  delayInput: 0
   isMovingLeft: 0
   isMovingRight: 0
   Inventory: {fileID: 0}
