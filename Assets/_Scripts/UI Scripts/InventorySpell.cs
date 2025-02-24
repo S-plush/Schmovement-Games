@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class InventorySpell : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     
-    public Image image;
+    [HideInInspector] public Image image;
 
     public Spell spell;
     [HideInInspector] public Transform parentAfterDrag;

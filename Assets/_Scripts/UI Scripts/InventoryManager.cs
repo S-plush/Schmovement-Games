@@ -9,7 +9,7 @@ public class InventoryManager : MonoBehaviour
     public InventorySlot[] inventorySlots;
     public GameObject inventorySpellPrefab;
 
-    int selectedSlot = -1;
+    int selectedSlot = 1;
 
     //auxilary code/functionality for cursor selecting slots
     void ChangeSelectedSlot(int newValue)
@@ -41,7 +41,7 @@ public class InventoryManager : MonoBehaviour
     }
 
     //making a new spell from the spell prefab
-    void SpawnNewSpell(Spell spell, InventorySlot slot)
+    public void SpawnNewSpell(Spell spell, InventorySlot slot)
     {
         GameObject newSpellGo = Instantiate(inventorySpellPrefab, slot.transform);
         InventorySpell inventorySpell = newSpellGo.GetComponent<InventorySpell>();
