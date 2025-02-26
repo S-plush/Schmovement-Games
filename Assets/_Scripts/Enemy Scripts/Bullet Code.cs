@@ -5,22 +5,22 @@ using UnityEngine;
 public class BulletCode : MonoBehaviour
 {
     public int Damage;
-    public Transform player;
+    public GameObject player;
 
-    private Alpha alpha;
+    //private Alpha alpha;
 
     // Start is called before the first frame update
     void Start()
     {
-        alpha = player.GetComponent<Alpha>();
+        Damage = 1;
         this.gameObject.GetComponent<Rigidbody>().velocity = transform.forward * 5f;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
-            alpha.TakeDamage(Damage);
+            //player.GetComponent<Alpha>().TakeDamage(Damage);
             Destroy(this.gameObject);
         }
         else

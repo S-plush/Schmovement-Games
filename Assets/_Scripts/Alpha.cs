@@ -76,6 +76,14 @@ public class Alpha : MonoBehaviour
         manaBar.SetMaxMana(maxMana);
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy Attack")
+        {
+            TakeDamage(1);
+        }
+    }
+
     private void Update()
     {
         //Debug.Log("rotation is " + rotationPoint.rotation.z);
