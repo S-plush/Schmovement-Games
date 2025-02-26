@@ -86,7 +86,6 @@ public class VZ17Code : MonoBehaviour {
     void aimAtPlayer() {
         fireArea.transform.LookAt(player.transform.position);
 
-        Debug.Log(player.transform.position);
     }
 
     void startAttack() {

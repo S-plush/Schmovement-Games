@@ -1,21 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PR0P3L10RCode : MonoBehaviour
 {
 
     [SerializeField] private GameObject player;
-
+    [SerializeField] private GameObject fireArea;
+    public GameObject bullet;
+    private GameObject enemy;
 
     LayerMask terrainLayerMask;
     LayerMask playerLayerMask;
 
 
-    private bool one, two, three, four, six, seven, eight, nine;
+    private bool forward, up, back, down;
 
+    [SerializeField] private float shootFrequency;
+    [SerializeField] private float moveFrequency;
 
+    [SerializeField] private float moveSpeed;
 
+    private Rigidbody enemyRB;
+    private float timer;
+
+    private bool facingRight;
+    private bool facingLeft;
+
+    private bool inRange;
+
+    private bool canMove;
+
+    
 
 
 
@@ -24,6 +41,11 @@ public class PR0P3L10RCode : MonoBehaviour
     {
         terrainLayerMask = LayerMask.GetMask("Default");
         playerLayerMask = LayerMask.GetMask("Player");
+        enemy = this.gameObject;
+        enemyRB = GetComponent<Rigidbody>();
+        timer = 0;
+
+        enemyRB = GetComponent<Rigidbody>();
 
     }
 
@@ -31,69 +53,130 @@ public class PR0P3L10RCode : MonoBehaviour
     void FixedUpdate() {
         RaycastHit hit;
 
+        if (Vector3.Distance(enemy.transform.position, player.transform.position) > 15f) {
+            inRange = false;
+        } else {
+            inRange = true;
+        }
 
-            
- 
+        if (Vector3.Distance(enemy.transform.position, player.transform.position) > 10f) {
+            canMove = true;
+        } else {
+            canMove = false;
+        }
+
+        timer += Time.deltaTime;
+
+        if (canMove && inRange) {
+            checkDirections();
+
+            if (forward && facingLeft) {
+                transform.position = Vector3.MoveTowards(transform.position, transform.position + new Vector3(-1, 0, 0), 0.1f);
+            }
+            if (forward && facingRight) {
+                transform.position = Vector3.MoveTowards(transform.position, transform.position + new Vector3(1, 0, 0), 0.1f);
+            }
+
+            if (down) {
+                if (enemy.transform.position.y > player.transform.position.y) {
+                    transform.position = Vector3.MoveTowards(transform.position, transform.position + new Vector3(0, -1, 0), 0.1f);
+                }
+            }
+
+            if (up) {
+                if (enemy.transform.position.y < player.transform.position.y) {
+                    transform.position = Vector3.MoveTowards(transform.position, transform.position + new Vector3(0, 1, 0), 0.1f);
+                }
+            }
+        }
+
+        if (!inRange) {
+            enemyRB.velocity = Vector3.zero;
+        }
+
+
+        while (timer >= moveFrequency) {
+            facePlayer();
+            aimAtPlayer();
+            startAttack();
+            timer -= moveFrequency;
+
+
+        }
+
     }
+    void facePlayer() {
+        if (player.transform.position.x > enemy.transform.position.x) {
+            enemy.transform.rotation = Quaternion.Euler(0, 90, 0);
+            facingRight = true;
+            facingLeft = false;
 
+        } else if (player.transform.position.x < enemy.transform.position.x) {
+            enemy.transform.rotation = Quaternion.Euler(0, 270, 0);
+            facingRight = false;
+            facingLeft = true;
+        }
+    }
     void checkDirections() {
         RaycastHit hit;
 
-        one = false; 
-        two = false;
-        three = false;
-        four = false;
-        six = false;
-        seven = false;
-        eight = false;
-        nine = false;
+        forward = true; 
+        back = true;
+        up = true;
+        down = true;
 
-  
 
-        if (Physics.Raycast(transform.position, transform.TransformDirection(new Vector3(0, -1, -1)), out hit, 10f, terrainLayerMask)) {
-            one = true;
-        }
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 10f, terrainLayerMask)) {
-            two = true;
-        }
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 10f, terrainLayerMask)) {
-            three = true;
-        }
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 10f, terrainLayerMask)) {
-            four = true;
-        }
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 10f, terrainLayerMask)) {
-            six = true;
-        }
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 10f, terrainLayerMask)) {
-            seven = true;
-        }
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 10f, terrainLayerMask)) {
-            eight = true;
-        }
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 10f, terrainLayerMask)) {
-            nine = true;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 10f, terrainLayerMask)) {
+            forward = false;
+            //Debug.Log("Hit Forward");
+            //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
         }
 
+        if (Physics.Raycast(transform.position, transform.TransformDirection(-Vector3.forward), out hit, 10f, terrainLayerMask)) {
+            back = false;
+            //Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.forward) * hit.distance, Color.yellow);
+            Debug.Log("Hit back");
+
+        }
+
+        if (Physics.Raycast(transform.position, transform.TransformDirection(transform.up), out hit, 5f, terrainLayerMask)) {
+            up = false;
+            //Debug.DrawRay(transform.position, transform.TransformDirection(transform.up) * hit.distance, Color.yellow);
+            Debug.Log("Hit up");
+
+        }
+
+        if (Physics.Raycast(transform.position, transform.TransformDirection(-transform.up), out hit, 5f, terrainLayerMask)) {
+            down = false;
+            //Debug.DrawRay(transform.position, transform.TransformDirection(-transform.up) * hit.distance, Color.yellow);
+            Debug.Log("Hit down");
+
+        }
 
 
     }
-    
-    
-    void atkPattern() {
+
+    void aimAtPlayer() {
+        fireArea.transform.LookAt(player.transform.position);
+
+    }
+
+    void startAttack() {
         RaycastHit hit;
-
+        if(!canMove)
         // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 10f, terrainLayerMask)) {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.yellow);
+        if (Physics.Raycast(transform.position, transform.TransformDirection(player.transform.position), out hit, 10f, terrainLayerMask)) {
+            Debug.DrawRay(transform.position, transform.TransformDirection(player.transform.position) * hit.distance, Color.yellow);
             Debug.Log("Did Hit");
-
 
         } else {
 
 
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * 10f, Color.white);
+            Debug.DrawRay(transform.position, transform.TransformDirection(player.transform.position) * 10f, Color.white);
             Debug.Log("Did not Hit");
+
+            Instantiate(bullet, fireArea.transform.position, fireArea.transform.rotation);
+
         }
     }
 }
