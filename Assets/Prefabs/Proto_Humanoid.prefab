@@ -248,11 +248,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 933edd814490e5447a50706ad54d2103, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 72.83
+      value: 94.77
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 933edd814490e5447a50706ad54d2103, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.6
+      value: 11.32
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 933edd814490e5447a50706ad54d2103, type: 3}
       propertyPath: m_LocalPosition.z
@@ -601,11 +601,11 @@ MonoBehaviour:
   dashPush: 5
   spellSpawn: {fileID: 8030328350577544493}
   spellAttack: {fileID: 2672976769280851066, guid: 74acdbccee3a400428fb35b62880d330, type: 3}
-  spellAttack2: {fileID: 4895964845930759792, guid: 140fa3356da50d544b260646335da7e3, type: 3}
   activeSpell: {fileID: 799906513144486220}
   rotationPoint: {fileID: 5168139915450088161}
   aimingDirection: {x: 0, y: 0, z: 0}
   timer: 1.5
+  lightningPrefab: {fileID: -7419050746634257968, guid: 91de701a1772e4941bfd8ca90f30b81c, type: 3}
   iciclePrefab: {fileID: 7772193594896229260, guid: 286e89ed882b0644d8b0dd57b649567b, type: 3}
   soundWavePrefab: {fileID: 6934630093924351336, guid: a0a16fd4c63f2384aaf4760b822c7d62, type: 3}
   isMovingLeft: 0

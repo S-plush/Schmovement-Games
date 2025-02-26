@@ -15,7 +15,6 @@ public class Alpha : MonoBehaviour
     //set up for this test build, but will need to have an abstract class for all the spells
     public Transform spellSpawn; //spawn point for spell's attack
     public GameObject spellAttack; //for the explosion spell effect/attack prefab
-    public GameObject spellAttack2; //for the lightning spell effect/attack prefab 
     public GameObject activeSpell; //for rn the spell's spawnpoint is what's used for this
     public Transform rotationPoint;
     public Vector3 aimingDirection;
@@ -28,7 +27,7 @@ public class Alpha : MonoBehaviour
     private BoxCollider boxCollider;
 
     private ExplosionSpell explosion;
-    private LightningSpell lightning;
+    public LightningSpell lightningPrefab;
     public IcicleSpearSpell iciclePrefab;
     public SoundWaveSpell soundWavePrefab;
     
@@ -246,17 +245,10 @@ public class Alpha : MonoBehaviour
             useMana(1);
 
             //rn this is for the explosion spell
-            //explosion.pushed = false;
-            //explosion.alpha = this; //for some reason I can't put the player onto the explosion object so this is a supplement for that
-            //explosion.Aiming();
-            //GameObject g = Instantiate(spellAttack, spellSpawn.position, spellSpawn.rotation);
-            //lastShot = Time.time;
-            //Destroy(g, 0.5f);
+            UseExplosionSpell();
 
             //this is the icicle spear spell
-            aimingDirection = FindObjectOfType<Aiming>().AimDirection();
-            IcicleSpearSpell icicleSpear = Instantiate(iciclePrefab, spellSpawn.position, spellSpawn.rotation);
-            icicleSpear.Aiming(aimingDirection);
+            //UseIcicleSpell();
             lastShot = Time.time;
         }
     }
@@ -271,18 +263,10 @@ public class Alpha : MonoBehaviour
             }
 
             //this is the lightning spell
-            //GameObject g = Instantiate(spellAttack2, spellSpawn.position, spellSpawn.rotation);
-            //aimingDirection = FindObjectOfType<Aiming>().AimDirection();
-            //Rigidbody rg = g.GetComponent<Rigidbody>();
-            //rg.velocity = new Vector3(aimingDirection.x, aimingDirection.y, 0) * 20f;
-            ////shootingSpell.Aiming();
-            //lastShot = Time.time;
-            //Destroy(g, 1f);
+            UseLightningSpell();
 
             //this is the sound wave spell
-            aimingDirection = FindObjectOfType<Aiming>().AimDirection();
-            SoundWaveSpell soundWave = Instantiate(soundWavePrefab, spellSpawn.position, spellSpawn.rotation);
-            soundWave.Aiming(aimingDirection);
+            //UseSoundWaveSpell();
             lastShot = Time.time;
         }
     }
@@ -337,5 +321,36 @@ public class Alpha : MonoBehaviour
         currentMana -= lostMana;
 
         manaBar.SetMana(currentMana);
+    }
+
+    public void UseExplosionSpell()
+    {
+        explosion.pushed = false;
+        explosion.alpha = this; //for some reason I can't put the player onto the explosion object so this is a supplement for that
+        explosion.Aiming();
+        GameObject g = Instantiate(spellAttack, spellSpawn.position, spellSpawn.rotation);
+        lastShot = Time.time;
+        Destroy(g, 0.5f);
+    }
+
+    public void UseLightningSpell()
+    {
+        aimingDirection = FindObjectOfType<Aiming>().AimDirection();
+        LightningSpell lightning = Instantiate(lightningPrefab, spellSpawn.position, spellSpawn.rotation);
+        lightning.Aiming(aimingDirection);
+    }
+
+    public void UseIcicleSpell()
+    {
+        aimingDirection = FindObjectOfType<Aiming>().AimDirection();
+        IcicleSpearSpell icicleSpear = Instantiate(iciclePrefab, spellSpawn.position, spellSpawn.rotation);
+        icicleSpear.Aiming(aimingDirection);
+    }
+
+    public void UseSoundWaveSpell()
+    {
+        aimingDirection = FindObjectOfType<Aiming>().AimDirection();
+        SoundWaveSpell soundWave = Instantiate(soundWavePrefab, spellSpawn.position, spellSpawn.rotation);
+        soundWave.Aiming(aimingDirection);
     }
 }
