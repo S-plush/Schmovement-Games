@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//we can rename this script to an appropriate spell name later
-public class ShootingSpell : MonoBehaviour
+public class LightningSpell : MonoBehaviour
 {
     public Spell spell;
-    public GameObject spellObject;
     public Transform spellSpawnPoint;
+    public Rigidbody rb;
 
     [HideInInspector] public Alpha alpha;
 
@@ -26,7 +25,7 @@ public class ShootingSpell : MonoBehaviour
     {
         if(other.gameObject.tag == "Enemy")
         {
-
+            
         }
         else if(other.gameObject.tag == "Destructible Wall")
         {
