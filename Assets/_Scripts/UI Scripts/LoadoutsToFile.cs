@@ -36,7 +36,6 @@ public class LoadoutsToFile : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(ReadFromFile());
         // Set the file path inside persistentDataPath
         filePath = Path.Combine(Application.persistentDataPath, fileName);
 
