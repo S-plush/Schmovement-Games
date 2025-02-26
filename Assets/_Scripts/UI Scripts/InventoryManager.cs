@@ -24,7 +24,7 @@ public class InventoryManager : MonoBehaviour
     }
 
     //for putting a new spell in the next availible inventory slot when it is picked up
-    public bool AddSpell(Spell spell)
+    public void AddSpell(Spell spell)
     {
         for(int i = 0; i < inventorySlots.Length; i++)
         {
@@ -33,11 +33,8 @@ public class InventoryManager : MonoBehaviour
             if(spellInSlot == null)
             {
                 SpawnNewSpell(spell, slot);
-                return true;
             }
         }
-
-        return false;
     }
 
     //making a new spell from the spell prefab
