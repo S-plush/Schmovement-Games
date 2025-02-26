@@ -135,21 +135,21 @@ public class PR0P3L10RCode : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.TransformDirection(-Vector3.forward), out hit, 10f, terrainLayerMask)) {
             back = false;
             //Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.forward) * hit.distance, Color.yellow);
-            Debug.Log("Hit back");
+            //Debug.Log("Hit back");
 
         }
 
         if (Physics.Raycast(transform.position, transform.TransformDirection(transform.up), out hit, 5f, terrainLayerMask)) {
             up = false;
             //Debug.DrawRay(transform.position, transform.TransformDirection(transform.up) * hit.distance, Color.yellow);
-            Debug.Log("Hit up");
+            //Debug.Log("Hit up");
 
         }
 
         if (Physics.Raycast(transform.position, transform.TransformDirection(-transform.up), out hit, 5f, terrainLayerMask)) {
             down = false;
             //Debug.DrawRay(transform.position, transform.TransformDirection(-transform.up) * hit.distance, Color.yellow);
-            Debug.Log("Hit down");
+            //Debug.Log("Hit down");
 
         }
 
@@ -167,13 +167,13 @@ public class PR0P3L10RCode : MonoBehaviour
         // Does the ray intersect any objects excluding the player layer
         if (Physics.Raycast(transform.position, transform.TransformDirection(player.transform.position), out hit, 10f, terrainLayerMask)) {
             Debug.DrawRay(transform.position, transform.TransformDirection(player.transform.position) * hit.distance, Color.yellow);
-            Debug.Log("Did Hit");
+            //Debug.Log("Did Hit");
 
         } else {
 
 
             Debug.DrawRay(transform.position, transform.TransformDirection(player.transform.position) * 10f, Color.white);
-            Debug.Log("Did not Hit");
+            //Debug.Log("Did not Hit");
 
             Instantiate(bullet, fireArea.transform.position, fireArea.transform.rotation);
 
