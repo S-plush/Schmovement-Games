@@ -1,3 +1,4 @@
+using Palmmedia.ReportGenerator.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class InventoryManager : MonoBehaviour
     public GameObject inventorySpellPrefab;
 
     int selectedSlot = 1;
+
+    public GameObject Settings;
 
     //auxilary code/functionality for cursor selecting slots
     void ChangeSelectedSlot(int newValue)
@@ -56,5 +59,11 @@ public class InventoryManager : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void SettingsResumeButton()
+    {
+        Settings.SetActive(false);
+        Time.timeScale = 1.0f;
     }
 }

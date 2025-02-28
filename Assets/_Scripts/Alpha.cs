@@ -53,6 +53,8 @@ public class Alpha : MonoBehaviour
 
     public GameObject InventoryManager;
 
+    public GameObject Settings;
+
     void Start()
     {
         alpha = GetComponent<Rigidbody>();
@@ -73,6 +75,8 @@ public class Alpha : MonoBehaviour
         maxMana = 5; ///////////////////////////////////input from file later
         currentMana = maxMana;
         manaBar.SetMaxMana(maxMana);
+
+        Settings.SetActive(false);
     }
 
     public void OnTriggerEnter(Collider other)
@@ -167,6 +171,24 @@ public class Alpha : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             StartCoroutine(Dash());
+        }
+
+        //this is to open and close the settings menu
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+
+            if (Settings.activeSelf)
+            {
+                //HUD.SetActive(false);
+                Settings.SetActive(false);
+                Time.timeScale = 1.0f;
+            }
+            else
+            {
+                //HUD.SetActive(true);
+                Settings.SetActive(true);
+                Time.timeScale = 0.0f;
+            }
         }
     }
 
