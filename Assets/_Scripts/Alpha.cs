@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Alpha : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class Alpha : MonoBehaviour
 
     //set up for this test build, but will need to have an abstract class for all the spells
     public Transform spellSpawn; //spawn point for spell's attack
+    public Transform meleeSpawn; //spawn point for melee attack
     public GameObject spellAttack; //for the explosion spell effect/attack prefab
     public GameObject activeSpell; //for rn the spell's spawnpoint is what's used for this
     public Transform rotationPoint;
@@ -25,26 +27,30 @@ public class Alpha : MonoBehaviour
     private bool canDoubleJump = false;
     private Rigidbody alpha;
     private BoxCollider boxCollider;
+    private bool isGamePaused =false;
 
     private ExplosionSpell explosion;
     public LightningSpell lightningPrefab;
     public IcicleSpearSpell iciclePrefab;
     public SoundWaveSpell soundWavePrefab;
+    public MeleeAttack meleePrefab;
     
     [HideInInspector] public bool isMovingLeft = false;
     [HideInInspector] public bool isMovingRight = false;
+
+    public RespawnPoint respawnPoint;
 
     public GameObject Inventory;
 
     public GameObject HUD;
 
     public HealthBar healthBar;
-    public int maxHealth;
-    private int currentHealth;
+    [HideInInspector] public int maxHealth;
+    [HideInInspector] public int currentHealth;
 
     public ManaBar manaBar;
-    public int maxMana;
-    private int currentMana;
+    [HideInInspector] public int maxMana;
+    [HideInInspector] public int currentMana;
 
     public TMP_Text stimCountText;
     public int stimCount;
@@ -52,6 +58,7 @@ public class Alpha : MonoBehaviour
     public int healthFromStim;
 
     public GameObject InventoryManager;
+    private InvDataBetweenRuns invData;
 
     public GameObject Settings;
 
@@ -60,6 +67,7 @@ public class Alpha : MonoBehaviour
         alpha = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
         explosion = spellAttack.GetComponent<ExplosionSpell>();
+        invData = FindObjectOfType<InvDataBetweenRuns>();
 
         Inventory.SetActive(false);
         HUD.SetActive(true);
@@ -111,6 +119,10 @@ public class Alpha : MonoBehaviour
                     ShootSpell2();
                 }
             }
+        }
+        else if(Input.GetKeyDown(KeyCode.E))
+        {
+            MeleeAttack();
         }
 
         if (Input.GetKeyDown(KeyCode.I)) //open inventory keybind (also saves spells that are in loadout slots when inventory is opened/closed)
@@ -190,6 +202,8 @@ public class Alpha : MonoBehaviour
                 Time.timeScale = 0.0f;
             }
         }
+
+        Death();
     }
 
     //to help get rid of the jitteriness
@@ -245,19 +259,23 @@ public class Alpha : MonoBehaviour
         {
             //HUD.SetActive(false);
             Inventory.SetActive(true);
+            isGamePaused = true;
+            invData.LoadInventory();
             Time.timeScale = 0.0f;
         }
         else if (Inventory.activeInHierarchy)
         {
             //HUD.SetActive(true);
             Inventory.SetActive(false);
+            isGamePaused = false;
+            invData.SaveInventory();
             Time.timeScale = 1.0f;
         }
     }
 
     void ShootSpell1()
     {
-        if (activeSpell.activeInHierarchy)
+        if (activeSpell.activeInHierarchy && !isGamePaused)
         {
             if (Time.time - lastShot < timer)
             {
@@ -277,7 +295,7 @@ public class Alpha : MonoBehaviour
 
     void ShootSpell2()
     {
-        if (activeSpell.activeInHierarchy)
+        if (activeSpell.activeInHierarchy && !isGamePaused)
         {
             if (Time.time - lastShot < timer)
             {
@@ -291,6 +309,16 @@ public class Alpha : MonoBehaviour
             //UseSoundWaveSpell();
             lastShot = Time.time;
         }
+    }
+
+    void MeleeAttack()
+    {
+        aimingDirection = FindObjectOfType<Aiming>().AimDirection();
+        MeleeAttack meleeAttack;
+        meleeAttack = Instantiate(meleePrefab, meleeSpawn.position, meleeSpawn.rotation);
+        meleeAttack.gameObject.transform.parent = alpha.transform;
+        meleeAttack.Aiming(aimingDirection);
+        Destroy(meleeAttack.gameObject, 0.5f);
     }
 
     void UseStim()
@@ -330,12 +358,35 @@ public class Alpha : MonoBehaviour
             }
         }
     }
+
     public void TakeDamage(int damage)
     {
         Debug.Log("current health is: " + currentHealth);
         currentHealth = currentHealth - damage;
         Debug.Log(currentHealth);
         healthBar.SetHealth(currentHealth);
+    }
+
+    public void Death()
+    {
+        if(currentHealth <= 0)
+        {
+            StartCoroutine(Respawn());
+        }
+        else if (Input.GetKeyDown(KeyCode.K))
+        {
+            StartCoroutine(Respawn());
+        }
+    }
+
+    IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(.5f);
+        respawnPoint.RespawnPlayer();
+        currentHealth = 3;
+        healthBar.SetHealth(currentHealth);
+        currentMana = 3;
+        manaBar.SetMana(currentMana);
     }
 
     void useMana(int lostMana)
@@ -345,6 +396,7 @@ public class Alpha : MonoBehaviour
         manaBar.SetMana(currentMana);
     }
 
+    #region Spells
     public void UseExplosionSpell()
     {
         explosion.pushed = false;
@@ -375,4 +427,5 @@ public class Alpha : MonoBehaviour
         SoundWaveSpell soundWave = Instantiate(soundWavePrefab, spellSpawn.position, spellSpawn.rotation);
         soundWave.Aiming(aimingDirection);
     }
+    #endregion
 }
