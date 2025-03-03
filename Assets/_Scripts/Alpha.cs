@@ -203,7 +203,8 @@ public class Alpha : MonoBehaviour
             }
         }
 
-        Death();
+        
+        DeathCheck();
     }
 
     //to help get rid of the jitteriness
@@ -367,25 +368,25 @@ public class Alpha : MonoBehaviour
         healthBar.SetHealth(currentHealth);
     }
 
-    public void Death()
+    public void DeathCheck()
     {
         if(currentHealth <= 0)
         {
             StartCoroutine(Respawn());
         }
-        else if (Input.GetKeyDown(KeyCode.K))
-        {
-            StartCoroutine(Respawn());
-        }
+        //else if (Input.GetKeyDown(KeyCode.K))
+        //{
+           //StartCoroutine(Respawn());
+        //}
     }
 
     IEnumerator Respawn()
     {
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(1.1f);
         respawnPoint.RespawnPlayer();
-        currentHealth = 3;
+        currentHealth = maxHealth;
         healthBar.SetHealth(currentHealth);
-        currentMana = 3;
+        currentMana = maxMana;
         manaBar.SetMana(currentMana);
     }
 
