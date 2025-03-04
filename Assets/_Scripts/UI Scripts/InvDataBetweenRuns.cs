@@ -13,11 +13,14 @@ public class InventoryData
 
 public class InvDataBetweenRuns : MonoBehaviour
 {
-    public GameObject LightningPrefab;
-    public GameObject ExplosionPrefab; //add new scriptable objects for spells here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //public GameObject LightningPrefab;
+    //public GameObject ExplosionPrefab; //add new scriptable objects for spells here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //public GameObject IcicleSpearPrefab;
 
     public Spell LightningScriptable;
     public Spell ExplosionScriptable; //add new scritpable objects for spells here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    public Spell IcicleSpearScriptable;
+    public Spell SoundWaveScriptable;
 
     public List<GameObject> allInvSlots;
 
@@ -93,6 +96,18 @@ public void Update() // TEMPORARY, NEEDS TO BE REMOVED
                         //Instantiate(ExplosionPrefab).transform.SetParent(allInvSlots[i].transform, false);
                         //ExplosionPrefab.GetComponent<InventorySpell>().InitialiseSpell(ExplosionScriptable);
                         this.GetComponent<InventoryManager>().SpawnNewSpell(ExplosionScriptable, allInvSlots[i].ConvertTo<InventorySlot>());
+                    }
+                    else if (item == "Icicle Spear")
+                    {
+                        //Instantiate(ExplosionPrefab).transform.SetParent(allInvSlots[i].transform, false);
+                        //ExplosionPrefab.GetComponent<InventorySpell>().InitialiseSpell(ExplosionScriptable);
+                        this.GetComponent<InventoryManager>().SpawnNewSpell(IcicleSpearScriptable, allInvSlots[i].ConvertTo<InventorySlot>());
+                    }
+                    else if (item == "Sound Wave")
+                    {
+                        //Instantiate(ExplosionPrefab).transform.SetParent(allInvSlots[i].transform, false);
+                        //ExplosionPrefab.GetComponent<InventorySpell>().InitialiseSpell(ExplosionScriptable);
+                        this.GetComponent<InventoryManager>().SpawnNewSpell(SoundWaveScriptable, allInvSlots[i].ConvertTo<InventorySlot>());
                     }
                 }
                 i++; // increments i after every item from the file has been processed

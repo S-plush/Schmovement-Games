@@ -66,6 +66,10 @@ public class Alpha : MonoBehaviour
 
     private int[] indexs; //used to store the output of LoadoutsToFile.switchLoadouts(). the two values saved in this array are index references to which item in the keyArray are equipped
     private string[] keyArray = { "empty", "Explosion", "Lightning", "Icicle Spear", "Sound Wave", "etc" };
+
+    private string leftSpell; //keeps track of the name of the spell that the UI loadout slot says should be being shot
+    private string rightSpell; //keeps track of the name of the spell that the UI loadout slot says should be being shot
+
     void Start()
     {
         alpha = GetComponent<Rigidbody>();
@@ -75,20 +79,26 @@ public class Alpha : MonoBehaviour
 
         Inventory.SetActive(false);
         HUD.SetActive(true);
-        stimCount = 30; /////////////////////////////////input from file later
+        stimCount = 30; //////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
         stimCountText.text = stimCount + "\n\nStims";
-        healthFromStim = 3; ////////////////////////////input from file later
-        manaFromStim = 1; //////////////////////////////input from file later
+        healthFromStim = 3; //////////////////////////////////////////////////////////////////////////////////////////////////input from file later
+        manaFromStim = 1; ////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
 
-        maxHealth = 5; /////////////////////////////////input from file later
+        maxHealth = 5; ///////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
 
-        maxMana = 5; ///////////////////////////////////input from file later
+        maxMana = 5; /////////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
         currentMana = maxMana;
         manaBar.SetMaxMana(maxMana);
 
         Settings.SetActive(false);
+
+        //makes sure the player's castable spells are set to loadout1 (because there needs to be some reference) on start
+        //could be ///////////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
+        indexs = InventoryManager.GetComponent<LoadoutsToFile>().switchLoadouts(1);
+        leftSpell = keyArray[indexs[0]];
+        rightSpell = keyArray[indexs[1]];
     }
 
     public void OnTriggerEnter(Collider other)
@@ -146,26 +156,26 @@ public class Alpha : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             indexs = InventoryManager.GetComponent<LoadoutsToFile>().switchLoadouts(1);
-            string leftSpell = keyArray[indexs[0]];
-            string rightSpell = keyArray[indexs[0]];
+            leftSpell = keyArray[indexs[0]];
+            rightSpell = keyArray[indexs[1]];
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             indexs = InventoryManager.GetComponent<LoadoutsToFile>().switchLoadouts(2);
-            string leftSpell = keyArray[indexs[0]];
-            string rightSpell = keyArray[indexs[0]];
+            leftSpell = keyArray[indexs[0]];
+            rightSpell = keyArray[indexs[1]];
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             indexs = InventoryManager.GetComponent<LoadoutsToFile>().switchLoadouts(3);
-            string leftSpell = keyArray[indexs[0]];
-            string rightSpell = keyArray[indexs[0]];
+            leftSpell = keyArray[indexs[0]];
+            rightSpell = keyArray[indexs[1]];
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             indexs = InventoryManager.GetComponent<LoadoutsToFile>().switchLoadouts(4);
-            string leftSpell = keyArray[indexs[0]];
-            string rightSpell = keyArray[indexs[0]];
+            leftSpell = keyArray[indexs[0]];
+            rightSpell = keyArray[indexs[1]];
         }
 
         //this is for the FixedUpdate to help get rid of the jitteriness
@@ -296,13 +306,31 @@ public class Alpha : MonoBehaviour
                 return;
             }
 
-            useMana(1);
+            if (leftSpell == "empty")
+            {
 
-            //rn this is for the explosion spell
-            UseExplosionSpell();
+            }
+            else if (leftSpell == "Explosion")
+            {
+                useMana(1);
+                UseExplosionSpell();
+            }
+            else if (leftSpell == "Lightning")
+            {
+                useMana(1);
+                UseLightningSpell();
+            }
+            else if (leftSpell == "Icicle Spear")
+            {
+                useMana(1);
+                UseIcicleSpearSpell();
+            }
+            else if (leftSpell == "Sound Wave")
+            {
+                useMana(1);
+                UseSoundWaveSpell();
+            }
 
-            //this is the icicle spear spell
-            //UseIcicleSpell();
             lastShot = Time.time;
         }
     }
@@ -316,8 +344,30 @@ public class Alpha : MonoBehaviour
                 return;
             }
 
-            //this is the lightning spell
-            UseLightningSpell();
+            if (rightSpell == "empty")
+            {
+
+            }
+            else if (rightSpell == "Explosion")
+            {
+                useMana(1);
+                UseExplosionSpell();
+            }
+            else if (rightSpell == "Lightning")
+            {
+                useMana(1);
+                UseLightningSpell();
+            }
+            else if (rightSpell == "Icicle Spear")
+            {
+                useMana(1);
+                UseIcicleSpearSpell();
+            }
+            else if (rightSpell == "Sound Wave")
+            {
+                useMana(1);
+                UseSoundWaveSpell();
+            }
 
             //this is the sound wave spell
             //UseSoundWaveSpell();
@@ -430,7 +480,7 @@ public class Alpha : MonoBehaviour
         lightning.Aiming(aimingDirection);
     }
 
-    public void UseIcicleSpell()
+    public void UseIcicleSpearSpell()
     {
         aimingDirection = FindObjectOfType<Aiming>().AimDirection();
         IcicleSpearSpell icicleSpear = Instantiate(iciclePrefab, spellSpawn.position, spellSpawn.rotation);
