@@ -13,6 +13,8 @@ public class PickupScript : MonoBehaviour
         if(spell != null) {
 
             inventory.GetComponent<InventoryManager>().AddSpell(spell);
+            inventory.GetComponent<InvDataBetweenRuns>().SaveInventory();
+            inventory.GetComponent<LoadoutsToFile>().saveLoadoutsToFile();
             Destroy(this.gameObject);
 
         }
