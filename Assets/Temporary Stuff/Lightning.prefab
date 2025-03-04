@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3388997320056221141}
   m_Layer: 0
   m_Name: Lightning
-  m_TagString: Untagged
+  m_TagString: Player Spell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,7 +120,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spell: {fileID: 11400000, guid: e1da2a1e742d6e248b1e8cf5bae5a94e, type: 2}
-  spellSpawnPoint: {fileID: 0}
   rb: {fileID: 3388997320056221141}
   alpha: {fileID: 0}
 --- !u!54 &3388997320056221141

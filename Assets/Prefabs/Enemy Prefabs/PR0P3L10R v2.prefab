@@ -159,7 +159,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -180,6 +180,7 @@ MonoBehaviour:
   player: {fileID: 0}
   fireArea: {fileID: 6336077366984238467}
   bullet: {fileID: 8344740309841561713, guid: cbfab512d01c5bc4f96144e978a45b14, type: 3}
+  health: 3
   shootFrequency: 3
   moveFrequency: 3
   moveSpeed: 10

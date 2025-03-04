@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -7173215572119700692}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Player Spell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,5 +122,5 @@ MonoBehaviour:
   alpha: {fileID: 0}
   pushed: 0
   preventMoving: 0
-  pushedRight: 0
-  pushedLeft: 0
+  pushedRight: 1
+  pushedLeft: 1
