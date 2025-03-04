@@ -86,9 +86,9 @@ public class ExplosionSpell : MonoBehaviour
     private IEnumerator ResetMovement()
     {
         //Debug.Log("working");
-        preventMoving = true;
+        //preventMoving = true;
         yield return new WaitForSeconds(0.3f);
-        preventMoving = false;
+        ///preventMoving = false;
 
         while(!((alpha.isMovingLeft && pushedRight) || (alpha.isMovingRight && pushedLeft)) && pushed)
         {
@@ -96,8 +96,12 @@ public class ExplosionSpell : MonoBehaviour
             yield return null;
         }
 
-        if(pushed)
+        if((pushed && pushedRight && alpha.isMovingLeft) || (pushed && pushedLeft && alpha.isMovingRight))
         {
+
+            Debug.Log("activating");
+            pushedLeft = false;
+            pushedRight = false;
             pushed = false;
             alpha.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
