@@ -6,6 +6,9 @@ using UnityEngine;
 public class BasicJumpEnemy : MonoBehaviour {
 
     public GameObject player;
+
+    public int health;
+
     private GameObject enemy;
 
     [SerializeField] private float atkFrequency;
@@ -28,10 +31,18 @@ public class BasicJumpEnemy : MonoBehaviour {
         enemyRB = GetComponent<Rigidbody>();
         timer = 0;
 
+        if(health == 0) {
+            health = 1;
+        }
+
     }
 
     // Update is called once per frame
     void Update() {
+
+        if(health <= 0) {
+            Destroy(this.gameObject); 
+        }
 
         facePlayer();
 
@@ -87,6 +98,16 @@ public class BasicJumpEnemy : MonoBehaviour {
     void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.tag == "Ground") {
             isGrounded = true;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if(other.tag == "Player Spell") {
+            health -= 1; 
+        }
+
+        if (other.tag == "Player") {
+            other.GetComponent<Alpha>().TakeDamage(1);
         }
     }
 }

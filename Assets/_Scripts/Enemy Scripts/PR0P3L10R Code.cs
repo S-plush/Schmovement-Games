@@ -9,6 +9,9 @@ public class PR0P3L10RCode : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject fireArea;
     public GameObject bullet;
+
+    public int health;
+    
     private GameObject enemy;
 
     LayerMask terrainLayerMask;
@@ -47,11 +50,19 @@ public class PR0P3L10RCode : MonoBehaviour
 
         enemyRB = GetComponent<Rigidbody>();
 
+        if (health == 0) {
+            health = 1;
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate() {
         RaycastHit hit;
+
+
+        if(health <= 0) {
+            Destroy(this.gameObject);
+        }
 
         if (Vector3.Distance(enemy.transform.position, player.transform.position) > 15f) {
             inRange = false;
@@ -157,7 +168,7 @@ public class PR0P3L10RCode : MonoBehaviour
     }
 
     void aimAtPlayer() {
-        fireArea.transform.LookAt(player.transform.position);
+        fireArea.transform.LookAt(player.transform.position + new Vector3(0, 1, 0));
 
     }
 
@@ -177,6 +188,16 @@ public class PR0P3L10RCode : MonoBehaviour
 
             Instantiate(bullet, fireArea.transform.position, fireArea.transform.rotation);
 
+        }
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.tag == "Player Spell") {
+            health -= 1;
+        }
+
+        if(other.tag == "Player") {
+            other.GetComponent<Alpha>().TakeDamage(1);
         }
     }
 }

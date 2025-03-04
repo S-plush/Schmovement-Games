@@ -10,6 +10,8 @@ public class VZ17Code : MonoBehaviour {
     public GameObject fireArea;
     public GameObject bullet;
 
+    public int health;
+
     private GameObject enemy;
 
     [SerializeField] private float shootFrequency;
@@ -48,10 +50,18 @@ public class VZ17Code : MonoBehaviour {
         atkFrequency = shootFrequency;
         canFire = true;
 
+        if(health <= 0){
+            health = 2;
+        }
+
     }
 
     // Update is called once per frame
     void Update() {
+
+        if(health == 0) {
+            Destroy(this.gameObject);
+        }
 
         if(pack == null) {
             canFire = false;
@@ -132,6 +142,15 @@ public class VZ17Code : MonoBehaviour {
     void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.tag == "Ground") {
             isGrounded = true;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.tag == "Player Spell") {
+            health -= 1;
+        }
+        if (other.tag == "Player") {
+            other.GetComponent<Alpha>().TakeDamage(1);
         }
     }
 }
