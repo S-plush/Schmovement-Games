@@ -40,6 +40,8 @@ public class Alpha : MonoBehaviour
 
     public RespawnPoint respawnPoint;
 
+    public GameObject deathScreen;
+
     public GameObject Inventory;
 
     public GameObject HUD;
@@ -62,6 +64,8 @@ public class Alpha : MonoBehaviour
 
     public GameObject Settings;
 
+    private int[] indexs; //used to store the output of LoadoutsToFile.switchLoadouts(). the two values saved in this array are index references to which item in the keyArray are equipped
+    private string[] keyArray = { "empty", "Explosion", "Lightning", "Icicle Spear", "Sound Wave", "etc" };
     void Start()
     {
         alpha = GetComponent<Rigidbody>();
@@ -137,22 +141,31 @@ public class Alpha : MonoBehaviour
             UseStim();
         }
 
+        
         //keybinds for switching to different loadout slots
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            InventoryManager.GetComponent<LoadoutsToFile>().switchLoadouts(1);
+            indexs = InventoryManager.GetComponent<LoadoutsToFile>().switchLoadouts(1);
+            string leftSpell = keyArray[indexs[0]];
+            string rightSpell = keyArray[indexs[0]];
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            InventoryManager.GetComponent<LoadoutsToFile>().switchLoadouts(2);
+            indexs = InventoryManager.GetComponent<LoadoutsToFile>().switchLoadouts(2);
+            string leftSpell = keyArray[indexs[0]];
+            string rightSpell = keyArray[indexs[0]];
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            InventoryManager.GetComponent<LoadoutsToFile>().switchLoadouts(3);
+            indexs = InventoryManager.GetComponent<LoadoutsToFile>().switchLoadouts(3);
+            string leftSpell = keyArray[indexs[0]];
+            string rightSpell = keyArray[indexs[0]];
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            InventoryManager.GetComponent<LoadoutsToFile>().switchLoadouts(4);
+            indexs = InventoryManager.GetComponent<LoadoutsToFile>().switchLoadouts(4);
+            string leftSpell = keyArray[indexs[0]];
+            string rightSpell = keyArray[indexs[0]];
         }
 
         //this is for the FixedUpdate to help get rid of the jitteriness
@@ -382,7 +395,9 @@ public class Alpha : MonoBehaviour
 
     IEnumerator Respawn()
     {
+        deathScreen.SetActive(true);
         yield return new WaitForSeconds(1.1f);
+        deathScreen.SetActive(false);
         respawnPoint.RespawnPlayer();
         currentHealth = maxHealth;
         healthBar.SetHealth(currentHealth);

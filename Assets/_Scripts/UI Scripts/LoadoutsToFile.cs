@@ -33,6 +33,8 @@ public class LoadoutsToFile : MonoBehaviour
     //add spells here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public Spell Explosion;
     public Spell Lightning;
+    public Spell IcicleSpear;
+    public Spell SoundWave;
 
     void Start()
     {
@@ -129,7 +131,7 @@ public class LoadoutsToFile : MonoBehaviour
     }
 
 
-    public void switchLoadouts(int numPressed) //int numPressed is the user's pushed key, for loadout switching, int 1-4
+    public int[] switchLoadouts(int numPressed) //int numPressed is the user's pushed key, for loadout switching, int numpressed 1-4. returns a string of the index1 value followed by the index2 value, these two values are seperated by a comma
     {
 
         Loadout[] LoadoutSlots = FindObjectsOfType<Loadout>();
@@ -144,7 +146,7 @@ public class LoadoutsToFile : MonoBehaviour
         string beforeSplitData = ReadFromFile();
         string[] dataOut = beforeSplitData.Split('\n');
 
-        string[] keyArray = {"empty", "Explosion", "Lightning", "etc"}; //add names of new spell scriptable objects to the end of the list here!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        string[] keyArray = {"empty", "Explosion", "Lightning", "Icicle Spear", "Sound Wave", "etc"}; //add names of new spell scriptable objects to the end of the list here!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         int index1 = -1;
         int index2 = -1;
@@ -189,8 +191,17 @@ public class LoadoutsToFile : MonoBehaviour
         }
         else if (index1 == 3)
         {
-
+            HUDSlot1.sprite = IcicleSpear.image;
         }
+        else if (index1 == 4)
+        {
+            HUDSlot1.sprite = SoundWave.image;
+        }
+        else if (index1 == 5)
+        {
+            
+        }
+
 
         if (index2 == 0)
         {
@@ -206,9 +217,20 @@ public class LoadoutsToFile : MonoBehaviour
         }
         else if (index2 == 3)
         {
+            HUDSlot2.sprite = IcicleSpear.image;
+        }
+        else if (index2 == 4)
+        {
+            HUDSlot2.sprite = SoundWave.image;
+        }
+        else if (index1 == 5)
+        {
 
         }
 
+        int[] indexs = { index1, index2 };
+        return indexs;
+        ;
         //Debug.Log(dataOut.Length);
         //Debug.Log(dataOut[0]);
     }
