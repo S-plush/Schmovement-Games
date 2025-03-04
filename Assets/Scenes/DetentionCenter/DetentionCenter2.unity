@@ -10395,6 +10395,87 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1001 &794085395
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2903938947457681952, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
+      propertyPath: m_Name
+      value: Player_Alpha
+      objectReference: {fileID: 0}
+    - target: {fileID: 3847868235083632959, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
+      propertyPath: HUD
+      value: 
+      objectReference: {fileID: 2048541788}
+    - target: {fileID: 3847868235083632959, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
+      propertyPath: manaBar
+      value: 
+      objectReference: {fileID: 2048541786}
+    - target: {fileID: 3847868235083632959, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
+      propertyPath: Inventory
+      value: 
+      objectReference: {fileID: 2048541789}
+    - target: {fileID: 3847868235083632959, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 2048541787}
+    - target: {fileID: 3847868235083632959, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
+      propertyPath: stimCountText
+      value: 
+      objectReference: {fileID: 2048541785}
+    - target: {fileID: 3847868235083632959, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
+      propertyPath: InventoryManager
+      value: 
+      objectReference: {fileID: 1819301084}
+    - target: {fileID: 3967609499188319860, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 88
+      objectReference: {fileID: 0}
+    - target: {fileID: 3967609499188319860, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3967609499188319860, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3967609499188319860, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3967609499188319860, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3967609499188319860, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3967609499188319860, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3967609499188319860, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3967609499188319860, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3967609499188319860, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
 --- !u!43 &800567384
 Mesh:
   m_ObjectHideFlags: 0
@@ -24618,6 +24699,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Alpha
       objectReference: {fileID: 0}
+    - target: {fileID: 2153257246007955106, guid: a25a2247c7629e34c91f8b31f3fcd4e9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6529941747973226258, guid: a25a2247c7629e34c91f8b31f3fcd4e9, type: 3}
       propertyPath: HUD
       value: 
@@ -28198,6 +28283,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1649752171}
   - {fileID: 1925325526}
+  - {fileID: 794085395}
   - {fileID: 2048541784}
   - {fileID: 896052115}
   - {fileID: 2987827201309185879}

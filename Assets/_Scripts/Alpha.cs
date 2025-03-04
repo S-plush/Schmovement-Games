@@ -70,6 +70,8 @@ public class Alpha : MonoBehaviour
     private string leftSpell; //keeps track of the name of the spell that the UI loadout slot says should be being shot
     private string rightSpell; //keeps track of the name of the spell that the UI loadout slot says should be being shot
 
+    public Animator animator;
+
     void Start()
     {
         alpha = GetComponent<Rigidbody>();
@@ -226,7 +228,7 @@ public class Alpha : MonoBehaviour
             }
         }
 
-        
+        animator.SetBool("Grounded", IsGrounded());
         DeathCheck();
     }
 
@@ -238,6 +240,8 @@ public class Alpha : MonoBehaviour
             if(!explosion.preventMoving)
             {
                 this.gameObject.transform.Translate(new Vector3(0, 0, -alphaMovementSpd * Time.deltaTime));
+                animator.SetBool("isMoving", true);
+                animator.SetBool("isMirrored", true);
             }
         }
         else if (isMovingRight)
@@ -245,7 +249,13 @@ public class Alpha : MonoBehaviour
             if(!explosion.preventMoving)
             {
                 this.gameObject.transform.Translate(new Vector3(0, 0, alphaMovementSpd * Time.deltaTime));
+                animator.SetBool("isMoving", true);
+                animator.SetBool("isMirrored", false);
             }
+        }
+        else
+        {
+            animator.SetBool("isMoving", false);
         }
     }
 
