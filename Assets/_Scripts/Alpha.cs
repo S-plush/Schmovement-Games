@@ -205,7 +205,7 @@ public class Alpha : MonoBehaviour
         }
 
         //this is to use dash
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !hasDashed)
         {
             StartCoroutine(Dash());
         }
@@ -262,8 +262,14 @@ public class Alpha : MonoBehaviour
     //using raycast to detect if player is grounded
     private bool IsGrounded()
     {
-        bool isGrounded = Physics.Raycast(transform.position, -gameObject.transform.up, boxCollider.bounds.extents.y + 0.1f);
-        hasDashed = false;
+        float rayLength = 0.1f;
+        bool isGrounded = Physics.Raycast(transform.position, -gameObject.transform.up, rayLength);
+
+        if (isGrounded)
+        {
+            hasDashed = false;
+        }
+
         return isGrounded;
     }
 
@@ -471,6 +477,17 @@ public class Alpha : MonoBehaviour
 
         manaBar.SetMana(currentMana);
     }
+
+    //for testing can delete later
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.green;
+    //    Vector3 rayOrigin = transform.position;
+    //    Vector3 rayDirection = -transform.up;
+    //    float rayLength = 0.1f;
+
+    //    Gizmos.DrawRay(rayOrigin, rayDirection * rayLength);
+    //}
 
     #region Spells
     public void UseExplosionSpell()
