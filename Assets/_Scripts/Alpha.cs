@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Alpha : MonoBehaviour
 {
@@ -14,38 +15,42 @@ public class Alpha : MonoBehaviour
 
     //set up for this test build, but will need to have an abstract class for all the spells
     public Transform spellSpawn; //spawn point for spell's attack
-    public GameObject spellAttack; //for the spell effect/attack prefab
-    public GameObject spellAttack2; //for the spell2 effect/attack prefab 
+    public Transform meleeSpawn; //spawn point for melee attack
+    public GameObject spellAttack; //for the explosion spell effect/attack prefab
     public GameObject activeSpell; //for rn the spell's spawnpoint is what's used for this
     public Transform rotationPoint;
     public Vector3 aimingDirection;
     public float timer; //for spell
-    public float delayInput; //to fix immediate movement from knockback
 
     private float lastShot; //cooldown for the spell 1
-    private float startingTime;
-    private bool isGrounded;
     private bool hasDashed = false;
     private bool canDoubleJump = false;
     private Rigidbody alpha;
     private BoxCollider boxCollider;
+    private bool isGamePaused =false;
+
     private ExplosionSpell explosion;
-    private ShootingSpell shootingSpell;
+    public LightningSpell lightningPrefab;
+    public IcicleSpearSpell iciclePrefab;
+    public SoundWaveSpell soundWavePrefab;
+    public MeleeAttack meleePrefab;
     
     [HideInInspector] public bool isMovingLeft = false;
     [HideInInspector] public bool isMovingRight = false;
+
+    public RespawnPoint respawnPoint;
 
     public GameObject Inventory;
 
     public GameObject HUD;
 
     public HealthBar healthBar;
-    public int maxHealth;
-    private int currentHealth;
+    [HideInInspector] public int maxHealth;
+    [HideInInspector] public int currentHealth;
 
     public ManaBar manaBar;
-    public int maxMana;
-    private int currentMana;
+    [HideInInspector] public int maxMana;
+    [HideInInspector] public int currentMana;
 
     public TMP_Text stimCountText;
     public int stimCount;
@@ -53,12 +58,16 @@ public class Alpha : MonoBehaviour
     public int healthFromStim;
 
     public GameObject InventoryManager;
+    private InvDataBetweenRuns invData;
+
+    public GameObject Settings;
 
     void Start()
     {
         alpha = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
         explosion = spellAttack.GetComponent<ExplosionSpell>();
+        invData = FindObjectOfType<InvDataBetweenRuns>();
 
         Inventory.SetActive(false);
         HUD.SetActive(true);
@@ -74,6 +83,16 @@ public class Alpha : MonoBehaviour
         maxMana = 5; ///////////////////////////////////input from file later
         currentMana = maxMana;
         manaBar.SetMaxMana(maxMana);
+
+        Settings.SetActive(false);
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy Attack")
+        {
+            TakeDamage(1);
+        }
     }
 
     private void Update()
@@ -100,6 +119,10 @@ public class Alpha : MonoBehaviour
                     ShootSpell2();
                 }
             }
+        }
+        else if(Input.GetKeyDown(KeyCode.E))
+        {
+            MeleeAttack();
         }
 
         if (Input.GetKeyDown(KeyCode.I)) //open inventory keybind (also saves spells that are in loadout slots when inventory is opened/closed)
@@ -136,32 +159,24 @@ public class Alpha : MonoBehaviour
         isMovingLeft = Input.GetKey(KeyCode.A);
         isMovingRight = Input.GetKey(KeyCode.D);
 
-        //Debug.Log("fall speed is " + fallSpd);
-
-        //this is to use double jump
-        if (canDoubleJump)
-        {
-            if (Input.GetButtonDown("Jump"))
-            {
-                alpha.velocity = Vector3.zero;
-                alpha.AddForce(Vector3.up * jumpSpd);
-                float tempFallSpd = fallSpd;
-                fallSpd = 0.5f; //this is to sort of help reset the jump
-                fallSpd = tempFallSpd;
-                canDoubleJump = false;
-            }
-        }
-
         //isGrounded makes it so the player isn't able to spam the jump button while in mid-air
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             alpha.AddForce(Vector3.up * jumpSpd);
-            isGrounded = false;
             float tempFallSpd = fallSpd;
             fallSpd = 0.5f; //this is to sort of help reset the jump
             //Debug.Log("fall speed is now " + fallSpd);
             fallSpd = tempFallSpd;
             canDoubleJump = true;
+        }
+        else if(Input.GetButtonDown("Jump") && canDoubleJump)
+        {
+            alpha.velocity = Vector3.zero;
+            alpha.AddForce(Vector3.up * jumpSpd);
+            float tempFallSpd = fallSpd;
+            fallSpd = 0.5f; //this is to sort of help reset the jump
+            fallSpd = tempFallSpd;
+            canDoubleJump = false;
         }
 
         //this is to use dash
@@ -169,6 +184,27 @@ public class Alpha : MonoBehaviour
         {
             StartCoroutine(Dash());
         }
+
+        //this is to open and close the settings menu
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+
+            if (Settings.activeSelf)
+            {
+                //HUD.SetActive(false);
+                Settings.SetActive(false);
+                Time.timeScale = 1.0f;
+            }
+            else
+            {
+                //HUD.SetActive(true);
+                Settings.SetActive(true);
+                Time.timeScale = 0.0f;
+            }
+        }
+
+        
+        DeathCheck();
     }
 
     //to help get rid of the jitteriness
@@ -176,38 +212,26 @@ public class Alpha : MonoBehaviour
     {
         if (isMovingLeft)
         {
-            //this makes it so after the knockback from a spell the player is immediately able to move forward or backwards
-            if (explosion.pushed && explosion.pushedRight && Time.time - startingTime < delayInput)
+            if(!explosion.preventMoving)
             {
-                alpha.velocity = Vector3.zero;
-                explosion.pushed = false;
-                explosion.pushedRight = false;
-                startingTime = Time.time;
+                this.gameObject.transform.Translate(new Vector3(0, 0, -alphaMovementSpd * Time.deltaTime));
             }
-
-            this.gameObject.transform.Translate(new Vector3(0, 0, -alphaMovementSpd * Time.deltaTime));
         }
-        else if(isMovingRight)
+        else if (isMovingRight)
         {
-            if (explosion.pushed && explosion.pushedLeft && Time.time - startingTime < delayInput)
+            if(!explosion.preventMoving)
             {
-                alpha.velocity = Vector3.zero;
-                explosion.pushed = false;
-                explosion.pushedLeft = false;
-                startingTime = Time.time;
+                this.gameObject.transform.Translate(new Vector3(0, 0, alphaMovementSpd * Time.deltaTime));
             }
-
-            this.gameObject.transform.Translate(new Vector3(0, 0, alphaMovementSpd * Time.deltaTime));
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+    //using raycast to detect if player is grounded
+    private bool IsGrounded()
     {
-        if (collision.gameObject.tag == "Ground")
-        {
-            isGrounded = true;
-            hasDashed = false;
-        }
+        bool isGrounded = Physics.Raycast(transform.position, -gameObject.transform.up, boxCollider.bounds.extents.y + 0.1f);
+        hasDashed = false;
+        return isGrounded;
     }
 
     private IEnumerator Dash()
@@ -216,6 +240,12 @@ public class Alpha : MonoBehaviour
         {
             alpha.useGravity = false;
             alpha.velocity = new Vector3(transform.localScale.x * dashPush, 0, 0);
+            hasDashed = true;
+        }
+        else if(isMovingLeft && !hasDashed)
+        {
+            alpha.useGravity = false;
+            alpha.velocity = new Vector3(-transform.localScale.x * dashPush, 0, 0);
             hasDashed = true;
         }
 
@@ -230,19 +260,23 @@ public class Alpha : MonoBehaviour
         {
             //HUD.SetActive(false);
             Inventory.SetActive(true);
+            isGamePaused = true;
+            invData.LoadInventory();
             Time.timeScale = 0.0f;
         }
         else if (Inventory.activeInHierarchy)
         {
             //HUD.SetActive(true);
             Inventory.SetActive(false);
+            isGamePaused = false;
+            invData.SaveInventory();
             Time.timeScale = 1.0f;
         }
     }
 
     void ShootSpell1()
     {
-        if (activeSpell.activeInHierarchy)
+        if (activeSpell.activeInHierarchy && !isGamePaused)
         {
             if (Time.time - lastShot < timer)
             {
@@ -252,33 +286,40 @@ public class Alpha : MonoBehaviour
             useMana(1);
 
             //rn this is for the explosion spell
-            explosion.pushed = false;
-            explosion.alpha = this; //for some reason I can't put the player onto the explosion object so this is a supplement for that
-            explosion.Aiming();
-            GameObject g = Instantiate(spellAttack, spellSpawn.position, spellSpawn.rotation);
+            UseExplosionSpell();
+
+            //this is the icicle spear spell
+            //UseIcicleSpell();
             lastShot = Time.time;
-            Destroy(g, 0.5f);
         }
     }
 
     void ShootSpell2()
     {
-        if (activeSpell.activeInHierarchy)
+        if (activeSpell.activeInHierarchy && !isGamePaused)
         {
             if (Time.time - lastShot < timer)
             {
                 return;
             }
 
-            GameObject g = Instantiate(spellAttack2, spellSpawn.position, spellSpawn.rotation);
-            aimingDirection = FindObjectOfType<Aiming>().AimDirection();
-            Rigidbody rg = g.GetComponent<Rigidbody>();
-            rg.velocity = new Vector3(aimingDirection.x, aimingDirection.y, 0) * 20f;
-            //shootingSpell.Aiming();
-            lastShot = Time.time;
-            Destroy(g, 1f);
+            //this is the lightning spell
+            UseLightningSpell();
 
+            //this is the sound wave spell
+            //UseSoundWaveSpell();
+            lastShot = Time.time;
         }
+    }
+
+    void MeleeAttack()
+    {
+        aimingDirection = FindObjectOfType<Aiming>().AimDirection();
+        MeleeAttack meleeAttack;
+        meleeAttack = Instantiate(meleePrefab, meleeSpawn.position, meleeSpawn.rotation);
+        meleeAttack.gameObject.transform.parent = alpha.transform;
+        meleeAttack.Aiming(aimingDirection);
+        Destroy(meleeAttack.gameObject, 0.5f);
     }
 
     void UseStim()
@@ -318,11 +359,35 @@ public class Alpha : MonoBehaviour
             }
         }
     }
-    void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
 
+    public void TakeDamage(int damage)
+    {
+        Debug.Log("current health is: " + currentHealth);
+        currentHealth = currentHealth - damage;
+        Debug.Log(currentHealth);
         healthBar.SetHealth(currentHealth);
+    }
+
+    public void DeathCheck()
+    {
+        if(currentHealth <= 0)
+        {
+            StartCoroutine(Respawn());
+        }
+        //else if (Input.GetKeyDown(KeyCode.K))
+        //{
+           //StartCoroutine(Respawn());
+        //}
+    }
+
+    IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(1.1f);
+        respawnPoint.RespawnPlayer();
+        currentHealth = maxHealth;
+        healthBar.SetHealth(currentHealth);
+        currentMana = maxMana;
+        manaBar.SetMana(currentMana);
     }
 
     void useMana(int lostMana)
@@ -331,4 +396,37 @@ public class Alpha : MonoBehaviour
 
         manaBar.SetMana(currentMana);
     }
+
+    #region Spells
+    public void UseExplosionSpell()
+    {
+        explosion.pushed = false;
+        explosion.alpha = this; //for some reason I can't put the player onto the explosion object so this is a supplement for that
+        explosion.Aiming();
+        GameObject g = Instantiate(spellAttack, spellSpawn.position, spellSpawn.rotation);
+        lastShot = Time.time;
+        Destroy(g, 0.5f);
+    }
+
+    public void UseLightningSpell()
+    {
+        aimingDirection = FindObjectOfType<Aiming>().AimDirection();
+        LightningSpell lightning = Instantiate(lightningPrefab, spellSpawn.position, spellSpawn.rotation);
+        lightning.Aiming(aimingDirection);
+    }
+
+    public void UseIcicleSpell()
+    {
+        aimingDirection = FindObjectOfType<Aiming>().AimDirection();
+        IcicleSpearSpell icicleSpear = Instantiate(iciclePrefab, spellSpawn.position, spellSpawn.rotation);
+        icicleSpear.Aiming(aimingDirection);
+    }
+
+    public void UseSoundWaveSpell()
+    {
+        aimingDirection = FindObjectOfType<Aiming>().AimDirection();
+        SoundWaveSpell soundWave = Instantiate(soundWavePrefab, spellSpawn.position, spellSpawn.rotation);
+        soundWave.Aiming(aimingDirection);
+    }
+    #endregion
 }

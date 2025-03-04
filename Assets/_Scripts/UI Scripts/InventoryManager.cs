@@ -1,3 +1,4 @@
+using Palmmedia.ReportGenerator.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,9 @@ public class InventoryManager : MonoBehaviour
     public InventorySlot[] inventorySlots;
     public GameObject inventorySpellPrefab;
 
-    int selectedSlot = -1;
+    int selectedSlot = 1;
+
+    public GameObject Settings;
 
     //auxilary code/functionality for cursor selecting slots
     void ChangeSelectedSlot(int newValue)
@@ -24,7 +27,7 @@ public class InventoryManager : MonoBehaviour
     }
 
     //for putting a new spell in the next availible inventory slot when it is picked up
-    public bool AddSpell(Spell spell)
+    public void AddSpell(Spell spell)
     {
         for(int i = 0; i < inventorySlots.Length; i++)
         {
@@ -33,15 +36,12 @@ public class InventoryManager : MonoBehaviour
             if(spellInSlot == null)
             {
                 SpawnNewSpell(spell, slot);
-                return true;
             }
         }
-
-        return false;
     }
 
     //making a new spell from the spell prefab
-    void SpawnNewSpell(Spell spell, InventorySlot slot)
+    public void SpawnNewSpell(Spell spell, InventorySlot slot)
     {
         GameObject newSpellGo = Instantiate(inventorySpellPrefab, slot.transform);
         InventorySpell inventorySpell = newSpellGo.GetComponent<InventorySpell>();
@@ -59,5 +59,11 @@ public class InventoryManager : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void SettingsResumeButton()
+    {
+        Settings.SetActive(false);
+        Time.timeScale = 1.0f;
     }
 }

@@ -15,6 +15,9 @@ public class VZ17Code : MonoBehaviour {
     [SerializeField] private float shootFrequency;
     [SerializeField] private float jumpAtkFrequency;
 
+    LayerMask terrainLayerMask;
+    LayerMask playerLayerMask;
+
     private float atkFrequency;
 
     [SerializeField] private float forwardVelocity;
@@ -36,6 +39,9 @@ public class VZ17Code : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+
+        terrainLayerMask = LayerMask.GetMask("Default");
+        playerLayerMask = LayerMask.GetMask("Player");
         enemy = this.gameObject;
         enemyRB = GetComponent<Rigidbody>();
         timer = 0;
@@ -86,15 +92,25 @@ public class VZ17Code : MonoBehaviour {
     void aimAtPlayer() {
         fireArea.transform.LookAt(player.transform.position);
 
-        Debug.Log(player.transform.position);
     }
 
     void startAttack() {
-
+        RaycastHit hit;
 
         if (isGrounded && inRange && canFire == true) {
-            Instantiate(bullet, fireArea.transform.position, fireArea.transform.rotation);
+            if (Physics.Raycast(transform.position, transform.TransformDirection(player.transform.position), out hit, 10f, terrainLayerMask)) {
+                Debug.DrawRay(transform.position, transform.TransformDirection(player.transform.position) * hit.distance, Color.yellow);
+                //Debug.Log("Did Hit");
 
+            } else {
+
+
+                Debug.DrawRay(transform.position, transform.TransformDirection(player.transform.position) * 10f, Color.white);
+                //Debug.Log("Did not Hit");
+
+                Instantiate(bullet, fireArea.transform.position, fireArea.transform.rotation);
+
+            }
             Debug.Log("Fire!");            
         } else if (isGrounded && inRange) {
             if (facingRight) {
