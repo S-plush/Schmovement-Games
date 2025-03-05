@@ -10416,6 +10416,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2048541786}
     - target: {fileID: 3847868235083632959, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
+      propertyPath: Settings
+      value: 
+      objectReference: {fileID: 1640561241}
+    - target: {fileID: 3847868235083632959, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
       propertyPath: Inventory
       value: 
       objectReference: {fileID: 2048541789}
@@ -20113,6 +20117,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1640561241 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6022160619677683751, guid: c98c4127a3677cb4aa88935271921cc7, type: 3}
+  m_PrefabInstance: {fileID: 2048541784}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1649752169
 GameObject:
   m_ObjectHideFlags: 0
