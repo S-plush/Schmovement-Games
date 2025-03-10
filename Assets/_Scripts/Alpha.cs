@@ -23,6 +23,7 @@ public class Alpha : MonoBehaviour
     public float timer; //for spell
 
     private float lastShot; //cooldown for the spell 1
+    private bool isGrounded; //for jumping
     private bool hasDashed = false;
     private bool canDoubleJump = false;
     private Rigidbody alpha;
@@ -185,9 +186,10 @@ public class Alpha : MonoBehaviour
         isMovingRight = Input.GetKey(KeyCode.D);
 
         //isGrounded makes it so the player isn't able to spam the jump button while in mid-air
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             alpha.AddForce(Vector3.up * jumpSpd);
+            isGrounded = false;
             float tempFallSpd = fallSpd;
             fallSpd = 0.5f; //this is to sort of help reset the jump
             //Debug.Log("fall speed is now " + fallSpd);
@@ -228,7 +230,7 @@ public class Alpha : MonoBehaviour
             }
         }
 
-        animator.SetBool("Grounded", IsGrounded());
+        animator.SetBool("Grounded", isGrounded);
         DeathCheck();
     }
 
@@ -259,19 +261,28 @@ public class Alpha : MonoBehaviour
         }
     }
 
-    //using raycast to detect if player is grounded
-    private bool IsGrounded()
+    private void OnCollisionEnter(Collision collision)
     {
-        float rayLength = 0.1f;
-        bool isGrounded = Physics.Raycast(transform.position, -gameObject.transform.up, rayLength);
-
-        if (isGrounded)
+        if(collision.gameObject.tag == "Ground")
         {
+            isGrounded = true;
             hasDashed = false;
         }
-
-        return isGrounded;
     }
+
+    //using raycast to detect if player is grounded
+    //private bool IsGrounded()
+    //{
+    //    float rayLength = 0.1f;
+    //    bool isGrounded = Physics.Raycast(transform.position, -gameObject.transform.up, rayLength);
+
+    //    if (isGrounded)
+    //    {
+    //        hasDashed = false;
+    //    }
+
+    //    return isGrounded;
+    //}
 
     private IEnumerator Dash()
     {
