@@ -18,13 +18,15 @@ public class AreaChanger : MonoBehaviour
         {
             FindObjectOfType<Alpha>().transform.position = EnterPoint.position;
         }
+       
+
     }
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            AreaTransition.CurrentTransition = SceneConnection;
+            AreaTransition.CurrentTransition = SceneConnection;            
             SceneManager.LoadScene(NextScene);
         }
 

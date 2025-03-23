@@ -10,6 +10,4 @@ public class AreaTransition : ScriptableObject
     
     public static AreaTransition CurrentTransition {  get; set; }
 
-
-
 }
