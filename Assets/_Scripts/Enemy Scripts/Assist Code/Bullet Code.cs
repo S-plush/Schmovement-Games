@@ -7,8 +7,6 @@ public class BulletCode : MonoBehaviour
     public int Damage;
     public GameObject player;
 
-    //private Alpha alpha;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -18,14 +16,10 @@ public class BulletCode : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
-        {
-            //player.GetComponent<Alpha>().TakeDamage(Damage);
-            Destroy(this.gameObject);
-        }
-        else
+        if (other.gameObject.tag != "Enemy")
         {
             Destroy(this.gameObject);
         }
+
     }
 }

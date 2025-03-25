@@ -1,29 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
+using UnityEditor;
 using UnityEngine;
 
-public class VZ17Code : MonoBehaviour {
-
+public class BasicShooterGruntCode : MonoBehaviour
+{
     public GameObject player;
-    public GameObject pack;
     public GameObject fireArea;
     public GameObject bullet;
+    public LedgeChecker ledgeChecker;
+
 
     public int health;
+    public int speed;
 
     private GameObject enemy;
 
     [SerializeField] private float shootFrequency;
-    [SerializeField] private float jumpAtkFrequency;
 
     LayerMask terrainLayerMask;
     LayerMask playerLayerMask;
 
     private float atkFrequency;
 
-    [SerializeField] private float forwardVelocity;
-    [SerializeField] private float upwardVelocity;
 
     private Rigidbody enemyRB;
     private float timer;
@@ -35,9 +34,11 @@ public class VZ17Code : MonoBehaviour {
 
     private bool isGrounded;
     private bool inRange;
-    
+    private bool detected;
 
     private bool canFire;
+
+    private bool canMove;
 
     // Start is called before the first frame update
     void Start() {
@@ -49,27 +50,23 @@ public class VZ17Code : MonoBehaviour {
         timer = 0;
         atkFrequency = shootFrequency;
         canFire = true;
+        canMove = true;
 
-        if(health <= 0){
+        if (health <= 0) {
             health = 2;
         }
 
     }
 
     // Update is called once per frame
-    void Update() {
+    void FixedUpdate() {
 
-        if(health == 0) {
+        if (health == 0) {
             Destroy(this.gameObject);
         }
 
-        if(pack == null) {
-            canFire = false;
-            atkFrequency = jumpAtkFrequency;
 
-        }
-
-        if (Vector3.Distance(enemy.transform.position, player.transform.position) > 12f) {
+        if (Vector3.Distance(enemy.transform.position, player.transform.position) > 10f) {
             inRange = false;
         } else {
             inRange = true;
@@ -77,7 +74,34 @@ public class VZ17Code : MonoBehaviour {
 
         timer += Time.deltaTime;
 
+        if (Vector3.Distance(enemy.transform.position, player.transform.position) > 13f) {
+            detected = false;
+        } else {
+            detected = true;
+        }
+
+
+        facePlayer();
+
+        if (ledgeChecker.isGroundDetected()) {
+            if (detected && !inRange) {
+                if (facingLeft) {
+                    this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(this.transform.position.x - 5, this.transform.position.y, this.transform.position.z), 0.05f);
+                } else if (facingRight) {
+                    this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(this.transform.position.x + 5, this.transform.position.y, this.transform.position.z), 0.05f);
+                }
+
+
+            } else {
+                this.transform.position = Vector3.MoveTowards(this.transform.position, this.transform.position, 0.1f);
+            }
+        }
+        
+        
+
+
         while (timer >= atkFrequency) {
+
             facePlayer();
             aimAtPlayer();
             startAttack();
@@ -85,15 +109,14 @@ public class VZ17Code : MonoBehaviour {
         }
     }
 
-
     void facePlayer() {
         if (player.transform.position.x > enemy.transform.position.x) {
-            enemy.transform.rotation = Quaternion.Euler(0, 0, 0);
+            enemy.transform.rotation = Quaternion.Euler(0, 90, 0);
             facingRight = true;
             facingLeft = false;
 
         } else if (player.transform.position.x < enemy.transform.position.x) {
-            enemy.transform.rotation = Quaternion.Euler(0, 180, 0);
+            enemy.transform.rotation = Quaternion.Euler(0, 270, 0);
             facingRight = false;
             facingLeft = true;
         }
@@ -107,38 +130,25 @@ public class VZ17Code : MonoBehaviour {
     void startAttack() {
         RaycastHit hit;
 
-        if (isGrounded && inRange && canFire == true) {
+        if (isGrounded && inRange) {
             if (Physics.Raycast(transform.position, transform.TransformDirection(player.transform.position), out hit, 10f, terrainLayerMask)) {
                 Debug.DrawRay(transform.position, transform.TransformDirection(player.transform.position) * hit.distance, Color.yellow);
-                //Debug.Log("Did Hit");
+                Debug.Log("Did Not Hit Player");
 
             } else {
 
 
                 Debug.DrawRay(transform.position, transform.TransformDirection(player.transform.position) * 10f, Color.white);
-                //Debug.Log("Did not Hit");
+                Debug.Log("Hit Player");
 
                 Instantiate(bullet, fireArea.transform.position, fireArea.transform.rotation);
 
             }
-            Debug.Log("Fire!");            
-        } else if (isGrounded && inRange) {
-            if (facingRight) {
-                //Debug.Log("jumped");
-
-                enemyRB.velocity = new Vector3(forwardVelocity, upwardVelocity, 0);
-                isGrounded = false;
-
-            } else if (facingLeft) {
-                //Debug.Log("jumped");
-
-                enemyRB.velocity = new Vector3(-forwardVelocity, upwardVelocity, 0);
-                isGrounded = false;
-
-            }
-        }
-
+            Debug.Log("Fire!");
+        } 
+    
     }
+
     void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.tag == "Ground") {
             isGrounded = true;
@@ -153,4 +163,5 @@ public class VZ17Code : MonoBehaviour {
             other.GetComponent<Alpha>().TakeDamage(1);
         }
     }
+
 }
