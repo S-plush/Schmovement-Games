@@ -28,7 +28,7 @@ public class Alpha : MonoBehaviour
     private bool canDoubleJump = false;
     private Rigidbody alpha;
     private BoxCollider boxCollider;
-    private bool isGamePaused =false;
+    private bool isGamePaused = false;
 
     private ExplosionSpell explosion;
     public LightningSpell lightningPrefab;
@@ -65,11 +65,14 @@ public class Alpha : MonoBehaviour
 
     public GameObject Settings;
 
-    private int[] indexs; //used to store the output of LoadoutsToFile.switchLoadouts(). the two values saved in this array are index references to which item in the keyArray are equipped
-    private string[] keyArray = { "empty", "Explosion", "Lightning", "Icicle Spear", "Sound Wave", "etc" };
+    [HideInInspector] public int[] indexs; //used to store the output of LoadoutsToFile.switchLoadouts(). the two values saved in this array are index references to which item in the keyArray are equipped
 
-    private string leftSpell; //keeps track of the name of the spell that the UI loadout slot says should be being shot
-    private string rightSpell; //keeps track of the name of the spell that the UI loadout slot says should be being shot
+    public string leftSpell; //keeps track of the name of the spell that the UI loadout slot says should be being shot
+    public string rightSpell; //keeps track of the name of the spell that the UI loadout slot says should be being shot
+
+    LoadoutsToFile LoadoutsToFileScript;
+
+    public int currentlyEquippedLoadout; //does nothing yet
 
     public Animator animator;
 
@@ -99,9 +102,10 @@ public class Alpha : MonoBehaviour
 
         //makes sure the player's castable spells are set to loadout1 (because there needs to be some reference) on start
         //could be ///////////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
-        indexs = InventoryManager.GetComponent<LoadoutsToFile>().switchLoadouts(1);
-        leftSpell = keyArray[indexs[0]];
-        rightSpell = keyArray[indexs[1]];
+
+        LoadoutsToFileScript = FindObjectOfType<LoadoutsToFile>();
+
+        
     }
 
     public void OnTriggerEnter(Collider other)
@@ -146,7 +150,7 @@ public class Alpha : MonoBehaviour
         {
             OpenMenu();
 
-            InventoryManager.GetComponent<LoadoutsToFile>().saveLoadoutsToFile();
+            LoadoutsToFileScript.saveLoadoutsToFile();
         }
 
         if (Input.GetKeyDown(KeyCode.Q)) //use of stim keybind
@@ -158,27 +162,28 @@ public class Alpha : MonoBehaviour
         //keybinds for switching to different loadout slots
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            indexs = InventoryManager.GetComponent<LoadoutsToFile>().switchLoadouts(1);
-            leftSpell = keyArray[indexs[0]];
-            rightSpell = keyArray[indexs[1]];
+            LoadoutsToFileScript.switchLoadouts(1);
+            leftSpell = LoadoutsToFileScript.equippedSpells[0];
+            rightSpell = LoadoutsToFileScript.equippedSpells[1];
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            indexs = InventoryManager.GetComponent<LoadoutsToFile>().switchLoadouts(2);
-            leftSpell = keyArray[indexs[0]];
-            rightSpell = keyArray[indexs[1]];
+            LoadoutsToFileScript.switchLoadouts(2);
+            leftSpell = LoadoutsToFileScript.equippedSpells[0];
+            rightSpell = LoadoutsToFileScript.equippedSpells[1];
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            indexs = InventoryManager.GetComponent<LoadoutsToFile>().switchLoadouts(3);
-            leftSpell = keyArray[indexs[0]];
-            rightSpell = keyArray[indexs[1]];
+            LoadoutsToFileScript.switchLoadouts(3);
+            leftSpell = LoadoutsToFileScript.equippedSpells[0];
+            rightSpell = LoadoutsToFileScript.equippedSpells[1];
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            indexs = InventoryManager.GetComponent<LoadoutsToFile>().switchLoadouts(4);
-            leftSpell = keyArray[indexs[0]];
-            rightSpell = keyArray[indexs[1]];
+            LoadoutsToFileScript.switchLoadouts(4);
+
+            leftSpell = LoadoutsToFileScript.equippedSpells[0];
+            rightSpell = LoadoutsToFileScript.equippedSpells[1];
         }
 
         //this is for the FixedUpdate to help get rid of the jitteriness
@@ -326,6 +331,8 @@ public class Alpha : MonoBehaviour
 
     void ShootSpell1()
     {
+        Debug.Log(leftSpell);////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         if (activeSpell.activeInHierarchy && !isGamePaused)
         {
             if (Time.time - lastShot < timer)
@@ -396,8 +403,6 @@ public class Alpha : MonoBehaviour
                 UseSoundWaveSpell();
             }
 
-            //this is the sound wave spell
-            //UseSoundWaveSpell();
             lastShot = Time.time;
         }
     }

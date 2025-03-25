@@ -29,9 +29,8 @@ public class Loadout : MonoBehaviour
     
     void Update()
     {
-        //now need to add more statements to check which loudout is active with whichLoudoutSetIsThis, so it knows which to pull from... this will have to be saved some other way though,
-        //as currently this gameObject is disabled during gameplay and it is unknown as to which loadout the player has selected (add 1-4 keys in player script)
-        //and other issues since writing to a file about implemetation here...
+        
+        //gives the selected loadout sprites to the UI boxes that show which spells are equipped and ready to shoot
         if (whichLoudoutSetIsThis == currentLoadoutSelected)
         {
             if (this.transform.childCount > 0)

@@ -11,21 +11,24 @@ public class AreaChanger : MonoBehaviour
 
     public Transform EnterPoint;
 
+    MiscDataToFile MiscDataToFileScript;
 
     public void Start()
     {
+        MiscDataToFileScript = FindObjectOfType<MiscDataToFile>(); //initilize MiscDataToFileScript with the actual script
+
         if (SceneConnection == AreaTransition.CurrentTransition)
         {
             FindObjectOfType<Alpha>().transform.position = EnterPoint.position;
         }
-       
-
     }
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
+            MiscDataToFileScript.saveAllMiscData(); //saves values associated with the player like stims and health
+
             AreaTransition.CurrentTransition = SceneConnection;            
             SceneManager.LoadScene(NextScene);
         }
