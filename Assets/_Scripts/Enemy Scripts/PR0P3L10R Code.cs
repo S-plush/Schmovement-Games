@@ -10,7 +10,6 @@ public class PR0P3L10RCode : MonoBehaviour
     [SerializeField] private GameObject fireArea;
     public GameObject bullet;
 
-    public int health;
     
     private GameObject enemy;
 
@@ -19,6 +18,11 @@ public class PR0P3L10RCode : MonoBehaviour
 
 
     private bool forward, up, back, down;
+
+    public int health;
+
+    public float detectionRange;
+    public float fireRange;
 
     [SerializeField] private float shootFrequency;
     [SerializeField] private float moveFrequency;
@@ -33,7 +37,7 @@ public class PR0P3L10RCode : MonoBehaviour
 
     private bool inRange;
 
-    private bool canMove;
+    private bool detected;
 
     
 
@@ -64,21 +68,23 @@ public class PR0P3L10RCode : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        if (Vector3.Distance(enemy.transform.position, player.transform.position) > 15f) {
+        if (Vector3.Distance(enemy.transform.position, player.transform.position) > fireRange) {
             inRange = false;
         } else {
             inRange = true;
         }
 
-        if (Vector3.Distance(enemy.transform.position, player.transform.position) > 10f) {
-            canMove = true;
+        timer += Time.deltaTime;
+
+        if (Vector3.Distance(enemy.transform.position, player.transform.position) > detectionRange) {
+            detected = false;
         } else {
-            canMove = false;
+            detected = true;
         }
 
         timer += Time.deltaTime;
 
-        if (canMove && inRange) {
+        if (detected && inRange) {
             checkDirections();
 
             if (forward && facingLeft) {
@@ -174,11 +180,11 @@ public class PR0P3L10RCode : MonoBehaviour
 
     void startAttack() {
         RaycastHit hit;
-        if(!canMove)
+        if(inRange)
         // Does the ray intersect any objects excluding the player layer
         if (Physics.Raycast(transform.position, transform.TransformDirection(player.transform.position), out hit, 10f, terrainLayerMask)) {
             Debug.DrawRay(transform.position, transform.TransformDirection(player.transform.position) * hit.distance, Color.yellow);
-            //Debug.Log("Did Hit");
+            Debug.Log("Hit Terrain");
 
         } else {
 
