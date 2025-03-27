@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -13,6 +14,10 @@ public class BasicShooterGruntCode : MonoBehaviour
 
     public int health;
     public int speed;
+
+    public float detectionRange;
+    public float fireRange;
+
 
     private GameObject enemy;
 
@@ -66,7 +71,7 @@ public class BasicShooterGruntCode : MonoBehaviour
         }
 
 
-        if (Vector3.Distance(enemy.transform.position, player.transform.position) > 10f) {
+        if (Vector3.Distance(enemy.transform.position, player.transform.position) > fireRange) {
             inRange = false;
         } else {
             inRange = true;
@@ -74,7 +79,7 @@ public class BasicShooterGruntCode : MonoBehaviour
 
         timer += Time.deltaTime;
 
-        if (Vector3.Distance(enemy.transform.position, player.transform.position) > 13f) {
+        if (Vector3.Distance(enemy.transform.position, player.transform.position) > detectionRange) {
             detected = false;
         } else {
             detected = true;

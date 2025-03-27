@@ -108,11 +108,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 933edd814490e5447a50706ad54d2103, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -90.57
+      value: -95.51
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 933edd814490e5447a50706ad54d2103, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.08
+      value: 2.18
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 933edd814490e5447a50706ad54d2103, type: 3}
       propertyPath: m_LocalPosition.z
@@ -250,4 +250,6 @@ MonoBehaviour:
   ledgeChecker: {fileID: 5241415108240292570}
   health: 5
   speed: 5
+  detectionRange: 12
+  fireRange: 8
   shootFrequency: 3
