@@ -6,8 +6,9 @@ public class ExplosionSpell : MonoBehaviour
 {
     public Spell spell;
 
-    [HideInInspector] public Alpha alpha;
+    public Alpha alpha;
 
+    public float radius = 5f;
     public bool pushed = false;
     public bool preventMoving = false;
     public bool pushedRight = false;
@@ -15,95 +16,52 @@ public class ExplosionSpell : MonoBehaviour
 
     private Coroutine coroutine;
 
-    public void Aiming()
+    private void Awake()
     {
-        if (!pushed)
+        alpha = FindObjectOfType<Alpha>();
+
+        if(alpha == null)
         {
-            if (alpha.rotationPoint.rotation.z < .2f && alpha.rotationPoint.rotation.z > -.19f)
-            {
-                //spell is aimed right
-                alpha.GetComponent<Rigidbody>().velocity = new Vector3(-spell.knockbackValue, 0, 0);
-                pushedLeft = true;
-                pushed = true;
-            }
-            else if (alpha.rotationPoint.rotation.z < -.2f && alpha.rotationPoint.rotation.z > -.49f)
-            {
-                //spell is aimed down right
-                alpha.GetComponent<Rigidbody>().velocity = new Vector3(-spell.knockbackValue, spell.knockbackValue, 0);
-                pushedLeft = true;
-                pushed = true;
-            }
-            else if (alpha.rotationPoint.rotation.z < -.5f && alpha.rotationPoint.rotation.z > -.79f)
-            {
-                //spell is aimed down
-                alpha.GetComponent<Rigidbody>().velocity = new Vector3(0, spell.knockbackValue * 1.5f, 0);
-                pushed = true;
-            }
-            else if (alpha.rotationPoint.rotation.z < -.8f && alpha.rotationPoint.rotation.z > -.94f)
-            {
-                //spell is aimed down left
-                alpha.GetComponent<Rigidbody>().velocity = new Vector3(spell.knockbackValue, spell.knockbackValue, 0);
-                pushedRight = true;
-                pushed = true;
-            }
-            else if (alpha.rotationPoint.rotation.z < -.95f || alpha.rotationPoint.rotation.z > .95f)
-            {
-                //spell is aimed left
-                alpha.GetComponent<Rigidbody>().velocity = new Vector3(spell.knockbackValue, 0, 0);
-                pushedRight = true;
-                pushed = true;
-            }
-            else if (alpha.rotationPoint.rotation.z < .94f && alpha.rotationPoint.rotation.z > .81f)
-            {
-                //spell is aimed up left
-                alpha.GetComponent<Rigidbody>().velocity = new Vector3(spell.knockbackValue, spell.knockbackValue, 0);
-                pushedRight = true;
-                pushed = true;
-            }
-            else if (alpha.rotationPoint.rotation.z < .8f && alpha.rotationPoint.rotation.z > .5f)
-            {
-                //spell is aimed up
-                alpha.GetComponent<Rigidbody>().velocity = new Vector3(0, -spell.knockbackValue, 0);
-                pushed = true;
-            }
-            else if (alpha.rotationPoint.rotation.z < .49f && alpha.rotationPoint.rotation.z > .21f)
-            {
-                //spell is aimed up right
-                alpha.GetComponent<Rigidbody>().velocity = new Vector3(-spell.knockbackValue, -spell.knockbackValue, 0);
-                pushedLeft = true;
-                pushed = true;
-            }
-
-            if (coroutine != null)
-            {
-                alpha.StopCoroutine(coroutine);
-            }
-
-            coroutine = alpha.StartCoroutine(ResetMovement());
+            Debug.LogError("Alpha object not in scene");
         }
     }
 
-    private IEnumerator ResetMovement()
+    private void Start()
     {
-        //Debug.Log("working");
-        //preventMoving = true;
-        yield return new WaitForSeconds(0.3f);
-        ///preventMoving = false;
+        Destroy(gameObject, 0.5f);
+    }
 
-        while(!((alpha.isMovingLeft && pushedRight) || (alpha.isMovingRight && pushedLeft)) && pushed)
+    public void Aiming(Vector3 direction)
+    {
+        if (alpha != null)
         {
-            //Debug.Log("yes?");
-            yield return null;
+            Debug.Log("alpha is not null");
+            Vector3 pushDirection = -direction.normalized;
+            float distanceToPlayer = Vector3.Distance(transform.position, alpha.transform.position);
+
+            if (alpha.TryGetComponent<CharacterController>(out CharacterController controller))
+            {
+                Vector3 push = pushDirection * spell.knockbackValue;
+                StartCoroutine(Push(controller, push));
+            }
         }
-
-        if((pushed && pushedRight && alpha.isMovingLeft) || (pushed && pushedLeft && alpha.isMovingRight))
+        else if (alpha == null)
         {
+            Debug.Log("alpha is null");
+        }
+    }
 
-            Debug.Log("activating");
-            pushedLeft = false;
-            pushedRight = false;
-            pushed = false;
-            alpha.GetComponent<Rigidbody>().velocity = Vector3.zero;
+    private IEnumerator Push(CharacterController controller, Vector3 pushDirection)
+    {
+        float elapsedTime = 0f;
+        float pushDuration = .2f;
+        Vector3 startingPosition = alpha.transform.position;
+        
+        while (elapsedTime < pushDuration)
+        {
+            controller.Move(Vector3.Lerp(Vector3.zero, pushDirection, elapsedTime / pushDuration) * Time.deltaTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
         }
     }
 }
