@@ -35,7 +35,7 @@ public class VZ17Code : MonoBehaviour {
 
     private bool isGrounded;
     private bool inRange;
-
+    
 
     private bool canFire;
 
@@ -100,7 +100,7 @@ public class VZ17Code : MonoBehaviour {
     }
 
     void aimAtPlayer() {
-        fireArea.transform.LookAt(player.transform.position);
+        fireArea.transform.LookAt(player.transform.position + new Vector3(0, 1, 0));
 
     }
 

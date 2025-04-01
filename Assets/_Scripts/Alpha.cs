@@ -5,6 +5,8 @@ using UnityEditor;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+using UnityEditor.Experimental.GraphView;
 
 public class Alpha : MonoBehaviour
 {
@@ -12,6 +14,11 @@ public class Alpha : MonoBehaviour
     public float jumpSpd = 5f;
     public float fallSpd = 2.5f;
     public float dashPush = 5;
+    public float gravity = -9.8f;
+    private float slopeDirection;
+    private Vector3 velocity;
+    private float ySpeed;
+    private float originalStepOffset;
 
     //set up for this test build, but will need to have an abstract class for all the spells
     public Transform spellSpawn; //spawn point for spell's attack
@@ -23,13 +30,16 @@ public class Alpha : MonoBehaviour
     public float timer; //for spell
 
     private float lastShot; //cooldown for the spell 1
+    private bool isGrounded; //for jumping
     private bool hasDashed = false;
     private bool canDoubleJump = false;
-    private Rigidbody alpha;
-    private BoxCollider boxCollider;
-    private bool isGamePaused =false;
 
-    private ExplosionSpell explosion;
+    private CharacterController alpha;
+    //private Rigidbody alpha;
+    private BoxCollider boxCollider;
+    private bool isGamePaused = false;
+
+    public ExplosionSpell explosionPrefab;
     public LightningSpell lightningPrefab;
     public IcicleSpearSpell iciclePrefab;
     public SoundWaveSpell soundWavePrefab;
@@ -37,8 +47,11 @@ public class Alpha : MonoBehaviour
     
     [HideInInspector] public bool isMovingLeft = false;
     [HideInInspector] public bool isMovingRight = false;
+    private float moveDirection;
 
     public RespawnPoint respawnPoint;
+
+    public GameObject deathScreen;
 
     public GameObject Inventory;
 
@@ -62,29 +75,49 @@ public class Alpha : MonoBehaviour
 
     public GameObject Settings;
 
+    [HideInInspector] public int[] indexs; //used to store the output of LoadoutsToFile.switchLoadouts(). the two values saved in this array are index references to which item in the keyArray are equipped
+
+    public string leftSpell; //keeps track of the name of the spell that the UI loadout slot says should be being shot
+    public string rightSpell; //keeps track of the name of the spell that the UI loadout slot says should be being shot
+
+    LoadoutsToFile LoadoutsToFileScript;
+
+    public int currentlyEquippedLoadout; //does nothing yet
+
+    public Animator animator;
+
     void Start()
     {
-        alpha = GetComponent<Rigidbody>();
-        boxCollider = GetComponent<BoxCollider>();
-        explosion = spellAttack.GetComponent<ExplosionSpell>();
+        //alpha = GetComponent<Rigidbody>();
+        alpha = GetComponent<CharacterController>();
+        originalStepOffset = alpha.stepOffset;
+        //boxCollider = GetComponent<BoxCollider>();
+        //explosion = spellAttack.GetComponent<ExplosionSpell>();
         invData = FindObjectOfType<InvDataBetweenRuns>();
 
         Inventory.SetActive(false);
         HUD.SetActive(true);
-        stimCount = 30; /////////////////////////////////input from file later
+        stimCount = 30; //////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
         stimCountText.text = stimCount + "\n\nStims";
-        healthFromStim = 3; ////////////////////////////input from file later
-        manaFromStim = 1; //////////////////////////////input from file later
+        healthFromStim = 3; //////////////////////////////////////////////////////////////////////////////////////////////////input from file later
+        manaFromStim = 1; ////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
 
-        maxHealth = 5; /////////////////////////////////input from file later
+        maxHealth = 5; ///////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
 
-        maxMana = 5; ///////////////////////////////////input from file later
+        maxMana = 5; /////////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
         currentMana = maxMana;
         manaBar.SetMaxMana(maxMana);
 
         Settings.SetActive(false);
+
+        //makes sure the player's castable spells are set to loadout1 (because there needs to be some reference) on start
+        //could be ///////////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
+
+        LoadoutsToFileScript = FindObjectOfType<LoadoutsToFile>();
+
+        
     }
 
     public void OnTriggerEnter(Collider other)
@@ -129,7 +162,7 @@ public class Alpha : MonoBehaviour
         {
             OpenMenu();
 
-            InventoryManager.GetComponent<LoadoutsToFile>().saveLoadoutsToFile();
+            LoadoutsToFileScript.saveLoadoutsToFile();
         }
 
         if (Input.GetKeyDown(KeyCode.Q)) //use of stim keybind
@@ -137,50 +170,88 @@ public class Alpha : MonoBehaviour
             UseStim();
         }
 
+        
         //keybinds for switching to different loadout slots
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            InventoryManager.GetComponent<LoadoutsToFile>().switchLoadouts(1);
+            LoadoutsToFileScript.switchLoadouts(1);
+            leftSpell = LoadoutsToFileScript.equippedSpells[0];
+            rightSpell = LoadoutsToFileScript.equippedSpells[1];
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            InventoryManager.GetComponent<LoadoutsToFile>().switchLoadouts(2);
+            LoadoutsToFileScript.switchLoadouts(2);
+            leftSpell = LoadoutsToFileScript.equippedSpells[0];
+            rightSpell = LoadoutsToFileScript.equippedSpells[1];
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            InventoryManager.GetComponent<LoadoutsToFile>().switchLoadouts(3);
+            LoadoutsToFileScript.switchLoadouts(3);
+            leftSpell = LoadoutsToFileScript.equippedSpells[0];
+            rightSpell = LoadoutsToFileScript.equippedSpells[1];
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            InventoryManager.GetComponent<LoadoutsToFile>().switchLoadouts(4);
+            LoadoutsToFileScript.switchLoadouts(4);
+
+            leftSpell = LoadoutsToFileScript.equippedSpells[0];
+            rightSpell = LoadoutsToFileScript.equippedSpells[1];
         }
 
+        #region movement
         //this is for the FixedUpdate to help get rid of the jitteriness
-        isMovingLeft = Input.GetKey(KeyCode.A);
-        isMovingRight = Input.GetKey(KeyCode.D);
+        float horizontalInput = Input.GetAxis("Horizontal");
+        Vector3 moveDirection = new Vector3 (horizontalInput, 0, 0);
+        float magnitude = Mathf.Clamp01(moveDirection.magnitude) * alphaMovementSpd;
+        moveDirection.Normalize();
+        ySpeed += Physics.gravity.y * Time.deltaTime;
 
-        //isGrounded makes it so the player isn't able to spam the jump button while in mid-air
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        if (Input.GetButtonDown("Jump") && canDoubleJump)
         {
-            alpha.AddForce(Vector3.up * jumpSpd);
-            float tempFallSpd = fallSpd;
-            fallSpd = 0.5f; //this is to sort of help reset the jump
-            //Debug.Log("fall speed is now " + fallSpd);
-            fallSpd = tempFallSpd;
-            canDoubleJump = true;
-        }
-        else if(Input.GetButtonDown("Jump") && canDoubleJump)
-        {
-            alpha.velocity = Vector3.zero;
-            alpha.AddForce(Vector3.up * jumpSpd);
-            float tempFallSpd = fallSpd;
-            fallSpd = 0.5f; //this is to sort of help reset the jump
-            fallSpd = tempFallSpd;
+            ySpeed = jumpSpd;
             canDoubleJump = false;
         }
 
+        if (alpha.isGrounded)
+        {
+            alpha.stepOffset = originalStepOffset;
+            ySpeed = -0.5f;
+            hasDashed = false;
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                ySpeed = jumpSpd;
+                canDoubleJump = true;
+            }
+        }
+        else
+        {
+            alpha.stepOffset = 0;
+        }
+
+        Vector3 velocity = moveDirection * magnitude;
+        velocity = OnSlope(velocity);
+        velocity.y += ySpeed;
+        alpha.Move(velocity * Time.deltaTime);
+
+        if (horizontalInput > 0)
+        {
+            animator.SetBool("isMoving", true);
+            animator.SetBool("isMirrored", false);
+        }
+        else if (horizontalInput < 0)
+        {
+            animator.SetBool("isMoving", true);
+            animator.SetBool("isMirrored", true);
+        }
+        else
+        {
+            animator.SetBool("isMoving", false);
+        }
+        #endregion
+
         //this is to use dash
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !hasDashed)
         {
             StartCoroutine(Dash());
         }
@@ -203,55 +274,107 @@ public class Alpha : MonoBehaviour
             }
         }
 
-        
+        animator.SetBool("Grounded", alpha.isGrounded);
         DeathCheck();
     }
 
-    //to help get rid of the jitteriness
-    private void FixedUpdate()
+    //private void OnControllerColliderHit(ControllerColliderHit hit)
+    //{
+    //    if(hit.collider.CompareTag("Ground"))
+    //    {
+    //        isGrounded = true;
+    //        hasDashed = false;
+    //        velocity.y = 0;
+    //    }
+    //    else
+    //    {
+    //        isGrounded = false;
+    //    }
+    //}
+
+    private Vector3 OnSlope(Vector3 velocity)
     {
-        if (isMovingLeft)
+        Ray ray = new Ray(transform.position, Vector3.down);
+
+        if (Physics.Raycast(ray, out RaycastHit slopeHit, 0.4f))
         {
-            if(!explosion.preventMoving)
+            //Debug.Log("this is working");
+            //Debug.DrawRay(slopeHit.point, slopeHit.normal, Color.red, 0.4f);
+            var slopeRotation = Quaternion.FromToRotation(Vector3.up, slopeHit.normal);
+            var adjustedVelocity = slopeRotation * velocity;
+
+            if(adjustedVelocity.y < 0)
             {
-                this.gameObject.transform.Translate(new Vector3(0, 0, -alphaMovementSpd * Time.deltaTime));
+                return adjustedVelocity;
             }
         }
-        else if (isMovingRight)
-        {
-            if(!explosion.preventMoving)
-            {
-                this.gameObject.transform.Translate(new Vector3(0, 0, alphaMovementSpd * Time.deltaTime));
-            }
-        }
+
+        return velocity;
     }
 
     //using raycast to detect if player is grounded
-    private bool IsGrounded()
-    {
-        bool isGrounded = Physics.Raycast(transform.position, -gameObject.transform.up, boxCollider.bounds.extents.y + 0.1f);
-        hasDashed = false;
-        return isGrounded;
-    }
+    //private bool IsGrounded()
+    //{
+    //    float rayLength = 0.1f;
+    //    bool isGrounded = Physics.Raycast(transform.position, -gameObject.transform.up, rayLength);
+
+    //    if (isGrounded)
+    //    {
+    //        hasDashed = false;
+    //    }
+
+    //    return isGrounded;
+    //}
 
     private IEnumerator Dash()
     {
-        if (this.gameObject.transform.rotation.y == 90 && !hasDashed || isMovingRight && !hasDashed)
+        if(!hasDashed)
         {
-            alpha.useGravity = false;
-            alpha.velocity = new Vector3(transform.localScale.x * dashPush, 0, 0);
-            hasDashed = true;
-        }
-        else if(isMovingLeft && !hasDashed)
-        {
-            alpha.useGravity = false;
-            alpha.velocity = new Vector3(-transform.localScale.x * dashPush, 0, 0);
-            hasDashed = true;
-        }
+            float originalYSpeed = velocity.y;
+            //velocity.y = 0;
+            Vector3 dashDirection = Vector3.zero;
 
-        yield return new WaitForSeconds(0.5f);
-        alpha.velocity = Vector3.zero;
-        alpha.useGravity = true;
+            if(transform.localScale.x < 0)
+            {
+                dashDirection = Vector3.left;
+            }
+            else if(transform.localScale.x > 0)
+            {
+                dashDirection = Vector3.right;
+            }
+
+            Vector3 targetPosition = transform.position + dashDirection * dashPush;
+            //float dashSpeed = dashPush / 0.2f;
+            float dashTime = 0.2f;
+            float elapsedTime = 0f;
+            Vector3 startPosition = transform.position;
+
+            //while(transform.position != targetPosition)
+            //{
+            //    transform.position = Vector3.MoveTowards(transform.position, targetPosition, dashSpeed * Time.deltaTime);
+            //    yield return null;
+            //}
+
+            Vector3 dashMove = Vector3.zero;
+
+            while(elapsedTime < dashTime)
+            {
+                float dashProgress = elapsedTime / dashTime;
+                dashMove = Vector3.Lerp(startPosition, targetPosition, dashProgress);
+                velocity.y = originalYSpeed;
+                alpha.Move(dashMove - transform.position + new Vector3(0, velocity.y, 0));
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            //transform.position = targetPosition;
+            //Vector3 dashMove = dashDirection * dashPush;
+            //alpha.Move(dashMove);
+            hasDashed = true;
+            //velocity.y = originalYSpeed;
+            yield return new WaitForSeconds(0.5f);
+            velocity = Vector3.zero;
+        }
     }
 
     void OpenMenu()
@@ -276,6 +399,8 @@ public class Alpha : MonoBehaviour
 
     void ShootSpell1()
     {
+        Debug.Log(leftSpell);////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         if (activeSpell.activeInHierarchy && !isGamePaused)
         {
             if (Time.time - lastShot < timer)
@@ -283,13 +408,31 @@ public class Alpha : MonoBehaviour
                 return;
             }
 
-            useMana(1);
+            if (leftSpell == "empty")
+            {
 
-            //rn this is for the explosion spell
-            UseExplosionSpell();
+            }
+            else if (leftSpell == "Explosion")
+            {
+                useMana(1);
+                UseExplosionSpell();
+            }
+            else if (leftSpell == "Lightning")
+            {
+                useMana(1);
+                UseLightningSpell();
+            }
+            else if (leftSpell == "Icicle Spear")
+            {
+                useMana(1);
+                UseIcicleSpearSpell();
+            }
+            else if (leftSpell == "Sound Wave")
+            {
+                useMana(1);
+                UseSoundWaveSpell();
+            }
 
-            //this is the icicle spear spell
-            //UseIcicleSpell();
             lastShot = Time.time;
         }
     }
@@ -303,11 +446,31 @@ public class Alpha : MonoBehaviour
                 return;
             }
 
-            //this is the lightning spell
-            UseLightningSpell();
+            if (rightSpell == "empty")
+            {
 
-            //this is the sound wave spell
-            //UseSoundWaveSpell();
+            }
+            else if (rightSpell == "Explosion")
+            {
+                useMana(1);
+                UseExplosionSpell();
+            }
+            else if (rightSpell == "Lightning")
+            {
+                useMana(1);
+                UseLightningSpell();
+            }
+            else if (rightSpell == "Icicle Spear")
+            {
+                useMana(1);
+                UseIcicleSpearSpell();
+            }
+            else if (rightSpell == "Sound Wave")
+            {
+                useMana(1);
+                UseSoundWaveSpell();
+            }
+
             lastShot = Time.time;
         }
     }
@@ -382,7 +545,9 @@ public class Alpha : MonoBehaviour
 
     IEnumerator Respawn()
     {
+        deathScreen.SetActive(true);
         yield return new WaitForSeconds(1.1f);
+        deathScreen.SetActive(false);
         respawnPoint.RespawnPlayer();
         currentHealth = maxHealth;
         healthBar.SetHealth(currentHealth);
@@ -397,15 +562,28 @@ public class Alpha : MonoBehaviour
         manaBar.SetMana(currentMana);
     }
 
+    //for testing can delete later
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.green;
+    //    Vector3 rayOrigin = transform.position;
+    //    Vector3 rayDirection = -transform.up;
+    //    float rayLength = 0.1f;
+
+    //    Gizmos.DrawRay(rayOrigin, rayDirection * rayLength);
+    //}
+
     #region Spells
     public void UseExplosionSpell()
     {
-        explosion.pushed = false;
-        explosion.alpha = this; //for some reason I can't put the player onto the explosion object so this is a supplement for that
-        explosion.Aiming();
-        GameObject g = Instantiate(spellAttack, spellSpawn.position, spellSpawn.rotation);
-        lastShot = Time.time;
-        Destroy(g, 0.5f);
+        //explosion.pushed = false;
+        //explosion.alpha = this; //for some reason I can't put the player onto the explosion object so this is a supplement for that
+        aimingDirection = FindObjectOfType<Aiming>().AimDirection();
+        ExplosionSpell explosion = Instantiate(explosionPrefab, spellSpawn.position, spellSpawn.rotation);
+        explosion.Aiming(aimingDirection);
+        //GameObject g = Instantiate(spellAttack, spellSpawn.position, spellSpawn.rotation);
+        //lastShot = Time.time;
+        //Destroy(g, 0.5f);
     }
 
     public void UseLightningSpell()
@@ -415,7 +593,7 @@ public class Alpha : MonoBehaviour
         lightning.Aiming(aimingDirection);
     }
 
-    public void UseIcicleSpell()
+    public void UseIcicleSpearSpell()
     {
         aimingDirection = FindObjectOfType<Aiming>().AimDirection();
         IcicleSpearSpell icicleSpear = Instantiate(iciclePrefab, spellSpawn.position, spellSpawn.rotation);

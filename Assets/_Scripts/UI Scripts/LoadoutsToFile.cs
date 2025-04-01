@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.ProBuilder.Shapes;
 using UnityEngine.UI;
+using Debug = UnityEngine.Debug;
 
 public class LoadoutsToFile : MonoBehaviour
 {
@@ -25,6 +27,11 @@ public class LoadoutsToFile : MonoBehaviour
     private string fileName = "LoadoutData.txt";
     private string filePath;
 
+    [HideInInspector] public int index1;
+    [HideInInspector] public int index2;
+
+    [HideInInspector] public String[] equippedSpells;
+
     public UnityEngine.Sprite defaultBox;
 
     public Image HUDSlot1; //ref to the left spell slot on HUD
@@ -33,13 +40,14 @@ public class LoadoutsToFile : MonoBehaviour
     //add spells here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public Spell Explosion;
     public Spell Lightning;
+    public Spell IcicleSpear;
+    public Spell SoundWave;
+
 
     void Start()
     {
         // Set the file path inside persistentDataPath
         filePath = Path.Combine(Application.persistentDataPath, fileName);
-
-       
     }
 
     public void saveLoadoutsToFile()
@@ -121,15 +129,13 @@ public class LoadoutsToFile : MonoBehaviour
             {
                 dataIn += "empty\n";
             }
-
             
             WriteToFile(dataIn);
 
             //Debug.Log(ReadFromFile());
     }
 
-
-    public void switchLoadouts(int numPressed) //int numPressed is the user's pushed key, for loadout switching, int 1-4
+    public void switchLoadouts(int numPressed) //int numPressed is the user's pushed key, for loadout switching, int numpressed 1-4. returns a string of the index1 value followed by the index2 value, these two values are seperated by a comma
     {
 
         Loadout[] LoadoutSlots = FindObjectsOfType<Loadout>();
@@ -137,84 +143,104 @@ public class LoadoutsToFile : MonoBehaviour
         // Loop through each instance and modify the variable, so all Loadout scripts know what loadout is currently equipped
         foreach (Loadout obj in LoadoutSlots)
         {
-            obj.currentLoadoutSelected = numPressed;
+                obj.currentLoadoutSelected = numPressed;
         }
 
-        //splitting up the data from the file to be more usable (could save it as indexs instead of string names though...)
-        string beforeSplitData = ReadFromFile();
-        string[] dataOut = beforeSplitData.Split('\n');
+        //splitting up the data from the file to be more usable (could save it as ints instead of string names though...)
+        string[] dataOut = ReadFromFile().Split('\n');
 
-        string[] keyArray = {"empty", "Explosion", "Lightning", "etc"}; //add names of new spell scriptable objects to the end of the list here!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        string[] keyArray = { "empty", "Explosion", "Lightning", "Icicle Spear", "Sound Wave", "etc" }; //add names of new spell scriptable objects to the end of the list here!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-        int index1 = -1;
-        int index2 = -1;
+            //these all convert the information saved in the file to indexs for the UI, and change the equippedSpells variable that the Alpha script is reading
+            if (numPressed == 1)
+            {
+                index1 = Array.IndexOf(keyArray, dataOut[0]);
+                index2 = Array.IndexOf(keyArray, dataOut[1]);
 
-        //these all convert the information saved in the file to indexs that can be.........
-        if (numPressed == 1)
-        {
-            index1 = Array.IndexOf(keyArray, dataOut[0]);
-            index2 = Array.IndexOf(keyArray, dataOut[1]);
-        }
+                String[] temp = { dataOut[0], dataOut[1] };
+                equippedSpells = temp;
 
-        if (numPressed == 2)
-        {
-            index1 = Array.IndexOf(keyArray, dataOut[2]);
-            index2 = Array.IndexOf(keyArray, dataOut[3]);
-        }
+            }
 
-        if (numPressed == 3)
-        {
-            index1 = Array.IndexOf(keyArray, dataOut[4]);
-            index2 = Array.IndexOf(keyArray, dataOut[5]);
-        }
+            if (numPressed == 2)
+            {
+                index1 = Array.IndexOf(keyArray, dataOut[2]);
+                index2 = Array.IndexOf(keyArray, dataOut[3]);
 
-        if (numPressed == 4)
-        {
-            index1 = Array.IndexOf(keyArray, dataOut[6]);
-            index2 = Array.IndexOf(keyArray, dataOut[7]);
-        }
+                String[] temp = { dataOut[2], dataOut[3] };
+                equippedSpells = temp;
+            }
 
-        //these lines........ then add the spells image here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        if (index1 == 0)
-        {
-            HUDSlot1.sprite = defaultBox;
-        }
-        else if (index1 == 1)
-        {
-            HUDSlot1.sprite = Explosion.image;
-        }
-        else if (index1 == 2)
-        {
-            HUDSlot1.sprite = Lightning.image;
-        }
-        else if (index1 == 3)
-        {
+            if (numPressed == 3)
+            {
+                index1 = Array.IndexOf(keyArray, dataOut[4]);
+                index2 = Array.IndexOf(keyArray, dataOut[5]);
 
+                String[] temp = { dataOut[4], dataOut[5] };
+                equippedSpells = temp;
         }
 
-        if (index2 == 0)
-        {
-            HUDSlot2.sprite = defaultBox;
-        }
-        else if (index2 == 1)
-        {
-            HUDSlot2.sprite = Explosion.image;
-        }
-        else if (index2 == 2)
-        {
-            HUDSlot2.sprite = Lightning.image;
-        }
-        else if (index2 == 3)
-        {
+            if (numPressed == 4)
+            {
+                index1 = Array.IndexOf(keyArray, dataOut[6]);
+                index2 = Array.IndexOf(keyArray, dataOut[7]);
 
-        }
+                String[] temp = { dataOut[6], dataOut[7] };
+                equippedSpells = temp;
+            }
 
-        //Debug.Log(dataOut.Length);
-        //Debug.Log(dataOut[0]);
+            //these lines........    |    then add the spells image here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            if (index1 == 0)
+            {
+                HUDSlot1.sprite = defaultBox;
+            }
+            else if (index1 == 1)
+            {
+                HUDSlot1.sprite = Explosion.image;
+            }
+            else if (index1 == 2)
+            {
+                HUDSlot1.sprite = Lightning.image;
+            }
+            else if (index1 == 3)
+            {
+                HUDSlot1.sprite = IcicleSpear.image;
+            }
+            else if (index1 == 4)
+            {
+                HUDSlot1.sprite = SoundWave.image;
+            }
+            else if (index1 == 5)
+            {
+
+            }
+
+
+            if (index2 == 0)
+            {
+                HUDSlot2.sprite = defaultBox;
+            }
+            else if (index2 == 1)
+            {
+                HUDSlot2.sprite = Explosion.image;
+            }
+            else if (index2 == 2)
+            {
+                HUDSlot2.sprite = Lightning.image;
+            }
+            else if (index2 == 3)
+            {
+                HUDSlot2.sprite = IcicleSpear.image;
+            }
+            else if (index2 == 4)
+            {
+                HUDSlot2.sprite = SoundWave.image;
+            }
+            else if (index1 == 5)
+            {
+
+            }
     }
-
-
-
 
     void WriteToFile(string text)
     {
