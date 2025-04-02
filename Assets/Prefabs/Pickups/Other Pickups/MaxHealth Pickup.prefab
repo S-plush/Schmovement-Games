@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 250275002946020695}
   - component: {fileID: 792346959330452179}
   m_Layer: 0
-  m_Name: Pickup Item
+  m_Name: MaxHealth Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,4 +119,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spell: {fileID: 0}
-  inventory: {fileID: 0}
+  pickupType: maxHealthIncrease
+  inventory: {fileID: 2782939748750390917, guid: d83cf530717a0e9478a9755f79e761f1, type: 3}
