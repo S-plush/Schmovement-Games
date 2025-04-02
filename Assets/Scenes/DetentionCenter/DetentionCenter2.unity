@@ -520,6 +520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path: {fileID: 1558226442}
+  lever: {fileID: 0}
   speed: 0.8
 --- !u!43 &21972022
 Mesh:
@@ -10443,10 +10444,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2048541788}
     - target: {fileID: 3847868235083632959, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
-      propertyPath: jumpSpd
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3847868235083632959, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
       propertyPath: manaBar
       value: 
       objectReference: {fileID: 2048541786}
@@ -10454,10 +10451,6 @@ PrefabInstance:
       propertyPath: Settings
       value: 
       objectReference: {fileID: 1640561241}
-    - target: {fileID: 3847868235083632959, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
-      propertyPath: dashPush
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 3847868235083632959, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
       propertyPath: Inventory
       value: 
@@ -10470,10 +10463,6 @@ PrefabInstance:
       propertyPath: stimCountText
       value: 
       objectReference: {fileID: 2048541785}
-    - target: {fileID: 3847868235083632959, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
-      propertyPath: explosionPrefab
-      value: 
-      objectReference: {fileID: -7173215572119700692, guid: 74acdbccee3a400428fb35b62880d330, type: 3}
     - target: {fileID: 3847868235083632959, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
       propertyPath: InventoryManager
       value: 
@@ -10518,51 +10507,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4107021029901205224, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3290333613032720715, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
-    - {fileID: 4107021029901205224, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2903938947457681952, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 794085397}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
---- !u!1 &794085396 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2903938947457681952, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
-  m_PrefabInstance: {fileID: 794085395}
-  m_PrefabAsset: {fileID: 0}
---- !u!143 &794085397
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 794085396}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.86, z: 0}
 --- !u!43 &800567384
 Mesh:
   m_ObjectHideFlags: 0
@@ -27647,6 +27596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path: {fileID: 1906588364}
+  lever: {fileID: 0}
   speed: 0.8
 --- !u!64 &2048639199
 MeshCollider:

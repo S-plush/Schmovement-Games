@@ -9,9 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3967609499188319860}
-  - component: {fileID: 4107021029901205224}
-  - component: {fileID: 3290333613032720715}
   - component: {fileID: 3847868235083632959}
+  - component: {fileID: 3582802962263021776}
   m_Layer: 0
   m_Name: Player_Alpha
   m_TagString: Player
@@ -37,54 +36,6 @@ Transform:
   - {fileID: 3633928533846297495}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!65 &4107021029901205224
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2903938947457681952}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1.9, z: 1}
-  m_Center: {x: 0, y: 0.94, z: 0}
---- !u!54 &3290333613032720715
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2903938947457681952}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!114 &3847868235083632959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,9 +49,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alphaMovementSpd: 7
-  jumpSpd: 400
+  jumpSpd: 7
   fallSpd: 2.5
-  dashPush: 10
+  dashPush: 4
+  gravity: -9.8
   spellSpawn: {fileID: 5808184871400034264}
   meleeSpawn: {fileID: 2090864736270577917}
   spellAttack: {fileID: 2672976769280851066, guid: 74acdbccee3a400428fb35b62880d330, type: 3}
@@ -108,6 +60,7 @@ MonoBehaviour:
   rotationPoint: {fileID: 5780919091067573746}
   aimingDirection: {x: 0, y: 0, z: 0}
   timer: 1.5
+  explosionPrefab: {fileID: -7173215572119700692, guid: 74acdbccee3a400428fb35b62880d330, type: 3}
   lightningPrefab: {fileID: -7419050746634257968, guid: 91de701a1772e4941bfd8ca90f30b81c, type: 3}
   iciclePrefab: {fileID: 7772193594896229260, guid: 286e89ed882b0644d8b0dd57b649567b, type: 3}
   soundWavePrefab: {fileID: 6934630093924351336, guid: a0a16fd4c63f2384aaf4760b822c7d62, type: 3}
@@ -135,6 +88,32 @@ MonoBehaviour:
   rightSpell: 
   currentlyEquippedLoadout: 0
   animator: {fileID: 6289829871979517361}
+--- !u!143 &3582802962263021776
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2903938947457681952}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.86, z: 0}
 --- !u!1 &3055131622247872019
 GameObject:
   m_ObjectHideFlags: 0

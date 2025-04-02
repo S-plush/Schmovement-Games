@@ -12,6 +12,11 @@ public class SoundWaveSpell : MonoBehaviour
     private int bounce = 3;
     private Vector3 aimingDirection;
 
+    private void Awake()
+    {
+        alpha = FindObjectOfType<Alpha>();
+    }
+
     public void Aiming(Vector3 direction)
     {
         aimingDirection = direction;
@@ -23,12 +28,13 @@ public class SoundWaveSpell : MonoBehaviour
         //Debug.Log("starting bounce " + bounce);
         bounce--;
         spell.damageValue++;
-        //Debug.Log(bounce);
+        spell.knockbackValue = spell.knockbackValue + 5;
 
         if (bounce < 0)
         {
             Destroy(gameObject);
             spell.damageValue = 1;
+            spell.knockbackValue = 15;
             return;
         }
 
@@ -45,7 +51,40 @@ public class SoundWaveSpell : MonoBehaviour
         }
         else if (other.gameObject.tag == "Player")
         {
-            Destroy(gameObject);
+            if (bounce < 3)
+            {
+                Destroy(gameObject, 0.2f);
+
+                if (alpha != null)
+                {
+                    Debug.Log("alpha is not null");
+                    Vector3 pushDirection = aimingDirection.normalized;
+                    float distanceToPlayer = Vector3.Distance(transform.position, alpha.transform.position);
+
+                    if (alpha.TryGetComponent<CharacterController>(out CharacterController controller))
+                    {
+                        Vector3 push = pushDirection * spell.knockbackValue;
+                        StartCoroutine(Push(controller, push));
+                    }
+                }
+
+                spell.knockbackValue = 15;
+            }
+        }
+    }
+
+    private IEnumerator Push(CharacterController controller, Vector3 pushDirection)
+    {
+        Debug.Log("i'm in!");
+        float elapsedTime = 0f;
+        float pushDuration = .2f;
+        Vector3 startingPosition = alpha.transform.position;
+
+        while (elapsedTime < pushDuration)
+        {
+            controller.Move(Vector3.Lerp(Vector3.zero, pushDirection, elapsedTime / pushDuration) * Time.deltaTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
         }
     }
 }
