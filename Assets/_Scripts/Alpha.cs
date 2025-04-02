@@ -35,8 +35,6 @@ public class Alpha : MonoBehaviour
     private bool canDoubleJump = false;
 
     private CharacterController alpha;
-    //private Rigidbody alpha;
-    private BoxCollider boxCollider;
     private bool isGamePaused = false;
 
     public ExplosionSpell explosionPrefab;
@@ -88,11 +86,8 @@ public class Alpha : MonoBehaviour
 
     void Start()
     {
-        //alpha = GetComponent<Rigidbody>();
         alpha = GetComponent<CharacterController>();
         originalStepOffset = alpha.stepOffset;
-        //boxCollider = GetComponent<BoxCollider>();
-        //explosion = spellAttack.GetComponent<ExplosionSpell>();
         invData = FindObjectOfType<InvDataBetweenRuns>();
 
         Inventory.SetActive(false);
@@ -198,57 +193,23 @@ public class Alpha : MonoBehaviour
             rightSpell = LoadoutsToFileScript.equippedSpells[1];
         }
 
-        #region movement
-        //this is for the FixedUpdate to help get rid of the jitteriness
-        float horizontalInput = Input.GetAxis("Horizontal");
-        Vector3 moveDirection = new Vector3 (horizontalInput, 0, 0);
-        float magnitude = Mathf.Clamp01(moveDirection.magnitude) * alphaMovementSpd;
-        moveDirection.Normalize();
-        ySpeed += Physics.gravity.y * Time.deltaTime;
-
-        if (Input.GetButtonDown("Jump") && canDoubleJump)
-        {
-            ySpeed = jumpSpd;
-            canDoubleJump = false;
-        }
-
-        if (alpha.isGrounded)
+        if (alpha.isGrounded && Input.GetButtonDown("Jump"))
         {
             alpha.stepOffset = originalStepOffset;
             ySpeed = -0.5f;
             hasDashed = false;
-
-            if (Input.GetButtonDown("Jump"))
-            {
-                ySpeed = jumpSpd;
-                canDoubleJump = true;
-            }
+            ySpeed = jumpSpd;
+            canDoubleJump = true;
+        }
+        else if (Input.GetButtonDown("Jump") && canDoubleJump)
+        {
+            ySpeed = jumpSpd;
+            canDoubleJump = false;
         }
         else
         {
             alpha.stepOffset = 0;
         }
-
-        Vector3 velocity = moveDirection * magnitude;
-        velocity = OnSlope(velocity);
-        velocity.y += ySpeed;
-        alpha.Move(velocity * Time.deltaTime);
-
-        if (horizontalInput > 0)
-        {
-            animator.SetBool("isMoving", true);
-            animator.SetBool("isMirrored", false);
-        }
-        else if (horizontalInput < 0)
-        {
-            animator.SetBool("isMoving", true);
-            animator.SetBool("isMirrored", true);
-        }
-        else
-        {
-            animator.SetBool("isMoving", false);
-        }
-        #endregion
 
         //this is to use dash
         if (Input.GetKeyDown(KeyCode.LeftShift) && !hasDashed)
@@ -274,23 +235,44 @@ public class Alpha : MonoBehaviour
             }
         }
 
+        //Debug.Log(alpha.isGrounded);
         animator.SetBool("Grounded", alpha.isGrounded);
         DeathCheck();
     }
 
-    //private void OnControllerColliderHit(ControllerColliderHit hit)
-    //{
-    //    if(hit.collider.CompareTag("Ground"))
-    //    {
-    //        isGrounded = true;
-    //        hasDashed = false;
-    //        velocity.y = 0;
-    //    }
-    //    else
-    //    {
-    //        isGrounded = false;
-    //    }
-    //}
+    private void FixedUpdate()
+    {
+        #region movement
+        //this is for the FixedUpdate to help get rid of the jitteriness
+        float horizontalInput = Input.GetAxis("Horizontal");
+        Vector3 moveDirection = new Vector3(horizontalInput, 0, 0);
+        float magnitude = Mathf.Clamp01(moveDirection.magnitude) * alphaMovementSpd;
+        moveDirection.Normalize();
+        ySpeed += Physics.gravity.y * Time.deltaTime;
+
+        Vector3 velocity = moveDirection * magnitude;
+        velocity = OnSlope(velocity);
+        velocity.y += ySpeed;
+        alpha.Move(velocity * Time.deltaTime);
+
+        if (horizontalInput > 0)
+        {
+            animator.SetBool("isMoving", true);
+            animator.SetBool("isMirrored", false);
+        }
+        else if (horizontalInput < 0)
+        {
+            animator.SetBool("isMoving", true);
+            animator.SetBool("isMirrored", true);
+        }
+        else
+        {
+            animator.SetBool("isMoving", false);
+        }
+        #endregion
+
+        //Debug.Log(alpha.isGrounded);
+    }
 
     private Vector3 OnSlope(Vector3 velocity)
     {
@@ -312,26 +294,11 @@ public class Alpha : MonoBehaviour
         return velocity;
     }
 
-    //using raycast to detect if player is grounded
-    //private bool IsGrounded()
-    //{
-    //    float rayLength = 0.1f;
-    //    bool isGrounded = Physics.Raycast(transform.position, -gameObject.transform.up, rayLength);
-
-    //    if (isGrounded)
-    //    {
-    //        hasDashed = false;
-    //    }
-
-    //    return isGrounded;
-    //}
-
     private IEnumerator Dash()
     {
         if(!hasDashed)
         {
             float originalYSpeed = velocity.y;
-            //velocity.y = 0;
             Vector3 dashDirection = Vector3.zero;
 
             if(transform.localScale.x < 0)
@@ -344,17 +311,9 @@ public class Alpha : MonoBehaviour
             }
 
             Vector3 targetPosition = transform.position + dashDirection * dashPush;
-            //float dashSpeed = dashPush / 0.2f;
             float dashTime = 0.2f;
             float elapsedTime = 0f;
             Vector3 startPosition = transform.position;
-
-            //while(transform.position != targetPosition)
-            //{
-            //    transform.position = Vector3.MoveTowards(transform.position, targetPosition, dashSpeed * Time.deltaTime);
-            //    yield return null;
-            //}
-
             Vector3 dashMove = Vector3.zero;
 
             while(elapsedTime < dashTime)
@@ -367,11 +326,7 @@ public class Alpha : MonoBehaviour
                 yield return null;
             }
 
-            //transform.position = targetPosition;
-            //Vector3 dashMove = dashDirection * dashPush;
-            //alpha.Move(dashMove);
             hasDashed = true;
-            //velocity.y = originalYSpeed;
             yield return new WaitForSeconds(0.5f);
             velocity = Vector3.zero;
         }

@@ -5,7 +5,6 @@ using UnityEngine;
 public class ExplosionSpell : MonoBehaviour
 {
     public Spell spell;
-
     public Alpha alpha;
 
     public float radius = 5f;
@@ -13,8 +12,6 @@ public class ExplosionSpell : MonoBehaviour
     public bool preventMoving = false;
     public bool pushedRight = false;
     public bool pushedLeft = false;
-
-    private Coroutine coroutine;
 
     private void Awake()
     {
