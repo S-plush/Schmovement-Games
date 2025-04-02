@@ -64,6 +64,7 @@ public class Alpha : MonoBehaviour
     [HideInInspector] public int currentMana;
 
     public TMP_Text stimCountText;
+    public int maxStims;
     public int stimCount;
     public int manaFromStim;
     public int healthFromStim;
@@ -92,7 +93,7 @@ public class Alpha : MonoBehaviour
 
         Inventory.SetActive(false);
         HUD.SetActive(true);
-        stimCount = 30; //////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
+        stimCount = maxStims; //////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
         stimCountText.text = stimCount + "\n\nStims";
         healthFromStim = 3; //////////////////////////////////////////////////////////////////////////////////////////////////input from file later
         manaFromStim = 1; ////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
@@ -504,10 +505,14 @@ public class Alpha : MonoBehaviour
         yield return new WaitForSeconds(1.1f);
         deathScreen.SetActive(false);
         respawnPoint.RespawnPlayer();
+
         currentHealth = maxHealth;
         healthBar.SetHealth(currentHealth);
         currentMana = maxMana;
         manaBar.SetMana(currentMana);
+        stimCount = maxStims;
+        stimCountText.text = stimCount + "\n\nStims";
+
     }
 
     void useMana(int lostMana)
