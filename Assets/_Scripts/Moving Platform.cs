@@ -5,6 +5,7 @@ using UnityEngine;
 public class MovingPlatform : MonoBehaviour
 {
     [SerializeField] private MovingPlatformPath path;
+    [SerializeField] private SwitchInteraction lever;
     [SerializeField] private float speed;
 
     private int targetPointIndex;
@@ -16,20 +17,24 @@ public class MovingPlatform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        lever = FindObjectOfType<SwitchInteraction>();
         TargetNextPoint();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        elapsedTime += Time.deltaTime;
-        float elapsedPercentage = elapsedTime / pathTime;
-        elapsedPercentage = Mathf.SmoothStep(0, 1, elapsedPercentage);
-        transform.position = Vector3.Lerp(previousPoint.position, nextPoint.position, elapsedPercentage);
-
-        if(elapsedPercentage >= 1)
+        if (lever.SwitchActivated())
         {
-            TargetNextPoint();
+            elapsedTime += Time.deltaTime;
+            float elapsedPercentage = elapsedTime / pathTime;
+            elapsedPercentage = Mathf.SmoothStep(0, 1, elapsedPercentage);
+            transform.position = Vector3.Lerp(previousPoint.position, nextPoint.position, elapsedPercentage);
+
+            if (elapsedPercentage >= 1)
+            {
+                TargetNextPoint();
+            }
         }
     }
 

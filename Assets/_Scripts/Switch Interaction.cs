@@ -4,24 +4,39 @@ using UnityEngine;
 
 public class SwitchInteraction : MonoBehaviour
 {
-    public bool isActivated = false;
-    public Animator animator;
+    private bool isActivated = false;
+    [SerializeField] private Animator switchActivated;
+    private bool playerInside = false;
 
     private void Update()
     {
-        
+        if(playerInside && Input.GetKeyDown(KeyCode.R))
+        {
+            isActivated = true;
+        }
     }
 
     public void OnTriggerEnter(Collider other)
     {
         Debug.Log("player is in the trigger point");
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if(other.gameObject.tag == "Player")
         {
             Debug.Log("starting animation");
-            //isActivated = true;
-            animator.SetBool("Activated", true);
-            animator.Play("Activated");
+            playerInside = true;
+            switchActivated.Play("Activating Switch", -1, 0f);
+        }
+    }
+
+    public bool SwitchActivated()
+    {
+        if (isActivated)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

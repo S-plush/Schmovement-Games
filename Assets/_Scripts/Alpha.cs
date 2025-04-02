@@ -271,7 +271,7 @@ public class Alpha : MonoBehaviour
         }
         #endregion
 
-        Debug.Log(alpha.isGrounded);
+        //Debug.Log(alpha.isGrounded);
     }
 
     private Vector3 OnSlope(Vector3 velocity)
