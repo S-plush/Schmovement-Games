@@ -30,11 +30,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c21a51930186aad429212d6ee26ec255, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c21a51930186aad429212d6ee26ec255, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c21a51930186aad429212d6ee26ec255, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -72,9 +72,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c21a51930186aad429212d6ee26ec255, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1495472368551798575}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c21a51930186aad429212d6ee26ec255, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3583090310613466437}
   m_SourcePrefab: {fileID: 100100000, guid: c21a51930186aad429212d6ee26ec255, type: 3}
 --- !u!1 &5397599695784190549 stripped
 GameObject:
@@ -138,36 +135,15 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.53, y: 0.8771149, z: 0.8079106}
-  m_Center: {x: 0, y: 0.18644276, z: -0.27895528}
+  m_Size: {x: 0.5971756, y: 0.9901272, z: 0.9987093}
+  m_Center: {x: -0.003200531, y: 0.1854971, z: -0.282014}
 --- !u!65 &1495472368551798575
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5397599695784190549}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.6, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.18644276, z: -0.27895528}
---- !u!65 &3583090310613466437
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
