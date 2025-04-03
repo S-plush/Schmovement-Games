@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3967609499188319860}
   - component: {fileID: 3847868235083632959}
-  - component: {fileID: 3582802962263021776}
+  - component: {fileID: 390621359905692744}
   m_Layer: 0
   m_Name: Player_Alpha
   m_TagString: Player
@@ -78,6 +78,7 @@ MonoBehaviour:
   maxMana: 5
   currentMana: 0
   stimCountText: {fileID: 0}
+  maxStims: 0
   stimCount: 0
   manaFromStim: 0
   healthFromStim: 0
@@ -88,7 +89,7 @@ MonoBehaviour:
   rightSpell: 
   currentlyEquippedLoadout: 0
   animator: {fileID: 6289829871979517361}
---- !u!143 &3582802962263021776
+--- !u!143 &390621359905692744
 CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
