@@ -56,6 +56,8 @@ public class ExplosionSpell : MonoBehaviour
         
         while (elapsedTime < pushDuration)
         {
+            //float lerpFactor = Mathf.SmoothStep(0f, 1f, elapsedTime / pushDuration);
+            //controller.Move(pushDirection * lerpFactor * Time.deltaTime);
             controller.Move(Vector3.Lerp(Vector3.zero, pushDirection, elapsedTime / pushDuration) * Time.deltaTime);
             elapsedTime += Time.deltaTime;
             yield return null;
