@@ -33,6 +33,7 @@ public class Alpha : MonoBehaviour
     private bool isGrounded; //for jumping
     private bool hasDashed = false;
     private bool canDoubleJump = false;
+    private float lastDirectionFaced;
 
     private CharacterController alpha;
     private bool isGamePaused = false;
@@ -194,13 +195,24 @@ public class Alpha : MonoBehaviour
             rightSpell = LoadoutsToFileScript.equippedSpells[1];
         }
 
-        if (alpha.isGrounded && Input.GetButtonDown("Jump"))
+        #region movement related stuff
+        float horizontalInput = Input.GetAxis("Horizontal");
+        Vector3 moveDirection = new Vector3(horizontalInput, 0, 0);
+        float magnitude = Mathf.Clamp01(moveDirection.magnitude) * alphaMovementSpd;
+        moveDirection.Normalize();
+        ySpeed += Physics.gravity.y * Time.deltaTime;
+
+        if (alpha.isGrounded)
         {
             alpha.stepOffset = originalStepOffset;
             ySpeed = -0.5f;
             hasDashed = false;
-            ySpeed = jumpSpd;
-            canDoubleJump = true;
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                ySpeed = jumpSpd;
+                canDoubleJump = true;
+            }
         }
         else if (Input.GetButtonDown("Jump") && canDoubleJump)
         {
@@ -212,10 +224,31 @@ public class Alpha : MonoBehaviour
             alpha.stepOffset = 0;
         }
 
+        Vector3 velocity = moveDirection * magnitude;
+        velocity = OnSlope(velocity);
+        velocity.y += ySpeed;
+        alpha.Move(velocity * Time.deltaTime);
+
+        if (horizontalInput > 0)
+        {
+            animator.SetBool("isMoving", true);
+            animator.SetBool("isMirrored", false);
+        }
+        else if (horizontalInput < 0)
+        {
+            animator.SetBool("isMoving", true);
+            animator.SetBool("isMirrored", true);
+        }
+        else
+        {
+            animator.SetBool("isMoving", false);
+        }
+        #endregion
+
         //this is to use dash
         if (Input.GetKeyDown(KeyCode.LeftShift) && !hasDashed)
         {
-            StartCoroutine(Dash());
+            StartCoroutine(Dash(horizontalInput));
         }
 
         //this is to open and close the settings menu
@@ -241,39 +274,47 @@ public class Alpha : MonoBehaviour
         DeathCheck();
     }
 
+    #region FixedUpdate not using, but keeping just in case
     private void FixedUpdate()
     {
         #region movement
         //this is for the FixedUpdate to help get rid of the jitteriness
-        float horizontalInput = Input.GetAxis("Horizontal");
-        Vector3 moveDirection = new Vector3(horizontalInput, 0, 0);
-        float magnitude = Mathf.Clamp01(moveDirection.magnitude) * alphaMovementSpd;
-        moveDirection.Normalize();
-        ySpeed += Physics.gravity.y * Time.deltaTime;
+        //float horizontalInput = Input.GetAxis("Horizontal");
+        //Vector3 moveDirection = new Vector3(horizontalInput, 0, 0);
+        //float magnitude = Mathf.Clamp01(moveDirection.magnitude) * alphaMovementSpd;
+        //moveDirection.Normalize();
+        //ySpeed += Physics.gravity.y * Time.deltaTime;
 
-        Vector3 velocity = moveDirection * magnitude;
-        velocity = OnSlope(velocity);
-        velocity.y += ySpeed;
-        alpha.Move(velocity * Time.deltaTime);
+        //if(alpha.isGrounded)
+        //{
+        //    alpha.stepOffset = originalStepOffset;
+        //    ySpeed = -0.5f;
+        //}
 
-        if (horizontalInput > 0)
-        {
-            animator.SetBool("isMoving", true);
-            animator.SetBool("isMirrored", false);
-        }
-        else if (horizontalInput < 0)
-        {
-            animator.SetBool("isMoving", true);
-            animator.SetBool("isMirrored", true);
-        }
-        else
-        {
-            animator.SetBool("isMoving", false);
-        }
+        //Vector3 velocity = moveDirection * magnitude;
+        //velocity = OnSlope(velocity);
+        //velocity.y += ySpeed;
+        //alpha.Move(velocity * Time.deltaTime);
+
+        //if (horizontalInput > 0)
+        //{
+        //    animator.SetBool("isMoving", true);
+        //    animator.SetBool("isMirrored", false);
+        //}
+        //else if (horizontalInput < 0)
+        //{
+        //    animator.SetBool("isMoving", true);
+        //    animator.SetBool("isMirrored", true);
+        //}
+        //else
+        //{
+        //    animator.SetBool("isMoving", false);
+        //}
         #endregion
 
         //Debug.Log(alpha.isGrounded);
     }
+    #endregion
 
     private Vector3 OnSlope(Vector3 velocity)
     {
@@ -295,18 +336,29 @@ public class Alpha : MonoBehaviour
         return velocity;
     }
 
-    private IEnumerator Dash()
+    private IEnumerator Dash(float direction)
     {
         if(!hasDashed)
         {
+            //float lastDirectionFaced;
+
+            if (direction < 0)
+            {
+                lastDirectionFaced = direction;
+            }
+            else if(direction > 0)
+            {
+                lastDirectionFaced = direction;
+            }
+
             float originalYSpeed = velocity.y;
             Vector3 dashDirection = Vector3.zero;
 
-            if(transform.localScale.x < 0)
+            if(lastDirectionFaced < 0)
             {
                 dashDirection = Vector3.left;
             }
-            else if(transform.localScale.x > 0)
+            else if(lastDirectionFaced > 0)
             {
                 dashDirection = Vector3.right;
             }
@@ -536,14 +588,9 @@ public class Alpha : MonoBehaviour
     #region Spells
     public void UseExplosionSpell()
     {
-        //explosion.pushed = false;
-        //explosion.alpha = this; //for some reason I can't put the player onto the explosion object so this is a supplement for that
         aimingDirection = FindObjectOfType<Aiming>().AimDirection();
         ExplosionSpell explosion = Instantiate(explosionPrefab, spellSpawn.position, spellSpawn.rotation);
         explosion.Aiming(aimingDirection);
-        //GameObject g = Instantiate(spellAttack, spellSpawn.position, spellSpawn.rotation);
-        //lastShot = Time.time;
-        //Destroy(g, 0.5f);
     }
 
     public void UseLightningSpell()

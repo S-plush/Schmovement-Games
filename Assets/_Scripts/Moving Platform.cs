@@ -14,6 +14,8 @@ public class MovingPlatform : MonoBehaviour
     private float pathTime;
     private float elapsedTime;
 
+    private Vector3 platformVelocity;
+
     // Start is called before the first frame update
     void Start()
     {
