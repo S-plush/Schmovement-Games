@@ -41,9 +41,14 @@ public class BasicShooterGruntCode : MonoBehaviour
     private bool inRange;
     private bool detected;
 
+
+    /*
     private bool canFire;
 
     private bool canMove;
+    */
+
+
 
     // Start is called before the first frame update
     void Start() {
@@ -54,8 +59,8 @@ public class BasicShooterGruntCode : MonoBehaviour
         enemyRB = GetComponent<Rigidbody>();
         timer = 0;
         atkFrequency = shootFrequency;
-        canFire = true;
-        canMove = true;
+        //canFire = true;
+        //canMove = true;
 
         if (health <= 0) {
             health = 2;
@@ -89,6 +94,13 @@ public class BasicShooterGruntCode : MonoBehaviour
         facePlayer();
 
         if (ledgeChecker.isGroundDetected()) {
+
+
+            //Debug.Log("Chasing!");
+            //Debug.Log(ledgeChecker.isGroundDetected());
+
+            //Debug.Log("Detected: " + detected + "\ninRange: " + inRange);
+
             if (detected && !inRange) {
                 if (facingLeft) {
                     this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(this.transform.position.x - 5, this.transform.position.y, this.transform.position.z), 0.05f);
@@ -136,14 +148,28 @@ public class BasicShooterGruntCode : MonoBehaviour
         RaycastHit hit;
 
         if (isGrounded && inRange) {
-            if (Physics.Raycast(transform.position, transform.TransformDirection(player.transform.position), out hit, 10f, terrainLayerMask)) {
-                Debug.DrawRay(transform.position, transform.TransformDirection(player.transform.position) * hit.distance, Color.yellow);
+
+
+            /*
+            Debug.Log("Enemy Transform: " + transform.position);
+
+            Debug.Log("Player Transform: " + player.transform.position);
+
+            Debug.DrawLine(transform.position, player.transform.position, Color.yellow);
+            */
+
+            
+            if (Physics.Raycast(transform.position, player.transform.position, out hit, 10f, terrainLayerMask)) {
+                
+
                 Debug.Log("Did Not Hit Player");
+
+                //Debug.Log("hit: " + hit.transform);
 
             } else {
 
 
-                Debug.DrawRay(transform.position, transform.TransformDirection(player.transform.position) * 10f, Color.white);
+                Debug.DrawRay(transform.position, player.transform.position * 10f, Color.white);
                 Debug.Log("Hit Player");
 
                 Instantiate(bullet, fireArea.transform.position, fireArea.transform.rotation);

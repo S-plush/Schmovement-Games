@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2693942141596903849}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fire Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,11 +41,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 4a72b205eea49f644b591fbf01e8deb6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -98.29
+      value: -62.6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4a72b205eea49f644b591fbf01e8deb6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.99
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4a72b205eea49f644b591fbf01e8deb6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -79,9 +79,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8090999536783756713, guid: 4a72b205eea49f644b591fbf01e8deb6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7514054619298211472, guid: 4a72b205eea49f644b591fbf01e8deb6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -6480635296629009760, guid: 4a72b205eea49f644b591fbf01e8deb6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -155327014318104156, guid: 4a72b205eea49f644b591fbf01e8deb6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 262263842510583185, guid: 4a72b205eea49f644b591fbf01e8deb6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4a72b205eea49f644b591fbf01e8deb6, type: 3}
       propertyPath: m_Name
       value: PR0P3L10R v2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4a72b205eea49f644b591fbf01e8deb6, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4a72b205eea49f644b591fbf01e8deb6, type: 3}
       propertyPath: m_TagString
@@ -99,10 +123,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -3.38
       objectReference: {fileID: 0}
+    - target: {fileID: 5528860797864257434, guid: 4a72b205eea49f644b591fbf01e8deb6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 4a72b205eea49f644b591fbf01e8deb6, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 8d711ca9b223c984ebc515851727aa70, type: 2}
+    - target: {fileID: 7036213049465896255, guid: 4a72b205eea49f644b591fbf01e8deb6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275855093713338613, guid: 4a72b205eea49f644b591fbf01e8deb6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -174,8 +210,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.2357194, y: 1.7844963, z: 3.5411668}
-  m_Center: {x: -0.037205935, y: 0.037582397, z: -0.69758075}
+  m_Size: {x: 3.9903293, y: 1.7844963, z: 3.5411668}
+  m_Center: {x: 0.37730503, y: 0, z: 1.7435987e-15}
 --- !u!114 &3873570310878895286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,8 +252,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.9808142, y: 1.784496, z: 3.541167}
+  m_Center: {x: 0.37616384, y: 0, z: 1.759816e-15}
 --- !u!4 &7616111889774912326 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4a72b205eea49f644b591fbf01e8deb6, type: 3}
