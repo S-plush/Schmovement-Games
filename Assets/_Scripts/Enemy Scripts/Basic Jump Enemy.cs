@@ -61,6 +61,7 @@ public class BasicJumpEnemy : MonoBehaviour {
             jumpAttack();
             timer -= atkFrequency;
         }
+        animator.SetBool("Grounded", isGrounded);
     }
 
 
