@@ -43,7 +43,7 @@ public class Alpha : MonoBehaviour
     public IcicleSpearSpell iciclePrefab;
     public SoundWaveSpell soundWavePrefab;
     public MeleeAttack meleePrefab;
-    
+
     [HideInInspector] public bool isMovingLeft = false;
     [HideInInspector] public bool isMovingRight = false;
     private float moveDirection;
@@ -82,7 +82,7 @@ public class Alpha : MonoBehaviour
 
     LoadoutsToFile LoadoutsToFileScript;
 
-    public int currentlyEquippedLoadout; //does nothing yet
+    public int currentlyEquippedLoadout;
 
     public Animator animator;
 
@@ -99,22 +99,18 @@ public class Alpha : MonoBehaviour
         healthFromStim = 3; //////////////////////////////////////////////////////////////////////////////////////////////////input from file later
         manaFromStim = 1; ////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
 
-        maxHealth = 5; ///////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
+        //maxHealth = 5; ///////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
 
-        maxMana = 5; /////////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
+        //maxMana = 5; /////////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
         currentMana = maxMana;
         manaBar.SetMaxMana(maxMana);
 
         Settings.SetActive(false);
 
-        //makes sure the player's castable spells are set to loadout1 (because there needs to be some reference) on start
-        //could be ///////////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
-
         LoadoutsToFileScript = FindObjectOfType<LoadoutsToFile>();
-
-        
+        StartCoroutine(InitialLoadoutCall(currentlyEquippedLoadout));
     }
 
     public void OnTriggerEnter(Collider other)
@@ -150,7 +146,7 @@ public class Alpha : MonoBehaviour
                 }
             }
         }
-        else if(Input.GetKeyDown(KeyCode.E))
+        else if (Input.GetKeyDown(KeyCode.E))
         {
             MeleeAttack();
         }
@@ -167,7 +163,7 @@ public class Alpha : MonoBehaviour
             UseStim();
         }
 
-        
+
         //keybinds for switching to different loadout slots
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -322,7 +318,7 @@ public class Alpha : MonoBehaviour
             var slopeRotation = Quaternion.FromToRotation(Vector3.up, slopeHit.normal);
             var adjustedVelocity = slopeRotation * velocity;
 
-            if(adjustedVelocity.y < 0)
+            if (adjustedVelocity.y < 0)
             {
                 return adjustedVelocity;
             }
@@ -333,7 +329,7 @@ public class Alpha : MonoBehaviour
 
     private IEnumerator Dash(float direction)
     {
-        if(!hasDashed)
+        if (!hasDashed)
         {
             //float lastDirectionFaced;
 
@@ -341,7 +337,7 @@ public class Alpha : MonoBehaviour
             {
                 lastDirectionFaced = direction;
             }
-            else if(direction > 0)
+            else if (direction > 0)
             {
                 lastDirectionFaced = direction;
             }
@@ -349,11 +345,11 @@ public class Alpha : MonoBehaviour
             float originalYSpeed = velocity.y;
             Vector3 dashDirection = Vector3.zero;
 
-            if(lastDirectionFaced < 0)
+            if (lastDirectionFaced < 0)
             {
                 dashDirection = Vector3.left;
             }
-            else if(lastDirectionFaced > 0)
+            else if (lastDirectionFaced > 0)
             {
                 dashDirection = Vector3.right;
             }
@@ -364,7 +360,7 @@ public class Alpha : MonoBehaviour
             Vector3 startPosition = transform.position;
             Vector3 dashMove = Vector3.zero;
 
-            while(elapsedTime < dashTime)
+            while (elapsedTime < dashTime)
             {
                 float dashProgress = elapsedTime / dashTime;
                 dashMove = Vector3.Lerp(startPosition, targetPosition, dashProgress);
@@ -536,13 +532,13 @@ public class Alpha : MonoBehaviour
 
     public void DeathCheck()
     {
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             StartCoroutine(Respawn());
         }
         //else if (Input.GetKeyDown(KeyCode.K))
         //{
-           //StartCoroutine(Respawn());
+        //StartCoroutine(Respawn());
         //}
     }
 
@@ -609,4 +605,21 @@ public class Alpha : MonoBehaviour
         soundWave.Aiming(aimingDirection);
     }
     #endregion
+
+    IEnumerator InitialLoadoutCall(int loadoutNum)
+    {
+        yield return new WaitForSeconds(.1f);
+
+        if (loadoutNum != 1 && loadoutNum != 2 && loadoutNum != 3 && loadoutNum != 4)
+        {
+            LoadoutsToFileScript.switchLoadouts(1);
+        }
+        else
+        {
+            LoadoutsToFileScript.switchLoadouts(loadoutNum);
+        }
+
+        leftSpell = LoadoutsToFileScript.equippedSpells[0];
+        rightSpell = LoadoutsToFileScript.equippedSpells[1];
+    }
 }
