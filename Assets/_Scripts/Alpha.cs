@@ -205,13 +205,14 @@ public class Alpha : MonoBehaviour
         if (alpha.isGrounded)
         {
             alpha.stepOffset = originalStepOffset;
-            //ySpeed = -0.5f; //Not sure why this was needed, this causes constant jumping in place!! - D.E.
+            ySpeed = -1f;
             hasDashed = false;
+            canDoubleJump = true;
 
             if (Input.GetButtonDown("Jump"))
             {
                 ySpeed = jumpSpd;
-                canDoubleJump = true;
+                //canDoubleJump = true;
             }
         }
         else if (Input.GetButtonDown("Jump") && canDoubleJump)
@@ -229,20 +230,6 @@ public class Alpha : MonoBehaviour
         velocity.y += ySpeed;
         alpha.Move(velocity * Time.deltaTime);
 
-        if (horizontalInput > 0)
-        {
-            animator.SetBool("isMoving", true);
-            animator.SetBool("isMirrored", false);
-        }
-        else if (horizontalInput < 0)
-        {
-            animator.SetBool("isMoving", true);
-            animator.SetBool("isMirrored", true);
-        }
-        else
-        {
-            animator.SetBool("isMoving", false);
-        }
         #endregion
 
         //this is to use dash
@@ -269,8 +256,16 @@ public class Alpha : MonoBehaviour
             }
         }
 
+        //ANIMATOR UPDATE PARAMETERS
         //Debug.Log(alpha.isGrounded);
         animator.SetBool("Grounded", alpha.isGrounded);
+        animator.SetBool("CanDoubleJump", canDoubleJump);
+        animator.SetBool("isMirrored", (Input.mousePosition.x / Screen.width) - 0.5f <= 0);
+        animator.SetFloat("VelocityX", velocity.x);
+        animator.SetFloat("AimH", (Input.mousePosition.x / Screen.width) - 0.5f);
+        animator.SetFloat("AimV", (Input.mousePosition.y / Screen.height) - 0.5f);
+        animator.SetBool("Dead", currentHealth <= 0);
+
         DeathCheck();
     }
 
