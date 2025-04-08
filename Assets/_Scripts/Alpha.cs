@@ -205,7 +205,7 @@ public class Alpha : MonoBehaviour
         if (alpha.isGrounded)
         {
             alpha.stepOffset = originalStepOffset;
-            ySpeed = -0.5f;
+            //ySpeed = -0.5f; //Not sure why this was needed, this causes constant jumping in place!! - D.E.
             hasDashed = false;
 
             if (Input.GetButtonDown("Jump"))
