@@ -25,10 +25,13 @@ public class BasicJumpEnemy : MonoBehaviour {
     private bool isGrounded;
     private bool inRange;
 
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start() {
         enemy = this.gameObject;
         enemyRB = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
         timer = 0;
 
         if(health == 0) {
@@ -58,17 +61,18 @@ public class BasicJumpEnemy : MonoBehaviour {
             jumpAttack();
             timer -= atkFrequency;
         }
+        animator.SetBool("Grounded", isGrounded);
     }
 
 
     void facePlayer() {
         if (player.transform.position.x > enemy.transform.position.x) {
-            enemy.transform.rotation = Quaternion.Euler(-90, 90, 0);
+            enemy.transform.rotation = Quaternion.Euler(0, 90, 0);
             facingRight = true;
             facingLeft = false;
 
         } else if (player.transform.position.x < enemy.transform.position.x) {
-            enemy.transform.rotation = Quaternion.Euler(-90, 270, 0);
+            enemy.transform.rotation = Quaternion.Euler(0, 270, 0);
             facingRight = false;
             facingLeft = true;
         }

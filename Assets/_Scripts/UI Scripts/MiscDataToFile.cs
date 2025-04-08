@@ -21,23 +21,77 @@ public class MiscDataToFile : MonoBehaviour
 
     LoadoutsToFile LoadoutsToFileScript; //reference to the LoadoutsToFile on the InventoryManager
 
+    public bool newGame = false; //hopefully can be switched later to give the player a brand new save
+
     void Start()
     {
-        // Set the file path inside persistentDataPath
-        filePath = Path.Combine(Application.persistentDataPath, fileName);
+        if (newGame == false)
+        {
+            // Set the file path inside persistentDataPath
+            filePath = Path.Combine(Application.persistentDataPath, fileName);
 
-        AlphaScript = FindObjectOfType<Alpha>(); //initilize AlphaScript with the actual script
+            AlphaScript = FindObjectOfType<Alpha>(); //initilize AlphaScript with the actual script
+            LoadoutsToFileScript = FindObjectOfType<LoadoutsToFile>(); //initilize LoadoutsToFileScript with the actual script
 
-        LoadoutsToFileScript = FindObjectOfType<LoadoutsToFile>(); //initilize LoadoutsToFileScript with the actual script
+            loadAllMiscData();
+        }
+        else
+        {
+            //assign default stats
+            //stims 3, health 5, mana 5, current loadout 1
 
-        loadAllMiscData();
+            AlphaScript.maxHealth = 5;
+            //AlphaScript.currentHealth = 5;
+            AlphaScript.maxMana = 5;
+            //AlphaScript.currentMana = 5;
+            AlphaScript.maxStims = 3;
+            //AlphaScript.stimCount = 3;
+            AlphaScript.currentlyEquippedLoadout = 1;
+
+            //updating changing values
+            AlphaScript.currentHealth = AlphaScript.maxHealth;
+            AlphaScript.currentMana = AlphaScript.maxMana;
+            AlphaScript.stimCount = AlphaScript.maxStims;
+
+            //updating the UI
+            AlphaScript.healthBar.SetMaxHealth(AlphaScript.maxHealth);
+            AlphaScript.manaBar.SetMaxMana(AlphaScript.maxMana);
+            AlphaScript.stimCountText.text = AlphaScript.maxStims + "\n\nStims";
+
+            newGame = false;
+        }
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.M)) //simulates loading the data (on death or scene transition I presume)
         {
             loadAllMiscData();
+        }
+
+        if (Input.GetKeyDown(KeyCode.N)) //simulates new game
+        {
+            //assign default stats
+            //stims 3, health 5, mana 5, current loadout 1
+
+            AlphaScript.maxHealth = 5;
+            AlphaScript.maxMana = 5;
+            AlphaScript.maxStims = 3;
+            AlphaScript.currentlyEquippedLoadout = 1;
+
+            //updating changing values
+            AlphaScript.currentHealth = AlphaScript.maxHealth;
+            AlphaScript.currentMana = AlphaScript.maxMana;
+            AlphaScript.stimCount = AlphaScript.maxStims;
+
+            //updating the UI
+            AlphaScript.healthBar.SetMaxHealth(AlphaScript.maxHealth);
+            AlphaScript.manaBar.SetMaxMana(AlphaScript.maxMana);
+            AlphaScript.stimCountText.text = AlphaScript.maxStims + "\n\nStims";
+
+            newGame = false;
+
+            saveAllMiscData();
         }
     }
 
@@ -46,21 +100,19 @@ public class MiscDataToFile : MonoBehaviour
         string dataIn = "";
         numberOfEntries = 0;
 
-        dataIn += AlphaScript.maxHealth + "\n"; //0                                        /////ADD NEW VALUES TO THE SAVE FUNCTION HERE (only add at the bottom though, order matters)
+        dataIn += AlphaScript.maxHealth + "\n"; //0
         numberOfEntries++;
-        dataIn += AlphaScript.currentHealth + "\n"; //1
-        numberOfEntries++;
-        dataIn += AlphaScript.maxMana + "\n"; //2
-        numberOfEntries++;
-        dataIn += AlphaScript.currentMana + "\n"; //3
-        numberOfEntries++;
-        dataIn += AlphaScript.stimCount + "\n"; //4
-        numberOfEntries++;
-        dataIn += AlphaScript.currentlyEquippedLoadout + "\n"; //5
-        numberOfEntries++;
-        //dataIn += AlphaScript.; //6
-        //numberOfEntries++;
 
+        dataIn += AlphaScript.maxMana + "\n"; //1
+        numberOfEntries++;
+
+        dataIn += AlphaScript.maxStims + "\n"; //2
+        numberOfEntries++;
+
+        dataIn += AlphaScript.currentlyEquippedLoadout + "\n"; //3
+        numberOfEntries++;
+
+        //////////////////////////////////////////////////////////////////////ADD NEW VALUES TO THE SAVE FUNCTION HERE (only add at the bottom though, order matters)
 
         WriteToFile(dataIn);
     }
@@ -70,29 +122,32 @@ public class MiscDataToFile : MonoBehaviour
         String[] dataOut = ReadFromFile().Split('\n');
         int ArrayLength = dataOut.Length;
 
-            player.GetComponent<Alpha>().currentHealth = Int32.Parse(dataOut[1]);
+        //foreach (String s in dataOut)
+        //{
+        //    Debug.Log($"[{s}]");
+        //}
+
+        //player.GetComponent<Alpha>().currentHealth = Int32.Parse(dataOut[1]);
         //player.GetComponent<Alpha>().stimCount = Int32.Parse(dataOut[4]);
 
         AlphaScript.maxHealth = Int32.Parse(dataOut[0]);
-            //AlphaScript.currentHealth = Int32.Parse(dataOut[1]);
-            AlphaScript.maxMana = Int32.Parse(dataOut[2]);
-            AlphaScript.currentMana = Int32.Parse(dataOut[3]);
-            AlphaScript.stimCount = Int32.Parse(dataOut[4]);
-            AlphaScript.currentlyEquippedLoadout = Int32.Parse(dataOut[5]); //does nothing yet
+        AlphaScript.maxMana = Int32.Parse(dataOut[1]);
+        AlphaScript.maxStims = Int32.Parse(dataOut[2]);
+        AlphaScript.currentlyEquippedLoadout = Int32.Parse(dataOut[3]);
+        //updating changing values
+        AlphaScript.currentHealth = AlphaScript.maxHealth;
+        AlphaScript.currentMana = AlphaScript.maxMana;
+        AlphaScript.stimCount = AlphaScript.maxStims;
 
-            foreach (String s in dataOut)
-            {
-                Debug.Log(s);
-            }
+        //updating the UI
+        AlphaScript.healthBar.SetMaxHealth(AlphaScript.maxHealth);
+        AlphaScript.manaBar.SetMaxMana(AlphaScript.maxMana);
+        AlphaScript.stimCountText.text = AlphaScript.maxStims + "\n\nStims";
     }
 
     void WriteToFile(string text)
     {
-        using (StreamWriter writer = new StreamWriter(filePath, false))
-        {
-            writer.WriteLine(text);
-        }
-        //Debug.Log($"File written at: {filePath}");
+        File.WriteAllText(filePath, text.TrimEnd('\n'));
     }
 
     string ReadFromFile()
@@ -109,5 +164,10 @@ public class MiscDataToFile : MonoBehaviour
             Debug.LogWarning("File not found!");
             return "";
         }
+    }
+
+    void OnApplicationQuit()
+    {
+        saveAllMiscData();
     }
 }

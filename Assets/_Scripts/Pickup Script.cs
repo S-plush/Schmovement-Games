@@ -36,14 +36,12 @@ public class PickupScript : MonoBehaviour
             AlphaScript.maxStims += 1;
             AlphaScript.stimCount = AlphaScript.maxStims;
             AlphaScript.stimCountText.text = AlphaScript.stimCount + "\n\nStims";
-
-
         }
         else if (pickupType == "maxHealthIncrease")
         {
             AlphaScript.maxHealth += 1;
             AlphaScript.currentHealth = AlphaScript.maxHealth;
-            AlphaScript.healthBar.SetMaxHealth(AlphaScript.currentHealth);
+            AlphaScript.healthBar.SetMaxHealth(AlphaScript.maxHealth);
             AlphaScript.healthBar.SetHealth(AlphaScript.currentHealth);
 
 
@@ -52,7 +50,7 @@ public class PickupScript : MonoBehaviour
         {
             AlphaScript.maxMana += 1;
             AlphaScript.currentMana = AlphaScript.maxMana;
-            AlphaScript.manaBar.SetMaxMana(AlphaScript.currentMana);
+            AlphaScript.manaBar.SetMaxMana(AlphaScript.maxMana);
             AlphaScript.manaBar.SetMana(AlphaScript.currentMana);
         }
 
