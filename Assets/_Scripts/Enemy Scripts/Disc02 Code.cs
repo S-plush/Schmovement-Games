@@ -1,16 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class PR0P3L10RCode : MonoBehaviour
+public class Disc02Code : MonoBehaviour
 {
-
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject fireArea;
     public GameObject bullet;
 
-    
+
     private GameObject enemy;
 
     LayerMask terrainLayerMask;
@@ -39,13 +37,12 @@ public class PR0P3L10RCode : MonoBehaviour
 
     private bool detected;
 
-    
+
 
 
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         terrainLayerMask = LayerMask.GetMask("Default");
         playerLayerMask = LayerMask.GetMask("Player");
         enemy = this.gameObject;
@@ -64,7 +61,7 @@ public class PR0P3L10RCode : MonoBehaviour
         //RaycastHit hit;
 
 
-        if(health <= 0) {
+        if (health <= 0) {
             Destroy(this.gameObject);
         }
 
@@ -137,7 +134,7 @@ public class PR0P3L10RCode : MonoBehaviour
     void checkDirections() {
         RaycastHit hit;
 
-        forward = true; 
+        forward = true;
         //back = true;
         up = true;
         down = true;
@@ -180,21 +177,21 @@ public class PR0P3L10RCode : MonoBehaviour
 
     void startAttack() {
         RaycastHit hit;
-        if(inRange)
-        // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(transform.position, transform.TransformDirection(player.transform.position), out hit, 10f, terrainLayerMask)) {
-            Debug.DrawRay(transform.position, transform.TransformDirection(player.transform.position) * hit.distance, Color.yellow);
-            Debug.Log("Hit Terrain");
+        if (inRange)
+            // Does the ray intersect any objects excluding the player layer
+            if (Physics.Raycast(transform.position, transform.TransformDirection(player.transform.position), out hit, 10f, terrainLayerMask)) {
+                Debug.DrawRay(transform.position, transform.TransformDirection(player.transform.position) * hit.distance, Color.yellow);
+                Debug.Log("Hit Terrain");
 
-        } else {
+            } else {
 
 
-            Debug.DrawRay(transform.position, transform.TransformDirection(player.transform.position) * 10f, Color.white);
-            //Debug.Log("Did not Hit");
+                Debug.DrawRay(transform.position, transform.TransformDirection(player.transform.position) * 10f, Color.white);
+                //Debug.Log("Did not Hit");
 
-            Instantiate(bullet, fireArea.transform.position, fireArea.transform.rotation);
+                Instantiate(bullet, fireArea.transform.position, fireArea.transform.rotation);
 
-        }
+            }
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -202,7 +199,7 @@ public class PR0P3L10RCode : MonoBehaviour
             health -= 1;
         }
 
-        if(other.tag == "Player") {
+        if (other.tag == "Player") {
             other.GetComponent<Alpha>().TakeDamage(1);
         }
     }
