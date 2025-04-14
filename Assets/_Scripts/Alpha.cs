@@ -544,8 +544,8 @@ public class Alpha : MonoBehaviour
 
     IEnumerator Respawn()
     {
-        deathScreen.SetActive(true);
-        yield return new WaitForSeconds(1.1f);
+        //deathScreen.SetActive(true);
+        yield return new WaitForSeconds(5f);
         deathScreen.SetActive(false);
         respawnPoint.RespawnPlayer();
 
