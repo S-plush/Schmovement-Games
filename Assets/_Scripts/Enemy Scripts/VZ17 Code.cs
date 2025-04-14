@@ -50,16 +50,12 @@ public class VZ17Code : MonoBehaviour {
         atkFrequency = shootFrequency;
         canFire = true;
 
-        if(health <= 0){
-            health = 2;
-        }
-
     }
 
     // Update is called once per frame
     void Update() {
 
-        if(health == 0) {
+        if(health <= 0) {
             Destroy(this.gameObject);
         }
 
@@ -146,6 +142,9 @@ public class VZ17Code : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other) {
+
+        Debug.Log(other.tag);
+
         if (other.tag == "Player Spell") {
             health -= 1;
         }
