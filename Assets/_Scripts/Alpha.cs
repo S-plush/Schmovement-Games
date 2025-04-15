@@ -70,6 +70,8 @@ public class Alpha : MonoBehaviour
     public int manaFromStim;
     public int healthFromStim;
 
+    public string currentCheckpointName;
+
     public GameObject InventoryManager;
     private InvDataBetweenRuns invData;
 
@@ -81,6 +83,8 @@ public class Alpha : MonoBehaviour
     public string rightSpell; //keeps track of the name of the spell that the UI loadout slot says should be being shot
 
     LoadoutsToFile LoadoutsToFileScript;
+
+    Checkpoints CheckpointsScript;
 
     public int currentlyEquippedLoadout;
 
@@ -94,21 +98,23 @@ public class Alpha : MonoBehaviour
 
         Inventory.SetActive(false);
         HUD.SetActive(true);
-        stimCount = maxStims; //////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
+        stimCount = maxStims;
         stimCountText.text = stimCount + "\n\nStims";
         healthFromStim = 3; //////////////////////////////////////////////////////////////////////////////////////////////////input from file later
         manaFromStim = 1; ////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
 
-        //maxHealth = 5; ///////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
-        currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        //currentHealth = 5; ///////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
+        //currentMana = 5; ///////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
 
-        //maxMana = 5; /////////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
-        currentMana = maxMana;
-        manaBar.SetMaxMana(maxMana);
+        //currentHealth = maxHealth;
+        //healthBar.SetMaxHealth(maxHealth);
+
+        //currentMana = maxMana;
+        //manaBar.SetMaxMana(maxMana);
 
         Settings.SetActive(false);
 
+        CheckpointsScript = FindObjectOfType<Checkpoints>();
         LoadoutsToFileScript = FindObjectOfType<LoadoutsToFile>();
         StartCoroutine(InitialLoadoutCall(currentlyEquippedLoadout));
     }
@@ -546,7 +552,7 @@ public class Alpha : MonoBehaviour
     IEnumerator Respawn()
     {
         //deathScreen.SetActive(true);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(4.3f);
         deathScreen.SetActive(false);
         respawnPoint.RespawnPlayer();
 
@@ -556,7 +562,6 @@ public class Alpha : MonoBehaviour
         manaBar.SetMana(currentMana);
         stimCount = maxStims;
         stimCountText.text = stimCount + "\n\nStims";
-
     }
 
     void useMana(int lostMana)
@@ -576,6 +581,36 @@ public class Alpha : MonoBehaviour
 
     //    Gizmos.DrawRay(rayOrigin, rayDirection * rayLength);
     //}
+
+    IEnumerator InitialLoadoutCall(int loadoutNum)
+    {
+        yield return new WaitForSeconds(.15f);
+
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+
+        currentMana = maxMana;
+        manaBar.SetMaxMana(maxMana);
+
+        if (loadoutNum != 1 && loadoutNum != 2 && loadoutNum != 3 && loadoutNum != 4)
+        {
+            LoadoutsToFileScript.switchLoadouts(1);
+        }
+        else
+        {
+            LoadoutsToFileScript.switchLoadouts(loadoutNum);
+        }
+
+        leftSpell = LoadoutsToFileScript.equippedSpells[0];
+        rightSpell = LoadoutsToFileScript.equippedSpells[1];
+
+        //also checkpoint loading stuff below this
+        if (currentCheckpointName != "default")
+        {
+                respawnPoint.respawnPoint = GameObject.Find(currentCheckpointName);
+        }
+        respawnPoint.RespawnPlayer();
+    }
 
     #region Spells
     public void UseExplosionSpell()
@@ -606,21 +641,4 @@ public class Alpha : MonoBehaviour
         soundWave.Aiming(aimingDirection);
     }
     #endregion
-
-    IEnumerator InitialLoadoutCall(int loadoutNum)
-    {
-        yield return new WaitForSeconds(.1f);
-
-        if (loadoutNum != 1 && loadoutNum != 2 && loadoutNum != 3 && loadoutNum != 4)
-        {
-            LoadoutsToFileScript.switchLoadouts(1);
-        }
-        else
-        {
-            LoadoutsToFileScript.switchLoadouts(loadoutNum);
-        }
-
-        leftSpell = LoadoutsToFileScript.equippedSpells[0];
-        rightSpell = LoadoutsToFileScript.equippedSpells[1];
-    }
 }

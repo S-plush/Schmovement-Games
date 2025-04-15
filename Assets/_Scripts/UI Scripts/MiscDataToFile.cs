@@ -78,6 +78,7 @@ public class MiscDataToFile : MonoBehaviour
             AlphaScript.maxMana = 5;
             AlphaScript.maxStims = 3;
             AlphaScript.currentlyEquippedLoadout = 1;
+            AlphaScript.currentCheckpointName = "default";
 
             //updating changing values
             AlphaScript.currentHealth = AlphaScript.maxHealth;
@@ -112,6 +113,9 @@ public class MiscDataToFile : MonoBehaviour
         dataIn += AlphaScript.currentlyEquippedLoadout + "\n"; //3
         numberOfEntries++;
 
+        dataIn += AlphaScript.currentCheckpointName + "\n"; //4
+        numberOfEntries++;
+
         //////////////////////////////////////////////////////////////////////ADD NEW VALUES TO THE SAVE FUNCTION HERE (only add at the bottom though, order matters)
 
         WriteToFile(dataIn);
@@ -130,10 +134,13 @@ public class MiscDataToFile : MonoBehaviour
         //player.GetComponent<Alpha>().currentHealth = Int32.Parse(dataOut[1]);
         //player.GetComponent<Alpha>().stimCount = Int32.Parse(dataOut[4]);
 
+        //load all data to AlphaScript
         AlphaScript.maxHealth = Int32.Parse(dataOut[0]);
         AlphaScript.maxMana = Int32.Parse(dataOut[1]);
         AlphaScript.maxStims = Int32.Parse(dataOut[2]);
         AlphaScript.currentlyEquippedLoadout = Int32.Parse(dataOut[3]);
+        AlphaScript.currentCheckpointName = dataOut[4];
+
         //updating changing values
         AlphaScript.currentHealth = AlphaScript.maxHealth;
         AlphaScript.currentMana = AlphaScript.maxMana;
