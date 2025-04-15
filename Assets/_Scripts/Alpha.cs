@@ -19,6 +19,7 @@ public class Alpha : MonoBehaviour
     private Vector3 velocity;
     private float ySpeed;
     private float originalStepOffset;
+    private bool isDead = false;
 
     //set up for this test build, but will need to have an abstract class for all the spells
     public Transform spellSpawn; //spawn point for spell's attack
@@ -131,7 +132,7 @@ public class Alpha : MonoBehaviour
     {
         //Debug.Log("rotation is " + rotationPoint.rotation.z);
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !isDead)
         {
             if (currentMana > 0) //check if out of mana
             {
@@ -141,7 +142,7 @@ public class Alpha : MonoBehaviour
                 }
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Mouse1))
+        else if (Input.GetKeyDown(KeyCode.Mouse1) && !isDead)
         {
             if (currentMana > 0) //check if out of mana
             {
@@ -212,7 +213,7 @@ public class Alpha : MonoBehaviour
             hasDashed = false;
             canDoubleJump = true;
 
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Jump") && !isDead)
             {
                 ySpeed = jumpSpd;
                 //canDoubleJump = true;
@@ -231,12 +232,16 @@ public class Alpha : MonoBehaviour
         Vector3 velocity = moveDirection * magnitude;
         velocity = OnSlope(velocity);
         velocity.y += ySpeed;
-        alpha.Move(velocity * Time.deltaTime);
+
+        if (!isDead)
+        {
+            alpha.Move(velocity * Time.deltaTime);
+        }
 
         #endregion
 
         //this is to use dash
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !hasDashed)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !hasDashed && !isDead)
         {
             StartCoroutine(Dash(horizontalInput));
         }
@@ -263,7 +268,12 @@ public class Alpha : MonoBehaviour
         //Debug.Log(alpha.isGrounded);
         animator.SetBool("Grounded", alpha.isGrounded);
         animator.SetBool("CanDoubleJump", canDoubleJump);
-        animator.SetBool("isMirrored", (Input.mousePosition.x / Screen.width) - 0.5f <= 0);
+
+        if (!isDead)
+        {
+            animator.SetBool("isMirrored", (Input.mousePosition.x / Screen.width) - 0.5f <= 0);
+        }
+
         animator.SetFloat("VelocityX", velocity.x);
         animator.SetFloat("AimH", (Input.mousePosition.x / Screen.width) - 0.5f);
         animator.SetFloat("AimV", (Input.mousePosition.y / Screen.height) - 0.5f);
@@ -541,6 +551,7 @@ public class Alpha : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
+            isDead = true;
             StartCoroutine(Respawn());
         }
         //else if (Input.GetKeyDown(KeyCode.K))
@@ -556,6 +567,7 @@ public class Alpha : MonoBehaviour
         deathScreen.SetActive(false);
         respawnPoint.RespawnPlayer();
 
+        isDead = false;
         currentHealth = maxHealth;
         healthBar.SetHealth(currentHealth);
         currentMana = maxMana;
