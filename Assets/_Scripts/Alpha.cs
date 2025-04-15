@@ -192,6 +192,7 @@ public class Alpha : MonoBehaviour
         }
 
         #region movement related stuff
+
         float horizontalInput = Input.GetAxis("Horizontal");
         Vector3 moveDirection = new Vector3(horizontalInput, 0, 0);
         float magnitude = Mathf.Clamp01(moveDirection.magnitude) * alphaMovementSpd;
