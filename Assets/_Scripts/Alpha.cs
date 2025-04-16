@@ -243,6 +243,7 @@ public class Alpha : MonoBehaviour
         //this is to use dash
         if (Input.GetKeyDown(KeyCode.LeftShift) && !hasDashed && !isDead)
         {
+            animator.SetTrigger("Dash");
             StartCoroutine(Dash(horizontalInput));
         }
 
@@ -255,12 +256,14 @@ public class Alpha : MonoBehaviour
                 //HUD.SetActive(false);
                 Settings.SetActive(false);
                 Time.timeScale = 1.0f;
+                isGamePaused = false;
             }
             else
             {
                 //HUD.SetActive(true);
                 Settings.SetActive(true);
                 Time.timeScale = 0.0f;
+                isGamePaused = true;
             }
         }
 
@@ -269,14 +272,17 @@ public class Alpha : MonoBehaviour
         animator.SetBool("Grounded", alpha.isGrounded);
         animator.SetBool("CanDoubleJump", canDoubleJump);
 
-        if (!isDead)
+        if (!isDead && !isGamePaused)
         {
             animator.SetBool("isMirrored", (Input.mousePosition.x / Screen.width) - 0.5f <= 0);
         }
 
         animator.SetFloat("VelocityX", velocity.x);
-        animator.SetFloat("AimH", (Input.mousePosition.x / Screen.width) - 0.5f);
-        animator.SetFloat("AimV", (Input.mousePosition.y / Screen.height) - 0.5f);
+        if (!isGamePaused)
+        {
+            animator.SetFloat("AimH", (Input.mousePosition.x / Screen.width) - 0.5f);
+            animator.SetFloat("AimV", (Input.mousePosition.y / Screen.height) - 0.5f);
+        }
         animator.SetBool("Dead", currentHealth <= 0);
 
         DeathCheck();

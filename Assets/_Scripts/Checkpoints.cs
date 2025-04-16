@@ -13,6 +13,7 @@ public class Checkpoints : MonoBehaviour
 
     private Alpha AlphaScript;
 
+    private Animator animator;
     private void Awake()
     {
         respawn = GameObject.FindGameObjectWithTag("Respawn Point").GetComponent<RespawnPoint>();
@@ -21,6 +22,8 @@ public class Checkpoints : MonoBehaviour
         AlphaScript = FindObjectOfType<Alpha>(); //initilize AlphaScript with the actual script
 
         AlphaScript.currentCheckpointName = "default";
+
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -35,6 +38,11 @@ public class Checkpoints : MonoBehaviour
 
             AlphaScript.currentCheckpointName = this.gameObject.name;
             //Int32.Parse(string.Concat(this.name.Where(Char.IsDigit)));
+
+            if (animator != null)
+            {
+                animator.SetBool("Hit", true);
+            }
         }
     }
 }
