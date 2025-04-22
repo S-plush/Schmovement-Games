@@ -10,8 +10,9 @@ public class SwitchInteraction : MonoBehaviour
 
     private void Update()
     {
-        if(playerInside && Input.GetKeyDown(KeyCode.R))
+        if(playerInside && Input.GetKeyDown(KeyCode.R) && !isActivated)
         {
+            switchActivated.Play("Activating Switch", -1, 0f);
             isActivated = true;
         }
     }
@@ -22,9 +23,15 @@ public class SwitchInteraction : MonoBehaviour
 
         if(other.gameObject.tag == "Player")
         {
-            Debug.Log("starting animation");
             playerInside = true;
-            switchActivated.Play("Activating Switch", -1, 0f);
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            playerInside = false;
         }
     }
 
