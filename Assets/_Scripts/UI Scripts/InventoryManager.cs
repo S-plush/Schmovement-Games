@@ -1,7 +1,9 @@
-using Palmmedia.ReportGenerator.Core;
+//using Palmmedia.ReportGenerator.Core;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -14,6 +16,12 @@ public class InventoryManager : MonoBehaviour
 
     public GameObject Settings;
 
+    private MiscDataToFile MiscDataToFileScript;
+
+    public void Start()
+    {
+        MiscDataToFileScript = FindObjectOfType<MiscDataToFile>(); //initilize MiscDataToFileScript with the actual script
+    }
     //auxilary code/functionality for cursor selecting slots
     void ChangeSelectedSlot(int newValue)
     {
@@ -73,4 +81,10 @@ public class InventoryManager : MonoBehaviour
         Settings.SetActive(false);
         Time.timeScale = 1.0f;
     }
+
+    public void SettingsMainMenuButton()
+    {
+        MiscDataToFileScript.saveAllMiscData();
+        SceneManager.LoadScene("Main Menu");
+    }    
 }

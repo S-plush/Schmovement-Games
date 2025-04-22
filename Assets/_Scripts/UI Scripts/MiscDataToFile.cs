@@ -21,12 +21,13 @@ public class MiscDataToFile : MonoBehaviour
 
     LoadoutsToFile LoadoutsToFileScript; //reference to the LoadoutsToFile on the InventoryManager
 
-    public bool newGame = false; //hopefully can be switched later to give the player a brand new save
+    public static bool newGame = false; //hopefully can be switched later to give the player a brand new save
 
     void Start()
     {
         if (newGame == false)
         {
+            Debug.Log("loadnormal");
             // Set the file path inside persistentDataPath
             filePath = Path.Combine(Application.persistentDataPath, fileName);
 
@@ -37,6 +38,7 @@ public class MiscDataToFile : MonoBehaviour
         }
         else
         {
+            Debug.Log("loadNew");
             //assign default stats
             //stims 3, health 5, mana 5, current loadout 1
 
@@ -47,6 +49,7 @@ public class MiscDataToFile : MonoBehaviour
             AlphaScript.maxStims = 3;
             //AlphaScript.stimCount = 3;
             AlphaScript.currentlyEquippedLoadout = 1;
+            AlphaScript.currentCheckpointName = "default";
 
             //updating changing values
             AlphaScript.currentHealth = AlphaScript.maxHealth;
