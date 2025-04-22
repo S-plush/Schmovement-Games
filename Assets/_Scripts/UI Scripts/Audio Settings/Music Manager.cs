@@ -19,7 +19,7 @@ public class MusicManager : MonoBehaviour
     {
         GetComponent<AudioSource>().volume = bgmVolume;
         GetComponent<AudioSource>().pitch = pitch;
-        Debug.Log("AudioSource.volume = " + GetComponent<AudioSource>().volume);
+        //Debug.Log("AudioSource.volume = " + GetComponent<AudioSource>().volume);
     }
 
     void PlayRepeat(AudioClip song)

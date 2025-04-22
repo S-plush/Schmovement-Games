@@ -5,13 +5,13 @@ using UnityEngine;
 public class Doors : MonoBehaviour
 {
     [SerializeField] private bool notLockedDoor;
-    [SerializeField] private GameObject door;
+    public GameObject door;
     [SerializeField] private GameObject leverObject;
     [SerializeField] private SwitchInteraction lever;
 
     private void Start()
     {
-        if (lever != null)
+        if (leverObject != null)
         {
             lever = leverObject.GetComponent<SwitchInteraction>();
             notLockedDoor = false;

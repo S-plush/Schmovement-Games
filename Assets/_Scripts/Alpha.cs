@@ -29,8 +29,10 @@ public class Alpha : MonoBehaviour
     public Transform rotationPoint;
     public Vector3 aimingDirection;
     public float timer; //for spell
+    public float dashTimer;
 
     private float lastShot; //cooldown for the spell 1
+    private float lastDash;
     private bool isGrounded; //for jumping
     private bool hasDashed = false;
     private bool canDoubleJump = false;
@@ -245,8 +247,15 @@ public class Alpha : MonoBehaviour
         //this is to use dash
         if (Input.GetKeyDown(KeyCode.LeftShift) && !hasDashed && !isDead)
         {
+            if (Time.time - lastDash < dashTimer)
+            {
+                return;
+            }
+
             animator.SetTrigger("Dash");
             StartCoroutine(Dash(horizontalInput));
+
+            lastDash = Time.time;
         }
 
         //this is to open and close the settings menu
@@ -356,27 +365,25 @@ public class Alpha : MonoBehaviour
     {
         if (!hasDashed)
         {
-            //float lastDirectionFaced;
-
-            if (direction < 0)
-            {
-                lastDirectionFaced = direction;
-            }
-            else if (direction > 0)
-            {
-                lastDirectionFaced = direction;
-            }
-
+            hasDashed = true;
             float originalYSpeed = velocity.y;
             Vector3 dashDirection = Vector3.zero;
 
-            if (lastDirectionFaced < 0)
+            if (direction > 0)
+            {
+                dashDirection = Vector3.right;
+            }
+            else if (direction < 0)
             {
                 dashDirection = Vector3.left;
             }
-            else if (lastDirectionFaced > 0)
+            else if (rotationPoint.rotation.z < .69f && rotationPoint.rotation.z > -.69)
             {
                 dashDirection = Vector3.right;
+            }
+            else if(rotationPoint.rotation.z > .71f || rotationPoint.rotation.z < -.71)
+            {
+                dashDirection = Vector3.left;
             }
 
             Vector3 targetPosition = transform.position + dashDirection * dashPush;
@@ -395,7 +402,6 @@ public class Alpha : MonoBehaviour
                 yield return null;
             }
 
-            hasDashed = true;
             yield return new WaitForSeconds(0.5f);
             velocity = Vector3.zero;
         }
