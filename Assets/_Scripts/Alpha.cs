@@ -6,7 +6,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
-using UnityEditor.Experimental.GraphView;
+//using UnityEditor.Experimental.GraphView;
 
 public class Alpha : MonoBehaviour
 {
@@ -50,6 +50,7 @@ public class Alpha : MonoBehaviour
     private float moveDirection;
 
     public RespawnPoint respawnPoint;
+    public GameObject respawnPointObj;
 
     public GameObject deathScreen;
 
@@ -91,8 +92,9 @@ public class Alpha : MonoBehaviour
 
     public Animator animator;
 
-    void Start()
+    void Awake()
     {
+        Time.timeScale = 1.0f;
         alpha = GetComponent<CharacterController>();
         originalStepOffset = alpha.stepOffset;
         invData = FindObjectOfType<InvDataBetweenRuns>();
@@ -602,7 +604,7 @@ public class Alpha : MonoBehaviour
 
     IEnumerator InitialLoadoutCall(int loadoutNum)
     {
-        yield return new WaitForSeconds(.15f);
+        yield return new WaitForSeconds(.1f);
 
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
@@ -623,11 +625,14 @@ public class Alpha : MonoBehaviour
         rightSpell = LoadoutsToFileScript.equippedSpells[1];
 
         //also checkpoint loading stuff below this
+        //Debug.Log(currentCheckpointName);
         if (currentCheckpointName != "default")
         {
-                respawnPoint.respawnPoint = GameObject.Find(currentCheckpointName);
+               //respawnPointObj.transform.position = GameObject.Find(currentCheckpointName).transform.position;
+               respawnPoint.respawnPoint.transform.position = GameObject.Find(currentCheckpointName).transform.position;
         }
         respawnPoint.RespawnPlayer();
+        //this.gameObject.transform.position = respawnPointObj.transform.position;
     }
 
     #region Spells
