@@ -14,14 +14,14 @@ public class Checkpoints : MonoBehaviour
     private Alpha AlphaScript;
 
     private Animator animator;
-    private void Awake()
+    private void Start()
     {
         respawn = GameObject.FindGameObjectWithTag("Respawn Point").GetComponent<RespawnPoint>();
 
         MiscDataToFileScript = FindObjectOfType<MiscDataToFile>(); //initilize MiscDataToFileScript with the actual script
         AlphaScript = FindObjectOfType<Alpha>(); //initilize AlphaScript with the actual script
 
-        AlphaScript.currentCheckpointName = "default";
+        //AlphaScript.currentCheckpointName = "default";
 
         animator = GetComponentInChildren<Animator>();
     }
@@ -31,12 +31,13 @@ public class Checkpoints : MonoBehaviour
         if(other.gameObject.CompareTag("Player"))
         {
             respawn.respawnPoint = this.gameObject;
+            //AlphaScript.respawnPointObj = this.gameObject;
             //AlphaScript.respawnPoint = respawn;
 
+            AlphaScript.currentCheckpointName = this.gameObject.name;
             MiscDataToFileScript.saveAllMiscData();
             MiscDataToFileScript.loadAllMiscData();
 
-            AlphaScript.currentCheckpointName = this.gameObject.name;
             //Int32.Parse(string.Concat(this.name.Where(Char.IsDigit)));
 
             if (animator != null)
