@@ -599,6 +599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path: {fileID: 1558226442}
+  switchObject: {fileID: 1795499568}
   lever: {fileID: 1766834071}
   speed: 0.8
 --- !u!65 &20774474
@@ -27785,7 +27786,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4043064432113719794, guid: 40e1c84fb368f4746b667734dc2c69b6, type: 3}
   m_PrefabInstance: {fileID: 1795499567}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1795499568}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66e7ec78306c68041b8e61bae1511f27, type: 3}
@@ -28217,6 +28218,11 @@ PrefabInstance:
       addedObject: {fileID: 1400235896}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40e1c84fb368f4746b667734dc2c69b6, type: 3}
+--- !u!1 &1795499568 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1711507979326841656, guid: 40e1c84fb368f4746b667734dc2c69b6, type: 3}
+  m_PrefabInstance: {fileID: 1795499567}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1801930211
 Mesh:
   m_ObjectHideFlags: 0
@@ -32868,6 +32874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path: {fileID: 1906588364}
+  switchObject: {fileID: 1795499568}
   lever: {fileID: 1766834071}
   speed: 0.8
 --- !u!64 &2048639199

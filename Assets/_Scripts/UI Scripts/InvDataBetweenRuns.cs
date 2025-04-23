@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using Unity.VisualScripting;
-using UnityEngine.tvOS;
+//using UnityEngine.tvOS;
 
 [System.Serializable]
 public class InventoryData
@@ -13,10 +13,6 @@ public class InventoryData
 
 public class InvDataBetweenRuns : MonoBehaviour
 {
-    //public GameObject LightningPrefab;
-    //public GameObject ExplosionPrefab; //add new scriptable objects for spells here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //public GameObject IcicleSpearPrefab;
-
     public Spell LightningScriptable;
     public Spell ExplosionScriptable; //add new scritpable objects for spells here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public Spell IcicleSpearScriptable;
@@ -26,17 +22,29 @@ public class InvDataBetweenRuns : MonoBehaviour
 
     InventoryData inventory; //stores state of each inventory slot to be sent to file
 
-public void Update() // TEMPORARY, NEEDS TO BE REMOVED
+    public void Update() // TEMPORARY, NEEDS TO BE REMOVED
     {
-        if(Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.O))
         {
             SaveInventory();
         }
-        if(Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             LoadInventory();
         }
+        if (Input.GetKeyDown(KeyCode.B)) //clear all inv
+        {
+            foreach (GameObject inv in allInvSlots)
+            {
+                if (inv.transform.childCount > 0)
+                {
+                    //inventory.items.Add(inv.transform.GetChild(0).gameObject.GetComponent<InventorySpell>().spell.name);
+                    Destroy(inv.transform.GetChild(0).gameObject); // testing TEMPORARY NEEDS TO BE REMOVED /testing TEMPORARY NEEDS TO BE REMOVED /testing TEMPORARY NEEDS TO BE REMOVED /testing TEMPORARY NEEDS TO BE REMOVED
+                }
+            }
+        }
     }
+        
 
     public void SaveInventory() //saves the state of the whole inventory to a file
     {

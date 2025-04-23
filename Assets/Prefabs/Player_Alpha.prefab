@@ -82,6 +82,7 @@ MonoBehaviour:
   stimCount: 0
   manaFromStim: 0
   healthFromStim: 0
+  currentCheckpointName: 
   InventoryManager: {fileID: 0}
   Settings: {fileID: 0}
   indexs: 
@@ -126,6 +127,8 @@ GameObject:
   - component: {fileID: 3633928533846297495}
   - component: {fileID: 2160847392541927363}
   - component: {fileID: 9120296137429790069}
+  - component: {fileID: 4565952011837361069}
+  - component: {fileID: 6972627996894129146}
   m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -207,6 +210,42 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3055131622247872019}
   m_Enabled: 1
+--- !u!114 &4565952011837361069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3055131622247872019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e585ba7ec49239489bbf1afda0c24ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volBG: 0
+  volSFX: 0
+  optionsGUI: 0
+  optionsRect:
+    serializedVersion: 2
+    x: 20
+    y: 20
+    width: 800
+    height: 800
+  SaveButton: {fileID: 0}
+  bgmSlider: {fileID: 0}
+  sfxSlider: {fileID: 0}
+--- !u!114 &6972627996894129146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3055131622247872019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df1a9b0d91990734caccff9b06e424f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3765363700803663337
 GameObject:
   m_ObjectHideFlags: 0

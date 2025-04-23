@@ -8,9 +8,16 @@ public class MenuUI : MonoBehaviour
     public GameObject mainMenu;
     public GameObject settingsMenu;
 
-    public void PlayButtonNextScene(string sceneName)
+    public void PlayButtonResume(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+        MiscDataToFile.newGame = false;
+    }
+
+    public void PlayButtonNew(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+        MiscDataToFile.newGame = true;
     }
 
     public void SettingsButton()

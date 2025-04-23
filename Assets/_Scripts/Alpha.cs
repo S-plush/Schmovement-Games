@@ -6,7 +6,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
-using UnityEditor.Experimental.GraphView;
+//using UnityEditor.Experimental.GraphView;
 
 public class Alpha : MonoBehaviour
 {
@@ -19,6 +19,7 @@ public class Alpha : MonoBehaviour
     private Vector3 velocity;
     private float ySpeed;
     private float originalStepOffset;
+    private bool isDead = false;
 
     //set up for this test build, but will need to have an abstract class for all the spells
     public Transform spellSpawn; //spawn point for spell's attack
@@ -28,8 +29,10 @@ public class Alpha : MonoBehaviour
     public Transform rotationPoint;
     public Vector3 aimingDirection;
     public float timer; //for spell
+    public float dashTimer;
 
     private float lastShot; //cooldown for the spell 1
+    private float lastDash;
     private bool isGrounded; //for jumping
     private bool hasDashed = false;
     private bool canDoubleJump = false;
@@ -49,6 +52,7 @@ public class Alpha : MonoBehaviour
     private float moveDirection;
 
     public RespawnPoint respawnPoint;
+    public GameObject respawnPointObj;
 
     public GameObject deathScreen;
 
@@ -70,6 +74,8 @@ public class Alpha : MonoBehaviour
     public int manaFromStim;
     public int healthFromStim;
 
+    public string currentCheckpointName;
+
     public GameObject InventoryManager;
     private InvDataBetweenRuns invData;
 
@@ -82,33 +88,38 @@ public class Alpha : MonoBehaviour
 
     LoadoutsToFile LoadoutsToFileScript;
 
+    Checkpoints CheckpointsScript;
+
     public int currentlyEquippedLoadout;
 
     public Animator animator;
 
-    void Start()
+    void Awake()
     {
+        Time.timeScale = 1.0f;
         alpha = GetComponent<CharacterController>();
         originalStepOffset = alpha.stepOffset;
         invData = FindObjectOfType<InvDataBetweenRuns>();
 
         Inventory.SetActive(false);
         HUD.SetActive(true);
-        stimCount = maxStims; //////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
+        stimCount = maxStims;
         stimCountText.text = stimCount + "\n\nStims";
         healthFromStim = 3; //////////////////////////////////////////////////////////////////////////////////////////////////input from file later
         manaFromStim = 1; ////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
 
-        //maxHealth = 5; ///////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
-        currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        //currentHealth = 5; ///////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
+        //currentMana = 5; ///////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
 
-        //maxMana = 5; /////////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
-        currentMana = maxMana;
-        manaBar.SetMaxMana(maxMana);
+        //currentHealth = maxHealth;
+        //healthBar.SetMaxHealth(maxHealth);
+
+        //currentMana = maxMana;
+        //manaBar.SetMaxMana(maxMana);
 
         Settings.SetActive(false);
 
+        CheckpointsScript = FindObjectOfType<Checkpoints>();
         LoadoutsToFileScript = FindObjectOfType<LoadoutsToFile>();
         StartCoroutine(InitialLoadoutCall(currentlyEquippedLoadout));
     }
@@ -125,7 +136,7 @@ public class Alpha : MonoBehaviour
     {
         //Debug.Log("rotation is " + rotationPoint.rotation.z);
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !isDead)
         {
             if (currentMana > 0) //check if out of mana
             {
@@ -135,7 +146,7 @@ public class Alpha : MonoBehaviour
                 }
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Mouse1))
+        else if (Input.GetKeyDown(KeyCode.Mouse1) && !isDead)
         {
             if (currentMana > 0) //check if out of mana
             {
@@ -192,6 +203,7 @@ public class Alpha : MonoBehaviour
         }
 
         #region movement related stuff
+
         float horizontalInput = Input.GetAxis("Horizontal");
         Vector3 moveDirection = new Vector3(horizontalInput, 0, 0);
         float magnitude = Mathf.Clamp01(moveDirection.magnitude) * alphaMovementSpd;
@@ -205,7 +217,7 @@ public class Alpha : MonoBehaviour
             hasDashed = false;
             canDoubleJump = true;
 
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Jump") && !isDead)
             {
                 ySpeed = jumpSpd;
                 //canDoubleJump = true;
@@ -224,14 +236,26 @@ public class Alpha : MonoBehaviour
         Vector3 velocity = moveDirection * magnitude;
         velocity = OnSlope(velocity);
         velocity.y += ySpeed;
-        alpha.Move(velocity * Time.deltaTime);
+
+        if (!isDead)
+        {
+            alpha.Move(velocity * Time.deltaTime);
+        }
 
         #endregion
 
         //this is to use dash
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !hasDashed)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !hasDashed && !isDead)
         {
+            if (Time.time - lastDash < dashTimer)
+            {
+                return;
+            }
+
+            animator.SetTrigger("Dash");
             StartCoroutine(Dash(horizontalInput));
+
+            lastDash = Time.time;
         }
 
         //this is to open and close the settings menu
@@ -243,12 +267,14 @@ public class Alpha : MonoBehaviour
                 //HUD.SetActive(false);
                 Settings.SetActive(false);
                 Time.timeScale = 1.0f;
+                isGamePaused = false;
             }
             else
             {
                 //HUD.SetActive(true);
                 Settings.SetActive(true);
                 Time.timeScale = 0.0f;
+                isGamePaused = true;
             }
         }
 
@@ -256,10 +282,18 @@ public class Alpha : MonoBehaviour
         //Debug.Log(alpha.isGrounded);
         animator.SetBool("Grounded", alpha.isGrounded);
         animator.SetBool("CanDoubleJump", canDoubleJump);
-        animator.SetBool("isMirrored", (Input.mousePosition.x / Screen.width) - 0.5f <= 0);
+
+        if (!isDead && !isGamePaused)
+        {
+            animator.SetBool("isMirrored", (Input.mousePosition.x / Screen.width) - 0.5f <= 0);
+        }
+
         animator.SetFloat("VelocityX", velocity.x);
-        animator.SetFloat("AimH", (Input.mousePosition.x / Screen.width) - 0.5f);
-        animator.SetFloat("AimV", (Input.mousePosition.y / Screen.height) - 0.5f);
+        if (!isGamePaused)
+        {
+            animator.SetFloat("AimH", (Input.mousePosition.x / Screen.width) - 0.5f);
+            animator.SetFloat("AimV", (Input.mousePosition.y / Screen.height) - 0.5f);
+        }
         animator.SetBool("Dead", currentHealth <= 0);
 
         DeathCheck();
@@ -331,27 +365,25 @@ public class Alpha : MonoBehaviour
     {
         if (!hasDashed)
         {
-            //float lastDirectionFaced;
-
-            if (direction < 0)
-            {
-                lastDirectionFaced = direction;
-            }
-            else if (direction > 0)
-            {
-                lastDirectionFaced = direction;
-            }
-
+            hasDashed = true;
             float originalYSpeed = velocity.y;
             Vector3 dashDirection = Vector3.zero;
 
-            if (lastDirectionFaced < 0)
+            if (direction > 0)
+            {
+                dashDirection = Vector3.right;
+            }
+            else if (direction < 0)
             {
                 dashDirection = Vector3.left;
             }
-            else if (lastDirectionFaced > 0)
+            else if (rotationPoint.rotation.z < .69f && rotationPoint.rotation.z > -.69)
             {
                 dashDirection = Vector3.right;
+            }
+            else if(rotationPoint.rotation.z > .71f || rotationPoint.rotation.z < -.71)
+            {
+                dashDirection = Vector3.left;
             }
 
             Vector3 targetPosition = transform.position + dashDirection * dashPush;
@@ -370,7 +402,6 @@ public class Alpha : MonoBehaviour
                 yield return null;
             }
 
-            hasDashed = true;
             yield return new WaitForSeconds(0.5f);
             velocity = Vector3.zero;
         }
@@ -534,6 +565,7 @@ public class Alpha : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
+            isDead = true;
             StartCoroutine(Respawn());
         }
         //else if (Input.GetKeyDown(KeyCode.K))
@@ -545,17 +577,17 @@ public class Alpha : MonoBehaviour
     IEnumerator Respawn()
     {
         //deathScreen.SetActive(true);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(4.3f);
         deathScreen.SetActive(false);
         respawnPoint.RespawnPlayer();
 
+        isDead = false;
         currentHealth = maxHealth;
         healthBar.SetHealth(currentHealth);
         currentMana = maxMana;
         manaBar.SetMana(currentMana);
         stimCount = maxStims;
         stimCountText.text = stimCount + "\n\nStims";
-
     }
 
     void useMana(int lostMana)
@@ -575,6 +607,39 @@ public class Alpha : MonoBehaviour
 
     //    Gizmos.DrawRay(rayOrigin, rayDirection * rayLength);
     //}
+
+    IEnumerator InitialLoadoutCall(int loadoutNum)
+    {
+        yield return new WaitForSeconds(.1f);
+
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+
+        currentMana = maxMana;
+        manaBar.SetMaxMana(maxMana);
+
+        if (loadoutNum != 1 && loadoutNum != 2 && loadoutNum != 3 && loadoutNum != 4)
+        {
+            LoadoutsToFileScript.switchLoadouts(1);
+        }
+        else
+        {
+            LoadoutsToFileScript.switchLoadouts(loadoutNum);
+        }
+
+        leftSpell = LoadoutsToFileScript.equippedSpells[0];
+        rightSpell = LoadoutsToFileScript.equippedSpells[1];
+
+        //also checkpoint loading stuff below this
+        //Debug.Log(currentCheckpointName);
+        if (currentCheckpointName != "default")
+        {
+               //respawnPointObj.transform.position = GameObject.Find(currentCheckpointName).transform.position;
+               respawnPoint.respawnPoint.transform.position = GameObject.Find(currentCheckpointName).transform.position;
+        }
+        respawnPoint.RespawnPlayer();
+        //this.gameObject.transform.position = respawnPointObj.transform.position;
+    }
 
     #region Spells
     public void UseExplosionSpell()
@@ -605,21 +670,4 @@ public class Alpha : MonoBehaviour
         soundWave.Aiming(aimingDirection);
     }
     #endregion
-
-    IEnumerator InitialLoadoutCall(int loadoutNum)
-    {
-        yield return new WaitForSeconds(.1f);
-
-        if (loadoutNum != 1 && loadoutNum != 2 && loadoutNum != 3 && loadoutNum != 4)
-        {
-            LoadoutsToFileScript.switchLoadouts(1);
-        }
-        else
-        {
-            LoadoutsToFileScript.switchLoadouts(loadoutNum);
-        }
-
-        leftSpell = LoadoutsToFileScript.equippedSpells[0];
-        rightSpell = LoadoutsToFileScript.equippedSpells[1];
-    }
 }

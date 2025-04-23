@@ -5,6 +5,7 @@ using UnityEngine;
 public class MovingPlatform : MonoBehaviour
 {
     [SerializeField] private MovingPlatformPath path;
+    [SerializeField] private GameObject switchObject;
     [SerializeField] private SwitchInteraction lever;
     [SerializeField] private float speed;
 
@@ -19,7 +20,7 @@ public class MovingPlatform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lever = FindObjectOfType<SwitchInteraction>();
+        lever = switchObject.GetComponent<SwitchInteraction>();
         TargetNextPoint();
     }
 
