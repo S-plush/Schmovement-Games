@@ -121,6 +121,11 @@ public class Alpha : MonoBehaviour
 
         CheckpointsScript = FindObjectOfType<Checkpoints>();
         LoadoutsToFileScript = FindObjectOfType<LoadoutsToFile>();
+        
+    }
+
+    void Start()
+    {
         StartCoroutine(InitialLoadoutCall(currentlyEquippedLoadout));
     }
 
@@ -632,12 +637,26 @@ public class Alpha : MonoBehaviour
 
         //also checkpoint loading stuff below this
         //Debug.Log(currentCheckpointName);
+
+        //CapsuleCollider capsule = this.GetComponentInChildren<CapsuleCollider>();
+
+        // Temporarily disable physics
+        //capsule.enabled = false;
+
         if (currentCheckpointName != "default")
         {
-               //respawnPointObj.transform.position = GameObject.Find(currentCheckpointName).transform.position;
-               respawnPoint.respawnPoint.transform.position = GameObject.Find(currentCheckpointName).transform.position;
+            respawnPointObj.transform.position = GameObject.Find(currentCheckpointName).transform.position;
+            //respawnPoint.respawnPoint.transform.position = GameObject.Find(currentCheckpointName).transform.position;
+            this.gameObject.transform.position = GameObject.Find(currentCheckpointName).transform.position;
+            //this.gameObject.transform.position = respawnPointObj.transform.position;
         }
-        respawnPoint.RespawnPlayer();
+
+        // Re-enable physics
+        //capsule.enabled = true;
+
+
+        // = respawnPoint.respawnPoint.transform.position;
+        //respawnPoint.RespawnPlayer();
         //this.gameObject.transform.position = respawnPointObj.transform.position;
     }
 
