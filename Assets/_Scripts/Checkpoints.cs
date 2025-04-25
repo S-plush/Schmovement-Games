@@ -14,7 +14,7 @@ public class Checkpoints : MonoBehaviour
     private Alpha AlphaScript;
 
     private Animator animator;
-    private void Start()
+    private void Awake()
     {
         respawn = GameObject.FindGameObjectWithTag("Respawn Point").GetComponent<RespawnPoint>();
 
