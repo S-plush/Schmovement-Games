@@ -60,6 +60,7 @@ MonoBehaviour:
   rotationPoint: {fileID: 5780919091067573746}
   aimingDirection: {x: 0, y: 0, z: 0}
   timer: 1.5
+  dashTimer: 3
   explosionPrefab: {fileID: -7173215572119700692, guid: 74acdbccee3a400428fb35b62880d330, type: 3}
   lightningPrefab: {fileID: -7419050746634257968, guid: 91de701a1772e4941bfd8ca90f30b81c, type: 3}
   iciclePrefab: {fileID: 7772193594896229260, guid: 286e89ed882b0644d8b0dd57b649567b, type: 3}
@@ -68,6 +69,7 @@ MonoBehaviour:
   isMovingLeft: 0
   isMovingRight: 0
   respawnPoint: {fileID: 0}
+  respawnPointObj: {fileID: 0}
   deathScreen: {fileID: 0}
   Inventory: {fileID: 0}
   HUD: {fileID: 0}

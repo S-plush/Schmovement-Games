@@ -44,7 +44,7 @@ public class InvDataBetweenRuns : MonoBehaviour
             }
         }
     }
-        
+
 
     public void SaveInventory() //saves the state of the whole inventory to a file
     {
@@ -52,7 +52,7 @@ public class InvDataBetweenRuns : MonoBehaviour
 
         foreach (GameObject inv in allInvSlots)
         {
-            if(inv.transform.childCount > 0)
+            if (inv.transform.childCount > 0)
             {
                 inventory.items.Add(inv.transform.GetChild(0).gameObject.GetComponent<InventorySpell>().spell.name);
                 //Destroy(inv.transform.GetChild(0).gameObject); // testing TEMPORARY NEEDS TO BE REMOVED /testing TEMPORARY NEEDS TO BE REMOVED /testing TEMPORARY NEEDS TO BE REMOVED /testing TEMPORARY NEEDS TO BE REMOVED
@@ -76,7 +76,7 @@ public class InvDataBetweenRuns : MonoBehaviour
             inventory = JsonUtility.FromJson<InventoryData>(json);
 
 
-            
+
 
             int i = 0; //keeps track of which inventory slot in allInvSlots is currently being considered
             foreach (string item in inventory.items)
@@ -87,11 +87,11 @@ public class InvDataBetweenRuns : MonoBehaviour
                     Destroy(allInvSlots[i].transform.GetChild(0).gameObject);
                 }
 
-                    //Debug.Log(allInvSlots.Count);
+                //Debug.Log(allInvSlots.Count);
 
                 //Debug.Log("Loaded Item: " + item); //REMOVE
 
-                if(item != "empty")
+                if (item != "empty")
                 {
                     if (item == "Lightning") //add new spells as new if statements here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                     {
@@ -122,4 +122,17 @@ public class InvDataBetweenRuns : MonoBehaviour
             }
         }
     }
+
+    public void ClearAllInv()
+    {
+        foreach (GameObject inv in allInvSlots)
+        {
+            if (inv.transform.childCount > 0)
+            {
+                //inventory.items.Add(inv.transform.GetChild(0).gameObject.GetComponent<InventorySpell>().spell.name);
+                Destroy(inv.transform.GetChild(0).gameObject); // testing TEMPORARY NEEDS TO BE REMOVED /testing TEMPORARY NEEDS TO BE REMOVED /testing TEMPORARY NEEDS TO BE REMOVED /testing TEMPORARY NEEDS TO BE REMOVED
+            }
+        }
+    }
+
 }
