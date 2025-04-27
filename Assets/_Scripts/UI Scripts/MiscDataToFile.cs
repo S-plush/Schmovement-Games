@@ -17,28 +17,34 @@ public class MiscDataToFile : MonoBehaviour
     private int numberOfEntries;
 
     public GameObject player;
-    Alpha AlphaScript; //reference to the Alpha Script on the Player
 
+    Alpha AlphaScript; //reference to the Alpha Script on the Player
     LoadoutsToFile LoadoutsToFileScript; //reference to the LoadoutsToFile on the InventoryManager
+    InvDataBetweenRuns InvDataBetweenRunsScript; //reference to the InvDataBetweenRuns on the InventoryManager
 
     public static bool newGame = false; //hopefully can be switched later to give the player a brand new save
 
     void Start()
     {
+        // Set the file path inside persistentDataPath
+        filePath = Path.Combine(Application.persistentDataPath, fileName);
+
+        AlphaScript = FindObjectOfType<Alpha>(); //initilize AlphaScript with the actual script
+        LoadoutsToFileScript = FindObjectOfType<LoadoutsToFile>(); //initilize LoadoutsToFileScript with the actual script
+        InvDataBetweenRunsScript = FindObjectOfType<InvDataBetweenRuns>(); //initilize LoadoutsToFileScript with the actual script
+
         if (newGame == false)
         {
             Debug.Log("loadnormal");
-            // Set the file path inside persistentDataPath
-            filePath = Path.Combine(Application.persistentDataPath, fileName);
-
-            AlphaScript = FindObjectOfType<Alpha>(); //initilize AlphaScript with the actual script
-            LoadoutsToFileScript = FindObjectOfType<LoadoutsToFile>(); //initilize LoadoutsToFileScript with the actual script
-
+            
             loadAllMiscData();
         }
         else
         {
             Debug.Log("loadNew");
+
+            InvDataBetweenRunsScript.ClearAllInv();
+                
             //assign default stats
             //stims 3, health 5, mana 5, current loadout 1
 
