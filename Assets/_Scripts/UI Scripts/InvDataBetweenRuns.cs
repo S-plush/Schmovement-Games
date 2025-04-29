@@ -55,7 +55,7 @@ public class InvDataBetweenRuns : MonoBehaviour
             if (inv.transform.childCount > 0)
             {
                 inventory.items.Add(inv.transform.GetChild(0).gameObject.GetComponent<InventorySpell>().spell.name);
-                //Destroy(inv.transform.GetChild(0).gameObject); // testing TEMPORARY NEEDS TO BE REMOVED /testing TEMPORARY NEEDS TO BE REMOVED /testing TEMPORARY NEEDS TO BE REMOVED /testing TEMPORARY NEEDS TO BE REMOVED
+                //Destroy(inv.transform.GetChild(0).gameObject);
             }
             else
             {
@@ -130,9 +130,11 @@ public class InvDataBetweenRuns : MonoBehaviour
             if (inv.transform.childCount > 0)
             {
                 //inventory.items.Add(inv.transform.GetChild(0).gameObject.GetComponent<InventorySpell>().spell.name);
-                Destroy(inv.transform.GetChild(0).gameObject); // testing TEMPORARY NEEDS TO BE REMOVED /testing TEMPORARY NEEDS TO BE REMOVED /testing TEMPORARY NEEDS TO BE REMOVED /testing TEMPORARY NEEDS TO BE REMOVED
+                Destroy(inv.transform.GetChild(0).gameObject);
             }
         }
+        SaveInventory();
+        //FindObjectOfType<LoadoutsToFile>().saveLoadoutsToFile();
     }
 
 }
