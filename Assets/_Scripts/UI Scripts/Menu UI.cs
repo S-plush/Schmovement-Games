@@ -2,22 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class MenuUI : MonoBehaviour
 {
     public GameObject mainMenu;
     public GameObject settingsMenu;
 
-    public void PlayButtonResume(string sceneName)
+    public void PlayButtonResume()
     {
-        SceneManager.LoadScene(sceneName);
-        MiscDataToFile.newGame = false;
+        try
+        {
+            //Debug.Log(Alpha.currentSceneName);
+            MiscDataToFile.newGame = false;
+
+            SceneManager.LoadScene(Alpha.currentSceneName);
+        }
+        catch (Exception ex)
+        {
+            Debug.Log("bigissue");
+            SceneManager.LoadScene("DetentionCenter");
+            MiscDataToFile.newGame = false;
+        }
     }
 
-    public void PlayButtonNew(string sceneName)
+    public void PlayButtonNew()
     {
-        SceneManager.LoadScene(sceneName);
         MiscDataToFile.newGame = true;
+        SceneManager.LoadScene("DetentionCenter");
     }
 
     public void SettingsButton()

@@ -741,7 +741,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1376587985}
         m_TargetAssemblyTypeName: MenuUI, Assembly-CSharp
         m_MethodName: PlayButtonResume
-        m_Mode: 5
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1406,6 +1406,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 694595569}
   m_CullTransparentMesh: 1
+--- !u!1001 &760875523
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1967407367}
+    m_Modifications:
+    - target: {fileID: 1285458311310225056, guid: d83cf530717a0e9478a9755f79e761f1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 755.73517
+      objectReference: {fileID: 0}
+    - target: {fileID: 1285458311310225056, guid: d83cf530717a0e9478a9755f79e761f1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 425.43094
+      objectReference: {fileID: 0}
+    - target: {fileID: 1285458311310225056, guid: d83cf530717a0e9478a9755f79e761f1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -829.4349
+      objectReference: {fileID: 0}
+    - target: {fileID: 1285458311310225056, guid: d83cf530717a0e9478a9755f79e761f1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1285458311310225056, guid: d83cf530717a0e9478a9755f79e761f1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1285458311310225056, guid: d83cf530717a0e9478a9755f79e761f1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1285458311310225056, guid: d83cf530717a0e9478a9755f79e761f1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1285458311310225056, guid: d83cf530717a0e9478a9755f79e761f1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1285458311310225056, guid: d83cf530717a0e9478a9755f79e761f1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1285458311310225056, guid: d83cf530717a0e9478a9755f79e761f1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2782939748750390917, guid: d83cf530717a0e9478a9755f79e761f1, type: 3}
+      propertyPath: m_Name
+      value: InventoryManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5913238882214018934, guid: d83cf530717a0e9478a9755f79e761f1, type: 3}
+    - {fileID: 207681278813225272, guid: d83cf530717a0e9478a9755f79e761f1, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2782939748750390917, guid: d83cf530717a0e9478a9755f79e761f1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1905575913}
+  m_SourcePrefab: {fileID: 100100000, guid: d83cf530717a0e9478a9755f79e761f1, type: 3}
 --- !u!1 &903839028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1625,7 +1687,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1376587985}
         m_TargetAssemblyTypeName: MenuUI, Assembly-CSharp
         m_MethodName: PlayButtonNew
-        m_Mode: 5
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1816,6 +1878,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1905575911 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2782939748750390917, guid: d83cf530717a0e9478a9755f79e761f1, type: 3}
+  m_PrefabInstance: {fileID: 760875523}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1905575912 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1285458311310225056, guid: d83cf530717a0e9478a9755f79e761f1, type: 3}
+  m_PrefabInstance: {fileID: 760875523}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1905575913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905575911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa515566c37dd414f894706d234022ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1905575911}
 --- !u!1 &1967407363
 GameObject:
   m_ObjectHideFlags: 0
@@ -1913,6 +1998,7 @@ RectTransform:
   - {fileID: 5856536}
   - {fileID: 1984379903}
   - {fileID: 1376587984}
+  - {fileID: 1905575912}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

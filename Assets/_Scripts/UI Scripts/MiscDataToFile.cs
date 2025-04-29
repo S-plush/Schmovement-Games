@@ -6,6 +6,7 @@ using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.ProBuilder.Shapes;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
 
@@ -22,7 +23,7 @@ public class MiscDataToFile : MonoBehaviour
     LoadoutsToFile LoadoutsToFileScript; //reference to the LoadoutsToFile on the InventoryManager
     InvDataBetweenRuns InvDataBetweenRunsScript; //reference to the InvDataBetweenRuns on the InventoryManager
 
-    public static bool newGame = false; //hopefully can be switched later to give the player a brand new save
+    public static bool newGame = false; //can be switched to give the player a brand new save
 
     void Start()
     {
@@ -37,14 +38,25 @@ public class MiscDataToFile : MonoBehaviour
         {
             Debug.Log("loadnormal");
             
-            loadAllMiscData();
+            if(SceneManager.GetActiveScene().name != "Main Menu")
+            {
+                loadAllMiscData();
+            }
+            else
+            {
+                String[] dataOut = ReadFromFile().Split('\n');
+                int ArrayLength = dataOut.Length;
+
+                Alpha.currentSceneName = dataOut[5];
+                Debug.Log(dataOut[5]);
+            }    
         }
         else
         {
             Debug.Log("loadNew");
 
             InvDataBetweenRunsScript.ClearAllInv();
-                
+
             //assign default stats
             //stims 3, health 5, mana 5, current loadout 1
 
@@ -56,6 +68,7 @@ public class MiscDataToFile : MonoBehaviour
             //AlphaScript.stimCount = 3;
             AlphaScript.currentlyEquippedLoadout = 1;
             AlphaScript.currentCheckpointName = "default";
+            Alpha.currentSceneName = "DetentionCenter";
 
             //updating changing values
             AlphaScript.currentHealth = AlphaScript.maxHealth;
@@ -88,6 +101,7 @@ public class MiscDataToFile : MonoBehaviour
             AlphaScript.maxStims = 3;
             AlphaScript.currentlyEquippedLoadout = 1;
             AlphaScript.currentCheckpointName = "default";
+            //Alpha.currentSceneName = "DetentionCenter";// DETENTION CENTER ONE NAME GOES HERE PLZZZZZZZZZZZZZZZZZZZZZ
 
             //updating changing values
             AlphaScript.currentHealth = AlphaScript.maxHealth;
@@ -125,6 +139,9 @@ public class MiscDataToFile : MonoBehaviour
         dataIn += AlphaScript.currentCheckpointName + "\n"; //4
         numberOfEntries++;
 
+        dataIn += Alpha.currentSceneName + "\n"; //5
+        numberOfEntries++;
+
         //////////////////////////////////////////////////////////////////////ADD NEW VALUES TO THE SAVE FUNCTION HERE (only add at the bottom though, order matters)
 
         WriteToFile(dataIn);
@@ -149,6 +166,7 @@ public class MiscDataToFile : MonoBehaviour
         AlphaScript.maxStims = Int32.Parse(dataOut[2]);
         AlphaScript.currentlyEquippedLoadout = Int32.Parse(dataOut[3]);
         AlphaScript.currentCheckpointName = dataOut[4];
+        Alpha.currentSceneName = dataOut[5];
 
         //updating changing values
         AlphaScript.currentHealth = AlphaScript.maxHealth;

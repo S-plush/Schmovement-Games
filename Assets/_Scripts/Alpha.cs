@@ -74,7 +74,8 @@ public class Alpha : MonoBehaviour
     public int manaFromStim;
     public int healthFromStim;
 
-    public string currentCheckpointName;
+    public string currentCheckpointName = "default";
+    public static string currentSceneName;
 
     public GameObject InventoryManager;
     private InvDataBetweenRuns invData;
@@ -121,7 +122,6 @@ public class Alpha : MonoBehaviour
 
         CheckpointsScript = FindObjectOfType<Checkpoints>();
         LoadoutsToFileScript = FindObjectOfType<LoadoutsToFile>();
-        
     }
 
     void Start()
@@ -623,6 +623,11 @@ public class Alpha : MonoBehaviour
         currentMana = maxMana;
         manaBar.SetMaxMana(maxMana);
 
+        //helps update the state of the inventory correctly on making a new game (so you dont get ghost spells that persist until you open your inventory)
+        OpenMenu();
+        LoadoutsToFileScript.saveLoadoutsToFile();
+        OpenMenu();
+
         if (loadoutNum != 1 && loadoutNum != 2 && loadoutNum != 3 && loadoutNum != 4)
         {
             LoadoutsToFileScript.switchLoadouts(1);
@@ -642,6 +647,7 @@ public class Alpha : MonoBehaviour
 
         // Temporarily disable physics
         //capsule.enabled = false;
+        this.GetComponent<CharacterController>().enabled = false;
 
         if (currentCheckpointName != "default")
         {
@@ -651,6 +657,8 @@ public class Alpha : MonoBehaviour
             //this.gameObject.transform.position = respawnPointObj.transform.position;
         }
 
+        this.GetComponent<CharacterController>().enabled = true;
+
         // Re-enable physics
         //capsule.enabled = true;
 
@@ -658,6 +666,9 @@ public class Alpha : MonoBehaviour
         // = respawnPoint.respawnPoint.transform.position;
         //respawnPoint.RespawnPlayer();
         //this.gameObject.transform.position = respawnPointObj.transform.position;
+
+        Alpha.currentSceneName = SceneManager.GetActiveScene().name;
+        FindObjectOfType<MiscDataToFile>().saveAllMiscData();
     }
 
     #region Spells
