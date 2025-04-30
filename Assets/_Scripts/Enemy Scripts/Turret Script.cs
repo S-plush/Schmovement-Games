@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TurretScript : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
+    private GameObject player;
     [SerializeField] private GameObject fireArea;
     [SerializeField] private GameObject fireAreaL;
     [SerializeField] private GameObject fireAreaR;
@@ -45,6 +45,8 @@ public class TurretScript : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
+        player = GameObject.Find("Player_Alpha");
+
         terrainLayerMask = LayerMask.GetMask("Default");
         playerLayerMask = LayerMask.GetMask("Player");
         enemy = this.gameObject;
@@ -52,6 +54,8 @@ public class TurretScript : MonoBehaviour
         timer = 0;
 
         enemyRB = GetComponent<Rigidbody>();
+
+
 
         if (health == 0) {
             health = 3;
