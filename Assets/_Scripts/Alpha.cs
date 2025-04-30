@@ -524,36 +524,39 @@ public class Alpha : MonoBehaviour
     {
         if (Time.timeScale != 0.0f)
         {
-            if (stimCount > 0)
+            if(!isDead)
             {
-                stimCount -= 1;
-                stimCountText.text = stimCount + "\n\nStims";
-
-                if (currentHealth + healthFromStim > maxHealth) //if health exceeds max health condition
+                if (stimCount > 0)
                 {
-                    currentHealth = maxHealth;
-                    healthBar.SetHealth(maxHealth);
+                    stimCount -= 1;
+                    stimCountText.text = stimCount + "\n\nStims";
+
+                    if (currentHealth + healthFromStim > maxHealth) //if health exceeds max health condition
+                    {
+                        currentHealth = maxHealth;
+                        healthBar.SetHealth(maxHealth);
+                    }
+                    else
+                    {
+                        currentHealth += healthFromStim;
+                        healthBar.SetHealth(currentHealth);
+                    }
+
+                    if (currentMana + manaFromStim > maxMana) //if mana exceeds max mana condition
+                    {
+                        currentMana = maxMana;
+                        manaBar.SetMana(maxMana);
+                    }
+                    else
+                    {
+                        currentMana += manaFromStim;
+                        manaBar.SetMana(currentMana);
+                    }
                 }
                 else
                 {
-                    currentHealth += healthFromStim;
-                    healthBar.SetHealth(currentHealth);
+                    // play empty (out of stims) sound and flash red
                 }
-
-                if (currentMana + manaFromStim > maxMana) //if mana exceeds max mana condition
-                {
-                    currentMana = maxMana;
-                    manaBar.SetMana(maxMana);
-                }
-                else
-                {
-                    currentMana += manaFromStim;
-                    manaBar.SetMana(currentMana);
-                }
-            }
-            else
-            {
-                // play empty (out of stims) sound and flash red
             }
         }
     }
