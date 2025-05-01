@@ -71,9 +71,6 @@ public class SpawnerCode : MonoBehaviour
                         tempWaveList.Add(tempWave % 10);
 
                         tempWave = tempWave / 10;
-
-
-
                     }
 
 
@@ -82,10 +79,7 @@ public class SpawnerCode : MonoBehaviour
                         randomizeSpawnLocation();
                         GameObject tempEnemy = Instantiate(enemyList[i - 1], new Vector3(randomX, randomY, this.transform.position.z), transform.localRotation);
                         spawnedEnemies.Add(tempEnemy);
-
-
                     }
-
                 }
 
                 for (int i = 0; i < spawnedEnemies.Count; i++) {
