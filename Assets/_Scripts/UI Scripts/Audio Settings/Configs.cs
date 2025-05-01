@@ -37,7 +37,7 @@ public class Configs : MonoBehaviour
         PlayerPrefs.SetFloat("bgmVolume", volBG);
         //Debug.Log("slider changed new volBG: " + volBG);
         SetAllAudio();
-        SaveAll();
+        //SaveAll();
     }
 
     public void SFXSliderChange(float value)
@@ -45,7 +45,7 @@ public class Configs : MonoBehaviour
         volSFX = value;
         PlayerPrefs.SetFloat("sfxVolume", volSFX);
         SetAllAudio();
-        SaveAll();
+        //SaveAll();
     }
 
     public void SaveAll()
@@ -69,7 +69,7 @@ public class Configs : MonoBehaviour
         {
             if (source.name.Contains("BG"))
             {
-                Debug.Log("setting musicmanager volume to: " + volBG);
+                //Debug.Log("setting musicmanager volume to: " + volBG);
                 MusicManager music = source.GetComponent<MusicManager>();
                 music.bgmVolume = volBG;
             }
