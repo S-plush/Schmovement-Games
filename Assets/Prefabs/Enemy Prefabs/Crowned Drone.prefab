@@ -143,6 +143,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: e6be56a55a7fca64484e42a91b6f4a42, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 259f6a56274d5cc46b7af0102c75b1a7, type: 2}
     - target: {fileID: 6788125469594837683, guid: e6be56a55a7fca64484e42a91b6f4a42, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -192,7 +196,7 @@ MonoBehaviour:
   fireArea: {fileID: 6873592735783831948}
   bullet: {fileID: 2065808507852822032, guid: cb05c53cd405e0849a7705404d55f467, type: 3}
   droneSummon: {fileID: 7132028103766440444, guid: 207a9b9fe75388746a460c2186854666, type: 3}
-  health: 15
+  health: 20
   detectionRange: 45
   fireRange: 45
   shootFrequency: 2
