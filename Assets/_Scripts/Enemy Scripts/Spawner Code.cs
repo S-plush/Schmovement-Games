@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpawnerCode : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class SpawnerCode : MonoBehaviour
 
     private System.Random random = new System.Random();
 
-
+    public GameObject door;
 
     int tempNum = 0;
 
@@ -104,6 +105,12 @@ public class SpawnerCode : MonoBehaviour
 
             }
         }
+
+        if (cleared)
+        {
+            door.SetActive(false);
+        }
+
     }
 
     public void randomizeSpawnLocation() {
@@ -124,6 +131,14 @@ public class SpawnerCode : MonoBehaviour
 
         spawnedEnemies.Clear();
     }
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            activated = true;
+        }
 
+
+    }
 
 }
