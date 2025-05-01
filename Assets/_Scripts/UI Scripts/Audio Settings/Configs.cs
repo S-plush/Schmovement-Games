@@ -35,7 +35,7 @@ public class Configs : MonoBehaviour
     {
         volBG = value;
         PlayerPrefs.SetFloat("bgmVolume", volBG);
-        Debug.Log("slider changed new volBG: " + volBG);
+        //Debug.Log("slider changed new volBG: " + volBG);
         SetAllAudio();
         SaveAll();
     }
