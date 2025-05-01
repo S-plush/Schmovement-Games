@@ -29,7 +29,8 @@ public class MenuUI : MonoBehaviour
     public void PlayButtonNew()
     {
         MiscDataToFile.newGame = true;
-        SceneManager.LoadScene("DetentionCenter");
+        //SceneManager.LoadScene("DetentionCenter");
+        SceneManager.LoadScene("Opening Cutscene");
     }
 
     public void SettingsButton()

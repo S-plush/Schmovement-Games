@@ -30,7 +30,9 @@ public class Alpha : MonoBehaviour
     public Vector3 aimingDirection;
     public float timer; //for spell
     public float dashTimer;
+    public float stepTimer;
 
+    private float lastStepTime;
     private float lastShot; //cooldown for the spell 1
     private float lastDash;
     private bool isGrounded; //for jumping
@@ -46,6 +48,8 @@ public class Alpha : MonoBehaviour
     public IcicleSpearSpell iciclePrefab;
     public SoundWaveSpell soundWavePrefab;
     public MeleeAttack meleePrefab;
+
+    private SFXManager sfxManager;
 
     [HideInInspector] public bool isMovingLeft = false;
     [HideInInspector] public bool isMovingRight = false;
@@ -127,6 +131,7 @@ public class Alpha : MonoBehaviour
     void Start()
     {
         StartCoroutine(InitialLoadoutCall(currentlyEquippedLoadout));
+        sfxManager = FindAnyObjectByType<SFXManager>();
     }
 
     public void OnTriggerEnter(Collider other)
@@ -217,6 +222,15 @@ public class Alpha : MonoBehaviour
 
         if (alpha.isGrounded)
         {
+            if (horizontalInput > 0 || horizontalInput < 0)
+            {
+                if (Time.time - lastStepTime >= stepTimer)
+                {
+                    sfxManager.WalkingSFX();
+                    lastStepTime = Time.time;
+                }
+            }
+
             alpha.stepOffset = originalStepOffset;
             ySpeed = -1f;
             hasDashed = false;
