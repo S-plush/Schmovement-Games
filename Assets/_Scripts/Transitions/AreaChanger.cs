@@ -27,6 +27,7 @@ public class AreaChanger : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            FindObjectOfType<Alpha>().currentCheckpointName = "default";
             MiscDataToFileScript.saveAllMiscData(); //saves values associated with the player like stims and health
 
             AreaTransition.CurrentTransition = SceneConnection;            
