@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 25d0c21d88592544989c8094746e59f5, type: 2}
+  - {fileID: 2100000, guid: fbbeb56bda7bb5b4ca0e491734361005, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -120,4 +120,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spell: {fileID: 0}
   pickupType: maxManaIncrease
-  inventory: {fileID: 2782939748750390917, guid: d83cf530717a0e9478a9755f79e761f1, type: 3}
