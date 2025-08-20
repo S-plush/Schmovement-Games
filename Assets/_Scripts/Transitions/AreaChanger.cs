@@ -13,16 +13,20 @@ public class AreaChanger : MonoBehaviour
 
     MiscDataToFile MiscDataToFileScript;
 
+    Alpha AlphaScript;
+
     public void Start()
     {
         MiscDataToFileScript = FindObjectOfType<MiscDataToFile>(); //initilize MiscDataToFileScript with the actual script
+        AlphaScript = FindObjectOfType<Alpha>();
 
         if (SceneConnection == AreaTransition.CurrentTransition)
         {
+            AlphaScript.transitioned = true; //tells alpha script not to try to spawn the player at a checkpoint
             FindObjectOfType<Alpha>().transform.position = EnterPoint.position;
         }
     }
-
+    
     public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")

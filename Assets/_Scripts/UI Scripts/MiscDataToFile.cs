@@ -37,8 +37,9 @@ public class MiscDataToFile : MonoBehaviour
         if (newGame == false)
         {
             Debug.Log("loadnormal");
-            
-            if(SceneManager.GetActiveScene().name != "Main Menu")
+            Debug.Log("NEW SCENE DUMMY, IT GOT SET TO DEFAULT!");
+
+            if (SceneManager.GetActiveScene().name != "Main Menu")
             {
                 loadAllMiscData();
             }

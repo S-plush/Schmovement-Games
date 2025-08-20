@@ -95,6 +95,8 @@ public class Alpha : MonoBehaviour
 
     public Animator animator;
 
+    public bool transitioned = false; //info comes from AreaChanger for use here in InitialLoadoutCall
+
     void Awake()
     {
         Time.timeScale = 1.0f;
@@ -624,6 +626,7 @@ public class Alpha : MonoBehaviour
         manaBar.SetMaxMana(maxMana);
 
         //helps update the state of the inventory correctly on making a new game (so you dont get ghost spells that persist until you open your inventory)
+        //BIG ISSUE IF PLAYER OPENS INVENTORY ON FIRST FRAME!?!?
         OpenMenu();
         LoadoutsToFileScript.saveLoadoutsToFile();
         OpenMenu();
@@ -649,15 +652,22 @@ public class Alpha : MonoBehaviour
         //capsule.enabled = false;
         this.GetComponent<CharacterController>().enabled = false;
 
-        if (currentCheckpointName != "default")
+        if (transitioned == false)
         {
-            respawnPointObj.transform.position = GameObject.Find(currentCheckpointName).transform.position;
-            //respawnPoint.respawnPoint.transform.position = GameObject.Find(currentCheckpointName).transform.position;
-            this.gameObject.transform.position = GameObject.Find(currentCheckpointName).transform.position;
-            //this.gameObject.transform.position = respawnPointObj.transform.position;
+            if (currentCheckpointName != "default" && currentCheckpointName != null) //COULD CHECK IF MATCHES SCENE BUT DOESN'T (unique checkpoint names are probably better (could checkpoints have a variable for what scene they are in!?!))
+            {
+                respawnPointObj.transform.position = GameObject.Find(currentCheckpointName).transform.position;
+                //respawnPoint.respawnPoint.transform.position = GameObject.Find(currentCheckpointName).transform.position;
+                this.gameObject.transform.position = GameObject.Find(currentCheckpointName).transform.position;
+                //this.gameObject.transform.position = respawnPointObj.transform.position;
+            }
+        }
+        else
+        {
+            transitioned = false;
         }
 
-        this.GetComponent<CharacterController>().enabled = true;
+            this.GetComponent<CharacterController>().enabled = true;
 
         // Re-enable physics
         //capsule.enabled = true;
