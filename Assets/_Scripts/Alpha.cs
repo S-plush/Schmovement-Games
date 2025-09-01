@@ -37,7 +37,6 @@ public class Alpha : MonoBehaviour
     private float lastStepTime;
     private float lastShot; //cooldown for the spell 1
     private float lastDash;
-    private bool isGrounded; //for jumping
     private bool hasDashed = false;
     private bool canDoubleJump = false;
     private float lastDirectionFaced;
@@ -262,6 +261,17 @@ public class Alpha : MonoBehaviour
         Vector3 velocity = moveDirection * magnitude;
         velocity = OnSlope(velocity);
         velocity.y += ySpeed;
+
+        //when hitting the ceiling, this will stop the jumping push
+        if ((alpha.collisionFlags & CollisionFlags.Above) != 0)
+        {
+            Debug.Log("am i entering here?");
+            if (velocity.y > 0)
+            {
+                Debug.Log("now am i in here?");
+                ySpeed = -0.5f;
+            }
+        }
 
         if (!isDead)
         {
