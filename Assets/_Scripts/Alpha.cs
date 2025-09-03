@@ -10,16 +10,18 @@ using UnityEngine.EventSystems;
 
 public class Alpha : MonoBehaviour
 {
-    public float alphaMovementSpd = 3.5f;
-    public float jumpSpd = 5f;
-    public float fallSpd = 2.5f;
-    public float dashPush = 5;
-    public float gravity = -9.8f;
+    [HideInInspector] public float alphaMovementSpd = 7f;
+    [HideInInspector] public float jumpSpd = 7f;
+    [HideInInspector] public float fallSpd = 2.5f;
+    [HideInInspector] public float dashPush = 4;
+    [HideInInspector] public float gravity = -9.8f;
     private float slopeDirection;
     private Vector3 velocity;
     private float ySpeed;
     private float originalStepOffset;
     private bool isDead = false;
+
+    [SerializeField] private Transform alphaModel;
 
     //set up for this test build, but will need to have an abstract class for all the spells
     public Transform spellSpawn; //spawn point for spell's attack
@@ -27,7 +29,7 @@ public class Alpha : MonoBehaviour
     public GameObject spellAttack; //for the explosion spell effect/attack prefab
     public GameObject activeSpell; //for rn the spell's spawnpoint is what's used for this
     public Transform rotationPoint;
-    public Vector3 aimingDirection;
+    [HideInInspector] public Vector3 aimingDirection;
     public float timer; //for spell
     public float dashTimer;
     public float stepTimer;
@@ -35,7 +37,6 @@ public class Alpha : MonoBehaviour
     private float lastStepTime;
     private float lastShot; //cooldown for the spell 1
     private float lastDash;
-    private bool isGrounded; //for jumping
     private bool hasDashed = false;
     private bool canDoubleJump = false;
     private float lastDirectionFaced;
@@ -43,6 +44,7 @@ public class Alpha : MonoBehaviour
     private CharacterController alpha;
     private bool isGamePaused = false;
 
+    [Header("Attack/Spells Prefabs")] 
     public ExplosionSpell explosionPrefab;
     public LightningSpell lightningPrefab;
     public IcicleSpearSpell iciclePrefab;
@@ -55,11 +57,13 @@ public class Alpha : MonoBehaviour
     [HideInInspector] public bool isMovingRight = false;
     private float moveDirection;
 
+    [Header("Respawn Stuff")]
     public RespawnPoint respawnPoint;
     public GameObject respawnPointObj;
 
     public GameObject deathScreen;
 
+    [Header("UI Stuff")]
     public GameObject Inventory;
 
     public GameObject HUD;
@@ -258,6 +262,17 @@ public class Alpha : MonoBehaviour
         velocity = OnSlope(velocity);
         velocity.y += ySpeed;
 
+        //when hitting the ceiling, this will stop the jumping push
+        if ((alpha.collisionFlags & CollisionFlags.Above) != 0)
+        {
+            Debug.Log("am i entering here?");
+            if (velocity.y > 0)
+            {
+                Debug.Log("now am i in here?");
+                ySpeed = -0.5f;
+            }
+        }
+
         if (!isDead)
         {
             alpha.Move(velocity * Time.deltaTime);
@@ -320,48 +335,6 @@ public class Alpha : MonoBehaviour
         DeathCheck();
     }
 
-    #region FixedUpdate not using, but keeping just in case
-    private void FixedUpdate()
-    {
-        #region movement
-        //this is for the FixedUpdate to help get rid of the jitteriness
-        //float horizontalInput = Input.GetAxis("Horizontal");
-        //Vector3 moveDirection = new Vector3(horizontalInput, 0, 0);
-        //float magnitude = Mathf.Clamp01(moveDirection.magnitude) * alphaMovementSpd;
-        //moveDirection.Normalize();
-        //ySpeed += Physics.gravity.y * Time.deltaTime;
-
-        //if(alpha.isGrounded)
-        //{
-        //    alpha.stepOffset = originalStepOffset;
-        //    ySpeed = -0.5f;
-        //}
-
-        //Vector3 velocity = moveDirection * magnitude;
-        //velocity = OnSlope(velocity);
-        //velocity.y += ySpeed;
-        //alpha.Move(velocity * Time.deltaTime);
-
-        //if (horizontalInput > 0)
-        //{
-        //    animator.SetBool("isMoving", true);
-        //    animator.SetBool("isMirrored", false);
-        //}
-        //else if (horizontalInput < 0)
-        //{
-        //    animator.SetBool("isMoving", true);
-        //    animator.SetBool("isMirrored", true);
-        //}
-        //else
-        //{
-        //    animator.SetBool("isMoving", false);
-        //}
-        #endregion
-
-        //Debug.Log(alpha.isGrounded);
-    }
-    #endregion
-
     private Vector3 OnSlope(Vector3 velocity)
     {
         Ray ray = new Ray(transform.position, Vector3.down);
@@ -413,7 +386,7 @@ public class Alpha : MonoBehaviour
             Vector3 startPosition = transform.position;
             Vector3 dashMove = Vector3.zero;
 
-            while (elapsedTime < dashTime)
+            while (elapsedTime <= dashTime)
             {
                 float dashProgress = elapsedTime / dashTime;
                 dashMove = Vector3.Lerp(startPosition, targetPosition, dashProgress);
@@ -423,7 +396,8 @@ public class Alpha : MonoBehaviour
                 yield return null;
             }
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.3f);
+            alphaModel.localPosition = Vector3.zero;
             velocity = Vector3.zero;
         }
     }
