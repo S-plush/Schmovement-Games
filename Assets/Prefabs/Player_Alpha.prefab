@@ -53,6 +53,7 @@ MonoBehaviour:
   fallSpd: 2.5
   dashPush: 4
   gravity: -9.8
+  alphaModel: {fileID: 119866717911846859}
   spellSpawn: {fileID: 5808184871400034264}
   meleeSpawn: {fileID: 2090864736270577917}
   spellAttack: {fileID: 2672976769280851066, guid: 74acdbccee3a400428fb35b62880d330, type: 3}
@@ -61,6 +62,7 @@ MonoBehaviour:
   aimingDirection: {x: 0, y: 0, z: 0}
   timer: 1.5
   dashTimer: 3
+  stepTimer: 0.3
   explosionPrefab: {fileID: -7173215572119700692, guid: 74acdbccee3a400428fb35b62880d330, type: 3}
   lightningPrefab: {fileID: -7419050746634257968, guid: 91de701a1772e4941bfd8ca90f30b81c, type: 3}
   iciclePrefab: {fileID: 7772193594896229260, guid: 286e89ed882b0644d8b0dd57b649567b, type: 3}
@@ -92,6 +94,7 @@ MonoBehaviour:
   rightSpell: 
   currentlyEquippedLoadout: 0
   animator: {fileID: 6289829871979517361}
+  transitioned: 0
 --- !u!143 &390621359905692744
 CharacterController:
   m_ObjectHideFlags: 0
