@@ -641,7 +641,7 @@ public class Alpha : MonoBehaviour
 
         // Temporarily disable physics
         //capsule.enabled = false;
-        /*
+        
          
         this.GetComponent<CharacterController>().enabled = false;
 
@@ -671,7 +671,7 @@ public class Alpha : MonoBehaviour
         //this.gameObject.transform.position = respawnPointObj.transform.position;
 
         Alpha.currentSceneName = SceneManager.GetActiveScene().name;
-        */
+        
         FindObjectOfType<MiscDataToFile>().saveAllMiscData();
     }
 
