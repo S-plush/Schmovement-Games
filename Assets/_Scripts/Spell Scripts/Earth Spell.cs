@@ -29,12 +29,8 @@ public class EarthSpell : MonoBehaviour
         else if (other.gameObject.tag == "Destructible Wall")
         {
             //possibly have this spell be able to destroy walls as well
-            Destroy(other.gameObject);
-            Destroy(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
+            //Destroy(other.gameObject);
+            //Destroy(gameObject);
         }
     }
 }

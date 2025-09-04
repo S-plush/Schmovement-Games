@@ -49,6 +49,9 @@ public class Alpha : MonoBehaviour
     public LightningSpell lightningPrefab;
     public IcicleSpearSpell iciclePrefab;
     public SoundWaveSpell soundWavePrefab;
+    public WindSpell windPrefab;
+    public EarthSpell earthPrefab;
+    public BoulderSpell boulderPrefab;
     public MeleeAttack meleePrefab;
 
     private SFXManager sfxManager;
@@ -457,6 +460,11 @@ public class Alpha : MonoBehaviour
                 useMana(1);
                 UseSoundWaveSpell();
             }
+            else if (leftSpell == "Wind")
+            {
+                useMana(1);
+                UseWindSpell();
+            }
 
             lastShot = Time.time;
         }
@@ -494,6 +502,11 @@ public class Alpha : MonoBehaviour
             {
                 useMana(1);
                 UseSoundWaveSpell();
+            }
+            else if (rightSpell == "Wind")
+            {
+                useMana(1);
+                UseWindSpell();
             }
 
             lastShot = Time.time;
@@ -702,6 +715,25 @@ public class Alpha : MonoBehaviour
         aimingDirection = FindObjectOfType<Aiming>().AimDirection();
         SoundWaveSpell soundWave = Instantiate(soundWavePrefab, spellSpawn.position, spellSpawn.rotation);
         soundWave.Aiming(aimingDirection);
+    }
+
+    public void UseWindSpell()
+    {
+        aimingDirection = FindObjectOfType<Aiming>().AimDirection();
+        WindSpell wind = Instantiate(windPrefab, spellSpawn.position, spellSpawn.rotation);
+        wind.Aiming(aimingDirection);
+    }
+
+    public void UseEarthSpell()
+    {
+        
+    }
+
+    public void UseBoulderSpell()
+    {
+        aimingDirection = FindObjectOfType<Aiming>().AimDirection();
+        BoulderSpell boulder = Instantiate(boulderPrefab, spellSpawn.position, spellSpawn.rotation);
+        boulder.Aiming(aimingDirection);
     }
     #endregion
 }
