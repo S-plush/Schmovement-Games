@@ -8,7 +8,7 @@ public class EarthSpell : MonoBehaviour
     //Maybe also have this spell destroy walls
 
     public Spell spell;
-    public Rigidbody rb;
+    //public Rigidbody rb;
 
     [HideInInspector] public Alpha alpha;
 
@@ -17,7 +17,7 @@ public class EarthSpell : MonoBehaviour
     public void Aiming(Vector3 direction)
     {
         aimingDirection = direction;
-        rb.velocity = new Vector3(aimingDirection.x, aimingDirection.y, 0) * 20f;
+        //rb.velocity = new Vector3(aimingDirection.x, aimingDirection.y, 0) * 20f;
     }
 
     private void OnTriggerEnter(Collider other)
