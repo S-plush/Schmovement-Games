@@ -17,6 +17,9 @@ public class InvDataBetweenRuns : MonoBehaviour
     public Spell ExplosionScriptable; //add new scritpable objects for spells here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public Spell IcicleSpearScriptable;
     public Spell SoundWaveScriptable;
+    public Spell BoulderScriptable;
+    public Spell EarthScriptable;
+    public Spell WindScriptable;
 
     public List<GameObject> allInvSlots;
 
@@ -24,6 +27,7 @@ public class InvDataBetweenRuns : MonoBehaviour
 
     public void Update() // TEMPORARY, NEEDS TO BE REMOVED
     {
+        /*
         if (Input.GetKeyDown(KeyCode.O))
         {
             SaveInventory();
@@ -43,6 +47,7 @@ public class InvDataBetweenRuns : MonoBehaviour
                 }
             }
         }
+        */
     }
 
 
@@ -116,6 +121,24 @@ public class InvDataBetweenRuns : MonoBehaviour
                         //Instantiate(ExplosionPrefab).transform.SetParent(allInvSlots[i].transform, false);
                         //ExplosionPrefab.GetComponent<InventorySpell>().InitialiseSpell(ExplosionScriptable);
                         this.GetComponent<InventoryManager>().SpawnNewSpell(SoundWaveScriptable, allInvSlots[i].ConvertTo<InventorySlot>());
+                    }
+                    else if (item == "Boulder")
+                    {
+                        //Instantiate(ExplosionPrefab).transform.SetParent(allInvSlots[i].transform, false);
+                        //ExplosionPrefab.GetComponent<InventorySpell>().InitialiseSpell(ExplosionScriptable);
+                        this.GetComponent<InventoryManager>().SpawnNewSpell(BoulderScriptable, allInvSlots[i].ConvertTo<InventorySlot>());
+                    }
+                    else if (item == "Earth")
+                    {
+                        //Instantiate(ExplosionPrefab).transform.SetParent(allInvSlots[i].transform, false);
+                        //ExplosionPrefab.GetComponent<InventorySpell>().InitialiseSpell(ExplosionScriptable);
+                        this.GetComponent<InventoryManager>().SpawnNewSpell(EarthScriptable, allInvSlots[i].ConvertTo<InventorySlot>());
+                    }
+                    else if (item == "Wind")
+                    {
+                        //Instantiate(ExplosionPrefab).transform.SetParent(allInvSlots[i].transform, false);
+                        //ExplosionPrefab.GetComponent<InventorySpell>().InitialiseSpell(ExplosionScriptable);
+                        this.GetComponent<InventoryManager>().SpawnNewSpell(WindScriptable, allInvSlots[i].ConvertTo<InventorySlot>());
                     }
                 }
                 i++; // increments i after every item from the file has been processed

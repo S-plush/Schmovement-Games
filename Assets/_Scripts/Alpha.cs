@@ -656,7 +656,7 @@ public class Alpha : MonoBehaviour
         //capsule.enabled = false;
         
          
-        this.GetComponent<CharacterController>().enabled = false;
+        //this.GetComponent<CharacterController>().enabled = false;
 
         if (transitioned == false)
         {
