@@ -465,6 +465,16 @@ public class Alpha : MonoBehaviour
                 useMana(1);
                 UseWindSpell();
             }
+            else if (leftSpell == "Boulder")
+            {
+                useMana(1);
+                UseBoulderSpell();
+            }
+            else if (leftSpell == "Earth")
+            {
+                useMana(1);
+                UseEarthSpell();
+            }
 
             lastShot = Time.time;
         }
@@ -507,6 +517,16 @@ public class Alpha : MonoBehaviour
             {
                 useMana(1);
                 UseWindSpell();
+            }
+            else if(rightSpell == "Boulder")
+            {
+                useMana(1);
+                UseBoulderSpell();
+            }
+            else if(rightSpell == "Earth")
+            {
+                useMana(1);
+                UseEarthSpell();
             }
 
             lastShot = Time.time;
@@ -726,7 +746,8 @@ public class Alpha : MonoBehaviour
 
     public void UseEarthSpell()
     {
-        
+        EarthSpell earthSpike = Instantiate(earthPrefab, new Vector3(transform.position.x + 5, 2, 10), Quaternion.Euler(0, 0, 25));
+        earthSpike.DestroyEarthSpike();
     }
 
     public void UseBoulderSpell()
