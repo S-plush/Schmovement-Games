@@ -470,7 +470,7 @@ public class Alpha : MonoBehaviour
                 useMana(1);
                 UseBoulderSpell();
             }
-            else if (leftSpell == "Earth")
+            else if (leftSpell == "Earth" && alpha.isGrounded)
             {
                 useMana(1);
                 UseEarthSpell();
@@ -523,7 +523,7 @@ public class Alpha : MonoBehaviour
                 useMana(1);
                 UseBoulderSpell();
             }
-            else if(rightSpell == "Earth")
+            else if(rightSpell == "Earth" && alpha.isGrounded)
             {
                 useMana(1);
                 UseEarthSpell();
@@ -746,8 +746,19 @@ public class Alpha : MonoBehaviour
 
     public void UseEarthSpell()
     {
-        EarthSpell earthSpike = Instantiate(earthPrefab, new Vector3(transform.position.x + 5, 2, 10), Quaternion.Euler(0, 0, 25));
-        earthSpike.DestroyEarthSpike();
+        aimingDirection = FindObjectOfType<Aiming>().AimDirection();
+
+        if (aimingDirection.x > 0)
+        {
+            EarthSpell earthSpike = Instantiate(earthPrefab, new Vector3(transform.position.x + 5, (transform.position.y - 1.08f) + 2, 10), Quaternion.Euler(0, 0, 25));
+            earthSpike.DestroyEarthSpike();
+        }
+        else if(aimingDirection.x < 0)
+        {
+            EarthSpell earthSpike = Instantiate(earthPrefab, new Vector3(transform.position.x - 5, (transform.position.y - 1.08f) + 2, 10), Quaternion.Euler(0, 0, -25));
+            earthSpike.DestroyEarthSpike();
+        }
+
     }
 
     public void UseBoulderSpell()
