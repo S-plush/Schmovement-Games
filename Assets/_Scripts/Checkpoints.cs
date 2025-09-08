@@ -34,7 +34,7 @@ public class Checkpoints : MonoBehaviour
             //AlphaScript.respawnPointObj = this.gameObject;
             //AlphaScript.respawnPoint = respawn;
 
-            AlphaScript.currentCheckpointName = this.gameObject.name;
+            RespawnPoint.currentCheckpointName = this.gameObject.name;
             MiscDataToFileScript.saveAllMiscData();
             MiscDataToFileScript.loadAllMiscData();
 

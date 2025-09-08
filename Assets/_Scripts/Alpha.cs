@@ -85,9 +85,6 @@ public class Alpha : MonoBehaviour
     public int manaFromStim;
     public int healthFromStim;
 
-    public string currentCheckpointName = "default";
-    public static string currentSceneName;
-
     public GameObject InventoryManager;
     private InvDataBetweenRuns invData;
 
@@ -108,8 +105,11 @@ public class Alpha : MonoBehaviour
 
     public bool transitioned = false; //info comes from AreaChanger for use here in InitialLoadoutCall
 
+    public static GameObject PlayerRef; //reference to current instantiated player
+
     void Awake()
     {
+        PlayerRef = this.gameObject;
         Time.timeScale = 1.0f;
         alpha = GetComponent<CharacterController>();
         originalStepOffset = alpha.stepOffset;
@@ -641,7 +641,7 @@ public class Alpha : MonoBehaviour
 
     IEnumerator InitialLoadoutCall(int loadoutNum)
     {
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.01f);
 
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
@@ -678,6 +678,7 @@ public class Alpha : MonoBehaviour
          
         //this.GetComponent<CharacterController>().enabled = false;
 
+        /*
         if (transitioned == false)
         {
             if (currentCheckpointName != "default" && currentCheckpointName != null) //COULD CHECK IF MATCHES SCENE BUT DOESN'T (unique checkpoint names are probably better (could checkpoints have a variable for what scene they are in!?!))
@@ -693,6 +694,7 @@ public class Alpha : MonoBehaviour
             transitioned = false;
         }
 
+        */
             this.GetComponent<CharacterController>().enabled = true;
 
         // Re-enable physics
@@ -703,7 +705,7 @@ public class Alpha : MonoBehaviour
         //respawnPoint.RespawnPlayer();
         //this.gameObject.transform.position = respawnPointObj.transform.position;
 
-        Alpha.currentSceneName = SceneManager.GetActiveScene().name;
+        //Alpha.currentSceneName = SceneManager.GetActiveScene().name;
         
         FindObjectOfType<MiscDataToFile>().saveAllMiscData();
     }

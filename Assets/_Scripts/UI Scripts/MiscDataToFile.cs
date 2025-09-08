@@ -25,36 +25,47 @@ public class MiscDataToFile : MonoBehaviour
 
     public static bool newGame = false; //can be switched to give the player a brand new save
 
-    void Start()
+    void Awake()
     {
         // Set the file path inside persistentDataPath
         filePath = Path.Combine(Application.persistentDataPath, fileName);
 
-        AlphaScript = FindObjectOfType<Alpha>(); //initilize AlphaScript with the actual script
-        LoadoutsToFileScript = FindObjectOfType<LoadoutsToFile>(); //initilize LoadoutsToFileScript with the actual script
-        InvDataBetweenRunsScript = FindObjectOfType<InvDataBetweenRuns>(); //initilize LoadoutsToFileScript with the actual script
+        
 
         if (newGame == false)
         {
-            Debug.Log("loadnormal");
-            Debug.Log("NEW SCENE DUMMY, IT GOT SET TO DEFAULT!");
+            // Debug.Log("loadnormal");
+            loadJustRPStuff();
 
             if (SceneManager.GetActiveScene().name != "Main Menu")
             {
+                if (RespawnPoint.currentCheckpointName != default)
+                {
+                    GameObject rp = GameObject.FindWithTag("Respawn Point");
+                    rp.transform.position = GameObject.Find(RespawnPoint.currentCheckpointName).transform.position;
+                    GameObject createdPlayer = Instantiate(player, rp.gameObject.transform.position, rp.gameObject.transform.rotation);
+                    createdPlayer.SetActive(true);
+                    Debug.Log(createdPlayer);
+                }
+                Debug.Log("checky " + RespawnPoint.currentCheckpointName);
+                Debug.Log("scene " + RespawnPoint.currentCheckpointSceneName);
+
+                Debug.Log("LoadITAll");
                 loadAllMiscData();
+
             }
             else
             {
                 String[] dataOut = ReadFromFile().Split('\n');
                 int ArrayLength = dataOut.Length;
 
-                Alpha.currentSceneName = dataOut[5];
-                Debug.Log(dataOut[5]);
+                RespawnPoint.currentCheckpointSceneName = dataOut[5];
+                //Debug.Log(dataOut[5]);
             }    
         }
         else
         {
-            Debug.Log("loadNew");
+            //Debug.Log("loadNew");
 
             InvDataBetweenRunsScript.ClearAllInv();
 
@@ -68,8 +79,8 @@ public class MiscDataToFile : MonoBehaviour
             AlphaScript.maxStims = 3;
             //AlphaScript.stimCount = 3;
             AlphaScript.currentlyEquippedLoadout = 1;
-            AlphaScript.currentCheckpointName = "default";
-            Alpha.currentSceneName = "DetentionCenter";
+            RespawnPoint.currentCheckpointName = "default";
+            RespawnPoint.currentCheckpointSceneName = "DetentionCenter";
 
             //updating changing values
             AlphaScript.currentHealth = AlphaScript.maxHealth;
@@ -83,6 +94,10 @@ public class MiscDataToFile : MonoBehaviour
 
             newGame = false;
         }
+
+        AlphaScript = Alpha.PlayerRef.GetComponent<Alpha>(); //initilize AlphaScript with the actual script
+        LoadoutsToFileScript = FindObjectOfType<LoadoutsToFile>(); //initilize LoadoutsToFileScript with the actual script
+        InvDataBetweenRunsScript = FindObjectOfType<InvDataBetweenRuns>(); //initilize LoadoutsToFileScript with the actual script
     }
 
     void Update()
@@ -101,7 +116,7 @@ public class MiscDataToFile : MonoBehaviour
             AlphaScript.maxMana = 5;
             AlphaScript.maxStims = 3;
             AlphaScript.currentlyEquippedLoadout = 1;
-            AlphaScript.currentCheckpointName = "default";
+            RespawnPoint.currentCheckpointName = "default";
             //Alpha.currentSceneName = "DetentionCenter";// DETENTION CENTER ONE NAME GOES HERE PLZZZZZZZZZZZZZZZZZZZZZ
 
             //updating changing values
@@ -137,10 +152,10 @@ public class MiscDataToFile : MonoBehaviour
         dataIn += AlphaScript.currentlyEquippedLoadout + "\n"; //3
         numberOfEntries++;
 
-        dataIn += AlphaScript.currentCheckpointName + "\n"; //4
+        dataIn += RespawnPoint.currentCheckpointName + "\n"; //4
         numberOfEntries++;
 
-        dataIn += Alpha.currentSceneName + "\n"; //5
+        dataIn += RespawnPoint.currentCheckpointSceneName + "\n"; //5
         numberOfEntries++;
 
         //////////////////////////////////////////////////////////////////////ADD NEW VALUES TO THE SAVE FUNCTION HERE (only add at the bottom though, order matters)
@@ -166,8 +181,8 @@ public class MiscDataToFile : MonoBehaviour
         AlphaScript.maxMana = Int32.Parse(dataOut[1]);
         AlphaScript.maxStims = Int32.Parse(dataOut[2]);
         AlphaScript.currentlyEquippedLoadout = Int32.Parse(dataOut[3]);
-        AlphaScript.currentCheckpointName = dataOut[4];
-        Alpha.currentSceneName = dataOut[5];
+        RespawnPoint.currentCheckpointName = dataOut[4];
+        RespawnPoint.currentCheckpointSceneName = dataOut[5];
 
         //updating changing values
         AlphaScript.currentHealth = AlphaScript.maxHealth;
@@ -178,6 +193,15 @@ public class MiscDataToFile : MonoBehaviour
         AlphaScript.healthBar.SetMaxHealth(AlphaScript.maxHealth);
         AlphaScript.manaBar.SetMaxMana(AlphaScript.maxMana);
         AlphaScript.stimCountText.text = AlphaScript.maxStims + "\n\nStims";
+    }
+
+    public void loadJustRPStuff ()
+    {
+        String[] dataOut = ReadFromFile().Split('\n');
+        int ArrayLength = dataOut.Length;
+
+        RespawnPoint.currentCheckpointName = dataOut[4];
+        RespawnPoint.currentCheckpointSceneName = dataOut[5];
     }
 
     void WriteToFile(string text)
