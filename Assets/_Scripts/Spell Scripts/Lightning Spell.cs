@@ -23,11 +23,6 @@ public class LightningSpell : MonoBehaviour
         {
             
         }
-        else if(other.gameObject.tag == "Destructible Wall")
-        {
-            Destroy(other.gameObject);
-            Destroy(gameObject);
-        }
         else
         {
             Destroy(gameObject);

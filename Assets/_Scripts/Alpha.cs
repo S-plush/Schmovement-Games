@@ -10,16 +10,18 @@ using UnityEngine.EventSystems;
 
 public class Alpha : MonoBehaviour
 {
-    public float alphaMovementSpd = 3.5f;
-    public float jumpSpd = 5f;
-    public float fallSpd = 2.5f;
-    public float dashPush = 5;
-    public float gravity = -9.8f;
+    [HideInInspector] public float alphaMovementSpd = 7f;
+    [HideInInspector] public float jumpSpd = 7f;
+    [HideInInspector] public float fallSpd = 2.5f;
+    [HideInInspector] public float dashPush = 4;
+    [HideInInspector] public float gravity = -9.8f;
     private float slopeDirection;
     private Vector3 velocity;
     private float ySpeed;
     private float originalStepOffset;
     private bool isDead = false;
+
+    [SerializeField] private Transform alphaModel;
 
     //set up for this test build, but will need to have an abstract class for all the spells
     public Transform spellSpawn; //spawn point for spell's attack
@@ -27,13 +29,14 @@ public class Alpha : MonoBehaviour
     public GameObject spellAttack; //for the explosion spell effect/attack prefab
     public GameObject activeSpell; //for rn the spell's spawnpoint is what's used for this
     public Transform rotationPoint;
-    public Vector3 aimingDirection;
+    [HideInInspector] public Vector3 aimingDirection;
     public float timer; //for spell
     public float dashTimer;
+    public float stepTimer;
 
+    private float lastStepTime;
     private float lastShot; //cooldown for the spell 1
     private float lastDash;
-    private bool isGrounded; //for jumping
     private bool hasDashed = false;
     private bool canDoubleJump = false;
     private float lastDirectionFaced;
@@ -41,21 +44,29 @@ public class Alpha : MonoBehaviour
     private CharacterController alpha;
     private bool isGamePaused = false;
 
+    [Header("Attack/Spells Prefabs")] 
     public ExplosionSpell explosionPrefab;
     public LightningSpell lightningPrefab;
     public IcicleSpearSpell iciclePrefab;
     public SoundWaveSpell soundWavePrefab;
+    public WindSpell windPrefab;
+    public EarthSpell earthPrefab;
+    public BoulderSpell boulderPrefab;
     public MeleeAttack meleePrefab;
+
+    private SFXManager sfxManager;
 
     [HideInInspector] public bool isMovingLeft = false;
     [HideInInspector] public bool isMovingRight = false;
     private float moveDirection;
 
+    [Header("Respawn Stuff")]
     public RespawnPoint respawnPoint;
     public GameObject respawnPointObj;
 
     public GameObject deathScreen;
 
+    [Header("UI Stuff")]
     public GameObject Inventory;
 
     public GameObject HUD;
@@ -129,6 +140,7 @@ public class Alpha : MonoBehaviour
     void Start()
     {
         StartCoroutine(InitialLoadoutCall(currentlyEquippedLoadout));
+        sfxManager = FindAnyObjectByType<SFXManager>();
     }
 
     public void OnTriggerEnter(Collider other)
@@ -219,6 +231,15 @@ public class Alpha : MonoBehaviour
 
         if (alpha.isGrounded)
         {
+            if (horizontalInput > 0 || horizontalInput < 0)
+            {
+                if (Time.time - lastStepTime >= stepTimer)
+                {
+                    sfxManager.WalkingSFX();
+                    lastStepTime = Time.time;
+                }
+            }
+
             alpha.stepOffset = originalStepOffset;
             ySpeed = -1f;
             hasDashed = false;
@@ -243,6 +264,17 @@ public class Alpha : MonoBehaviour
         Vector3 velocity = moveDirection * magnitude;
         velocity = OnSlope(velocity);
         velocity.y += ySpeed;
+
+        //when hitting the ceiling, this will stop the jumping push
+        if ((alpha.collisionFlags & CollisionFlags.Above) != 0)
+        {
+            Debug.Log("am i entering here?");
+            if (velocity.y > 0)
+            {
+                Debug.Log("now am i in here?");
+                ySpeed = -0.5f;
+            }
+        }
 
         if (!isDead)
         {
@@ -306,48 +338,6 @@ public class Alpha : MonoBehaviour
         DeathCheck();
     }
 
-    #region FixedUpdate not using, but keeping just in case
-    private void FixedUpdate()
-    {
-        #region movement
-        //this is for the FixedUpdate to help get rid of the jitteriness
-        //float horizontalInput = Input.GetAxis("Horizontal");
-        //Vector3 moveDirection = new Vector3(horizontalInput, 0, 0);
-        //float magnitude = Mathf.Clamp01(moveDirection.magnitude) * alphaMovementSpd;
-        //moveDirection.Normalize();
-        //ySpeed += Physics.gravity.y * Time.deltaTime;
-
-        //if(alpha.isGrounded)
-        //{
-        //    alpha.stepOffset = originalStepOffset;
-        //    ySpeed = -0.5f;
-        //}
-
-        //Vector3 velocity = moveDirection * magnitude;
-        //velocity = OnSlope(velocity);
-        //velocity.y += ySpeed;
-        //alpha.Move(velocity * Time.deltaTime);
-
-        //if (horizontalInput > 0)
-        //{
-        //    animator.SetBool("isMoving", true);
-        //    animator.SetBool("isMirrored", false);
-        //}
-        //else if (horizontalInput < 0)
-        //{
-        //    animator.SetBool("isMoving", true);
-        //    animator.SetBool("isMirrored", true);
-        //}
-        //else
-        //{
-        //    animator.SetBool("isMoving", false);
-        //}
-        #endregion
-
-        //Debug.Log(alpha.isGrounded);
-    }
-    #endregion
-
     private Vector3 OnSlope(Vector3 velocity)
     {
         Ray ray = new Ray(transform.position, Vector3.down);
@@ -399,7 +389,7 @@ public class Alpha : MonoBehaviour
             Vector3 startPosition = transform.position;
             Vector3 dashMove = Vector3.zero;
 
-            while (elapsedTime < dashTime)
+            while (elapsedTime <= dashTime)
             {
                 float dashProgress = elapsedTime / dashTime;
                 dashMove = Vector3.Lerp(startPosition, targetPosition, dashProgress);
@@ -409,7 +399,8 @@ public class Alpha : MonoBehaviour
                 yield return null;
             }
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.3f);
+            alphaModel.localPosition = Vector3.zero;
             velocity = Vector3.zero;
         }
     }
@@ -469,6 +460,21 @@ public class Alpha : MonoBehaviour
                 useMana(1);
                 UseSoundWaveSpell();
             }
+            else if (leftSpell == "Wind")
+            {
+                useMana(1);
+                UseWindSpell();
+            }
+            else if (leftSpell == "Boulder")
+            {
+                useMana(1);
+                UseBoulderSpell();
+            }
+            else if (leftSpell == "Earth" && alpha.isGrounded)
+            {
+                useMana(1);
+                UseEarthSpell();
+            }
 
             lastShot = Time.time;
         }
@@ -507,6 +513,21 @@ public class Alpha : MonoBehaviour
                 useMana(1);
                 UseSoundWaveSpell();
             }
+            else if (rightSpell == "Wind")
+            {
+                useMana(1);
+                UseWindSpell();
+            }
+            else if(rightSpell == "Boulder")
+            {
+                useMana(1);
+                UseBoulderSpell();
+            }
+            else if(rightSpell == "Earth" && alpha.isGrounded)
+            {
+                useMana(1);
+                UseEarthSpell();
+            }
 
             lastShot = Time.time;
         }
@@ -526,36 +547,39 @@ public class Alpha : MonoBehaviour
     {
         if (Time.timeScale != 0.0f)
         {
-            if (stimCount > 0)
+            if(!isDead)
             {
-                stimCount -= 1;
-                stimCountText.text = stimCount + "\n\nStims";
-
-                if (currentHealth + healthFromStim > maxHealth) //if health exceeds max health condition
+                if (stimCount > 0)
                 {
-                    currentHealth = maxHealth;
-                    healthBar.SetHealth(maxHealth);
+                    stimCount -= 1;
+                    stimCountText.text = stimCount + "\n\nStims";
+
+                    if (currentHealth + healthFromStim > maxHealth) //if health exceeds max health condition
+                    {
+                        currentHealth = maxHealth;
+                        healthBar.SetHealth(maxHealth);
+                    }
+                    else
+                    {
+                        currentHealth += healthFromStim;
+                        healthBar.SetHealth(currentHealth);
+                    }
+
+                    if (currentMana + manaFromStim > maxMana) //if mana exceeds max mana condition
+                    {
+                        currentMana = maxMana;
+                        manaBar.SetMana(maxMana);
+                    }
+                    else
+                    {
+                        currentMana += manaFromStim;
+                        manaBar.SetMana(currentMana);
+                    }
                 }
                 else
                 {
-                    currentHealth += healthFromStim;
-                    healthBar.SetHealth(currentHealth);
+                    // play empty (out of stims) sound and flash red
                 }
-
-                if (currentMana + manaFromStim > maxMana) //if mana exceeds max mana condition
-                {
-                    currentMana = maxMana;
-                    manaBar.SetMana(maxMana);
-                }
-                else
-                {
-                    currentMana += manaFromStim;
-                    manaBar.SetMana(currentMana);
-                }
-            }
-            else
-            {
-                // play empty (out of stims) sound and flash red
             }
         }
     }
@@ -650,7 +674,9 @@ public class Alpha : MonoBehaviour
 
         // Temporarily disable physics
         //capsule.enabled = false;
-        this.GetComponent<CharacterController>().enabled = false;
+        
+         
+        //this.GetComponent<CharacterController>().enabled = false;
 
         if (transitioned == false)
         {
@@ -678,6 +704,7 @@ public class Alpha : MonoBehaviour
         //this.gameObject.transform.position = respawnPointObj.transform.position;
 
         Alpha.currentSceneName = SceneManager.GetActiveScene().name;
+        
         FindObjectOfType<MiscDataToFile>().saveAllMiscData();
     }
 
@@ -708,6 +735,37 @@ public class Alpha : MonoBehaviour
         aimingDirection = FindObjectOfType<Aiming>().AimDirection();
         SoundWaveSpell soundWave = Instantiate(soundWavePrefab, spellSpawn.position, spellSpawn.rotation);
         soundWave.Aiming(aimingDirection);
+    }
+
+    public void UseWindSpell()
+    {
+        aimingDirection = FindObjectOfType<Aiming>().AimDirection();
+        WindSpell wind = Instantiate(windPrefab, spellSpawn.position, spellSpawn.rotation);
+        wind.Aiming(aimingDirection);
+    }
+
+    public void UseEarthSpell()
+    {
+        aimingDirection = FindObjectOfType<Aiming>().AimDirection();
+
+        if (aimingDirection.x > 0)
+        {
+            EarthSpell earthSpike = Instantiate(earthPrefab, new Vector3(transform.position.x + 5, (transform.position.y - 1.08f) + 2, 10), Quaternion.Euler(0, 0, 25));
+            earthSpike.DestroyEarthSpike();
+        }
+        else if(aimingDirection.x < 0)
+        {
+            EarthSpell earthSpike = Instantiate(earthPrefab, new Vector3(transform.position.x - 5, (transform.position.y - 1.08f) + 2, 10), Quaternion.Euler(0, 0, -25));
+            earthSpike.DestroyEarthSpike();
+        }
+
+    }
+
+    public void UseBoulderSpell()
+    {
+        aimingDirection = FindObjectOfType<Aiming>().AimDirection();
+        BoulderSpell boulder = Instantiate(boulderPrefab, spellSpawn.position, spellSpawn.rotation);
+        boulder.Aiming(aimingDirection);
     }
     #endregion
 }

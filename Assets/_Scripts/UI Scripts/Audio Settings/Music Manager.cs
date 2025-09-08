@@ -12,7 +12,8 @@ public class MusicManager : MonoBehaviour
     {
         GetComponent<AudioSource>().volume = bgmVolume;
         GetComponent<AudioSource>().pitch = pitch;
-        PlayRepeat(bgm);
+        GetComponent<AudioSource>().clip = bgm;
+        GetComponent<AudioSource>().loop = true;
     }
 
     private void Update()
@@ -20,12 +21,11 @@ public class MusicManager : MonoBehaviour
         GetComponent<AudioSource>().volume = bgmVolume;
         GetComponent<AudioSource>().pitch = pitch;
         //Debug.Log("AudioSource.volume = " + GetComponent<AudioSource>().volume);
+
+        if (!GetComponent<AudioSource>().isPlaying)
+        {
+            GetComponent<AudioSource>().Play();
+        }
     }
 
-    void PlayRepeat(AudioClip song)
-    {
-        GetComponent<AudioSource>().clip = song;
-        GetComponent<AudioSource>().loop = true;
-        GetComponent<AudioSource>().Play();
-    }
 }

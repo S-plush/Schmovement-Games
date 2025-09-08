@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Disc02Code : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
+    private GameObject player;
     [SerializeField] private GameObject fireArea;
     public GameObject bullet;
 
@@ -43,6 +43,8 @@ public class Disc02Code : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
+        player = GameObject.Find("Player_Alpha");
+
         terrainLayerMask = LayerMask.GetMask("Default");
         playerLayerMask = LayerMask.GetMask("Player");
         enemy = this.gameObject;

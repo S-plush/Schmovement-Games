@@ -42,7 +42,9 @@ public class LoadoutsToFile : MonoBehaviour
     public Spell Lightning;
     public Spell IcicleSpear;
     public Spell SoundWave;
-
+    public Spell Boulder;
+    public Spell Earth;
+    public Spell Wind;
 
     void Start()
     {
@@ -149,7 +151,7 @@ public class LoadoutsToFile : MonoBehaviour
         //splitting up the data from the file to be more usable (could save it as ints instead of string names though...)
         string[] dataOut = ReadFromFile().Split('\n');
 
-        string[] keyArray = { "empty", "Explosion", "Lightning", "Icicle Spear", "Sound Wave", "etc" }; //add names of new spell scriptable objects to the end of the list here!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        string[] keyArray = { "empty", "Explosion", "Lightning", "Icicle Spear", "Sound Wave", "Boulder", "Earth", "Wind", "etc" }; //add names of new spell scriptable objects to the end of the list here!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
             //these all convert the information saved in the file to indexs for the UI, and change the equippedSpells variable that the Alpha script is reading
             if (numPressed == 1)
@@ -189,57 +191,82 @@ public class LoadoutsToFile : MonoBehaviour
                 equippedSpells = temp;
             }
 
-            //these lines........    |    then add the spells image here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            if (index1 == 0)
-            {
-                HUDSlot1.sprite = defaultBox;
-            }
-            else if (index1 == 1)
-            {
-                HUDSlot1.sprite = Explosion.image;
-            }
-            else if (index1 == 2)
-            {
-                HUDSlot1.sprite = Lightning.image;
-            }
-            else if (index1 == 3)
-            {
-                HUDSlot1.sprite = IcicleSpear.image;
-            }
-            else if (index1 == 4)
-            {
-                HUDSlot1.sprite = SoundWave.image;
-            }
-            else if (index1 == 5)
-            {
+        //these lines........    |    then add the spells image here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        if (index1 == 0)
+        {
+            HUDSlot1.sprite = defaultBox;
+        }
+        else if (index1 == 1)
+        {
+            HUDSlot1.sprite = Explosion.image;
+        }
+        else if (index1 == 2)
+        {
+            HUDSlot1.sprite = Lightning.image;
+        }
+        else if (index1 == 3)
+        {
+            HUDSlot1.sprite = IcicleSpear.image;
+        }
+        else if (index1 == 4)
+        {
+            HUDSlot1.sprite = SoundWave.image;
+        }
+        else if (index1 == 5)
+        {
+            HUDSlot1.sprite = Boulder.image;
+        }
+        else if (index1 == 6)
+        {
+            HUDSlot1.sprite = Earth.image;
+        }
+        else if (index1 == 7)
+        {
+            HUDSlot1.sprite = Wind.image;
+        }
+        else if (index1 == 8)
+        {
 
-            }
+        }
 
 
-            if (index2 == 0)
-            {
-                HUDSlot2.sprite = defaultBox;
-            }
-            else if (index2 == 1)
-            {
-                HUDSlot2.sprite = Explosion.image;
-            }
-            else if (index2 == 2)
-            {
-                HUDSlot2.sprite = Lightning.image;
-            }
-            else if (index2 == 3)
-            {
-                HUDSlot2.sprite = IcicleSpear.image;
-            }
-            else if (index2 == 4)
-            {
-                HUDSlot2.sprite = SoundWave.image;
-            }
-            else if (index1 == 5)
-            {
+        if (index2 == 0)
+        {
+            HUDSlot2.sprite = defaultBox;
+        }
+        else if (index2 == 1)
+        {
+            HUDSlot2.sprite = Explosion.image;
+        }
+        else if (index2 == 2)
+        {
+            HUDSlot2.sprite = Lightning.image;
+        }
+        else if (index2 == 3)
+        {
+            HUDSlot2.sprite = IcicleSpear.image;
+        }
+        else if (index2 == 4)
+        {
+            HUDSlot2.sprite = SoundWave.image;
+        }
+        else if (index2 == 5)
+        {
+            HUDSlot2.sprite = Boulder.image;
+        }
+        else if (index2 == 6)
+        {
+            HUDSlot2.sprite = Earth.image;
+        }
+        else if (index2 == 7)
+        {
+            HUDSlot2.sprite = Wind.image;
+        }
+        else if (index2 == 8)
+        {
+            
+        }
 
-            }
     }
 
     void WriteToFile(string text)

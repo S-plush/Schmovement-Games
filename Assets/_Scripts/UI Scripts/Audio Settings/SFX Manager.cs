@@ -10,6 +10,7 @@ public class SFXManager : MonoBehaviour
     public AudioClip iceicleSpearSpellSound;
     public AudioClip soundWaveSpellSound;
     public AudioClip lightningSpellSound;
+    public AudioClip walkingSound;
 
     public GameObject runSource;
 
@@ -47,6 +48,12 @@ public class SFXManager : MonoBehaviour
     public void LightningSpellSFX()
     {
         audio.clip = lightningSpellSound;
+        audio.Play();
+    }
+
+    public void WalkingSFX()
+    {
+        audio.clip = walkingSound;
         audio.Play();
     }
 }

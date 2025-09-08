@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class BasicShooterGruntCode : MonoBehaviour
 {
-    public GameObject player;
+    private GameObject player;
     public GameObject fireArea;
     public GameObject bullet;
     public LedgeChecker ledgeChecker;
@@ -53,6 +53,8 @@ public class BasicShooterGruntCode : MonoBehaviour
     // Start is called before the first frame update
     void Start() {
 
+
+        player = GameObject.Find("Player_Alpha");
         terrainLayerMask = LayerMask.GetMask("Default");
         playerLayerMask = LayerMask.GetMask("Player");
         enemy = this.gameObject;

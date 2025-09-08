@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class VZ17Code : MonoBehaviour {
 
-    public GameObject player;
+    private GameObject player;
     public GameObject pack;
     public GameObject fireArea;
     public GameObject bullet;
@@ -41,6 +41,7 @@ public class VZ17Code : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        player = GameObject.Find("Player_Alpha");
 
         terrainLayerMask = LayerMask.GetMask("Default");
         playerLayerMask = LayerMask.GetMask("Player");

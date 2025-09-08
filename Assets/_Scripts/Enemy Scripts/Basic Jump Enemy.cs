@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BasicJumpEnemy : MonoBehaviour {
 
-    public GameObject player;
+    private GameObject player;
 
     public int health;
 
@@ -30,6 +30,8 @@ public class BasicJumpEnemy : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         enemy = this.gameObject;
+        player = GameObject.Find("Player_Alpha");
+
         enemyRB = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         timer = 0;
