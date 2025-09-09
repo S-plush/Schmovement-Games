@@ -22,7 +22,6 @@ public class AreaChanger : MonoBehaviour
 
         if (SceneConnection == AreaTransition.CurrentTransition)
         {
-            AlphaScript.transitioned = true; //tells alpha script not to try to spawn the player at a checkpoint
             FindObjectOfType<Alpha>().transform.position = EnterPoint.position;
         }
     }
@@ -31,7 +30,7 @@ public class AreaChanger : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            FindObjectOfType<Alpha>().currentCheckpointName = "default";
+            RespawnPoint.currentCheckpointName = "point 1"; //////////////////////////////////////////////////////BECOME WAY MORE COMPLEX FOR DIFF TRANSITIONS BASE ON THIS OBJ NAME
             MiscDataToFileScript.saveAllMiscData(); //saves values associated with the player like stims and health
 
             AreaTransition.CurrentTransition = SceneConnection;            

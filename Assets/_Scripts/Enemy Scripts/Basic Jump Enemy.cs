@@ -30,7 +30,7 @@ public class BasicJumpEnemy : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         enemy = this.gameObject;
-        player = GameObject.Find("Player_Alpha");
+        player = Alpha.PlayerRef;
 
         enemyRB = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();

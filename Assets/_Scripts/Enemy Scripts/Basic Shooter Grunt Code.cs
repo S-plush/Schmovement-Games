@@ -54,7 +54,7 @@ public class BasicShooterGruntCode : MonoBehaviour
     void Start() {
 
 
-        player = GameObject.Find("Player_Alpha");
+        player = Alpha.PlayerRef;
         terrainLayerMask = LayerMask.GetMask("Default");
         playerLayerMask = LayerMask.GetMask("Player");
         enemy = this.gameObject;

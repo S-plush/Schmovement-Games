@@ -43,7 +43,7 @@ public class Disc02Code : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
-        player = GameObject.Find("Player_Alpha");
+        player = Alpha.PlayerRef;
 
         terrainLayerMask = LayerMask.GetMask("Default");
         playerLayerMask = LayerMask.GetMask("Player");
