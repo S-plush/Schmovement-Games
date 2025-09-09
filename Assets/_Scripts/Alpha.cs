@@ -6,6 +6,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using System.Linq;
+using UnityEditor.SceneManagement;
 //using UnityEditor.Experimental.GraphView;
 
 public class Alpha : MonoBehaviour
@@ -103,35 +105,31 @@ public class Alpha : MonoBehaviour
 
     public Animator animator;
 
-    public bool transitioned = false; //info comes from AreaChanger for use here in InitialLoadoutCall
-
     public static GameObject PlayerRef; //reference to current instantiated player
 
     void Awake()
     {
+        InitializeVariables();
+
         PlayerRef = this.gameObject;
+
         Time.timeScale = 1.0f;
         alpha = GetComponent<CharacterController>();
         originalStepOffset = alpha.stepOffset;
         invData = FindObjectOfType<InvDataBetweenRuns>();
 
-        Inventory.SetActive(false);
-        HUD.SetActive(true);
-        stimCount = maxStims;
-        stimCountText.text = stimCount + "\n\nStims";
-        healthFromStim = 3; //////////////////////////////////////////////////////////////////////////////////////////////////input from file later
-        manaFromStim = 1; ////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
+        
 
-        //currentHealth = 5; ///////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
-        //currentMana = 5; ///////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
+        //currentHealth = 5; ///////
+        //currentMana = 5; ////
 
-        //currentHealth = maxHealth;
-        //healthBar.SetMaxHealth(maxHealth);
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
 
-        //currentMana = maxMana;
-        //manaBar.SetMaxMana(maxMana);
+        currentMana = maxMana;
+        manaBar.SetMaxMana(maxMana);
 
-        Settings.SetActive(false);
+        
 
         CheckpointsScript = FindObjectOfType<Checkpoints>();
         LoadoutsToFileScript = FindObjectOfType<LoadoutsToFile>();
@@ -139,6 +137,14 @@ public class Alpha : MonoBehaviour
 
     void Start()
     {
+        Inventory.SetActive(false);
+        HUD.SetActive(true);
+        stimCount = maxStims;
+        stimCountText.text = stimCount + "\n\nStims";
+        healthFromStim = 3; //////////////////////////////////////////////////////////////////////////////////////////////////input from file later
+        manaFromStim = 1; ////////////////////////////////////////////////////////////////////////////////////////////////////input from file later
+        Settings.SetActive(false);
+
         StartCoroutine(InitialLoadoutCall(currentlyEquippedLoadout));
         sfxManager = FindAnyObjectByType<SFXManager>();
     }
@@ -710,6 +716,39 @@ public class Alpha : MonoBehaviour
         FindObjectOfType<MiscDataToFile>().saveAllMiscData();
     }
 
+    public void InitializeVariables()
+    {
+        respawnPoint = FindObjectOfType<RespawnPoint>(true);
+        respawnPointObj = respawnPoint.gameObject;
+
+        deathScreen = FindInScene("ded Screen");
+
+        Inventory = FindInScene("Main Inventory Group");
+
+        HUD = FindInScene("Main HUD Group");
+
+        healthBar = FindObjectOfType<HealthBar>(true);
+
+        manaBar = FindObjectOfType<ManaBar>(true);
+
+        stimCountText = FindInScene("Stim Counter").ConvertTo<TMP_Text>();
+
+        InventoryManager = FindInScene("InventoryManager");
+    
+        Settings = FindInScene("SettingsMenuStuff");
+
+        //GameObject.Find("Canvas").GetComponentsInChildren<GameObject>(true).FirstOrDefault(t => t.name == "Main Inventory Group")?.gameObject;
+        //FindInScene("Main Inventory Group");
+    }
+
+    public static GameObject FindInScene(string name)
+    {
+        return SceneManager.GetActiveScene()
+                           .GetRootGameObjects()
+                           .SelectMany(root => root.GetComponentsInChildren<Transform>(true))
+                           .FirstOrDefault(t => t.name == name)?.gameObject;
+    }
+
     #region Spells
     public void UseExplosionSpell()
     {
@@ -717,7 +756,7 @@ public class Alpha : MonoBehaviour
         ExplosionSpell explosion = Instantiate(explosionPrefab, spellSpawn.position, spellSpawn.rotation);
         explosion.Aiming(aimingDirection);
     }
-
+    
     public void UseLightningSpell()
     {
         aimingDirection = FindObjectOfType<Aiming>().AimDirection();

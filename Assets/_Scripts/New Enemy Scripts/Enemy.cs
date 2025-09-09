@@ -26,9 +26,9 @@ public class Enemy : MonoBehaviour
     
 
 
-    void Awake() {
+    void Start() {
 
-        player = GameObject.Find("Player_Alpha");
+        player = Alpha.PlayerRef;
         thisEnemyObject = this.gameObject;
         thisRigidBody = player.GetComponent<Rigidbody>();
         

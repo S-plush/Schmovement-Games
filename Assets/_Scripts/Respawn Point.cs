@@ -13,6 +13,7 @@ public class RespawnPoint : MonoBehaviour
 
     public void Start()
     {
+        player = Alpha.PlayerRef;
         /*
         if(currentCheckpointName != default)
         {

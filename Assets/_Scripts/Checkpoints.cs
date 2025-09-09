@@ -14,7 +14,7 @@ public class Checkpoints : MonoBehaviour
     private Alpha AlphaScript;
 
     private Animator animator;
-    private void Awake()
+    private void Start()
     {
         respawn = GameObject.FindGameObjectWithTag("Respawn Point").GetComponent<RespawnPoint>();
 
@@ -30,19 +30,34 @@ public class Checkpoints : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            respawn.respawnPoint = this.gameObject;
+            respawn.respawnPoint.transform.position = this.gameObject.transform.position;
             //AlphaScript.respawnPointObj = this.gameObject;
             //AlphaScript.respawnPoint = respawn;
 
             RespawnPoint.currentCheckpointName = this.gameObject.name;
+            RespawnPoint.currentCheckpointSceneName = SceneManager.GetActiveScene().name;
             MiscDataToFileScript.saveAllMiscData();
-            MiscDataToFileScript.loadAllMiscData();
 
             //Int32.Parse(string.Concat(this.name.Where(Char.IsDigit)));
 
             if (animator != null)
             {
                 animator.SetBool("Hit", true);
+            }
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        MiscDataToFileScript.loadAllMiscData();
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            if (Input.GetKey(KeyCode.R))
+            {
+                SceneManager.LoadScene(RespawnPoint.currentCheckpointSceneName); //WHY IS THIS BUSTED BROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
             }
         }
     }

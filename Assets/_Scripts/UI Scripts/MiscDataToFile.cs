@@ -19,6 +19,7 @@ public class MiscDataToFile : MonoBehaviour
 
     public GameObject player;
 
+    GameObject createdPlayer;
     Alpha AlphaScript; //reference to the Alpha Script on the Player
     LoadoutsToFile LoadoutsToFileScript; //reference to the LoadoutsToFile on the InventoryManager
     InvDataBetweenRuns InvDataBetweenRunsScript; //reference to the InvDataBetweenRuns on the InventoryManager
@@ -30,38 +31,55 @@ public class MiscDataToFile : MonoBehaviour
         // Set the file path inside persistentDataPath
         filePath = Path.Combine(Application.persistentDataPath, fileName);
 
-        
-
-        if (newGame == false)
+        if (SceneManager.GetActiveScene().name != "Main Menu") //CREATING A PLAYER IN HERE
         {
-            // Debug.Log("loadnormal");
-            loadJustRPStuff();
-
-            if (SceneManager.GetActiveScene().name != "Main Menu")
+            if (newGame == false)
             {
-                if (RespawnPoint.currentCheckpointName != default)
-                {
-                    GameObject rp = GameObject.FindWithTag("Respawn Point");
-                    rp.transform.position = GameObject.Find(RespawnPoint.currentCheckpointName).transform.position;
-                    GameObject createdPlayer = Instantiate(player, rp.gameObject.transform.position, rp.gameObject.transform.rotation);
-                    createdPlayer.SetActive(true);
-                    Debug.Log(createdPlayer);
-                }
-                Debug.Log("checky " + RespawnPoint.currentCheckpointName);
-                Debug.Log("scene " + RespawnPoint.currentCheckpointSceneName);
+                loadJustRPStuff();
 
-                Debug.Log("LoadITAll");
-                loadAllMiscData();
+                GameObject rp = GameObject.FindWithTag("Respawn Point");
+                rp.transform.position = GameObject.Find(RespawnPoint.currentCheckpointName).transform.position;
+                createdPlayer = Instantiate(player, rp.gameObject.transform.position, rp.gameObject.transform.rotation);
+                createdPlayer.SetActive(true);
 
+                AlphaScript = createdPlayer.GetComponent<Alpha>();
             }
             else
             {
-                String[] dataOut = ReadFromFile().Split('\n');
-                int ArrayLength = dataOut.Length;
+                RespawnPoint.currentCheckpointName = "point 1 in D1"; //SET INVIS CHECKY FOR BEGINNING OF GAME HERE PLZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+                RespawnPoint.currentCheckpointSceneName = "DetentionCenter";
 
-                RespawnPoint.currentCheckpointSceneName = dataOut[5];
-                //Debug.Log(dataOut[5]);
-            }    
+                GameObject rp = GameObject.FindWithTag("Respawn Point");
+                rp.transform.position = GameObject.Find(RespawnPoint.currentCheckpointName).transform.position;
+                createdPlayer = Instantiate(player, rp.gameObject.transform.position, rp.gameObject.transform.rotation);
+                createdPlayer.SetActive(true);
+
+                AlphaScript = createdPlayer.GetComponent<Alpha>();
+            }
+
+        Debug.Log("SceneName: " + SceneManager.GetActiveScene().name + " CHECKYNAME: " + RespawnPoint.currentCheckpointName);
+       
+            
+        }
+        else
+        {
+            loadJustRPStuff();
+            //String[] dataOut = ReadFromFile().Split('\n');
+            //int ArrayLength = dataOut.Length;
+
+            //RespawnPoint.currentCheckpointSceneName = dataOut[5];
+            //Debug.Log(dataOut[5]);
+        }
+
+        LoadoutsToFileScript = FindObjectOfType<LoadoutsToFile>(); //initilize LoadoutsToFileScript with the actual script
+        InvDataBetweenRunsScript = FindObjectOfType<InvDataBetweenRuns>(); //initilize LoadoutsToFileScript with the actual script
+    }
+
+    public void Start()
+    {
+        if (newGame == false)
+        {
+
         }
         else
         {
@@ -79,8 +97,6 @@ public class MiscDataToFile : MonoBehaviour
             AlphaScript.maxStims = 3;
             //AlphaScript.stimCount = 3;
             AlphaScript.currentlyEquippedLoadout = 1;
-            RespawnPoint.currentCheckpointName = "default";
-            RespawnPoint.currentCheckpointSceneName = "DetentionCenter";
 
             //updating changing values
             AlphaScript.currentHealth = AlphaScript.maxHealth;
@@ -88,16 +104,17 @@ public class MiscDataToFile : MonoBehaviour
             AlphaScript.stimCount = AlphaScript.maxStims;
 
             //updating the UI
+            AlphaScript.currentHealth = AlphaScript.maxHealth;
             AlphaScript.healthBar.SetMaxHealth(AlphaScript.maxHealth);
+
             AlphaScript.manaBar.SetMaxMana(AlphaScript.maxMana);
+            AlphaScript.currentMana = AlphaScript.maxMana;
+
             AlphaScript.stimCountText.text = AlphaScript.maxStims + "\n\nStims";
 
             newGame = false;
         }
-
-        AlphaScript = Alpha.PlayerRef.GetComponent<Alpha>(); //initilize AlphaScript with the actual script
-        LoadoutsToFileScript = FindObjectOfType<LoadoutsToFile>(); //initilize LoadoutsToFileScript with the actual script
-        InvDataBetweenRunsScript = FindObjectOfType<InvDataBetweenRuns>(); //initilize LoadoutsToFileScript with the actual script
+        loadAllMiscData();
     }
 
     void Update()
@@ -116,8 +133,8 @@ public class MiscDataToFile : MonoBehaviour
             AlphaScript.maxMana = 5;
             AlphaScript.maxStims = 3;
             AlphaScript.currentlyEquippedLoadout = 1;
-            RespawnPoint.currentCheckpointName = "default";
-            //Alpha.currentSceneName = "DetentionCenter";// DETENTION CENTER ONE NAME GOES HERE PLZZZZZZZZZZZZZZZZZZZZZ
+            RespawnPoint.currentCheckpointName = "point 1 in D1";
+            RespawnPoint.currentCheckpointSceneName = "DetentionCenter";
 
             //updating changing values
             AlphaScript.currentHealth = AlphaScript.maxHealth;
@@ -170,7 +187,7 @@ public class MiscDataToFile : MonoBehaviour
 
         //foreach (String s in dataOut)
         //{
-        //    Debug.Log($"[{s}]");
+            //Debug.Log($"[{s}]");
         //}
 
         //player.GetComponent<Alpha>().currentHealth = Int32.Parse(dataOut[1]);
@@ -191,7 +208,9 @@ public class MiscDataToFile : MonoBehaviour
 
         //updating the UI
         AlphaScript.healthBar.SetMaxHealth(AlphaScript.maxHealth);
+
         AlphaScript.manaBar.SetMaxMana(AlphaScript.maxMana);
+
         AlphaScript.stimCountText.text = AlphaScript.maxStims + "\n\nStims";
     }
 

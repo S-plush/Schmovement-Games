@@ -9,8 +9,8 @@ public class HealthBar : MonoBehaviour
     public GameObject tickPrefab; //white dividing lines
     public GameObject tickHolder; //holds all your ticks
 
-    private RectTransform thisTransform;
-    private float fullWidth;
+    public RectTransform thisTransform;
+    private float fullWidth = 477f;
 
     private int maxValue;
     private int currentValue;
@@ -18,7 +18,7 @@ public class HealthBar : MonoBehaviour
    
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         fullWidth = this.GetComponent<RectTransform>().sizeDelta.x;
         thisTransform = this.GetComponent<RectTransform>();
