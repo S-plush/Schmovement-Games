@@ -60,7 +60,7 @@ public class Checkpoints : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.R))
             {
-                SceneManager.LoadScene(RespawnPoint.currentCheckpointSceneName); //WHY IS THIS BUSTED BROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                SceneManager.LoadScene(RespawnPoint.currentCheckpointSceneName);
             }
         }
     }

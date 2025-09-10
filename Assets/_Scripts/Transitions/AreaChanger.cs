@@ -30,15 +30,10 @@ public class AreaChanger : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            RespawnPoint.currentCheckpointName = "point 1"; //////////////////////////////////////////////////////BECOME WAY MORE COMPLEX FOR DIFF TRANSITIONS BASE ON THIS OBJ NAME
             MiscDataToFileScript.saveAllMiscData(); //saves values associated with the player like stims and health
 
             AreaTransition.CurrentTransition = SceneConnection;            
             SceneManager.LoadScene(NextScene);
         }
-
-     
     }
-
-
 }
