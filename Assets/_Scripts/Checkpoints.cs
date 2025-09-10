@@ -14,6 +14,9 @@ public class Checkpoints : MonoBehaviour
     private Alpha AlphaScript;
 
     private Animator animator;
+
+    public bool NoHeal;
+
     private void Start()
     {
         respawn = GameObject.FindGameObjectWithTag("Respawn Point").GetComponent<RespawnPoint>();
