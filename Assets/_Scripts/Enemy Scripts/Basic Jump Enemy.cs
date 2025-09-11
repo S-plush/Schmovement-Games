@@ -31,6 +31,7 @@ public class BasicJumpEnemy : MonoBehaviour {
     void Start() {
         enemy = this.gameObject;
         player = Alpha.PlayerRef;
+        Debug.Log(Alpha.PlayerRef);
 
         enemyRB = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();

@@ -4,16 +4,36 @@ using UnityEngine;
 
 public class HopperController : Hopper
 {
-    private bool isGrounded;
 
-    [SerializeField] private float forwardVelocity;
-    [SerializeField] private float upwardVelocity;
+    [SerializeField] private int forwardVelocity;
+    [SerializeField] private int upwardVelocity;
 
 
-    private void Start() {
+
+    void FixedUpdate() {
+
         facePlayer();
-        isGrounded = true;
+
+        if (Vector3.Distance(thisEnemyObject.transform.position, player.transform.position) > 8f) {
+            inRange = false;
+            attacking = false;
+
+        } else {
+            inRange = true;
+            attacking = true;
+        }
+
+        timer += Time.deltaTime;
+
+        while (timer >= atkFrequency) {
+            jumpAttack(forwardVelocity, upwardVelocity);
+            timer -= atkFrequency;
+        }
+
+        animator.SetBool("Grounded", isGrounded);
+
     }
+
     void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.tag == "Ground") {
             isGrounded = true;
