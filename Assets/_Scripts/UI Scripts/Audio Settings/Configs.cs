@@ -10,21 +10,43 @@ public class Configs : MonoBehaviour
     public Rect optionsRect = new Rect(20, 20, 800, 800);
     AudioConfig audioConfig;
     public Button SaveButton;
+
+    public GameObject bgmObject;
+    public GameObject sfxObject;
     public Slider bgmSlider;
     public Slider sfxSlider;
+
+    //private GameObject player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         LoadAll();
-
+        //player = Alpha.PlayerRef;
+        sfxSlider = GetComponent<Slider>();
+        bgmSlider = GetComponent<Slider>();
         bgmSlider.value = volBG;
         sfxSlider.value = volSFX;
+        //bgmObject = GameObject.Find("Music Volume");
+        //sfxObject = GameObject.Find("Sound Effects Volume");
+        //bgmSlider = bgmObject.GetComponent<Slider>();
+        //sfxSlider = sfxObject.GetComponent<Slider>();
 
         audioConfig = GetComponent<AudioConfig>();
         audioConfig.SetAll();
         Application.targetFrameRate = -1;
     }
+
+    //private void Update()
+    //{
+    //    if (bgmSlider == null && sfxSlider == null)
+    //    {
+    //        bgmObject = GameObject.Find("Music Volume");
+    //        sfxObject = GameObject.Find("Sound Effects Volume");
+    //        bgmSlider = bgmObject.GetComponent<Slider>();
+    //        sfxSlider = sfxObject.GetComponent<Slider>();
+    //    }
+    //}
 
     public void OpenOptions()
     {
