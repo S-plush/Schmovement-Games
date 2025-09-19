@@ -6,58 +6,19 @@ using UnityEngine.UI;
 public class Configs : MonoBehaviour
 {
     public float volBG, volSFX;
-    AudioConfig audioConfig;
-    public Button SaveButton;
-
-    public GameObject bgmObject;
-    public GameObject sfxObject;
+    private AudioConfig audioConfig;
     public Slider bgmSlider;
     public Slider sfxSlider;
-
-    //private GameObject player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         audioConfig = GetComponent<AudioConfig>();
-
-        if(audioConfig == null)
-        {
-            audioConfig = FindObjectOfType<AudioConfig>();
-        }
-
         LoadAll();
-        //player = Alpha.PlayerRef;
-        //sfxSlider = GetComponent<Slider>();
-        //bgmSlider = GetComponent<Slider>();
-        bgmObject = GameObject.Find("Music Volume");
-        sfxObject = GameObject.Find("Sound Effects Volume");
-        bgmSlider = bgmObject.GetComponent<Slider>();
-        sfxSlider = sfxObject.GetComponent<Slider>();
         bgmSlider.value = volBG;
         sfxSlider.value = volSFX;
-
-        if(audioConfig != null)
-        {
-            audioConfig.SetAll();
-        }
-        else
-        {
-            Debug.Log("audioConfig is still null");
-        }
-
+        audioConfig.SetAll();
         Application.targetFrameRate = -1;
-    }
-
-    private void Update()
-    {
-        //if (bgmSlider == null && sfxSlider == null)
-        //{
-        //    bgmObject = GameObject.Find("Music Volume");
-        //    sfxObject = GameObject.Find("Sound Effects Volume");
-        //    bgmSlider = bgmObject.GetComponent<Slider>();
-        //    sfxSlider = sfxObject.GetComponent<Slider>();
-        //}
     }
 
     public void BGMSliderChange(float value)
@@ -81,15 +42,7 @@ public class Configs : MonoBehaviour
     {
         PlayerPrefs.SetFloat("bgmVolume", volBG);
         PlayerPrefs.SetFloat("sfxVolume", volSFX);
-
-        if (audioConfig != null)
-        {
-            audioConfig.SetAll();
-        }
-        else
-        {
-            Debug.Log("audioConfig is still null");
-        }
+        audioConfig.SetAll();
     }
 
     void LoadAll()
