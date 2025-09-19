@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class AudioConfig : MonoBehaviour
 {
-    public void SetDefaults()
-    {
-        SetAudioType("Stereo");
-    }
-
     public void SetAll()
     {
-        SetAudioType(PlayerPrefs.GetString("AudioType"));
-
         AudioSource[] audios = GameObject.FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
 
         foreach (AudioSource source in audios)
@@ -25,28 +18,6 @@ public class AudioConfig : MonoBehaviour
             {
                 source.GetComponent<SFXManager>().sfxVolume = PlayerPrefs.GetFloat("sfxVolume");
             }
-        }
-    }
-
-    public void SetAudioType(string speakerMode)
-    {
-        switch (speakerMode)
-        {
-            case "Mono":
-                AudioSettings.speakerMode = AudioSpeakerMode.Mono;
-                break;
-            case "Stereo":
-                AudioSettings.speakerMode = AudioSpeakerMode.Stereo;
-                break;
-            case "Surround":
-                AudioSettings.speakerMode = AudioSpeakerMode.Surround;
-                break;
-            case "Surround 5.1":
-                AudioSettings.speakerMode = AudioSpeakerMode.Mode5point1;
-                break;
-            case "Surround 7.1":
-                AudioSettings.speakerMode = AudioSpeakerMode.Mode7point1;
-                break;
         }
     }
 }

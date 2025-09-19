@@ -37,7 +37,8 @@ public class Alpha : MonoBehaviour
     public float stepTimer;
 
     private float lastStepTime;
-    private float lastShot; //cooldown for the spell 1
+    private float lastShot1; //cooldown for the spell 1
+    private float lastShot2;
     private float lastDash;
     private bool hasDashed = false;
     private bool canDoubleJump = false;
@@ -437,7 +438,7 @@ public class Alpha : MonoBehaviour
 
         if (activeSpell.activeInHierarchy && !isGamePaused)
         {
-            if (Time.time - lastShot < timer)
+            if (Time.time - lastShot1 < timer)
             {
                 return;
             }
@@ -482,7 +483,7 @@ public class Alpha : MonoBehaviour
                 UseEarthSpell();
             }
 
-            lastShot = Time.time;
+            lastShot1 = Time.time;
         }
     }
 
@@ -490,7 +491,7 @@ public class Alpha : MonoBehaviour
     {
         if (activeSpell.activeInHierarchy && !isGamePaused)
         {
-            if (Time.time - lastShot < timer)
+            if (Time.time - lastShot2 < timer)
             {
                 return;
             }
@@ -535,7 +536,7 @@ public class Alpha : MonoBehaviour
                 UseEarthSpell();
             }
 
-            lastShot = Time.time;
+            lastShot2 = Time.time;
         }
     }
 
