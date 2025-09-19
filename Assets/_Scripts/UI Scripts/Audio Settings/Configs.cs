@@ -20,6 +20,12 @@ public class Configs : MonoBehaviour
     void Start()
     {
         audioConfig = GetComponent<AudioConfig>();
+
+        if(audioConfig == null)
+        {
+            audioConfig = FindObjectOfType<AudioConfig>();
+        }
+
         LoadAll();
         //player = Alpha.PlayerRef;
         //sfxSlider = GetComponent<Slider>();
@@ -31,20 +37,28 @@ public class Configs : MonoBehaviour
         bgmSlider.value = volBG;
         sfxSlider.value = volSFX;
 
-        audioConfig.SetAll();
+        if(audioConfig != null)
+        {
+            audioConfig.SetAll();
+        }
+        else
+        {
+            Debug.Log("audioConfig is still null");
+        }
+
         Application.targetFrameRate = -1;
     }
 
-    //private void Update()
-    //{
-    //    if (bgmSlider == null && sfxSlider == null)
-    //    {
-    //        bgmObject = GameObject.Find("Music Volume");
-    //        sfxObject = GameObject.Find("Sound Effects Volume");
-    //        bgmSlider = bgmObject.GetComponent<Slider>();
-    //        sfxSlider = sfxObject.GetComponent<Slider>();
-    //    }
-    //}
+    private void Update()
+    {
+        //if (bgmSlider == null && sfxSlider == null)
+        //{
+        //    bgmObject = GameObject.Find("Music Volume");
+        //    sfxObject = GameObject.Find("Sound Effects Volume");
+        //    bgmSlider = bgmObject.GetComponent<Slider>();
+        //    sfxSlider = sfxObject.GetComponent<Slider>();
+        //}
+    }
 
     public void BGMSliderChange(float value)
     {
@@ -67,7 +81,15 @@ public class Configs : MonoBehaviour
     {
         PlayerPrefs.SetFloat("bgmVolume", volBG);
         PlayerPrefs.SetFloat("sfxVolume", volSFX);
-        audioConfig.SetAll();
+
+        if (audioConfig != null)
+        {
+            audioConfig.SetAll();
+        }
+        else
+        {
+            Debug.Log("audioConfig is still null");
+        }
     }
 
     void LoadAll()
