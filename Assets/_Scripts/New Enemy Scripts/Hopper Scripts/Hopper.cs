@@ -23,8 +23,11 @@ public class Hopper : Enemy
     }
 
     public void shootAttack() {
-        fireArea.transform.LookAt(player.transform.position + new Vector3(0, 1, 0));
-        Instantiate(bullet, fireArea.transform.position, fireArea.transform.rotation);
+        if (inRange && isGrounded) {
+
+            fireArea.transform.LookAt(player.transform.position + new Vector3(0, 1, 0));
+            Instantiate(bullet, fireArea.transform.position, fireArea.transform.rotation);
+        }
     }
 
     void OnCollisionEnter(Collision collision) {
