@@ -35,7 +35,18 @@ public class DialogueBoxes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (text.text == lines[index])
+            {
+                NextLine();
+            }
+            else
+            {
+                StopAllCoroutines();
+                text.text = lines[index];
+            }
+        }
     }
 
     private void StartDialogue()
@@ -57,7 +68,7 @@ public class DialogueBoxes : MonoBehaviour
                 //{
                 //    SwitchSpeaker();
                 //}
-
+                SwitchSpeaker();
                 counter++;
                 Debug.Log(counter + "after");
             }
@@ -90,10 +101,14 @@ public class DialogueBoxes : MonoBehaviour
         if(characterSpeaking == 1)
         {
             characterSpeaking = 2;
+            talkingCharacter1.color = Color.gray;
+            talkingCharacter2.color = Color.white;
         }
         else if(characterSpeaking == 2)
         {
             characterSpeaking = 1;
+            talkingCharacter2.color = Color.gray;
+            talkingCharacter1.color = Color.white;
         }
     }
 }
