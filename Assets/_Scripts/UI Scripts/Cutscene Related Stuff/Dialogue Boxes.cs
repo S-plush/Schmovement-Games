@@ -12,7 +12,9 @@ public class DialogueBoxes : MonoBehaviour
     public TextMeshProUGUI characterName1;
     public TextMeshProUGUI characterName2;
     public GameObject dialogueBox;
+    public DBHolder DBHolder;
     public string[] lines;
+    public int[] switchFocusAtLine;
     public float textSpeed;
 
     public Image talkingCharacter1;
@@ -20,7 +22,6 @@ public class DialogueBoxes : MonoBehaviour
     //public Sprite character1Art;
     //public Sprite character2Art;
 
-    private int[] switchFocusAtLine;
     private int characterSpeaking = 1;
     private int counter = 0;
     private int index;
@@ -29,6 +30,8 @@ public class DialogueBoxes : MonoBehaviour
     void Start()
     {
         text.text = string.Empty;
+        talkingCharacter2.color = Color.gray;
+        talkingCharacter1.color = Color.white;
         StartDialogue();
     }
 
@@ -92,6 +95,7 @@ public class DialogueBoxes : MonoBehaviour
         }
         else
         {
+            DBHolder.GoToNextDialogue();
             dialogueBox.SetActive(false);
         }
     }
