@@ -27,7 +27,15 @@ public class DialogueBoxes : MonoBehaviour
     private int index;
     
     // Start is called before the first frame update
-    void Start()
+    //void Start()
+    //{
+    //    text.text = string.Empty;
+    //    talkingCharacter2.color = Color.gray;
+    //    talkingCharacter1.color = Color.white;
+    //    StartDialogue();
+    //}
+
+    private void OnEnable()
     {
         text.text = string.Empty;
         talkingCharacter2.color = Color.gray;
@@ -60,8 +68,6 @@ public class DialogueBoxes : MonoBehaviour
 
     IEnumerator TypeLine()
     {
-        Debug.Log(counter + " before");
-
 
         if (counter < switchFocusAtLine.Length)
         {
@@ -73,7 +79,6 @@ public class DialogueBoxes : MonoBehaviour
                 //}
                 SwitchSpeaker();
                 counter++;
-                Debug.Log(counter + "after");
             }
         }
 

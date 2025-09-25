@@ -16,6 +16,7 @@ public class DBHolder : MonoBehaviour
         if (playerInside && Input.GetKeyDown(KeyCode.R) && !inDialogue)
         {
             inDialogue = true;
+            Debug.Log("current dialogue num is: " + currentDialogue);
             characterDialogue[currentDialogue].SetActive(true);
             //Time.timeScale = 0.0f;
         }
@@ -39,12 +40,20 @@ public class DBHolder : MonoBehaviour
 
     public void GoToNextDialogue()
     {
-        if(currentDialogue < characterDialogue.Length)
+        Debug.Log("current dialogue num before is: " + currentDialogue);
+
+        if (currentDialogue == characterDialogue.Length - 1)
+        {
+            currentDialogue = characterDialogue.Length - 1;
+            inDialogue = false;
+        }
+        else if(currentDialogue < characterDialogue.Length)
         {
             currentDialogue++;
             inDialogue = false;
         }
 
+        Debug.Log("current dialogue num after is: " + currentDialogue);
         //Time.timeScale = 1.0f;
     }
 }
