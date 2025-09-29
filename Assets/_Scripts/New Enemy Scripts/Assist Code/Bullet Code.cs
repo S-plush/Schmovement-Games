@@ -28,7 +28,7 @@ public class BulletCode : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag != "Enemy" && other.gameObject.tag != "Enemy Attack")
+        if (other.gameObject.tag != "Enemy" && other.gameObject.tag != "Enemy Attack" && other.gameObject.tag != "Money")
         {
             Destroy(this.gameObject);
         }

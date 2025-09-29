@@ -552,16 +552,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e585ba7ec49239489bbf1afda0c24ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volBG: 0
-  volSFX: 0
-  optionsGUI: 0
-  optionsRect:
-    serializedVersion: 2
-    x: 20
-    y: 20
-    width: 800
-    height: 800
-  SaveButton: {fileID: 0}
+  volBG: 0.5
+  volSFX: 0.5
   bgmSlider: {fileID: 424840452}
   sfxSlider: {fileID: 1381150611}
 --- !u!114 &49671062
@@ -2140,11 +2132,11 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 49671061}
         m_TargetAssemblyTypeName: Configs, Assembly-CSharp
         m_MethodName: BGMSliderChange
         m_Mode: 0
@@ -4440,11 +4432,11 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 49671061}
         m_TargetAssemblyTypeName: Configs, Assembly-CSharp
         m_MethodName: SFXSliderChange
         m_Mode: 0

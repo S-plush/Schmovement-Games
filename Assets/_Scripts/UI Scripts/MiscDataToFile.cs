@@ -36,19 +36,17 @@ public class MiscDataToFile : MonoBehaviour
             if (newGame == false)
             {
                 loadJustRPStuff();
-
-                GameObject rp = GameObject.FindWithTag("Respawn Point");
-                rp.transform.position = GameObject.Find(RespawnPoint.currentCheckpointName).transform.position;
-                createdPlayer = Instantiate(player, rp.gameObject.transform.position, rp.gameObject.transform.rotation);
-                createdPlayer.SetActive(true);
-
-                AlphaScript = createdPlayer.GetComponent<Alpha>();
             }
             else
             {
-                RespawnPoint.currentCheckpointName = "point 1 in D1"; //SET INVIS CHECKY FOR BEGINNING OF GAME HERE PLZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+                RespawnPoint.currentCheckpointName = "START"; //beginning of game hard coded
                 RespawnPoint.currentCheckpointSceneName = "DetentionCenter";
+            }
 
+            Debug.Log("SceneName: " + SceneManager.GetActiveScene().name + " CHECKYNAME: " + RespawnPoint.currentCheckpointName);
+
+            try
+            {
                 GameObject rp = GameObject.FindWithTag("Respawn Point");
                 rp.transform.position = GameObject.Find(RespawnPoint.currentCheckpointName).transform.position;
                 createdPlayer = Instantiate(player, rp.gameObject.transform.position, rp.gameObject.transform.rotation);
@@ -56,10 +54,15 @@ public class MiscDataToFile : MonoBehaviour
 
                 AlphaScript = createdPlayer.GetComponent<Alpha>();
             }
+            catch (System.Exception ex)
+            {
+                Debug.Log("PLAYER SPAWN FAILED (wrong checkpoint): INSTANTIATING AT RESPAWN POINT");
+                GameObject rp = GameObject.FindWithTag("Respawn Point");
+                createdPlayer = Instantiate(player, rp.gameObject.transform.position, rp.gameObject.transform.rotation);
+                createdPlayer.SetActive(true);
 
-        Debug.Log("SceneName: " + SceneManager.GetActiveScene().name + " CHECKYNAME: " + RespawnPoint.currentCheckpointName);
-       
-            
+                AlphaScript = createdPlayer.GetComponent<Alpha>();
+            }
         }
         else
         {
@@ -111,6 +114,7 @@ public class MiscDataToFile : MonoBehaviour
             AlphaScript.currentMana = AlphaScript.maxMana;
 
             AlphaScript.stimCountText.text = AlphaScript.maxStims + "\n\nStims";
+            saveAllMiscData();
 
             newGame = false;
         }

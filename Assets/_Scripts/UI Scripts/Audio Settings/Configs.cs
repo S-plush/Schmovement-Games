@@ -6,29 +6,19 @@ using UnityEngine.UI;
 public class Configs : MonoBehaviour
 {
     public float volBG, volSFX;
-    public bool optionsGUI;
-    public Rect optionsRect = new Rect(20, 20, 800, 800);
-    AudioConfig audioConfig;
-    public Button SaveButton;
+    private AudioConfig audioConfig;
     public Slider bgmSlider;
     public Slider sfxSlider;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        audioConfig = GetComponent<AudioConfig>();
         LoadAll();
-
         bgmSlider.value = volBG;
         sfxSlider.value = volSFX;
-
-        audioConfig = GetComponent<AudioConfig>();
         audioConfig.SetAll();
         Application.targetFrameRate = -1;
-    }
-
-    public void OpenOptions()
-    {
-        optionsGUI = !optionsGUI;
     }
 
     public void BGMSliderChange(float value)
@@ -37,7 +27,7 @@ public class Configs : MonoBehaviour
         PlayerPrefs.SetFloat("bgmVolume", volBG);
         //Debug.Log("slider changed new volBG: " + volBG);
         SetAllAudio();
-        //SaveAll();
+        SaveAll();
     }
 
     public void SFXSliderChange(float value)
@@ -45,7 +35,7 @@ public class Configs : MonoBehaviour
         volSFX = value;
         PlayerPrefs.SetFloat("sfxVolume", volSFX);
         SetAllAudio();
-        //SaveAll();
+        SaveAll();
     }
 
     public void SaveAll()

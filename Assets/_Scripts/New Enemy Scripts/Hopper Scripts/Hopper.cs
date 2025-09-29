@@ -5,24 +5,35 @@ using UnityEngine;
 
 public class Hopper : Enemy 
 {
+    protected bool isGrounded = true;
+    protected bool inRange;
 
     public void jumpAttack(int forwardVel, int upwardVel) {
-        if (isFacingRight) {
-            //Debug.Log("jumped");
+        if (inRange && isGrounded) { 
+            if (isFacingRight) {
+                thisRigidBody.velocity = new Vector3(forwardVel, upwardVel, 0);
+                isGrounded = false;
 
-            thisRigidBody.velocity = new Vector3(forwardVel, upwardVel, 0);
+            } else if (isFacingLeft) {
+                thisRigidBody.velocity = new Vector3(-forwardVel, upwardVel, 0);
+                isGrounded = false;
 
-        } else if (isFacingRight) {
-            //Debug.Log("jumped");
-
-            thisRigidBody.velocity = new Vector3(-forwardVel, upwardVel, 0);
-
+            }
         }
     }
 
     public void shootAttack() {
+        if (inRange && isGrounded) {
 
+            fireArea.transform.LookAt(player.transform.position + new Vector3(0, 1, 0));
+            Instantiate(bullet, fireArea.transform.position, fireArea.transform.rotation);
+        }
     }
 
+    void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.tag == "Ground") {
+            isGrounded = true;
+        }
+    }
 
 }

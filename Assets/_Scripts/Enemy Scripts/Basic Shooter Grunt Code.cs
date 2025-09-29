@@ -73,7 +73,7 @@ public class BasicShooterGruntCode : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate() {
 
-        if (health == 0) {
+        if (health <= 0) {
             Destroy(this.gameObject);
         }
 
