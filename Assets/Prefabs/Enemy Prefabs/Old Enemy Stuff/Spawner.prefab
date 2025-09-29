@@ -466,12 +466,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyList:
-  - {fileID: 1904898766625267560, guid: 6a6fd6f58d7779748afc5c0c294c6b06, type: 3}
-  - {fileID: 1889942624538425232, guid: 14e934bcee2a6754e93add410f9c74af, type: 3}
-  - {fileID: 7132028103766440444, guid: 207a9b9fe75388746a460c2186854666, type: 3}
+  - {fileID: 5732242338999760774, guid: 4a80801c382d3294b86245e4c641d4a8, type: 3}
+  - {fileID: 2628371635720521928, guid: 0898084d12c968c46a575df438da00e6, type: 3}
+  - {fileID: 4034746038617028042, guid: 0fcc5651271daad4ba35da323461641f, type: 3}
   - {fileID: 4115182178647813661, guid: 5e7a947399986704981bf4f16ee14d2d, type: 3}
-  waveList: 0100000079000000
+  waveList: 0300000079000000
   rightMarker: {fileID: 6360481776476030227}
   leftMarker: {fileID: 2491407050297596795}
   cleared: 0
-  activated: 0
+  activated: 1
+  door: {fileID: 0}
