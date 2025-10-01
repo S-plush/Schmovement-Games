@@ -43,7 +43,7 @@ public class MiscDataToFile : MonoBehaviour
                 RespawnPoint.currentCheckpointSceneName = "DetentionCenter";
             }
 
-            Debug.Log("SceneName: " + SceneManager.GetActiveScene().name + " CHECKYNAME: " + RespawnPoint.currentCheckpointName);
+            Debug.Log("(From Misc Script) SceneName: " + SceneManager.GetActiveScene().name + " CHECKYNAME: " + RespawnPoint.currentCheckpointName);
 
             try
             {
@@ -80,6 +80,12 @@ public class MiscDataToFile : MonoBehaviour
 
     public void Start()
     {
+        if (!File.Exists(filePath))
+        {
+            Debug.Log("File not found! Creating new file.");
+            saveAllMiscData(); // creates the file
+        }
+
         if (newGame == false)
         {
 

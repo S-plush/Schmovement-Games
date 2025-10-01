@@ -51,12 +51,15 @@ public class Checkpoints : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        MiscDataToFileScript.loadAllMiscData();
+        if(!NoHeal) //if not a noHeal checkpoint (transitions)
+        {
+            MiscDataToFileScript.loadAllMiscData();
+        }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other) //can reload scene by interacting with checkpoints
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && !NoHeal) //and if not a noHeal checkpoint (transitions)
         {
             if (Input.GetKey(KeyCode.R))
             {
