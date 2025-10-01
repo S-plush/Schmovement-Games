@@ -45,7 +45,7 @@ public class Alpha : MonoBehaviour
     private float lastDirectionFaced;
 
     private CharacterController alpha;
-    private bool isGamePaused = false;
+    public static bool isGamePaused = false;
 
     [Header("Attack/Spells Prefabs")] 
     public ExplosionSpell explosionPrefab;
@@ -305,19 +305,19 @@ public class Alpha : MonoBehaviour
         }
 
         //this is to open and close the settings menu
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && VentScript.playerInside == false) //updated to prevent menu storage bug with vent menu
         {
 
             if (Settings.activeSelf)
             {
-                //HUD.SetActive(false);
+                HUD.SetActive(true);
                 Settings.SetActive(false);
                 Time.timeScale = 1.0f;
                 isGamePaused = false;
             }
             else
             {
-                //HUD.SetActive(true);
+                HUD.SetActive(false);
                 Settings.SetActive(true);
                 Time.timeScale = 0.0f;
                 isGamePaused = true;
