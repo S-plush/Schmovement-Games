@@ -23,6 +23,7 @@ public class VentScript : MonoBehaviour
     public GameObject CampButton;
     public GameObject Detention1Button;
     public GameObject Storage1Button;
+    public GameObject Detention2Button;
 
     //ADD YOUR NEW BUTTON AS A VARIABLE ABOVE THIS LINE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -66,6 +67,10 @@ public class VentScript : MonoBehaviour
                 {
                     VentsToFileScript.HasElevatorStorageVent = true;
                 }
+                if (VentsToFileScript.HasDetention2Vent == false && this.gameObject.name == "D2 Vent Interactable")
+                {
+                    VentsToFileScript.HasDetention2Vent = true;
+                }
 
                 //ADD NEW VENTS AS AN IF STATEMENT ABOVE THIS LINE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -83,6 +88,10 @@ public class VentScript : MonoBehaviour
                 if (VentsToFileScript.HasElevatorStorageVent == true)
                 {
                     Storage1Button.SetActive(VentsToFileScript.HasElevatorStorageVent);
+                }
+                if (VentsToFileScript.HasDetention2Vent == true)
+                {
+                    Detention2Button.SetActive(VentsToFileScript.HasDetention2Vent);
                 }
 
                 //ADD NEW VENTS AS AN IF STATEMENT ABOVE THIS LINE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -131,10 +140,15 @@ public class VentScript : MonoBehaviour
             RespawnPoint.currentCheckpointName = "Storage1 Vent Transition";
             RespawnPoint.currentCheckpointSceneName = "StorageSector1";
         }
+        else if (clickedButton.name == "Detention2Button")
+        {
+            RespawnPoint.currentCheckpointName = "D2 Vent Transition";
+            RespawnPoint.currentCheckpointSceneName = "DetentionCenter2";
+        }
 
         //ADD NEW VENTS AS AN ELSE IF STATEMENT ABOVE THIS LINE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-        
+
         MiscDataToFileScript.saveAllMiscData();
         SceneManager.LoadScene(RespawnPoint.currentCheckpointSceneName);
     }

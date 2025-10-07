@@ -107,6 +107,8 @@ public class MiscDataToFile : MonoBehaviour
             //AlphaScript.stimCount = 3;
             AlphaScript.currentlyEquippedLoadout = 1;
 
+            MoneyRotateCode.MoneyCount = 0;
+
             //updating changing values
             AlphaScript.currentHealth = AlphaScript.maxHealth;
             AlphaScript.currentMana = AlphaScript.maxMana;
@@ -125,41 +127,6 @@ public class MiscDataToFile : MonoBehaviour
             newGame = false;
         }
         loadAllMiscData();
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.M)) //simulates loading the data (on death or scene transition I presume)
-        {
-            loadAllMiscData();
-        }
-
-        if (Input.GetKeyDown(KeyCode.N)) //simulates new game
-        {
-            //assign default stats
-            //stims 3, health 5, mana 5, current loadout 1
-
-            AlphaScript.maxHealth = 5;
-            AlphaScript.maxMana = 5;
-            AlphaScript.maxStims = 3;
-            AlphaScript.currentlyEquippedLoadout = 1;
-            RespawnPoint.currentCheckpointName = "point 1 in D1";
-            RespawnPoint.currentCheckpointSceneName = "DetentionCenter";
-
-            //updating changing values
-            AlphaScript.currentHealth = AlphaScript.maxHealth;
-            AlphaScript.currentMana = AlphaScript.maxMana;
-            AlphaScript.stimCount = AlphaScript.maxStims;
-
-            //updating the UI
-            AlphaScript.healthBar.SetMaxHealth(AlphaScript.maxHealth);
-            AlphaScript.manaBar.SetMaxMana(AlphaScript.maxMana);
-            AlphaScript.stimCountText.text = AlphaScript.maxStims + "\n\nStims";
-
-            newGame = false;
-
-            saveAllMiscData();
-        }
     }
 
     public void saveAllMiscData()
@@ -183,6 +150,9 @@ public class MiscDataToFile : MonoBehaviour
         numberOfEntries++;
 
         dataIn += RespawnPoint.currentCheckpointSceneName + "\n"; //5
+        numberOfEntries++;
+
+        dataIn += MoneyRotateCode.MoneyCount + "\n"; //6
         numberOfEntries++;
 
         //////////////////////////////////////////////////////////////////////ADD NEW VALUES TO THE SAVE FUNCTION HERE (only add at the bottom though, order matters)
@@ -210,6 +180,7 @@ public class MiscDataToFile : MonoBehaviour
         AlphaScript.currentlyEquippedLoadout = Int32.Parse(dataOut[3]);
         RespawnPoint.currentCheckpointName = dataOut[4];
         RespawnPoint.currentCheckpointSceneName = dataOut[5];
+        MoneyRotateCode.MoneyCount = Int32.Parse(dataOut[6]);
 
         //updating changing values
         AlphaScript.currentHealth = AlphaScript.maxHealth;
