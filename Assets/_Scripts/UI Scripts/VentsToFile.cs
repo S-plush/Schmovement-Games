@@ -18,6 +18,7 @@ public class VentsToFile : MonoBehaviour
     [HideInInspector] public bool HasCampVent = true;
     [HideInInspector] public bool HasDetention1Vent = false;
     [HideInInspector] public bool HasElevatorStorageVent = false;
+    [HideInInspector] public bool HasDetention2Vent = false;
 
     //ADD NEW VENTS ABOVE THIS LINE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -59,6 +60,7 @@ public class VentsToFile : MonoBehaviour
 
         dataIn += HasElevatorStorageVent.ToString() + "\n"; //2
 
+        dataIn += HasDetention2Vent.ToString() + "\n"; //3
         //////////////////////////////////////////////////////////////////////ADD NEW VALUES TO THE SAVE FUNCTION ABOVE THIS LINE (only add at the bottom of the list though, order matters)
 
 
@@ -76,6 +78,8 @@ public class VentsToFile : MonoBehaviour
         HasDetention1Vent = bool.Parse(dataOut[1]);
 
         HasElevatorStorageVent = bool.Parse(dataOut[2]);
+
+        HasDetention2Vent = bool.Parse(dataOut[3]);
 
         ////////////////////////////////////////////////////////////////////ADD NEW VALUES TO THE SAVE FUNCTION ABOVE THIS LINE (only add at the bottom of the list though, order matters)
     }
