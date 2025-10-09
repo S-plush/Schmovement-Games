@@ -8,7 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class VentScript : MonoBehaviour
 {
-    //[SerializeField] private Animator ventActivated; //UPDATE THIS ANIMATOR VARIABLE CUZ IT AINT DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    private Animator ventAnimator;
+
     public static bool playerInside = false;
 
     public GameObject ventSelectUI;
@@ -22,12 +23,15 @@ public class VentScript : MonoBehaviour
     public GameObject CampButton;
     public GameObject Detention1Button;
     public GameObject Storage1Button;
+    public GameObject Detention2Button;
 
     //ADD YOUR NEW BUTTON AS A VARIABLE ABOVE THIS LINE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
     public void Start()
     {
+        ventAnimator = GetComponentInChildren<Animator>();
+        
         playerInside = false;
 
         HUD = Alpha.FindInScene("Main HUD Group");
@@ -41,8 +45,6 @@ public class VentScript : MonoBehaviour
     {
         if (playerInside && Input.GetKeyDown(KeyCode.R) || (playerInside && ventSelectUI.activeSelf && Input.GetKeyDown(KeyCode.Escape))) //checks if player is interacting with the vent or pressing ESC to leave the vent menu
         {
-            //ventActivated.Play("Activating vent", -1, 0f); //UPDATE THIS IF ANIMATION PEOPLES ARE READING
-
             if (ventSelectUI.activeSelf)
             {
                 HUD.SetActive(true);
@@ -65,6 +67,10 @@ public class VentScript : MonoBehaviour
                 {
                     VentsToFileScript.HasElevatorStorageVent = true;
                 }
+                if (VentsToFileScript.HasDetention2Vent == false && this.gameObject.name == "D2 Vent Interactable")
+                {
+                    VentsToFileScript.HasDetention2Vent = true;
+                }
 
                 //ADD NEW VENTS AS AN IF STATEMENT ABOVE THIS LINE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -83,10 +89,16 @@ public class VentScript : MonoBehaviour
                 {
                     Storage1Button.SetActive(VentsToFileScript.HasElevatorStorageVent);
                 }
+                if (VentsToFileScript.HasDetention2Vent == true)
+                {
+                    Detention2Button.SetActive(VentsToFileScript.HasDetention2Vent);
+                }
 
                 //ADD NEW VENTS AS AN IF STATEMENT ABOVE THIS LINE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             }
         }
+            
+        ventAnimator.SetBool("open", playerInside);
     }
 
     public void OnTriggerEnter(Collider other)
@@ -128,10 +140,15 @@ public class VentScript : MonoBehaviour
             RespawnPoint.currentCheckpointName = "Storage1 Vent Transition";
             RespawnPoint.currentCheckpointSceneName = "StorageSector1";
         }
+        else if (clickedButton.name == "Detention2Button")
+        {
+            RespawnPoint.currentCheckpointName = "D2 Vent Transition";
+            RespawnPoint.currentCheckpointSceneName = "DetentionCenter2";
+        }
 
         //ADD NEW VENTS AS AN ELSE IF STATEMENT ABOVE THIS LINE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-        
+
         MiscDataToFileScript.saveAllMiscData();
         SceneManager.LoadScene(RespawnPoint.currentCheckpointSceneName);
     }

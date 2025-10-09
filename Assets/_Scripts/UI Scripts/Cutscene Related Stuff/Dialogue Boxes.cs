@@ -12,7 +12,9 @@ public class DialogueBoxes : MonoBehaviour
     public TextMeshProUGUI characterName1;
     public TextMeshProUGUI characterName2;
     public GameObject dialogueBox;
+    public DBHolder DBHolder;
     public string[] lines;
+    public int[] switchFocusAtLine;
     public float textSpeed;
 
     public Image talkingCharacter1;
@@ -20,22 +22,42 @@ public class DialogueBoxes : MonoBehaviour
     //public Sprite character1Art;
     //public Sprite character2Art;
 
-    private int[] switchFocusAtLine;
     private int characterSpeaking = 1;
     private int counter = 0;
     private int index;
     
     // Start is called before the first frame update
-    void Start()
+    //void Start()
+    //{
+    //    text.text = string.Empty;
+    //    talkingCharacter2.color = Color.gray;
+    //    talkingCharacter1.color = Color.white;
+    //    StartDialogue();
+    //}
+
+    private void OnEnable()
     {
         text.text = string.Empty;
+        talkingCharacter2.color = Color.gray;
+        talkingCharacter1.color = Color.white;
         StartDialogue();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (text.text == lines[index])
+            {
+                NextLine();
+            }
+            else
+            {
+                StopAllCoroutines();
+                text.text = lines[index];
+            }
+        }
     }
 
     private void StartDialogue()
@@ -46,8 +68,6 @@ public class DialogueBoxes : MonoBehaviour
 
     IEnumerator TypeLine()
     {
-        Debug.Log(counter + " before");
-
 
         if (counter < switchFocusAtLine.Length)
         {
@@ -57,9 +77,8 @@ public class DialogueBoxes : MonoBehaviour
                 //{
                 //    SwitchSpeaker();
                 //}
-
+                SwitchSpeaker();
                 counter++;
-                Debug.Log(counter + "after");
             }
         }
 
@@ -81,6 +100,7 @@ public class DialogueBoxes : MonoBehaviour
         }
         else
         {
+            DBHolder.GoToNextDialogue();
             dialogueBox.SetActive(false);
         }
     }
@@ -90,10 +110,14 @@ public class DialogueBoxes : MonoBehaviour
         if(characterSpeaking == 1)
         {
             characterSpeaking = 2;
+            talkingCharacter1.color = Color.gray;
+            talkingCharacter2.color = Color.white;
         }
         else if(characterSpeaking == 2)
         {
             characterSpeaking = 1;
+            talkingCharacter2.color = Color.gray;
+            talkingCharacter1.color = Color.white;
         }
     }
 }

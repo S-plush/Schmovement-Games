@@ -25,15 +25,20 @@ public class WindSpell : MonoBehaviour
         }
         else if (other.gameObject.tag == "Pushable Object")
         {
+            Rigidbody rb = other.attachedRigidbody;
+            Vector3 pushDir = new Vector3();
+
             //add code that'll push these "pushable objects" in the direction of where the spell is casted by a few units
             if(aimingDirection.x > 0)
             {
-                other.gameObject.transform.Translate(new Vector3(spell.knockbackValue, 0, 0));
+                //other.gameObject.transform.Translate(new Vector3(spell.knockbackValue, 0, 0));
+                rb.AddForce(aimingDirection * spell.knockbackValue);
                 Destroy(gameObject, .2f);
             }
             else if(aimingDirection.x < 0)
             {
-                other.gameObject.transform.Translate(new Vector3(-spell.knockbackValue, 0, 0));
+                //other.gameObject.transform.Translate(new Vector3(-spell.knockbackValue, 0, 0));
+                rb.AddForce(-aimingDirection * -spell.knockbackValue);
                 Destroy(gameObject, .2f);
             }
         }
