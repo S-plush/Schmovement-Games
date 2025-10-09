@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Doors : MonoBehaviour
 {
-    [SerializeField] private bool notLockedDoor;
+    [SerializeField] public bool notLockedDoor;
     public GameObject door;
     [SerializeField] private GameObject leverObject;
     [SerializeField] private SwitchInteraction lever;
