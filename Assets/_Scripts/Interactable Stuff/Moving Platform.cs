@@ -17,6 +17,8 @@ public class MovingPlatform : MonoBehaviour
 
     private Vector3 platformVelocity;
 
+    public bool fileActivation = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +29,7 @@ public class MovingPlatform : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (lever.SwitchActivated())
+        if (lever.SwitchActivated() || fileActivation)
         {
             elapsedTime += Time.deltaTime;
             float elapsedPercentage = elapsedTime / pathTime;
