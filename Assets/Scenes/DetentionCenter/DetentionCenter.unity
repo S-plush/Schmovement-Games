@@ -34005,7 +34005,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5903873780532209338, guid: 48a2f4faf4ca8354e8579f22306f74c7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8235288048943054544, guid: 48a2f4faf4ca8354e8579f22306f74c7, type: 3}
       propertyPath: m_SizeDelta.x
@@ -34028,10 +34028,7 @@ PrefabInstance:
     - {fileID: 520371937483496004, guid: 48a2f4faf4ca8354e8579f22306f74c7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5903873780532209338, guid: 48a2f4faf4ca8354e8579f22306f74c7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48a2f4faf4ca8354e8579f22306f74c7, type: 3}
 --- !u!224 &426474902 stripped
 RectTransform:
@@ -173401,6 +173398,7 @@ MonoBehaviour:
   switchObject: {fileID: 561147009}
   lever: {fileID: 561147008}
   speed: 0.8
+  fileActivation: 0
 --- !u!64 &2104248675
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -177035,6 +177033,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2048541786}
     m_Modifications:
+    - target: {fileID: 1906506226397075963, guid: 78f3647f21e0b1343b159bcb10c67292, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f6716d4e706ebad4fbf21141d33c1e23, type: 3}
     - target: {fileID: 3750689663462407523, guid: 78f3647f21e0b1343b159bcb10c67292, type: 3}
       propertyPath: interactionUI
       value: 

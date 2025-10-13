@@ -19,21 +19,10 @@ public class DialogueBoxes : MonoBehaviour
 
     public Image talkingCharacter1;
     public Image talkingCharacter2;
-    //public Sprite character1Art;
-    //public Sprite character2Art;
 
     private int characterSpeaking = 1;
     private int counter = 0;
     private int index;
-    
-    // Start is called before the first frame update
-    //void Start()
-    //{
-    //    text.text = string.Empty;
-    //    talkingCharacter2.color = Color.gray;
-    //    talkingCharacter1.color = Color.white;
-    //    StartDialogue();
-    //}
 
     private void OnEnable()
     {

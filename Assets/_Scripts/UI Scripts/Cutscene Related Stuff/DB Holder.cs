@@ -7,9 +7,15 @@ public class DBHolder : MonoBehaviour
     private bool playerInside = false;
     private bool inDialogue = false;
     private int currentDialogue = 0;
+    private Alpha alpha;
 
     public GameObject[] characterDialogue;
     public GameObject interactionUI;
+
+    private void Start()
+    {
+        alpha = FindObjectOfType<Alpha>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -18,8 +24,8 @@ public class DBHolder : MonoBehaviour
         {
             inDialogue = true;
             Debug.Log("current dialogue num is: " + currentDialogue);
+            alpha.PauseGame();
             characterDialogue[currentDialogue].SetActive(true);
-            //Time.timeScale = 0.0f;
         }
     }
 
@@ -49,14 +55,25 @@ public class DBHolder : MonoBehaviour
         {
             currentDialogue = characterDialogue.Length - 1;
             inDialogue = false;
+            alpha.PauseGame();
         }
         else if(currentDialogue < characterDialogue.Length)
         {
             currentDialogue++;
             inDialogue = false;
+            alpha.PauseGame();
         }
 
         Debug.Log("current dialogue num after is: " + currentDialogue);
-        //Time.timeScale = 1.0f;
+    }
+
+    public bool InDialogueCheck()
+    {
+        if (inDialogue)
+        {
+            return true;
+        }
+        
+        return false;
     }
 }
