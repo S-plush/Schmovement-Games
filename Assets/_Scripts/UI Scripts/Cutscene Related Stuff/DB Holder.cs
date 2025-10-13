@@ -9,6 +9,7 @@ public class DBHolder : MonoBehaviour
     private int currentDialogue = 0;
 
     public GameObject[] characterDialogue;
+    public GameObject interactionUI;
 
     // Update is called once per frame
     void Update()
@@ -27,6 +28,7 @@ public class DBHolder : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             playerInside = true;
+            interactionUI.SetActive(true);
         }
     }
 
@@ -35,6 +37,7 @@ public class DBHolder : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             playerInside = false;
+            interactionUI.SetActive(false);
         }
     }
 
