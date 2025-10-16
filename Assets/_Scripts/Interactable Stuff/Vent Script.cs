@@ -24,6 +24,7 @@ public class VentScript : MonoBehaviour
     public GameObject Detention1Button;
     public GameObject Storage1Button;
     public GameObject Detention2Button;
+    public GameObject interactionUI;
 
     //ADD YOUR NEW BUTTON AS A VARIABLE ABOVE THIS LINE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -108,6 +109,7 @@ public class VentScript : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             playerInside = true;
+            interactionUI.SetActive(true);
         }
     }
 
@@ -116,6 +118,7 @@ public class VentScript : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             playerInside = false;
+            interactionUI.SetActive(false);
         }
     }
 

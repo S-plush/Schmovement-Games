@@ -70,6 +70,8 @@ public class Alpha : MonoBehaviour
     public GameObject deathScreen;
 
     [Header("UI Stuff")]
+    private DBHolder dialogueCutscene;
+
     public GameObject Inventory;
 
     public GameObject HUD;
@@ -148,6 +150,7 @@ public class Alpha : MonoBehaviour
 
         StartCoroutine(InitialLoadoutCall(currentlyEquippedLoadout));
         sfxManager = FindAnyObjectByType<SFXManager>();
+        dialogueCutscene = FindAnyObjectByType<DBHolder>();
     }
 
     public void OnTriggerEnter(Collider other)
@@ -183,19 +186,19 @@ public class Alpha : MonoBehaviour
                 }
             }
         }
-        else if (Input.GetKeyDown(KeyCode.E))
+        else if (Input.GetKeyDown(KeyCode.E) && !isGamePaused)
         {
             MeleeAttack();
         }
 
-        if (Input.GetKeyDown(KeyCode.I)) //open inventory keybind (also saves spells that are in loadout slots when inventory is opened/closed)
+        if (Input.GetKeyDown(KeyCode.I) && !dialogueCutscene.InDialogueCheck()) //open inventory keybind (also saves spells that are in loadout slots when inventory is opened/closed)
         {
             OpenMenu();
 
             LoadoutsToFileScript.saveLoadoutsToFile();
         }
 
-        if (Input.GetKeyDown(KeyCode.Q)) //use of stim keybind
+        if (Input.GetKeyDown(KeyCode.Q) && !isGamePaused) //use of stim keybind
         {
             UseStim();
         }
@@ -252,7 +255,7 @@ public class Alpha : MonoBehaviour
             hasDashed = false;
             canDoubleJump = true;
 
-            if (Input.GetButtonDown("Jump") && !isDead)
+            if (Input.GetButtonDown("Jump") && !isDead && !isGamePaused)
             {
                 ySpeed = jumpSpd;
                 //canDoubleJump = true;
@@ -272,6 +275,7 @@ public class Alpha : MonoBehaviour
         velocity = OnSlope(velocity);
         velocity.y += ySpeed;
 
+
         //when hitting the ceiling, this will stop the jumping push
         if ((alpha.collisionFlags & CollisionFlags.Above) != 0)
         {
@@ -283,7 +287,7 @@ public class Alpha : MonoBehaviour
             }
         }
 
-        if (!isDead)
+        if (!isDead && !isGamePaused)
         {
             alpha.Move(velocity * Time.deltaTime);
         }
@@ -291,7 +295,7 @@ public class Alpha : MonoBehaviour
         #endregion
 
         //this is to use dash
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !hasDashed && !isDead)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !hasDashed && !isDead && !isGamePaused)
         {
             if (Time.time - lastDash < dashTimer)
             {
@@ -332,9 +336,9 @@ public class Alpha : MonoBehaviour
         if (!isDead && !isGamePaused)
         {
             animator.SetBool("isMirrored", (Input.mousePosition.x / Screen.width) - 0.5f <= 0);
+            animator.SetFloat("VelocityX", velocity.x);
         }
 
-        animator.SetFloat("VelocityX", velocity.x);
         if (!isGamePaused)
         {
             animator.SetFloat("AimH", (Input.mousePosition.x / Screen.width) - 0.5f);
@@ -588,6 +592,18 @@ public class Alpha : MonoBehaviour
                     // play empty (out of stims) sound and flash red
                 }
             }
+        }
+    }
+
+    public void PauseGame()
+    {
+        if (isGamePaused)
+        {
+            isGamePaused = false;
+        }
+        else if (!isGamePaused)
+        {
+            isGamePaused = true;
         }
     }
 
