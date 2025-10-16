@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: aa4350b9ccd0c4449a85a10fc05ec362, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.979
+      value: 170
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aa4350b9ccd0c4449a85a10fc05ec362, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.562
+      value: 55.77
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aa4350b9ccd0c4449a85a10fc05ec362, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.626
+      value: 11.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aa4350b9ccd0c4449a85a10fc05ec362, type: 3}
       propertyPath: m_LocalRotation.w
@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: aa4350b9ccd0c4449a85a10fc05ec362, type: 3}
       propertyPath: m_Name
-      value: Platform Mover Switch
+      value: Switch
       objectReference: {fileID: 0}
     - target: {fileID: 5898855749840620490, guid: aa4350b9ccd0c4449a85a10fc05ec362, type: 3}
       propertyPath: m_LocalPosition.y
@@ -98,8 +98,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.69, y: 1, z: 0.72}
-  m_Center: {x: -0.81, y: 0.51, z: 0}
+  m_Size: {x: 3.27, y: 2.52, z: 1.09}
+  m_Center: {x: -1.63, y: 0.51, z: 0}
 --- !u!95 &6083227717200935660
 Animator:
   serializedVersion: 5
@@ -133,5 +133,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66e7ec78306c68041b8e61bae1511f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActivated: 0
-  animator: {fileID: 6083227717200935660}
+  switchActivated: {fileID: 6083227717200935660}
+  interactionUI: {fileID: 0}
