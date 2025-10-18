@@ -6,20 +6,20 @@ public class LedgeChecker : MonoBehaviour
 {
     public bool groundDetected;
 
-    private void OnTriggerEnter(Collider other) {
-        groundDetected = true;
+    public LayerMask Default;
 
-        //Debug.Log("Ground Detected");
+    private void FixedUpdate() {
+
+        if(Physics.Raycast(this.gameObject.transform.position, Vector3.down, 1f, Default)) {
+            groundDetected = true;
+        }
+        else {
+            groundDetected = false;
+        }
     }
 
-
-    private void OnTriggerExit(Collider other) {
-        groundDetected = false;
-        //Debug.Log("Ground Not Detected");
-    }
 
     public bool isGroundDetected() {
         return groundDetected;
     }
-
 }

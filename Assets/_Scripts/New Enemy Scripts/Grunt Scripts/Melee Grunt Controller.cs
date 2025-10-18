@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseGruntController : Grunt
-{    
-
+public class MeleeGruntController : Grunt
+{
     void FixedUpdate() {
 
         timer += Time.deltaTime;
 
         //Checks if Grunt is in range to fire
-        if (Vector3.Distance(thisEnemyObject.transform.position, player.transform.position) > 8f) {
+        if (Vector3.Distance(thisEnemyObject.transform.position, player.transform.position) > 2.5f) {
             inFireRange = false;
         } else {
             inFireRange = true;
@@ -25,7 +24,6 @@ public class BaseGruntController : Grunt
 
 
         facePlayer();
-
         if (ledgeChecker.isGroundDetected()) {
 
             if (inFollowRange && inFireRange == false) {
@@ -45,10 +43,8 @@ public class BaseGruntController : Grunt
         while (timer >= atkFrequency) {
 
             facePlayer();
-            shootAttack();
+            meleeAttack();
             timer = 0;
         }
     }
-
-
 }
