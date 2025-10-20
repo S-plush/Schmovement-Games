@@ -122,10 +122,13 @@ public class MiscDataToFile : MonoBehaviour
             AlphaScript.currentMana = AlphaScript.maxMana;
 
             AlphaScript.stimCountText.text = AlphaScript.maxStims + "\n\nStims";
+
             saveAllMiscData();
+
 
             newGame = false;
         }
+        waitForAlphaInitialize();
         loadAllMiscData();
     }
 
@@ -167,7 +170,7 @@ public class MiscDataToFile : MonoBehaviour
 
         //foreach (String s in dataOut)
         //{
-            //Debug.Log($"[{s}]");
+        //Debug.Log($"[{s}]");
         //}
 
         //player.GetComponent<Alpha>().currentHealth = Int32.Parse(dataOut[1]);
@@ -195,7 +198,7 @@ public class MiscDataToFile : MonoBehaviour
         AlphaScript.stimCountText.text = AlphaScript.maxStims + "\n\nStims";
     }
 
-    public void loadJustRPStuff ()
+    public void loadJustRPStuff()
     {
         String[] dataOut = ReadFromFile().Split('\n');
         int ArrayLength = dataOut.Length;
@@ -228,5 +231,11 @@ public class MiscDataToFile : MonoBehaviour
     void OnApplicationQuit()
     {
         saveAllMiscData();
+    }
+
+    IEnumerator waitForAlphaInitialize()
+    {
+        //deathScreen.SetActive(true);
+        yield return new WaitForSeconds(.1f);
     }
 }

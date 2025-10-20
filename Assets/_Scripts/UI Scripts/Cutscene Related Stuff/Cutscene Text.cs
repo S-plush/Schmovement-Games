@@ -86,6 +86,7 @@ public class CutsceneText : MonoBehaviour
         }
         else
         {
+            MiscDataToFile.newGame = true;
             SceneManager.LoadScene("DetentionCenter");
         }
     }
