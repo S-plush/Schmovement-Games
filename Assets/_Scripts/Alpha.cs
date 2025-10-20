@@ -191,11 +191,18 @@ public class Alpha : MonoBehaviour
             MeleeAttack();
         }
 
-        if (Input.GetKeyDown(KeyCode.I) && !dialogueCutscene.InDialogueCheck()) //open inventory keybind (also saves spells that are in loadout slots when inventory is opened/closed)
+        if (Input.GetKeyDown(KeyCode.I)) //open inventory keybind (also saves spells that are in loadout slots when inventory is opened/closed)
         {
-            OpenMenu();
+            if(dialogueCutscene == null)
+            {
+                OpenMenu();
+            }
+            else if(!dialogueCutscene.InDialogueCheck())
+            {
+                OpenMenu();
+            }
 
-            LoadoutsToFileScript.saveLoadoutsToFile();
+                LoadoutsToFileScript.saveLoadoutsToFile();
         }
 
         if (Input.GetKeyDown(KeyCode.Q) && !isGamePaused) //use of stim keybind
