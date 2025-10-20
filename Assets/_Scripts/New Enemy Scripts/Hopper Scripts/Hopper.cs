@@ -30,6 +30,13 @@ public class Hopper : Enemy
         }
     }
 
+
+    public void sdAttack() {
+        if (inRange && isGrounded) {
+
+        }
+    }
+
     void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.tag == "Ground") {
             isGrounded = true;

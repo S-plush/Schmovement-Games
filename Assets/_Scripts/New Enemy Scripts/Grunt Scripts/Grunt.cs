@@ -20,8 +20,14 @@ public class Grunt : Enemy
     }
     public void shootAttack() {
         if (inFireRange && isGrounded) {
-
             fireArea.transform.LookAt(player.transform.position + new Vector3(0, 1, 0));
+            Instantiate(bullet, fireArea.transform.position, fireArea.transform.rotation);
+
+        }
+    }
+
+    public void meleeAttack() {
+        if (inFireRange && isGrounded) {
             Instantiate(bullet, fireArea.transform.position, fireArea.transform.rotation);
         }
     }
