@@ -15,6 +15,7 @@ public class InventoryManager : MonoBehaviour
     int selectedSlot = 1;
 
     public GameObject Settings;
+    public GameObject HUD;
 
     private MiscDataToFile MiscDataToFileScript;
     private LoadoutsToFile LoadoutsToFileScript;
@@ -83,6 +84,7 @@ public class InventoryManager : MonoBehaviour
     public void SettingsResumeButton()
     {
         Settings.SetActive(false);
+        HUD.SetActive(true);
         Time.timeScale = 1.0f;
     }
 

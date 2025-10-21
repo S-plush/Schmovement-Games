@@ -125,7 +125,7 @@ public class MiscDataToFile : MonoBehaviour
 
             saveAllMiscData();
 
-
+            waitForAlphaInitialize();
             newGame = false;
         }
         waitForAlphaInitialize();

@@ -383,7 +383,7 @@ RectTransform:
   m_Father: {fileID: 1911368531208406153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -666,7 +666,7 @@ RectTransform:
   m_Father: {fileID: 4447534624703672018}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1041,7 +1041,7 @@ RectTransform:
   m_Father: {fileID: 8020477121114468976}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2236,7 +2236,7 @@ RectTransform:
   m_Father: {fileID: 8152282307104891217}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4392,7 +4392,7 @@ RectTransform:
   m_Father: {fileID: 3497551476104766916}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4578,7 +4578,7 @@ RectTransform:
   m_Father: {fileID: 1020458229443368823}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5417,7 +5417,7 @@ RectTransform:
   m_Father: {fileID: 6308682941845666533}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5964,7 +5964,7 @@ RectTransform:
   m_Father: {fileID: 5183922014465448376}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -13411,6 +13411,10 @@ PrefabInstance:
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5913238882214018934, guid: d83cf530717a0e9478a9755f79e761f1, type: 3}
+      propertyPath: HUD
+      value: 
+      objectReference: {fileID: 4469191053017349081}
+    - target: {fileID: 5913238882214018934, guid: d83cf530717a0e9478a9755f79e761f1, type: 3}
       propertyPath: Settings
       value: 
       objectReference: {fileID: 6022160619677683751}
@@ -13688,6 +13692,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2782939748750390917, guid: d83cf530717a0e9478a9755f79e761f1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1512316530076068944}
+    - targetCorrespondingSourceObject: {fileID: 2782939748750390917, guid: d83cf530717a0e9478a9755f79e761f1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1478038965615481333}
   m_SourcePrefab: {fileID: 100100000, guid: d83cf530717a0e9478a9755f79e761f1, type: 3}
 --- !u!114 &2650027387340432310 stripped
 MonoBehaviour:
@@ -13779,6 +13786,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+--- !u!114 &1478038965615481333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5784942190627891781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f883859f45c8324b91bba69ae49a8d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fileName: PickupData.txt
+  scenes: []
+  pickups:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  doors: []
+  movingPlatforms: []
+  claimedPickups: []
+  claimedDoors: []
+  claimedPlatforms: []
 --- !u!4 &7421966508301447776 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1285458311310225056, guid: d83cf530717a0e9478a9755f79e761f1, type: 3}
