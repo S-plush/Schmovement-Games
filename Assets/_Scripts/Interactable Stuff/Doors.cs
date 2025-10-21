@@ -27,6 +27,7 @@ public class Doors : MonoBehaviour
     {
         if (notLockedDoor || lever.SwitchActivated())
         {
+            notLockedDoor = true;
             if (other.gameObject.tag == "Player")
             {
                 door.transform.Translate(new Vector3(0, 0, 5));

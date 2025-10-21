@@ -17,10 +17,14 @@ public class InventoryManager : MonoBehaviour
     public GameObject Settings;
 
     private MiscDataToFile MiscDataToFileScript;
+    private LoadoutsToFile LoadoutsToFileScript;
+    private PickupAndDoorToFile PickupAndDoorToFileScript;
 
     public void Start()
     {
         MiscDataToFileScript = FindObjectOfType<MiscDataToFile>(); //initilize MiscDataToFileScript with the actual script
+        LoadoutsToFileScript = FindObjectOfType<LoadoutsToFile>(); //initilize MiscDataToFileScript with the actual script
+        PickupAndDoorToFileScript = FindObjectOfType<PickupAndDoorToFile>(); //initilize MiscDataToFileScript with the actual script
     }
     //auxilary code/functionality for cursor selecting slots
     void ChangeSelectedSlot(int newValue)
@@ -85,6 +89,8 @@ public class InventoryManager : MonoBehaviour
     public void SettingsMainMenuButton()
     {
         MiscDataToFileScript.saveAllMiscData();
+        LoadoutsToFileScript.saveLoadoutsToFile();
+        PickupAndDoorToFileScript.SaveAllPickupData();
         SceneManager.LoadScene("Main Menu");
     }    
 }

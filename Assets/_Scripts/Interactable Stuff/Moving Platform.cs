@@ -31,6 +31,8 @@ public class MovingPlatform : MonoBehaviour
     {
         if (lever.SwitchActivated() || fileActivation)
         {
+            fileActivation = true;
+
             elapsedTime += Time.deltaTime;
             float elapsedPercentage = elapsedTime / pathTime;
             elapsedPercentage = Mathf.SmoothStep(0, 1, elapsedPercentage);

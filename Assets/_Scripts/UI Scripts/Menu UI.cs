@@ -16,7 +16,7 @@ public class MenuUI : MonoBehaviour
             //Debug.Log(Alpha.currentSceneName);
             MiscDataToFile.newGame = false;
 
-            Debug.Log(RespawnPoint.currentCheckpointSceneName);
+            //Debug.Log(RespawnPoint.currentCheckpointSceneName);
             SceneManager.LoadScene(RespawnPoint.currentCheckpointSceneName);
         }
         catch (Exception ex)

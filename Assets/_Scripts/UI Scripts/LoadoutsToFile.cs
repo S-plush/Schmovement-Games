@@ -137,7 +137,7 @@ public class LoadoutsToFile : MonoBehaviour
             //Debug.Log(ReadFromFile());
     }
 
-    public void switchLoadouts(int numPressed) //int numPressed is the user's pushed key, for loadout switching, int numpressed 1-4. returns a string of the index1 value followed by the index2 value, these two values are seperated by a comma
+    public void switchLoadouts(int numPressed) //int numPressed is the user's pushed key, for loadout switching, int numpressed 1-4. returns a string of the index1 value and index2 value in equippedSpells
     {
 
         Loadout[] LoadoutSlots = FindObjectsOfType<Loadout>();
@@ -292,5 +292,10 @@ public class LoadoutsToFile : MonoBehaviour
             Debug.LogWarning("File not found!");
             return "";
         }
+    }
+
+    private void OnApplicationQuit()
+    {
+        saveLoadoutsToFile();
     }
 }

@@ -445,7 +445,7 @@ public class Alpha : MonoBehaviour
 
     void ShootSpell1()
     {
-        Debug.Log(leftSpell);////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //Debug.Log(leftSpell);////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         if (activeSpell.activeInHierarchy && !isGamePaused)
         {
@@ -671,7 +671,7 @@ public class Alpha : MonoBehaviour
 
     IEnumerator InitialLoadoutCall(int loadoutNum)
     {
-        yield return new WaitForSeconds(.01f);
+        yield return new WaitForSeconds(.1f);
 
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
