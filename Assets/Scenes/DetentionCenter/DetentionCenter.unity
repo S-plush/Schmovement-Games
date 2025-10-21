@@ -34024,7 +34024,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5903873780532209338, guid: 48a2f4faf4ca8354e8579f22306f74c7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8235288048943054544, guid: 48a2f4faf4ca8354e8579f22306f74c7, type: 3}
       propertyPath: m_SizeDelta.x
@@ -34047,7 +34047,10 @@ PrefabInstance:
     - {fileID: 520371937483496004, guid: 48a2f4faf4ca8354e8579f22306f74c7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5903873780532209338, guid: 48a2f4faf4ca8354e8579f22306f74c7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 48a2f4faf4ca8354e8579f22306f74c7, type: 3}
 --- !u!224 &426474902 stripped
 RectTransform:

@@ -85,6 +85,7 @@ public class InventoryManager : MonoBehaviour
     {
         Settings.SetActive(false);
         HUD.SetActive(true);
+        Alpha.isGamePaused = false;
         Time.timeScale = 1.0f;
     }
 
