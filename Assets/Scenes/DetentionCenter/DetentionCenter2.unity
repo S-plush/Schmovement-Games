@@ -22281,6 +22281,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5080637433607251308, guid: 48a2f4faf4ca8354e8579f22306f74c7, type: 3}
   m_PrefabInstance: {fileID: 1444556004}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1444556006 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5903873780532209338, guid: 48a2f4faf4ca8354e8579f22306f74c7, type: 3}
+  m_PrefabInstance: {fileID: 1444556004}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1444704037
 GameObject:
   m_ObjectHideFlags: 0
@@ -29628,6 +29633,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4043064432113719794, guid: 40e1c84fb368f4746b667734dc2c69b6, type: 3}
+      propertyPath: interactionUI
+      value: 
+      objectReference: {fileID: 1444556006}
     - target: {fileID: 4043064432113719794, guid: 40e1c84fb368f4746b667734dc2c69b6, type: 3}
       propertyPath: switchActivated
       value: 

@@ -13,6 +13,7 @@ public class VentScript : MonoBehaviour
     public static bool playerInside = false;
 
     public GameObject ventSelectUI;
+    public GameObject interactionUI;
 
     public GameObject HUD;
 
@@ -108,6 +109,7 @@ public class VentScript : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             playerInside = true;
+            interactionUI.SetActive(true);
         }
     }
 
@@ -116,6 +118,7 @@ public class VentScript : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             playerInside = false;
+            interactionUI.SetActive(false);
         }
     }
 
