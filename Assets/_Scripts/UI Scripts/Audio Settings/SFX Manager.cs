@@ -54,6 +54,7 @@ public class SFXManager : MonoBehaviour
     public void WalkingSFX()
     {
         audio.clip = walkingSound;
+        audio.pitch = Random.Range(.25f, .4f);
         audio.Play();
     }
 }

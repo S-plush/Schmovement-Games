@@ -27,8 +27,6 @@ public class DialogueBoxes : MonoBehaviour
     private void OnEnable()
     {
         text.text = string.Empty;
-        talkingCharacter2.color = Color.gray;
-        talkingCharacter1.color = Color.white;
         StartDialogue();
     }
 
