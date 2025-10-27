@@ -153,43 +153,46 @@ public class LoadoutsToFile : MonoBehaviour
 
         string[] keyArray = { "empty", "Explosion", "Lightning", "Icicle Spear", "Sound Wave", "Boulder", "Earth", "Wind", "etc" }; //add names of new spell scriptable objects to the end of the list here!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-            //these all convert the information saved in the file to indexs for the UI, and change the equippedSpells variable that the Alpha script is reading
-            if (numPressed == 1)
-            {
-                index1 = Array.IndexOf(keyArray, dataOut[0]);
-                index2 = Array.IndexOf(keyArray, dataOut[1]);
+        //these all convert the information saved in the file to indexs for the UI, and change the equippedSpells variable that the Alpha script is reading
+        if (numPressed == 1)
+        {
+            index1 = Array.IndexOf(keyArray, dataOut[0]);
+            index2 = Array.IndexOf(keyArray, dataOut[1]);
 
-                String[] temp = { dataOut[0], dataOut[1] };
-                equippedSpells = temp;
+            String[] temp = { dataOut[0], dataOut[1] };
+            equippedSpells = temp;
 
-            }
-
-            if (numPressed == 2)
-            {
-                index1 = Array.IndexOf(keyArray, dataOut[2]);
-                index2 = Array.IndexOf(keyArray, dataOut[3]);
-
-                String[] temp = { dataOut[2], dataOut[3] };
-                equippedSpells = temp;
-            }
-
-            if (numPressed == 3)
-            {
-                index1 = Array.IndexOf(keyArray, dataOut[4]);
-                index2 = Array.IndexOf(keyArray, dataOut[5]);
-
-                String[] temp = { dataOut[4], dataOut[5] };
-                equippedSpells = temp;
         }
 
-            if (numPressed == 4)
-            {
-                index1 = Array.IndexOf(keyArray, dataOut[6]);
-                index2 = Array.IndexOf(keyArray, dataOut[7]);
+        if (numPressed == 2)
+        {
+            index1 = Array.IndexOf(keyArray, dataOut[2]);
+            index2 = Array.IndexOf(keyArray, dataOut[3]);
 
-                String[] temp = { dataOut[6], dataOut[7] };
-                equippedSpells = temp;
-            }
+            String[] temp = { dataOut[2], dataOut[3] };
+            equippedSpells = temp;
+        }
+
+        if (numPressed == 3)
+        {
+            index1 = Array.IndexOf(keyArray, dataOut[4]);
+            index2 = Array.IndexOf(keyArray, dataOut[5]);
+
+            String[] temp = { dataOut[4], dataOut[5] };
+            equippedSpells = temp;
+        }
+
+        if (numPressed == 4)
+        {
+            index1 = Array.IndexOf(keyArray, dataOut[6]);
+            index2 = Array.IndexOf(keyArray, dataOut[7]);
+
+            String[] temp = { dataOut[6], dataOut[7] };
+            equippedSpells = temp;
+        }
+
+        Alpha.PlayerRef.GetComponent<Alpha>().leftSpell = equippedSpells[0];
+        Alpha.PlayerRef.GetComponent<Alpha>().rightSpell = equippedSpells[1];
 
         //these lines........    |    then add the spells image here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         if (index1 == 0)
@@ -266,7 +269,6 @@ public class LoadoutsToFile : MonoBehaviour
         {
             
         }
-
     }
 
     void WriteToFile(string text)

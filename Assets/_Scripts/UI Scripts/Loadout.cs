@@ -17,12 +17,14 @@ public class Loadout : MonoBehaviour
 
     [HideInInspector] public int currentLoadoutSelected; //needs to be updated in Alpha Script when player presses keys to swap loadouts !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+    private LoadoutsToFile LoadoutsToFileScript;
+
     public Sprite defaultBox;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        LoadoutsToFileScript = FindObjectOfType<LoadoutsToFile>();
     }
 
     // Update is called once per frame
@@ -57,6 +59,7 @@ public class Loadout : MonoBehaviour
                     HUDSlot2.sprite = defaultBox;
                 }
             }
+            //LoadoutsToFileScript.switchLoadouts(whichLoudoutSetIsThis);
         }
     }
     

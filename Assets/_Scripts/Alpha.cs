@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using System.Linq;
 using UnityEditor.SceneManagement;
+using System.Runtime.CompilerServices;
 //using UnityEditor.Experimental.GraphView;
 
 public class Alpha : MonoBehaviour
@@ -22,6 +23,8 @@ public class Alpha : MonoBehaviour
     private float ySpeed;
     private float originalStepOffset;
     private bool isDead = false;
+
+    List<InventorySpell> allInventorySpells = new List<InventorySpell>();
 
     [SerializeField] private Transform alphaModel;
 
@@ -202,7 +205,7 @@ public class Alpha : MonoBehaviour
                 OpenMenu();
             }
 
-                LoadoutsToFileScript.saveLoadoutsToFile();
+                //LoadoutsToFileScript.saveLoadoutsToFile();
         }
 
         if (Input.GetKeyDown(KeyCode.Q) && !isGamePaused) //use of stim keybind
@@ -425,23 +428,83 @@ public class Alpha : MonoBehaviour
 
     void OpenMenu()
     {
+        //opening the inventory
         if (!Inventory.activeInHierarchy)
         {
-            //HUD.SetActive(false);
             Inventory.SetActive(true);
             isGamePaused = true;
             invData.LoadInventory();
             Time.timeScale = 0.0f;
+
+            allInventorySpells = new List<InventorySpell>(FindObjectsOfType<InventorySpell>());
+
+            //reset all spells when opening the inventory
+            foreach (var spell in allInventorySpells)
+            {
+                if (spell != null)
+                {
+                    if (spell.parentAfterDrag == null)
+                        spell.parentAfterDrag = spell.transform.parent;
+
+                    spell.ResetSpell();
+                    spell.image.raycastTarget = true;
+                    spell.transform.SetParent(spell.parentAfterDrag);
+                    spell.transform.localPosition = Vector3.zero;
+                }
+            }
         }
+        //closing the inventory
         else if (Inventory.activeInHierarchy)
         {
-            //HUD.SetActive(true);
+            //remove null spells
+            List<InventorySpell> validSpells = new List<InventorySpell>();
+            foreach (var spell in allInventorySpells)
+            {
+                if (spell != null)
+                    validSpells.Add(spell);
+            }
+            allInventorySpells = validSpells;
+
+            //reset all spells when closing the inventory
+            foreach (var spell in allInventorySpells)
+            {
+                if (spell != null)
+                {
+                    if (spell.transform.parent != spell.parentAfterDrag)
+                    {
+                        spell.transform.SetParent(spell.parentAfterDrag);
+                        spell.transform.localPosition = Vector3.zero;
+
+                        PointerEventData eventData = new PointerEventData(EventSystem.current);
+                        spell.OnEndDrag(eventData);
+                    }
+
+                    spell.ResetSpell();
+                    spell.image.raycastTarget = true;
+                }
+            }
+
+            //save inventory and close
+            invData.SaveInventory();
+            LoadoutsToFileScript.saveLoadoutsToFile();
+            LoadoutsToFileScript.switchLoadouts(currentlyEquippedLoadout);
             Inventory.SetActive(false);
             isGamePaused = false;
-            invData.SaveInventory();
             Time.timeScale = 1.0f;
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
     void ShootSpell1()
     {
