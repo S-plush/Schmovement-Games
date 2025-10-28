@@ -10679,6 +10679,10 @@ PrefabInstance:
       value: LoadSceneOfPushedButton
       objectReference: {fileID: 0}
     - target: {fileID: 7387854991849646254, guid: c98c4127a3677cb4aa88935271921cc7, type: 3}
+      propertyPath: volume
+      value: 
+      objectReference: {fileID: 1235128689}
+    - target: {fileID: 7387854991849646254, guid: c98c4127a3677cb4aa88935271921cc7, type: 3}
       propertyPath: directionalLight
       value: 
       objectReference: {fileID: 1070491891}
@@ -13716,6 +13720,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e585ba7ec49239489bbf1afda0c24ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1235128689 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1667056606957699184, guid: 5d6ab9a0cd9327c499d5f35a576ff00f, type: 3}
+  m_PrefabInstance: {fileID: 1235128687}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1246443609

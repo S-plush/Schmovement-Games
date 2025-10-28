@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 
 public class SettingsDoChanges : MonoBehaviour
@@ -9,7 +10,8 @@ public class SettingsDoChanges : MonoBehaviour
     public TMPro.TMP_Dropdown resolutionDropdown;
 
     public Slider brightnessSlider;
-    public Light directionalLight;
+    public PostProcessVolume volume;
+    ColorGrading colorGrading;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +19,9 @@ public class SettingsDoChanges : MonoBehaviour
         resolutionDropdown.onValueChanged.AddListener(ChangeResolution);
 
         brightnessSlider.onValueChanged.AddListener(ChangeLightIntensity);
-        brightnessSlider.value = directionalLight.intensity;
+
+        volume.profile.TryGetSettings(out colorGrading);
+        brightnessSlider.value = colorGrading.postExposure.value;
     }
 
     void ChangeResolution(int index)
@@ -40,6 +44,7 @@ public class SettingsDoChanges : MonoBehaviour
     }
     void ChangeLightIntensity(float value)
     {
-        directionalLight.intensity = value;
+        volume.profile.TryGetSettings(out colorGrading);
+        colorGrading.postExposure.value = value;
     }
 }
