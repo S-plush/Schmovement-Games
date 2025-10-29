@@ -1473,6 +1473,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPCQuickText
       objectReference: {fileID: 0}
+    - target: {fileID: 8201085655238626245, guid: 48a2f4faf4ca8354e8579f22306f74c7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 1203318005813315281, guid: 7e3e52b303954ce40afca8dc7e2df1a2, type: 2}
     - target: {fileID: 8235288048943054544, guid: 48a2f4faf4ca8354e8579f22306f74c7, type: 3}
       propertyPath: m_SizeDelta.x
       value: 10
@@ -2184,7 +2188,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -2325,7 +2329,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -2607,7 +2611,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -6163,7 +6167,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -6641,7 +6645,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -7906,7 +7910,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -10119,7 +10123,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -11696,7 +11700,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -12210,7 +12214,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -13036,7 +13040,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -13145,7 +13149,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -13239,7 +13243,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -17532,7 +17536,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -18831,9 +18835,9 @@ Mesh:
       format: 0
       dimension: 2
     - stream: 0
-      offset: 0
+      offset: 48
       format: 0
-      dimension: 0
+      dimension: 2
     - stream: 0
       offset: 0
       format: 0
@@ -18866,8 +18870,8 @@ Mesh:
       offset: 0
       format: 0
       dimension: 0
-    m_DataSize: 1152
-    _typelessdata: 4202803f05005041f4ffcf4000000000c0bbbbb50000803f000080bf0000000000000000000080bf420280bf0f0050414a02c03f05005041f4ffcf40f0ffff360ef06eb50000803f000080bf0ef0eea0f0ffff36000080bf4a02c0bf0f005041ca02803f0100a4410a00d040f0ffff360ef06eb50000803f000080bf0ef0eea0f0ffff36000080bfca0280bf0600a441ce02c03f0100a441faffcf40f0ff7f3738d1ccb40000803f000080bf00000000f0ff7f37000080bfce02c0bf0600a4414a02c03f05005041f4ffcf400000803fbfcc0cb68dd82db78dd82d37530c3d2a0000803f000080bf1500d040080050411500c03ffcff4f41020060b70000803f13220ab67a9d2eb77a9d2e37ce891d2a0000803f000080bfb8131336ffff4f41ce02c03f0100a441faffcf400000803f13220ab67a9d2eb77a9d2e37ce891d2a0000803f000080bf1b00d0400300a4419400c03ffeffa341010033b70000803f677707b667622fb767622f379c0efc290000803f000080bf378ba3360000a4411500c03ffcff4f41020060b7f0ff7f330000c034000080bf0000803f00000000f0ff7f33000080bf1500c03ffcff4f411100803ffcff4f41028060b7b0ff7f330000c034000080bf0000803f00000000b0ff7f33000080bf1100803ffcff4f419400c03ffeffa341010033b7b0ff7f330000c034000080bf0000803f00000000b0ff7f33000080bf9400c03ffeffa3419000803fffffa341008033b770ff7f330100c034000080bf0000803f0100c01c70ff7f33000080bf9000803fffffa3411100803ffcff4f41028060b7000080bf657707367a9d2c377a9d2cb700000000000080bf000080bfc4894f36feff4f414202803f05005041f4ffcf40000080bf1c440c36eaff2d37eaff2db71c440ca2000080bf000080bf0a00d0c0070050419000803fffffa341008033b7000080bf1c440c36eaff2d37eaff2db71c440ca2000080bf000080bf7a38dc340000a441ca02803f0100a4410a00d040000080bfd41011365a622f375a622fb700000000000080bf000080bf2000d0c00200a441ca02803f0100a4410a00d040b7891dad0000803fc0891db50000803fb7891d2d00000000000080bfca02803f2300d040ce02c03f0100a441faffcf40c9ffff350000803f98ed44b50000803fc9ffffb598edc49f000080bfce02c03f1300d0409000803fffffa341008033b7c9ffff350000803f98ed44b50000803fc9ffffb598edc49f000080bf9000803fe6c3b2359400c03ffeffa341010033b7f0ff7f360000803f70516cb50000803ff0ff7fb670516ca0000080bf9400c03fd4c3b6351100803ffcff4f41028060b7fb3ab1a9000080bf063bb135000080bffb3ab12900000000000080bf110080bf89ff7d361500c03ffcff4f41020060b7fb3a31a9000080bf063bb135000080bffb3a312900000000000080bf1500c0bf89ff7f364202803f05005041f4ffcf40fb3a31a9000080bf063bb135000080bffb3a312900000000000080bf420280bf1800d0404a02c03f05005041f4ffcf4000000000000080bf063bb135000080bf0000000000000000000080bf4a02c0bf1800d040
+    m_DataSize: 1344
+    _typelessdata: 4202803f05005041f4ffcf4000000000c0bbbbb50000803f000080bf0000000000000000000080bf420280bf0f005041a5407d3fb0b9923d4a02c03f05005041f4ffcf40f0ffff360ef06eb50000803f000080bf0ef0eea0f0ffff36000080bf4a02c0bf0f005041a5407d3f5d87d33dca02803f0100a4410a00d040f0ffff360ef06eb50000803f000080bf0ef0eea0f0ffff36000080bfca0280bf0600a4410ebf033f3aba923dce02c03f0100a441faffcf40f0ff7f3738d1ccb40000803f000080bf00000000f0ff7f37000080bfce02c0bf0600a4410fbf033fe287d33d4a02c03f05005041f4ffcf400000803fbfcc0cb68dd82db78dd82d37530c3d2a0000803f000080bf1500d040080050413ed8a33cddd9dc3e1500c03ffcff4f41020060b70000803f13220ab67a9d2eb77a9d2e37ce891d2a0000803f000080bfb8131336ffff4f410bd7a33c0bd7a33cce02c03f0100a441faffcf400000803f13220ab67a9d2eb77a9d2e37ce891d2a0000803f000080bf1b00d0400300a441ac40fd3ee3d9dc3e9400c03ffeffa341010033b70000803f677707b667622fb767622f379c0efc290000803f000080bf378ba3360000a4419f40fd3e65d7a33c1500c03ffcff4f41020060b7f0ff7f330000c034000080bf0000803f00000000f0ff7f33000080bf1500c03ffcff4f410fbf033fdd86533d1100803ffcff4f41028060b7b0ff7f330000c034000080bf0000803f00000000b0ff7f33000080bf1100803ffcff4f410ebf033f0bd7a33c9400c03ffeffa341010033b7b0ff7f330000c034000080bf0000803f00000000b0ff7f33000080bf9400c03ffeffa341a6407d3fda87533d9000803fffffa341008033b770ff7f330100c034000080bf0000803f0100c01c70ff7f33000080bf9000803fffffa341a8407d3f13d9a33c1100803ffcff4f41028060b7000080bf657707367a9d2c377a9d2cb700000000000080bf000080bfc4894f36feff4f41aa40fd3e5417e73e4202803f05005041f4ffcf40000080bf1c440c36eaff2d37eaff2db71c440ca2000080bf000080bf0a00d0c007005041a240fd3eddd95c3f9000803fffffa341008033b7000080bf1c440c36eaff2d37eaff2db71c440ca2000080bf000080bf7a38dc340000a4410bd7a33c5a17e73eca02803f0100a4410a00d040000080bfd41011365a622f375a622fb700000000000080bf000080bf2000d0c00200a4413cd7a33ce9d95c3fca02803f0100a4410a00d040b7891dad0000803fc0891db50000803fb7891d2d00000000000080bfca02803f2300d0404d0d6d3fa57dfc3dce02c03f0100a441faffcf40c9ffff350000803f98ed44b50000803fc9ffffb598edc49f000080bfce02c03f1300d0404b0d6d3fa7a51e3e9000803fffffa341008033b7c9ffff350000803f98ed44b50000803fc9ffffb598edc49f000080bf9000803fe6c3b2350ebf033fa57dfc3d9400c03ffeffa341010033b7f0ff7f360000803f70516cb50000803ff0ff7fb670516ca0000080bf9400c03fd4c3b63514bf033fa8a51e3e1100803ffcff4f41028060b7fb3ab1a9000080bf063bb135000080bffb3ab12900000000000080bf110080bf89ff7d364c0d6d3f8a20333e1500c03ffcff4f41020060b7fb3a31a9000080bf063bb135000080bffb3a312900000000000080bf1500c0bf89ff7f36460d6d3f5e87533e4202803f05005041f4ffcf40fb3a31a9000080bf063bb135000080bffb3a312900000000000080bf420280bf1800d04014bf033f8a20333e4a02c03f05005041f4ffcf4000000000000080bf063bb135000080bf0000000000000000000080bf4a02c0bf1800d0400ebf033f6087533e
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -22295,7 +22299,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -22980,7 +22984,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -23059,7 +23063,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -24489,7 +24493,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -25084,7 +25088,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -25395,9 +25399,9 @@ Mesh:
       format: 0
       dimension: 2
     - stream: 0
-      offset: 0
+      offset: 48
       format: 0
-      dimension: 0
+      dimension: 2
     - stream: 0
       offset: 0
       format: 0
@@ -25430,8 +25434,8 @@ Mesh:
       offset: 0
       format: 0
       dimension: 0
-    m_DataSize: 1152
-    _typelessdata: 4202803f05005041f4ffcf4000000000c0bbbbb50000803f000080bf0000000000000000000080bf420280bf0f0050414a02c03f05005041f4ffcf40f0ffff360ef06eb50000803f000080bf0ef0eea0f0ffff36000080bf4a02c0bf0f005041ca02803f0100a4410a00d040f0ffff360ef06eb50000803f000080bf0ef0eea0f0ffff36000080bfca0280bf0600a441ce02c03f0100a441faffcf40f0ff7f3738d1ccb40000803f000080bf00000000f0ff7f37000080bfce02c0bf0600a4414a02c03f05005041f4ffcf400000803fbfcc0cb68dd82db78dd82d37530c3d2a0000803f000080bf1500d040080050411500c03ffcff4f41020060b70000803f13220ab67a9d2eb77a9d2e37ce891d2a0000803f000080bfb8131336ffff4f41ce02c03f0100a441faffcf400000803f13220ab67a9d2eb77a9d2e37ce891d2a0000803f000080bf1b00d0400300a4419400c03ffeffa341010033b70000803f677707b667622fb767622f379c0efc290000803f000080bf378ba3360000a4411500c03ffcff4f41020060b7f0ff7f330000c034000080bf0000803f00000000f0ff7f33000080bf1500c03ffcff4f411100803ffcff4f41028060b7b0ff7f330000c034000080bf0000803f00000000b0ff7f33000080bf1100803ffcff4f419400c03ffeffa341010033b7b0ff7f330000c034000080bf0000803f00000000b0ff7f33000080bf9400c03ffeffa3419000803fffffa341008033b770ff7f330100c034000080bf0000803f0100c01c70ff7f33000080bf9000803fffffa3411100803ffcff4f41028060b7000080bf657707367a9d2c377a9d2cb700000000000080bf000080bfc4894f36feff4f414202803f05005041f4ffcf40000080bf1c440c36eaff2d37eaff2db71c440ca2000080bf000080bf0a00d0c0070050419000803fffffa341008033b7000080bf1c440c36eaff2d37eaff2db71c440ca2000080bf000080bf7a38dc340000a441ca02803f0100a4410a00d040000080bfd41011365a622f375a622fb700000000000080bf000080bf2000d0c00200a441ca02803f0100a4410a00d040b7891dad0000803fc0891db50000803fb7891d2d00000000000080bfca02803f2300d040ce02c03f0100a441faffcf40c9ffff350000803f98ed44b50000803fc9ffffb598edc49f000080bfce02c03f1300d0409000803fffffa341008033b7c9ffff350000803f98ed44b50000803fc9ffffb598edc49f000080bf9000803fe6c3b2359400c03ffeffa341010033b7f0ff7f360000803f70516cb50000803ff0ff7fb670516ca0000080bf9400c03fd4c3b6351100803ffcff4f41028060b7fb3ab1a9000080bf063bb135000080bffb3ab12900000000000080bf110080bf89ff7d361500c03ffcff4f41020060b7fb3a31a9000080bf063bb135000080bffb3a312900000000000080bf1500c0bf89ff7f364202803f05005041f4ffcf40fb3a31a9000080bf063bb135000080bffb3a312900000000000080bf420280bf1800d0404a02c03f05005041f4ffcf4000000000000080bf063bb135000080bf0000000000000000000080bf4a02c0bf1800d040
+    m_DataSize: 1344
+    _typelessdata: 4202803f05005041f4ffcf4000000000c0bbbbb50000803f000080bf0000000000000000000080bf420280bf0f005041a5407d3fb0b9923d4a02c03f05005041f4ffcf40f0ffff360ef06eb50000803f000080bf0ef0eea0f0ffff36000080bf4a02c0bf0f005041a5407d3f5d87d33dca02803f0100a4410a00d040f0ffff360ef06eb50000803f000080bf0ef0eea0f0ffff36000080bfca0280bf0600a4410ebf033f3aba923dce02c03f0100a441faffcf40f0ff7f3738d1ccb40000803f000080bf00000000f0ff7f37000080bfce02c0bf0600a4410fbf033fe287d33d4a02c03f05005041f4ffcf400000803fbfcc0cb68dd82db78dd82d37530c3d2a0000803f000080bf1500d040080050413ed8a33cddd9dc3e1500c03ffcff4f41020060b70000803f13220ab67a9d2eb77a9d2e37ce891d2a0000803f000080bfb8131336ffff4f410bd7a33c0bd7a33cce02c03f0100a441faffcf400000803f13220ab67a9d2eb77a9d2e37ce891d2a0000803f000080bf1b00d0400300a441ac40fd3ee3d9dc3e9400c03ffeffa341010033b70000803f677707b667622fb767622f379c0efc290000803f000080bf378ba3360000a4419f40fd3e65d7a33c1500c03ffcff4f41020060b7f0ff7f330000c034000080bf0000803f00000000f0ff7f33000080bf1500c03ffcff4f410fbf033fdd86533d1100803ffcff4f41028060b7b0ff7f330000c034000080bf0000803f00000000b0ff7f33000080bf1100803ffcff4f410ebf033f0bd7a33c9400c03ffeffa341010033b7b0ff7f330000c034000080bf0000803f00000000b0ff7f33000080bf9400c03ffeffa341a6407d3fda87533d9000803fffffa341008033b770ff7f330100c034000080bf0000803f0100c01c70ff7f33000080bf9000803fffffa341a8407d3f13d9a33c1100803ffcff4f41028060b7000080bf657707367a9d2c377a9d2cb700000000000080bf000080bfc4894f36feff4f41aa40fd3e5417e73e4202803f05005041f4ffcf40000080bf1c440c36eaff2d37eaff2db71c440ca2000080bf000080bf0a00d0c007005041a240fd3eddd95c3f9000803fffffa341008033b7000080bf1c440c36eaff2d37eaff2db71c440ca2000080bf000080bf7a38dc340000a4410bd7a33c5a17e73eca02803f0100a4410a00d040000080bfd41011365a622f375a622fb700000000000080bf000080bf2000d0c00200a4413cd7a33ce9d95c3fca02803f0100a4410a00d040b7891dad0000803fc0891db50000803fb7891d2d00000000000080bfca02803f2300d0404d0d6d3fa57dfc3dce02c03f0100a441faffcf40c9ffff350000803f98ed44b50000803fc9ffffb598edc49f000080bfce02c03f1300d0404b0d6d3fa7a51e3e9000803fffffa341008033b7c9ffff350000803f98ed44b50000803fc9ffffb598edc49f000080bf9000803fe6c3b2350ebf033fa57dfc3d9400c03ffeffa341010033b7f0ff7f360000803f70516cb50000803ff0ff7fb670516ca0000080bf9400c03fd4c3b63514bf033fa8a51e3e1100803ffcff4f41028060b7fb3ab1a9000080bf063bb135000080bffb3ab12900000000000080bf110080bf89ff7d364c0d6d3f8a20333e1500c03ffcff4f41020060b7fb3a31a9000080bf063bb135000080bffb3a312900000000000080bf1500c0bf89ff7f36460d6d3f5e87533e4202803f05005041f4ffcf40fb3a31a9000080bf063bb135000080bffb3a312900000000000080bf420280bf1800d04014bf033f8a20333e4a02c03f05005041f4ffcf4000000000000080bf063bb135000080bf0000000000000000000080bf4a02c0bf1800d0400ebf033f6087533e
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -27189,7 +27193,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -27694,7 +27698,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -28546,7 +28550,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -30762,7 +30766,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -30882,7 +30886,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -30976,7 +30980,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -31516,7 +31520,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -31775,7 +31779,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -34304,7 +34308,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
