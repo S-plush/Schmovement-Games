@@ -5238,6 +5238,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate_001 (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5657,7 +5661,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 1.1
   m_Range: 29.175522
   m_SpotAngle: 154.19926
   m_InnerSpotAngle: 21.80208
@@ -5696,7 +5700,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -5785,6 +5789,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
       propertyPath: m_Name
       value: Crate_001 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6719,7 +6727,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 1152
-    _typelessdata: 00000000000000b6000080b5000000005679bf340000803f000080bf0000000000000000000080bf00000000fdffffb500000041000000b6000080b5000000005679bf340000803f000080bf0000000000000000000080bf000000c1fdffffb50000f3abffb72741c7719db6000000005679bf340000803f000080bf0000000000000000000080bf0000f32bffb7274100000041ffb72741c7719db6000000005679bf340000803f000080bf0000000000000000000080bf000000c1ffb7274100000041000000b6000080b50000803f000000000000000000000000000000000000803f000080bf000080b5000000b600000041804946b6010070c10000803f000000000000000000000000000000000000803f000080bf010070c1804946b600000041ffb72741c7719db60000803f000000000000000000000000000000000000803f000080bfc7719db6ffb7274100000041fdb72741050070c10000803f000000000000000000000000000000000000803f000080bf050070c1fdb7274100000041804946b6010070c1ec5f431eec5fc3b4000080bf0000803f00000000ec5f431e000080bf000000415c0a28360000c5ab814946b6010070c1ec5fc31dec5fc3b4000080bf0000803f00000000ec5fc31d000080bf0100c5ab5b0a283600000041fdb72741050070c1ec5fc31dec5fc3b4000080bf0000803f00000000ec5fc31d000080bf0000004103b827410000f3abfdb72741050070c100000000ec5fc3b4000080bf0000803f0000000000000000000080bf0100f3ab03b827410000c5ab814946b6010070c1000080bfe86c0ca92222d2292222d2a900000000000080bf000080bf01007041814946b600000000000000b6000080b5000080bf468fdca925225229252252a900000000000080bf000080bf00008035000000b60000f3abfdb72741050070c1000080bf468fdca925225229252252a900000000000080bf000080bf05007041fdb727410000f3abffb72741c7719db6000080bf0c7439aa1ed1c51e1ed1c59e00000000000080bf000080bfc7719d36ffb727410000f3abffb72741c7719db6000000000000803f898808b40000803f0000000000000000000080bf0000f3ab5b7061b600000041ffb72741c7719db6000000000000803f898808b40000803f0000000000000000000080bf000000415b7061b60000f3abfdb72741050070c1000000000000803f898808b40000803f0000000000000000000080bf0000f3ab040070c100000041fdb72741050070c1000000000000803f898808b40000803f0000000000000000000080bf00000041040070c10000c5ab814946b6010070c100000029000080bf24f29533000080bf000000a900000000000080bf0100c52b010070c100000041804946b6010070c100008028000080bf23f29533000080bf000080a800000000000080bf000000c1010070c100000000000000b6000080b500008028000080bf23f29533000080bf000080a800000000000080bf0000801f010080b500000041000000b6000080b500000000000080bf22f29533000080bf0000000000000000000080bf000000c1010080b5
+    _typelessdata: 00000000000000b6000080b5000000005679bf340000803f25d97cbf5c30203e03a06fb3000080bf00dc93bff6df1e3e00000041000000b6000080b5000000005679bf340000803f25d97cbf5a30203e00a06fb3000080bf00dc93bffedb933f0000f3abffb72741c7719db6000000005679bf340000803f25d97cbf5a30203e00a06fb3000080bf04e01e3ef4df1e3e00000041ffb72741c7719db6000000005679bf340000803f25d97cbf5830203efd9f6fb3000080bf04e01e3efedb933f00000041000000b6000080b50000803f0000000000000000000000005b30203e25d97c3f000080bf04dccbbf109090be00000041804946b6010070c10000803f0000000000000000000000005c30203e25d97c3f000080bf04dccbbffbdbcb3f00000041ffb72741c7719db60000803f0000000000000000000000005c30203e25d97c3f000080bf0a9090be009090be00000041fdb72741050070c10000803f0000000000000000000000005e30203e25d97c3f000080bf0e9090beffdbcb3f00000041804946b6010070c1ec5f431eec5fc3b4000080bf25d97c3f5b30203eb68174b3000080bf04e01ebe1ae01e3e0000c5ab814946b6010070c1ec5fc31dec5fc3b4000080bf25d97c3f5d30203eb98174b3000080bf04e01ebe03dc933f00000041fdb72741050070c1ec5fc31dec5fc3b4000080bf25d97c3f5d30203eb98174b3000080bf00dc933f18e01e3e0000f3abfdb72741050070c100000000ec5fc3b4000080bf25d97c3f5f30203ebc8174b3000080bf00dc933f03dc933f0000c5ab814946b6010070c1000080bfe86c0ca92222d229aa87daa95b30203e25d97cbf000080bf0690903efc8f90be00000000000000b6000080b5000080bf468fdca925225229bb468aa95c30203e25d97cbf000080bf0e90903e00dccb3f0000f3abfdb72741050070c1000080bf468fdca925225229bb468aa95c30203e25d97cbf000080bf02dccb3f0c9090be0000f3abffb72741c7719db6000080bf0c7439aa1ed1c51e2e17e8a85e30203e25d97cbf000080bf04dccb3ffcdbcb3f0000f3abffb72741c7719db6000000000000803f898808b425d97c3f44deaa325f30203e000080bf0000b83f1100e0be00000041ffb72741c7719db6000000000000803f898808b425d97c3f40deaa325b30203e000080bf0000b83f0400b8bf0000f3abfdb72741050070c1000000000000803f898808b425d97c3f40deaa325b30203e000080bf0000e0be0e00e0be00000041fdb72741050070c1000000000000803f898808b425d97c3f3cdeaa325830203e000080bf0000e0be0400b8bf0000c5ab814946b6010070c100000029000080bf24f2953325d97cbf39a73b326130203e000080bf0000b8bf0100b8bf00000041804946b6010070c100008028000080bf23f2953325d97cbf48a73b326130203e000080bf0000b8bf0200e0be00000000000000b6000080b500008028000080bf23f2953325d97cbf48a73b326130203e000080bf0000e03e0200b8bf00000041000000b6000080b500000000000080bf22f2953325d97cbf57a73b326130203e000080bf0000e03e0500e0be
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -6851,6 +6859,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate_001 (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6900,7 +6912,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 1.1
   m_Range: 29.175522
   m_SpotAngle: 154.19926
   m_InnerSpotAngle: 21.80208
@@ -6939,7 +6951,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -7067,6 +7079,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
       propertyPath: m_Name
       value: Crate_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7292,6 +7308,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
       propertyPath: m_Name
       value: Barrel_001 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7947,7 +7967,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.6
+  m_Intensity: 0.9
   m_Range: 112.79789
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -7986,7 +8006,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -8475,6 +8495,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate_001 (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8485,7 +8509,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b5661e185a847c54892830949a0d9f18, type: 3}
   m_PrefabInstance: {fileID: 480009563}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &516958735
+--- !u!1 &487880931
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8493,28 +8517,43 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 516958737}
-  - component: {fileID: 516958736}
+  - component: {fileID: 487880932}
+  - component: {fileID: 487880933}
   m_Layer: 0
-  m_Name: BottomLeftLight2
+  m_Name: LightToSecret1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!108 &516958736
+--- !u!4 &487880932
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487880931}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -34.920345, y: 86.48505, z: 6.267935}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1219955406}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!108 &487880933
 Light:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 516958735}
+  m_GameObject: {fileID: 487880931}
   m_Enabled: 1
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 1.1
   m_Range: 29.175522
   m_SpotAngle: 154.19926
   m_InnerSpotAngle: 21.80208
@@ -8553,7 +8592,86 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 3
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!1 &516958735
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 516958737}
+  - component: {fileID: 516958736}
+  m_Layer: 0
+  m_Name: BottomLeftLight2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &516958736
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516958735}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 2
+  m_Shape: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1.1
+  m_Range: 29.175522
+  m_SpotAngle: 154.19926
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -8682,7 +8800,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 1.1
   m_Range: 29.175522
   m_SpotAngle: 154.19926
   m_InnerSpotAngle: 21.80208
@@ -8721,7 +8839,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -8890,9 +9008,9 @@ MonoBehaviour:
       m_FlipV: 0
       m_SwapUV: 0
       m_Fill: 1
-      m_Scale: {x: 1, y: 1}
+      m_Scale: {x: 0.125, y: 0.125}
       m_Offset: {x: 0, y: 0}
-      m_Rotation: 0
+      m_Rotation: 90
       m_Anchor: 9
     m_Material: {fileID: 0}
     m_SubmeshIndex: 0
@@ -8907,9 +9025,9 @@ MonoBehaviour:
       m_FlipV: 0
       m_SwapUV: 0
       m_Fill: 1
-      m_Scale: {x: 1, y: 1}
+      m_Scale: {x: 0.125, y: 0.125}
       m_Offset: {x: 0, y: 0}
-      m_Rotation: 0
+      m_Rotation: 90
       m_Anchor: 9
     m_Material: {fileID: 0}
     m_SubmeshIndex: 0
@@ -8924,9 +9042,9 @@ MonoBehaviour:
       m_FlipV: 0
       m_SwapUV: 0
       m_Fill: 1
-      m_Scale: {x: 1, y: 1}
+      m_Scale: {x: 0.125, y: 0.125}
       m_Offset: {x: 0, y: 0}
-      m_Rotation: 0
+      m_Rotation: 90
       m_Anchor: 9
     m_Material: {fileID: 0}
     m_SubmeshIndex: 0
@@ -8941,9 +9059,9 @@ MonoBehaviour:
       m_FlipV: 0
       m_SwapUV: 0
       m_Fill: 1
-      m_Scale: {x: 1, y: 1}
+      m_Scale: {x: 0.125, y: 0.125}
       m_Offset: {x: 0, y: 0}
-      m_Rotation: 0
+      m_Rotation: 90
       m_Anchor: 9
     m_Material: {fileID: 0}
     m_SubmeshIndex: 0
@@ -8958,9 +9076,9 @@ MonoBehaviour:
       m_FlipV: 0
       m_SwapUV: 0
       m_Fill: 1
-      m_Scale: {x: 1, y: 1}
+      m_Scale: {x: 0.125, y: 0.125}
       m_Offset: {x: 0, y: 0}
-      m_Rotation: 0
+      m_Rotation: 90
       m_Anchor: 9
     m_Material: {fileID: 0}
     m_SubmeshIndex: 0
@@ -8975,9 +9093,9 @@ MonoBehaviour:
       m_FlipV: 0
       m_SwapUV: 0
       m_Fill: 1
-      m_Scale: {x: 1, y: 1}
+      m_Scale: {x: 0.125, y: 0.125}
       m_Offset: {x: 0, y: 0}
-      m_Rotation: 0
+      m_Rotation: 90
       m_Anchor: 9
     m_Material: {fileID: 0}
     m_SubmeshIndex: 0
@@ -9020,57 +9138,57 @@ MonoBehaviour:
   - {x: 0, y: -0.0000019073486, z: -0.0000009536743}
   - {x: 8, y: -0.0000019073486, z: -0.0000009536743}
   m_Textures0:
-  - {x: 0, y: -0.0000019073483}
-  - {x: -8, y: -0.0000019073483}
-  - {x: 1.7266188e-12, y: 10.482421}
-  - {x: -8, y: 10.482421}
-  - {x: -0.0000009536743, y: -0.0000019073486}
-  - {x: -15.000001, y: -0.0000029547082}
-  - {x: -0.00000469221, y: 10.482421}
-  - {x: -15.000005, y: 10.482419}
-  - {x: 8, y: 0.000002503998}
-  - {x: -1.3997693e-12, y: 0.0000025039978}
-  - {x: 8, y: 10.482425}
-  - {x: -1.726619e-12, y: 10.482425}
-  - {x: 15.000001, y: -0.0000029547084}
-  - {x: 0.0000009536743, y: -0.0000019073486}
-  - {x: 15.000005, y: 10.482419}
-  - {x: 0.00000469221, y: 10.482421}
-  - {x: -1.7266188e-12, y: -0.0000033593012}
-  - {x: 8, y: -0.0000033593012}
-  - {x: -1.7266188e-12, y: -15.000004}
-  - {x: 8, y: -15.000004}
-  - {x: 1.3997693e-12, y: -15.000001}
-  - {x: -8, y: -15.000001}
-  - {x: 5.421011e-20, y: -0.0000009536744}
-  - {x: -8, y: -0.0000009536744}
+  - {x: -1.1551514, y: 0.15515122}
+  - {x: -1.1551514, y: 1.1551511}
+  - {x: 0.15515143, y: 0.15515119}
+  - {x: 0.15515143, y: 1.1551511}
+  - {x: -1.5926518, y: -0.2823491}
+  - {x: -1.5926518, y: 1.5926508}
+  - {x: -0.28234893, y: -0.28234863}
+  - {x: -0.28234905, y: 1.5926512}
+  - {x: -0.15515143, y: 0.15515175}
+  - {x: -0.15515143, y: 1.1551517}
+  - {x: 1.1551514, y: 0.15515172}
+  - {x: 1.1551514, y: 1.1551517}
+  - {x: 0.2823488, y: -0.2823485}
+  - {x: 0.28234905, y: 1.5926514}
+  - {x: 1.5926516, y: -0.282349}
+  - {x: 1.5926518, y: 1.5926509}
+  - {x: 1.4375, y: -0.4375005}
+  - {x: 1.4375, y: -1.4375005}
+  - {x: -0.4375, y: -0.43750042}
+  - {x: -0.4375, y: -1.4375005}
+  - {x: -1.4375, y: -1.4375001}
+  - {x: -1.4375, y: -0.43750006}
+  - {x: 0.4375, y: -1.4375002}
+  - {x: 0.4375, y: -0.43750015}
   m_Textures2: []
   m_Textures3: []
   m_Tangents:
-  - {x: -1, y: 0, z: 0, w: -1}
-  - {x: -1, y: 0, z: 0, w: -1}
-  - {x: -1, y: 0, z: 0, w: -1}
-  - {x: -1, y: 0, z: 0, w: -1}
-  - {x: 0, y: 0, z: 1, w: -1}
-  - {x: 0, y: 0, z: 1, w: -1}
-  - {x: 0, y: 0, z: 1, w: -1}
-  - {x: 0, y: 0, z: 1, w: -1}
-  - {x: 1, y: 0, z: 1.034305e-20, w: -1}
-  - {x: 1, y: 0, z: 5.171525e-21, w: -1}
-  - {x: 1, y: 0, z: 5.171525e-21, w: -1}
-  - {x: 1, y: 0, z: 0, w: -1}
-  - {x: -9.3317945e-14, y: 0, z: -1, w: -1}
-  - {x: -4.6658983e-14, y: 0, z: -1, w: -1}
-  - {x: -4.6658983e-14, y: 0, z: -1, w: -1}
-  - {x: -2.0944675e-20, y: 0, z: -1, w: -1}
-  - {x: 1, y: 0, z: 0, w: -1}
-  - {x: 1, y: 0, z: 0, w: -1}
-  - {x: 1, y: 0, z: 0, w: -1}
-  - {x: 1, y: 0, z: 0, w: -1}
-  - {x: -1, y: -2.842171e-14, z: 0, w: -1}
-  - {x: -1, y: -1.4210855e-14, z: 0, w: -1}
-  - {x: -1, y: -1.4210855e-14, z: 0, w: -1}
-  - {x: -1, y: 0, z: 0, w: -1}
+  - {x: -0.98768836, y: 0.15643448, z: -0.000000055792054, w: -1}
+  - {x: -0.98768836, y: 0.15643445, z: -0.000000055792043, w: -1}
+  - {x: -0.98768836, y: 0.15643445, z: -0.000000055792043, w: -1}
+  - {x: -0.98768836, y: 0.15643442, z: -0.000000055792032, w: -1}
+  - {x: 0, y: 0.15643446, z: 0.98768836, w: -1}
+  - {x: 0, y: 0.15643448, z: 0.98768836, w: -1}
+  - {x: 0, y: 0.15643448, z: 0.98768836, w: -1}
+  - {x: 0, y: 0.1564345, z: 0.98768836, w: -1}
+  - {x: 0.98768836, y: 0.15643446, z: -0.00000005692865, w: -1}
+  - {x: 0.98768836, y: 0.15643449, z: -0.00000005692866, w: -1}
+  - {x: 0.98768836, y: 0.15643449, z: -0.00000005692866, w: -1}
+  - {x: 0.98768836, y: 0.15643452, z: -0.00000005692867, w: -1}
+  - {x: -9.704679e-14, y: 0.15643446, z: -0.98768836, w: -1}
+  - {x: -6.140701e-14, y: 0.15643448, z: -0.98768836, w: -1}
+  - {x: -6.140701e-14, y: 0.15643448, z: -0.98768836, w: -1}
+  - {x: -2.5767227e-14, y: 0.1564345, z: -0.98768836, w: -1}
+  - {x: 0.98768836, y: 0.00000001989168, z: 0.15643452, w: -1}
+  - {x: 0.98768836, y: 0.000000019891672, z: 0.15643446, w: -1}
+  - {x: 0.98768836, y: 0.000000019891672, z: 0.15643446, w: -1}
+  - {x: 0.98768836, y: 0.000000019891665, z: 0.15643442, w: -1}
+  - {x: -0.98768836, y: 0.000000010922855, z: 0.15643455, w: -1}
+  - {x: -0.98768836, y: 0.000000010922868, z: 0.15643455, w: -1}
+  - {x: -0.98768836, y: 0.000000010922868, z: 0.15643455, w: -1}
+  - {x: -0.98768836, y: 0.000000010922881, z: 0.15643455, w: -1}
   m_Colors: []
   m_UnwrapParameters:
     m_HardAngle: 88
@@ -9080,7 +9198,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 299636248}
-  m_VersionIndex: 1938
+  m_VersionIndex: 1947
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -10022,7 +10140,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 1.1
   m_Range: 29.175522
   m_SpotAngle: 154.19926
   m_InnerSpotAngle: 21.80208
@@ -10061,7 +10179,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -10667,7 +10785,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 1.1
   m_Range: 29.175522
   m_SpotAngle: 154.19926
   m_InnerSpotAngle: 21.80208
@@ -10706,7 +10824,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -11759,6 +11877,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
       propertyPath: m_Name
       value: Crate_001 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12918,7 +13040,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &954548770
 Transform:
@@ -14519,6 +14641,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate_001 (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14739,7 +14865,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 1.1
   m_Range: 29.175522
   m_SpotAngle: 154.19926
   m_InnerSpotAngle: 21.80208
@@ -14778,7 +14904,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -17054,6 +17180,7 @@ Transform:
   - {fileID: 1449940898}
   - {fileID: 1134164766}
   - {fileID: 1289697609}
+  - {fileID: 487880932}
   - {fileID: 2020756111}
   - {fileID: 1847871833}
   - {fileID: 1513870395}
@@ -17617,7 +17744,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 1.1
   m_Range: 29.175522
   m_SpotAngle: 154.19926
   m_InnerSpotAngle: 21.80208
@@ -17656,7 +17783,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -17711,7 +17838,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 1.1
   m_Range: 29.175522
   m_SpotAngle: 154.19926
   m_InnerSpotAngle: 21.80208
@@ -17750,7 +17877,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -17805,7 +17932,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 1.1
   m_Range: 29.175522
   m_SpotAngle: 154.19926
   m_InnerSpotAngle: 21.80208
@@ -17844,7 +17971,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -17934,6 +18061,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate_001 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18008,6 +18139,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel_001 (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18081,6 +18216,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
       propertyPath: m_Name
       value: Barrel_001 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18260,6 +18399,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
       propertyPath: m_Name
       value: Crate_001 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18865,6 +19008,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel_001 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19207,7 +19354,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 1.1
   m_Range: 29.175522
   m_SpotAngle: 154.19926
   m_InnerSpotAngle: 21.80208
@@ -19246,7 +19393,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -20307,7 +20454,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 1.1
   m_Range: 29.175522
   m_SpotAngle: 154.19926
   m_InnerSpotAngle: 21.80208
@@ -20346,7 +20493,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -20466,7 +20613,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 1.1
   m_Range: 29.175522
   m_SpotAngle: 154.19926
   m_InnerSpotAngle: 21.80208
@@ -20505,7 +20652,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -21639,6 +21786,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate_001 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21817,6 +21968,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
       propertyPath: m_Name
       value: Crate_001 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22342,6 +22497,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel_001 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -22410,6 +22569,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
       propertyPath: m_Name
       value: Crate_001 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22742,7 +22905,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 1.1
   m_Range: 29.175522
   m_SpotAngle: 154.19926
   m_InnerSpotAngle: 21.80208
@@ -22781,7 +22944,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -23906,6 +24069,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel_001 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -24139,6 +24306,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
       propertyPath: m_Name
       value: Crate_001 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26713,6 +26884,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate_001 (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26802,6 +26977,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
       propertyPath: m_Name
       value: Barrel_001 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27195,7 +27374,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 1.1
   m_Range: 29.175522
   m_SpotAngle: 154.19926
   m_InnerSpotAngle: 21.80208
@@ -27234,7 +27413,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -28484,7 +28663,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.6
+  m_Intensity: 0.9
   m_Range: 112.79789
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -28523,7 +28702,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -29127,6 +29306,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate_001 (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29701,7 +29884,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -29756,7 +29939,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 1.1
   m_Range: 29.175522
   m_SpotAngle: 154.19926
   m_InnerSpotAngle: 21.80208
@@ -29795,7 +29978,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -30760,7 +30943,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.6
+  m_Intensity: 0.9
   m_Range: 112.79789
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -30799,7 +30982,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -31595,6 +31778,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
       propertyPath: m_Name
       value: Crate_001 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
