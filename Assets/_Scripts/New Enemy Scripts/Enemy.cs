@@ -40,6 +40,7 @@ public class Enemy : MonoBehaviour
         thisRigidBody = thisEnemyObject.GetComponent<Rigidbody>();
         
         attacking = false;
+        Debug.Log("This is not FB");
 
 
     }
