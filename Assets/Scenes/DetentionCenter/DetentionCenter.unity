@@ -96,7 +96,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: c3ee5d0607452c4418a12bb99d9d0982, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 328c5846d1b7634439ef097b5af83008, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 5c60cf4fbf69fe8479fbeabb4658ed74, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -2221,6 +2221,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate_001 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2623,6 +2627,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
       propertyPath: m_Name
       value: Barrel_001 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11006,7 +11014,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -20011,12 +20019,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -20424,6 +20432,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
       propertyPath: m_Name
       value: Barrel_001 (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22475,7 +22487,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.2
+  m_Intensity: 0.7
   m_Range: 18.923643
   m_SpotAngle: 154.19926
   m_InnerSpotAngle: 21.80208
@@ -22509,12 +22521,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -30956,6 +30968,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel_001 (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31010,7 +31026,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.2
+  m_Intensity: 0.7
   m_Range: 18.923643
   m_SpotAngle: 154.19926
   m_InnerSpotAngle: 21.80208
@@ -31044,12 +31060,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -35745,6 +35761,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel_001 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -37472,12 +37492,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -38025,6 +38045,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate_001 (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -38086,6 +38110,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
       propertyPath: m_Name
       value: Barrel_001 (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -46113,12 +46141,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -49179,12 +49207,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -49443,7 +49471,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -52923,12 +52951,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -53876,12 +53904,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -54166,6 +54194,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f8445e927fcb4654b96c41c98c73d4af, type: 3}
       propertyPath: m_Name
       value: Barrel_003 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f8445e927fcb4654b96c41c98c73d4af, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -55789,6 +55821,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
       propertyPath: m_Name
       value: Barrel_001 (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -59523,12 +59559,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -59617,12 +59653,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -59876,12 +59912,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -63386,7 +63422,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -66149,7 +66185,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -71216,6 +71252,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate_001 (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -74963,7 +75003,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &954548770
 Transform:
@@ -75083,12 +75123,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -77207,6 +77247,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel_001
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -78518,12 +78562,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -81918,7 +81962,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -82882,6 +82926,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
       propertyPath: m_Name
       value: Crate_001 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -84640,6 +84688,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: bebef1e012d10fb46959ccced5f9c375, type: 3}
       propertyPath: m_Name
       value: Barrel_002
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bebef1e012d10fb46959ccced5f9c375, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -90734,12 +90786,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -91895,12 +91947,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -94842,6 +94894,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel_001 (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -95266,6 +95322,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
       propertyPath: m_Name
       value: Barrel_001 (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -96473,6 +96533,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
       propertyPath: m_Name
       value: Barrel_001 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -99297,6 +99361,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel_001 (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -99385,12 +99453,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 3
@@ -106005,12 +106073,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -106099,12 +106167,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -106373,12 +106441,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -106456,6 +106524,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
       propertyPath: m_Name
       value: Crate_001 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -106887,6 +106959,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
       propertyPath: m_Name
       value: Crate_001 (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -110336,7 +110412,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -110414,6 +110490,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel_003
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f8445e927fcb4654b96c41c98c73d4af, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -110475,6 +110555,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
       propertyPath: m_Name
       value: Barrel_001 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -110553,6 +110637,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
       propertyPath: m_Name
       value: Crate_001 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -112165,6 +112253,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
       propertyPath: m_Name
       value: Barrel_001 (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -116901,6 +116993,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
       propertyPath: m_Name
       value: Crate_001 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -122839,6 +122935,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel_001 (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -126692,6 +126792,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel_002 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bebef1e012d10fb46959ccced5f9c375, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -129579,12 +129683,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -130101,12 +130205,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -134867,12 +134971,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -137203,6 +137307,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel_001 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -137280,6 +137388,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
       propertyPath: m_Name
       value: Crate_001 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -141395,6 +141507,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate_001 (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -143356,6 +143472,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate_001 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -145149,12 +145269,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -150854,12 +150974,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -152037,6 +152157,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel_001 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -152869,12 +152993,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -156410,6 +156534,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel_001 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -156559,12 +156687,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -160237,7 +160365,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -160330,6 +160458,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
       propertyPath: m_Name
       value: Crate_001 (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -160757,12 +160889,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -161513,6 +161645,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
       propertyPath: m_Name
       value: Barrel_001 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -163276,6 +163412,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
       propertyPath: m_Name
       value: Barrel_001 (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -165532,6 +165672,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate_001 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -165610,6 +165754,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate_001 (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -165687,6 +165835,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
       propertyPath: m_Name
       value: Crate_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -167780,6 +167932,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
       propertyPath: m_Name
       value: Barrel_001 (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 91067a147ab6cca4f9b045762c82b2fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -173871,6 +174027,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate_001 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b5661e185a847c54892830949a0d9f18, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -175782,7 +175942,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.2
+  m_Intensity: 0.7
   m_Range: 18.923643
   m_SpotAngle: 154.19926
   m_InnerSpotAngle: 21.80208
@@ -175816,12 +175976,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -175876,7 +176036,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
+  m_Intensity: 0.7
   m_Range: 18.923643
   m_SpotAngle: 154.19926
   m_InnerSpotAngle: 21.80208
@@ -175910,12 +176070,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
