@@ -107,7 +107,7 @@ public class Alpha : MonoBehaviour
 
     Checkpoints CheckpointsScript;
 
-    public int currentlyEquippedLoadout;
+    public int currentlyEquippedLoadout = 1;
 
     public Animator animator;
 
@@ -205,7 +205,7 @@ public class Alpha : MonoBehaviour
                 OpenMenu();
             }
 
-                //LoadoutsToFileScript.saveLoadoutsToFile();
+                //LoadoutsToFileScript.saveLoadoutsToFile(); this happens in OpenMenu() now
         }
 
         if (Input.GetKeyDown(KeyCode.Q) && !isGamePaused) //use of stim keybind
@@ -217,24 +217,28 @@ public class Alpha : MonoBehaviour
         //keybinds for switching to different loadout slots
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            Loadout.currentLoadoutSelected = 1;
             LoadoutsToFileScript.switchLoadouts(1);
             leftSpell = LoadoutsToFileScript.equippedSpells[0];
             rightSpell = LoadoutsToFileScript.equippedSpells[1];
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            Loadout.currentLoadoutSelected = 2;
             LoadoutsToFileScript.switchLoadouts(2);
             leftSpell = LoadoutsToFileScript.equippedSpells[0];
             rightSpell = LoadoutsToFileScript.equippedSpells[1];
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
+            Loadout.currentLoadoutSelected = 3;
             LoadoutsToFileScript.switchLoadouts(3);
             leftSpell = LoadoutsToFileScript.equippedSpells[0];
             rightSpell = LoadoutsToFileScript.equippedSpells[1];
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
+            Loadout.currentLoadoutSelected = 4;
             LoadoutsToFileScript.switchLoadouts(4);
 
             leftSpell = LoadoutsToFileScript.equippedSpells[0];
@@ -487,10 +491,12 @@ public class Alpha : MonoBehaviour
             //save inventory and close
             invData.SaveInventory();
             LoadoutsToFileScript.saveLoadoutsToFile();
-            LoadoutsToFileScript.switchLoadouts(currentlyEquippedLoadout);
             Inventory.SetActive(false);
             isGamePaused = false;
             Time.timeScale = 1.0f;
+            LoadoutsToFileScript.switchLoadouts(currentlyEquippedLoadout);
+            //leftSpell = LoadoutsToFileScript.equippedSpells[0];
+            //rightSpell = LoadoutsToFileScript.equippedSpells[1];
         }
     }
 
@@ -744,9 +750,6 @@ public class Alpha : MonoBehaviour
 
         //helps update the state of the inventory correctly on making a new game (so you dont get ghost spells that persist until you open your inventory)
         //BIG ISSUE IF PLAYER OPENS INVENTORY ON FIRST FRAME!?!?
-        OpenMenu();
-        LoadoutsToFileScript.saveLoadoutsToFile();
-        OpenMenu();
 
         if (loadoutNum != 1 && loadoutNum != 2 && loadoutNum != 3 && loadoutNum != 4)
         {
@@ -754,52 +757,20 @@ public class Alpha : MonoBehaviour
         }
         else
         {
+            Loadout.currentLoadoutSelected = loadoutNum;
             LoadoutsToFileScript.switchLoadouts(loadoutNum);
         }
 
+        OpenMenu();
+        LoadoutsToFileScript.saveLoadoutsToFile();
+        OpenMenu();
+
+        //I am pretty sure these two lines are reduntant now since this happens in both OpenMenu() and things that OpenMenu() calls in LoadoutsToFile script
         leftSpell = LoadoutsToFileScript.equippedSpells[0];
         rightSpell = LoadoutsToFileScript.equippedSpells[1];
 
-        //also checkpoint loading stuff below this
-        //Debug.Log(currentCheckpointName);
+        this.GetComponent<CharacterController>().enabled = true; //obviously very important!
 
-        //CapsuleCollider capsule = this.GetComponentInChildren<CapsuleCollider>();
-
-        // Temporarily disable physics
-        //capsule.enabled = false;
-        
-         
-        //this.GetComponent<CharacterController>().enabled = false;
-
-        /*
-        if (transitioned == false)
-        {
-            if (currentCheckpointName != "default" && currentCheckpointName != null) //COULD CHECK IF MATCHES SCENE BUT DOESN'T (unique checkpoint names are probably better (could checkpoints have a variable for what scene they are in!?!))
-            {
-                respawnPointObj.transform.position = GameObject.Find(currentCheckpointName).transform.position;
-                //respawnPoint.respawnPoint.transform.position = GameObject.Find(currentCheckpointName).transform.position;
-                this.gameObject.transform.position = GameObject.Find(currentCheckpointName).transform.position;
-                //this.gameObject.transform.position = respawnPointObj.transform.position;
-            }
-        }
-        else
-        {
-            transitioned = false;
-        }
-
-        */
-            this.GetComponent<CharacterController>().enabled = true;
-
-        // Re-enable physics
-        //capsule.enabled = true;
-
-
-        // = respawnPoint.respawnPoint.transform.position;
-        //respawnPoint.RespawnPlayer();
-        //this.gameObject.transform.position = respawnPointObj.transform.position;
-
-        //Alpha.currentSceneName = SceneManager.GetActiveScene().name;
-        
         FindObjectOfType<MiscDataToFile>().saveAllMiscData();
     }
 

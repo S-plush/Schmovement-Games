@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class SettingsDoChanges : MonoBehaviour
 {
-
     public TMPro.TMP_Dropdown resolutionDropdown;
-
     public Slider brightnessSlider;
+    public Slider volumeSlider;
+
     public PostProcessVolume volume;
     ColorGrading colorGrading;
 
@@ -17,7 +17,6 @@ public class SettingsDoChanges : MonoBehaviour
     void Start()
     {
         resolutionDropdown.onValueChanged.AddListener(ChangeResolution);
-
         brightnessSlider.onValueChanged.AddListener(ChangeLightIntensity);
 
         volume.profile.TryGetSettings(out colorGrading);
@@ -42,6 +41,7 @@ public class SettingsDoChanges : MonoBehaviour
                 break;
         }
     }
+
     void ChangeLightIntensity(float value)
     {
         volume.profile.TryGetSettings(out colorGrading);

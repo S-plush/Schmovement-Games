@@ -15,7 +15,7 @@ public class Loadout : MonoBehaviour
     public int whichSlotIsThis; //1 or 2 depending on if this is the first or second slot of a given loadout
     public int whichLoudoutSetIsThis; //1-4 depending on which loadout this slot is from
 
-    [HideInInspector] public int currentLoadoutSelected; //needs to be updated in Alpha Script when player presses keys to swap loadouts !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    [HideInInspector] public static int currentLoadoutSelected; //needs to be updated in Alpha Script when player presses keys to swap loadouts !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     private LoadoutsToFile LoadoutsToFileScript;
 

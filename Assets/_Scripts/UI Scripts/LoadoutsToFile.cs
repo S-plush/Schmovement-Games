@@ -145,7 +145,7 @@ public class LoadoutsToFile : MonoBehaviour
         // Loop through each instance and modify the variable, so all Loadout scripts know what loadout is currently equipped
         foreach (Loadout obj in LoadoutSlots)
         {
-                obj.currentLoadoutSelected = numPressed;
+                Loadout.currentLoadoutSelected = numPressed;
         }
 
         //splitting up the data from the file to be more usable (could save it as ints instead of string names though...)
@@ -191,6 +191,7 @@ public class LoadoutsToFile : MonoBehaviour
             equippedSpells = temp;
         }
 
+        //i think these two are reduntant and unnessisary now
         Alpha.PlayerRef.GetComponent<Alpha>().leftSpell = equippedSpells[0];
         Alpha.PlayerRef.GetComponent<Alpha>().rightSpell = equippedSpells[1];
 
