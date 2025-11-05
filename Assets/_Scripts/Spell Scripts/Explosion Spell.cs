@@ -8,7 +8,6 @@ public class ExplosionSpell : MonoBehaviour
     public Alpha alpha;
 
     public float knockbackDuration = 1f;
-    private bool pushed = false;
 
     private void Awake()
     {

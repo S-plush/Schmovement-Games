@@ -30,24 +30,28 @@ public class SFXManager : MonoBehaviour
     public void ExplosionSpellSFX()
     {
         audio.clip = explosionSpellSound;
+        audio.pitch = 1.0f;
         audio.Play();
     }
 
     public void IceicleSpearSpellSFX()
     {
         audio.clip = iceicleSpearSpellSound;
+        audio.pitch = 1.0f;
         audio.Play();
     }
 
     public void SoundWaveSpellSFX()
     {
         audio.clip = soundWaveSpellSound;
+        audio.pitch = 1.0f;
         audio.Play();
     }
 
     public void LightningSpellSFX()
     {
         audio.clip = lightningSpellSound;
+        audio.pitch = 1.0f;
         audio.Play();
     }
 

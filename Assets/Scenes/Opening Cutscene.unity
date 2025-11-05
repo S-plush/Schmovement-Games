@@ -474,6 +474,7 @@ GameObject:
   - component: {fileID: 466571471}
   - component: {fileID: 466571470}
   - component: {fileID: 466571469}
+  - component: {fileID: 466571472}
   m_Layer: 5
   m_Name: Cutscene Text Box
   m_TagString: Untagged
@@ -559,6 +560,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d51789813374f1846a461248c271c665, type: 3}
   - {fileID: 21300000, guid: a3d9898992ad0c844a7a37d2d9a0ba43, type: 3}
   switchArtAtLine: 000000000200000004000000060000000a0000000f000000
+  transition: {fileID: 1112617648}
+  dialogueBoxTransition: {fileID: 466571472}
 --- !u!114 &466571470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -597,6 +600,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 466571467}
   m_CullTransparentMesh: 1
+--- !u!95 &466571472
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466571467}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3a186557105ec804ebe8f6832f1f065e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &520737802
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1101,6 +1125,7 @@ GameObject:
   - component: {fileID: 1112617645}
   - component: {fileID: 1112617647}
   - component: {fileID: 1112617646}
+  - component: {fileID: 1112617648}
   m_Layer: 5
   m_Name: Cutscene Art
   m_TagString: Untagged
@@ -1140,7 +1165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1165,6 +1190,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1112617644}
   m_CullTransparentMesh: 1
+--- !u!95 &1112617648
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112617644}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3a186557105ec804ebe8f6832f1f065e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1127686983
 GameObject:
   m_ObjectHideFlags: 0
