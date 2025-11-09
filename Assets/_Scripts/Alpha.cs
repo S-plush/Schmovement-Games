@@ -810,6 +810,7 @@ public class Alpha : MonoBehaviour
     #region Spells
     public void UseExplosionSpell()
     {
+        sfxManager.ExplosionSpellSFX();
         aimingDirection = FindObjectOfType<Aiming>().AimDirection();
         ExplosionSpell explosion = Instantiate(explosionPrefab, spellSpawn.position, spellSpawn.rotation);
         explosion.Aiming(aimingDirection);
@@ -824,6 +825,7 @@ public class Alpha : MonoBehaviour
 
     public void UseIcicleSpearSpell()
     {
+        sfxManager.IceicleSpearSpellSFX();
         aimingDirection = FindObjectOfType<Aiming>().AimDirection();
         IcicleSpearSpell icicleSpear = Instantiate(iciclePrefab, spellSpawn.position, spellSpawn.rotation);
         icicleSpear.Aiming(aimingDirection);
