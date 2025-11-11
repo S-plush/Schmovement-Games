@@ -19,6 +19,7 @@ public class CutsceneText : MonoBehaviour
 
     [SerializeField] private Animator transition;
     [SerializeField] private Animator dialogueBoxTransition;
+    [SerializeField] private Animator dialogueTextTransition;
 
     private int index;
     private bool preventInput = false;
@@ -116,7 +117,8 @@ public class CutsceneText : MonoBehaviour
     IEnumerator SwitchScene()
     {
         transition.Play("Fade Out");
-        dialogueBoxTransition.Play("Fade Out");
+        dialogueBoxTransition.Play("Fade Out Box");
+        dialogueTextTransition.Play("Fade Out Text");
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("DetentionCenter");
     }
