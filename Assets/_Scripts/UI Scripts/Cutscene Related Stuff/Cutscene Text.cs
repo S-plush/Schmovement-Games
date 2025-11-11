@@ -17,7 +17,13 @@ public class CutsceneText : MonoBehaviour
     public int[] switchArtAtLine;
     private int counter = 0;
 
+    [SerializeField] private Animator transition;
+    [SerializeField] private Animator dialogueBoxTransition;
+    [SerializeField] private Animator dialogueTextTransition;
+
     private int index;
+    private bool preventInput = false;
+    private bool begining = true;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +35,7 @@ public class CutsceneText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !preventInput)
         {
             if(text.text == lines[index])
             {
@@ -60,7 +66,19 @@ public class CutsceneText : MonoBehaviour
             {
                 if (counter < cutsceneArt.Length)
                 {
+                    preventInput = true;
+
+                    if (!begining)
+                    {
+                        transition.Play("Fade Out");
+                    }
+
+                    yield return new WaitForSeconds(1f);
                     SwitchCutsceneArt(counter);
+                    transition.Play("Fade In");
+                    yield return new WaitForSeconds(.5f);
+                    begining = false;
+                    preventInput = false;
                 }
 
                 counter++;
@@ -87,12 +105,21 @@ public class CutsceneText : MonoBehaviour
         else
         {
             MiscDataToFile.newGame = true;
-            SceneManager.LoadScene("DetentionCenter");
+            StartCoroutine(SwitchScene());
         }
     }
 
     private void SwitchCutsceneArt(int art)
     {
         showCutsceneArt.sprite = cutsceneArt[art];
+    }
+
+    IEnumerator SwitchScene()
+    {
+        transition.Play("Fade Out");
+        dialogueBoxTransition.Play("Fade Out Box");
+        dialogueTextTransition.Play("Fade Out Text");
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("DetentionCenter");
     }
 }
