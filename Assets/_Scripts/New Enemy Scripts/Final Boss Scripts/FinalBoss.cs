@@ -16,6 +16,10 @@ public class FinalBoss : Enemy
     [SerializeField] private GameObject stoneAttackGameObject;
     [SerializeField] private GameObject windWallGameObject;
     [SerializeField] private GameObject sDHopper;
+    [SerializeField] protected GameObject wallChecker;
+
+
+    public LayerMask Default;
 
 
     public void leap() {
@@ -27,7 +31,12 @@ public class FinalBoss : Enemy
 
         finalBossRigidBody.AddForce(new Vector3(400 * xDirec, 400f, 0));
     }
-    
+
+    public void escape(int x) {
+
+        finalBossRigidBody.AddForce(new Vector3(450 * x, 450f, 0));
+    }
+
     public void fireAttack() {
         fireArea.transform.LookAt(player.transform.position + new Vector3(0, 1, 0));
         Instantiate(fireBlastGameObject, fireArea.transform.position, fireArea.transform.rotation);
@@ -59,13 +68,13 @@ public class FinalBoss : Enemy
         float hopperPos;
 
 
-        numHoppers = Random.Range(2, 4);
+        numHoppers = Random.Range(2, 5);
 
         Debug.Log("numHopper: " + numHoppers);
 
         for (int i = 0; i < numHoppers; i++) { 
         
-            hopperPos = Random.Range(-3, 3);
+            hopperPos = Random.Range(-4, 5);
 
             Debug.Log("hopPos: " + hopperPos);
 
@@ -78,6 +87,15 @@ public class FinalBoss : Enemy
 
     }
 
+    public bool isCornered() {
+
+        Collider[] temp = Physics.OverlapSphere(wallChecker.transform.position, 0.5f);
+        if (temp.Length == 4) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
 

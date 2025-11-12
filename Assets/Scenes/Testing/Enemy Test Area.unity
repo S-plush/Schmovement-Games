@@ -671,11 +671,11 @@ PrefabInstance:
       objectReference: {fileID: 1676161128}
     - target: {fileID: 1410754575003964413, guid: 65247127de93b4943b281501d4d661c2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -153.42
+      value: -244.7
       objectReference: {fileID: 0}
     - target: {fileID: 1410754575003964413, guid: 65247127de93b4943b281501d4d661c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.97
+      value: 22.5
       objectReference: {fileID: 0}
     - target: {fileID: 1410754575003964413, guid: 65247127de93b4943b281501d4d661c2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -16537,6 +16537,59 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e68992371d03bc46968bdeaffc024eb, type: 3}
+--- !u!1 &1253372222
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1253372223}
+  - component: {fileID: 1253372224}
+  m_Layer: 0
+  m_Name: Wall Collision
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1253372223
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253372222}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2043778964}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1253372224
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253372222}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1267237208
 GameObject:
   m_ObjectHideFlags: 0
@@ -27212,11 +27265,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 933edd814490e5447a50706ad54d2103, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -163.64
+      value: -285.88
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 933edd814490e5447a50706ad54d2103, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.43
+      value: 17.92
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 933edd814490e5447a50706ad54d2103, type: 3}
       propertyPath: m_LocalPosition.z
@@ -27264,6 +27317,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 933edd814490e5447a50706ad54d2103, type: 3}
       insertIndex: -1
       addedObject: {fileID: 301765499}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 933edd814490e5447a50706ad54d2103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1253372223}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 933edd814490e5447a50706ad54d2103, type: 3}
       insertIndex: -1
@@ -27300,7 +27356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d20ab9b13015bd84c8dd1a018c3c751a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  health: 30
   damage: 1
   contactDamage: 1
   atkFrequency: 1
@@ -27316,6 +27372,10 @@ MonoBehaviour:
   stoneAttackGameObject: {fileID: 0}
   windWallGameObject: {fileID: 0}
   sDHopper: {fileID: 1624675840160509265, guid: ca5cc1744141c394bb65ebcacf9e932d, type: 3}
+  wallChecker: {fileID: 1253372222}
+  Default:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!4 &2043778964 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 933edd814490e5447a50706ad54d2103, type: 3}

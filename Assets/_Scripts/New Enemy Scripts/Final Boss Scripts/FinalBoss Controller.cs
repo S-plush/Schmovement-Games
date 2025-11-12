@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class FinalBossController : FinalBoss 
 {
-    bool rightClose;
-    bool leftClose;
 
     void FixedUpdate() {
         timer += Time.deltaTime;
         facePlayer();
-
-
 
 
         while (timer >= 4) {
@@ -23,9 +19,30 @@ public class FinalBossController : FinalBoss
 
 
     void initiateAttack() {
-        int atkType = Random.Range(0, 4);
-        if(Vector3.Distance(thisEnemyObject.transform.position, player.transform.position) < 2.5f) {
-            leap();
+        int atkType = Random.Range(0, 5);
+
+        Debug.Log("Cornered = " + isCornered());
+        if (isCornered()) {
+            if (isFacingLeft) {
+                escape(-1);
+            } else if (isFacingRight) {
+                escape(1);
+            }
+
+            timer = 2;
+            return;
+        } 
+
+
+
+        if (Vector3.Distance(thisEnemyObject.transform.position, player.transform.position) < 2.5f) {
+
+            if (isFacingLeft) {
+                escape(1);
+            } else if (isFacingRight) {
+                escape(-1);
+            }
+            
             timer = 2;
             return;
         }
@@ -43,14 +60,32 @@ public class FinalBossController : FinalBoss
                 Invoke("summonHoppers", 1f);
                 timer = 0; break;
             case 2:
-                leap();
-                timer = 0; break;
+                Invoke("fireAttack", 0.1f);
+                Invoke("fireAttack", 0.3f);
+                Invoke("fireAttack", 0.5f);
+                timer = 2; break;
             case 3:
 
                 Invoke("fireAttack", 0.1f);
                 Invoke("fireAttack", 0.3f);
                 Invoke("fireAttack", 0.5f);
                 timer = 2; break;
+            case 4:
+                leap();
+                Invoke("fireAttack", 0.1f);
+                Invoke("fireAttack", 0.3f);
+                Invoke("fireAttack", 0.5f);
+                timer = 1;  break;
+            case 5:
+                Invoke("fireAttack", 0.1f);
+                Invoke("fireAttack", 0.3f);
+                Invoke("fireAttack", 0.5f);
+                Invoke("fireAttack", 0.7f);
+                Invoke("fireAttack", 0.9f);
+
+                timer = 0; break;
+
+
         }
 
     }
