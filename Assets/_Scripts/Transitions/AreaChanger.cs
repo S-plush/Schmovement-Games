@@ -11,6 +11,10 @@ public class AreaChanger : MonoBehaviour
 
     public Transform EnterPoint;
 
+    public Animator Fade;
+
+    public ChangeSceneAfterFade change;
+
     MiscDataToFile MiscDataToFileScript;
 
     Alpha AlphaScript;
@@ -32,8 +36,15 @@ public class AreaChanger : MonoBehaviour
         {
             MiscDataToFileScript.saveAllMiscData(); //saves values associated with the player like stims and health
 
-            AreaTransition.CurrentTransition = SceneConnection;            
-            SceneManager.LoadScene(NextScene);
+            Fade.SetTrigger("End");
+            AreaTransition.CurrentTransition = SceneConnection;
+            change.SceneName = NextScene;
         }
     }
+
+    public void Transition()
+    {
+        //SceneManager.LoadScene(NextScene);
+    }
+
 }
