@@ -103,6 +103,7 @@ public class InventoryManager : MonoBehaviour
         MiscDataToFileScript.saveAllMiscData();
         LoadoutsToFileScript.saveLoadoutsToFile();
         PickupAndDoorToFileScript.SaveAllPickupData();
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene("Main Menu");
     }    
 }
