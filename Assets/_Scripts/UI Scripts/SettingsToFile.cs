@@ -11,7 +11,7 @@ public class SettingsToFile : MonoBehaviour
     // Public variables (no struct) to store settings
     public int currentResolutionIndex = 2; // default: 1920x1080
     public float currentBrightness = 0f;
-    public float currentVolume = 1f;
+    public float currentVolume = 0f;
 
     void Start()
     {

@@ -59,6 +59,34 @@ public class PickupAndDoorToFile : MonoBehaviour
         {
             LoadAllPickupData();
         }
+        else
+        {
+            // NEW-GAME: ensure persistent file and in-memory claimed state are cleared
+            // so SaveAllPickupData() doesn't read/merge the old file back in.
+            try
+            {
+                if (File.Exists(filePath))
+                {
+                    File.Delete(filePath);
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning("Failed to delete pickup save file for new game: " + e.Message);
+            }
+
+            claimedPickups.Clear();
+            claimedDoors.Clear();
+            claimedPlatforms.Clear();
+
+            // reset scenes to only the current scene so header is correct
+            string current = GetCurrentSceneName();
+            scenes.Clear();
+            if (!string.IsNullOrEmpty(current))
+            {
+                scenes.Add(current.Trim());
+            }
+        }
 
         // Always save once after start to make sure file matches in-memory lists/format
         SaveAllPickupData();
@@ -130,7 +158,7 @@ public class PickupAndDoorToFile : MonoBehaviour
     // Save all data: header line = scenes CSV, then for each scene 3 lines (pickups, doors, platforms)
     public void SaveAllPickupData()
     {
-        // Read existing lines if present (to preserve other scenes)
+        // Read existing lines if present (to preserve other scenes) IT IS READING EXISTING LINES BRUHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH (pickups are built different?)
         List<string> lines = new List<string>();
         if (File.Exists(filePath))
             lines.AddRange(File.ReadAllLines(filePath));
