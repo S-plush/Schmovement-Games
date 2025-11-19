@@ -153,6 +153,7 @@ public class VentScript : MonoBehaviour
 
 
         MiscDataToFileScript.saveAllMiscData();
+        Debug.Log(RespawnPoint.currentCheckpointName + "FROM VENT SCRIPT BEFORE");
         SceneManager.LoadScene(RespawnPoint.currentCheckpointSceneName);
     }
 }
