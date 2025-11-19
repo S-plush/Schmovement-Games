@@ -30,9 +30,13 @@ public class PickupAndDoorToFile : MonoBehaviour
         for (int i = 0; i < pickups.Count; i++)
         {
             if (pickups[i] != null)
+            {
                 pickupNames.Add(pickups[i].name.Trim());
+            }
             else
+            {
                 pickupNames.Add("UnknownPickupIndex" + i);
+            }
         }
 
         // Ensure the file exists (create minimal structure if needed)
@@ -42,7 +46,9 @@ public class PickupAndDoorToFile : MonoBehaviour
             // initialize scenes list with current scene if available
             string current = GetCurrentSceneName();
             if (!string.IsNullOrEmpty(current) && !scenes.Contains(current))
+            {
                 scenes.Add(current);
+            }
             SaveAllPickupData(); // writes initial file
         }
     }

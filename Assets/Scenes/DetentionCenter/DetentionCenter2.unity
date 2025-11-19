@@ -1318,6 +1318,14 @@ PrefabInstance:
       propertyPath: m_margin.z
       value: 5.9575663
       objectReference: {fileID: 0}
+    - target: {fileID: 1386725107988576557, guid: 48a2f4faf4ca8354e8579f22306f74c7, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -3488477851359236837, guid: ab27759e2ef40d8489a6dc9a3d97f9cb, type: 2}
+    - target: {fileID: 1386725107988576557, guid: 48a2f4faf4ca8354e8579f22306f74c7, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5080637433607251308, guid: 48a2f4faf4ca8354e8579f22306f74c7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1364,7 +1372,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5080637433607251308, guid: 48a2f4faf4ca8354e8579f22306f74c7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.763855
+      value: 9.24
       objectReference: {fileID: 0}
     - target: {fileID: 5080637433607251308, guid: 48a2f4faf4ca8354e8579f22306f74c7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1409,7 +1417,7 @@ PrefabInstance:
     - target: {fileID: 8201085655238626245, guid: 48a2f4faf4ca8354e8579f22306f74c7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1203318005813315281, guid: 7e3e52b303954ce40afca8dc7e2df1a2, type: 2}
+      objectReference: {fileID: -3488477851359236837, guid: ab27759e2ef40d8489a6dc9a3d97f9cb, type: 2}
     - target: {fileID: 8235288048943054544, guid: 48a2f4faf4ca8354e8579f22306f74c7, type: 3}
       propertyPath: m_SizeDelta.x
       value: 10
@@ -2668,6 +2676,11 @@ PrefabInstance:
 --- !u!4 &220641341 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8797959847255496575, guid: 9e605d1df779d3c46bcf012d3b2025ee, type: 3}
+  m_PrefabInstance: {fileID: 220641340}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &220641342 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8165995286097825221, guid: 9e605d1df779d3c46bcf012d3b2025ee, type: 3}
   m_PrefabInstance: {fileID: 220641340}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &220820867
@@ -12364,6 +12377,11 @@ PrefabInstance:
 --- !u!4 &652453307 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1560016662527728522, guid: 80aa0a4cb3037a14e8eea5ef4eff15a5, type: 3}
+  m_PrefabInstance: {fileID: 652453306}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &652453308 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2228607055769862448, guid: 80aa0a4cb3037a14e8eea5ef4eff15a5, type: 3}
   m_PrefabInstance: {fileID: 652453306}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &659664521
@@ -22445,20 +22463,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1478038965615481333, guid: c98c4127a3677cb4aa88935271921cc7, type: 3}
       propertyPath: pickups.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1478038965615481333, guid: c98c4127a3677cb4aa88935271921cc7, type: 3}
       propertyPath: pickups.Array.data[0]
       value: 
-      objectReference: {fileID: 1519808742}
+      objectReference: {fileID: 220641342}
     - target: {fileID: 1478038965615481333, guid: c98c4127a3677cb4aa88935271921cc7, type: 3}
       propertyPath: pickups.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 687185916}
     - target: {fileID: 1478038965615481333, guid: c98c4127a3677cb4aa88935271921cc7, type: 3}
       propertyPath: pickups.Array.data[2]
       value: 
-      objectReference: {fileID: 687185916}
+      objectReference: {fileID: 652453308}
     - target: {fileID: 1478038965615481333, guid: c98c4127a3677cb4aa88935271921cc7, type: 3}
       propertyPath: pickups.Array.data[3]
       value: 
