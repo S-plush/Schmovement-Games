@@ -125,10 +125,9 @@ public class MiscDataToFile : MonoBehaviour
 
             saveAllMiscData();
 
-            waitForAlphaInitialize();
-            newGame = false;
+            StartCoroutine(waitForAlphaInitialize());
         }
-        waitForAlphaInitialize();
+        StartCoroutine(waitForAlphaInitialize());
         loadAllMiscData();
     }
 
@@ -237,5 +236,6 @@ public class MiscDataToFile : MonoBehaviour
     {
         //deathScreen.SetActive(true);
         yield return new WaitForSeconds(.1f);
+        newGame = false;
     }
 }
