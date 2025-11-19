@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 3550681483443708491}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0.675}
+  m_LocalPosition: {x: 0, y: 0, z: 0.675}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46,6 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundDetected: 0
+  Default:
+    serializedVersion: 2
+    m_Bits: 257
 --- !u!65 &8550872178929089075
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -92,7 +95,7 @@ Transform:
   m_GameObject: {fileID: 7907688269978443081}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.4, z: 0.25}
+  m_LocalPosition: {x: 0, y: 1.4, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -116,15 +119,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 933edd814490e5447a50706ad54d2103, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -80.42611
+      value: -85.23
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 933edd814490e5447a50706ad54d2103, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.0006137
+      value: 3.73
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 933edd814490e5447a50706ad54d2103, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.164702
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 933edd814490e5447a50706ad54d2103, type: 3}
       propertyPath: m_LocalRotation.w
@@ -132,7 +135,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 933edd814490e5447a50706ad54d2103, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 933edd814490e5447a50706ad54d2103, type: 3}
       propertyPath: m_LocalRotation.y
@@ -140,7 +143,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 933edd814490e5447a50706ad54d2103, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 933edd814490e5447a50706ad54d2103, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -381,6 +384,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 933edd814490e5447a50706ad54d2103, type: 3}
       insertIndex: -1
       addedObject: {fileID: 102162160046534518}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 933edd814490e5447a50706ad54d2103, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1302152946580079938}
   m_SourcePrefab: {fileID: 100100000, guid: 933edd814490e5447a50706ad54d2103, type: 3}
 --- !u!4 &1613553776980701890 stripped
 Transform:
@@ -461,3 +467,31 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.9603107, z: 0.5450972}
   m_Center: {x: 3.977402e-17, y: 0.9467279, z: 0.06529883}
+--- !u!114 &1302152946580079938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103091076152486008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70dbd96c95273704d9c48b1caaed0ee7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 5
+  damage: 1
+  contactDamage: 1
+  atkFrequency: 3
+  moneyDropMin: 2
+  moneyDropMax: 2
+  animator: {fileID: 4648931188630710456}
+  fireArea: {fileID: 7907688269978443081}
+  bullet: {fileID: 4791960949642627836, guid: 390a09ef6601dc041a9652de118a10f2, type: 3}
+  money: {fileID: 4484675340276945950, guid: 542506c981291874f902c0d2280c1aea, type: 3}
+  ledgeChecker: {fileID: 7928854476118605523}
+--- !u!95 &4648931188630710456 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 933edd814490e5447a50706ad54d2103, type: 3}
+  m_PrefabInstance: {fileID: 1292189912423060777}
+  m_PrefabAsset: {fileID: 0}
