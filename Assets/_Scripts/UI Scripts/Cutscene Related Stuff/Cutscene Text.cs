@@ -15,7 +15,7 @@ public class CutsceneText : MonoBehaviour
     public Image showCutsceneArt;
     public Sprite[] cutsceneArt;
     public int[] switchArtAtLine;
-    [SerializeField] private int counter = 0;
+    private int counter = 0;
 
     [SerializeField] private Animator transition;
     [SerializeField] private Animator dialogueBoxTransition;
@@ -23,13 +23,12 @@ public class CutsceneText : MonoBehaviour
 
     private int index;
     private bool preventInput = false;
-    [SerializeField] private bool begining = true;
+    private bool begining = true;
 
     // Start is called before the first frame update
     void Start()
     {
         text.text = string.Empty;
-        begining = true;
         StartDialogue();
     }
 
@@ -63,14 +62,10 @@ public class CutsceneText : MonoBehaviour
         
         if (counter < switchArtAtLine.Length)
         {
-            Debug.Log("did i enter here?");
-
             if (switchArtAtLine[counter] == index)
             {
-                Debug.Log("what about here?");
                 if (counter < cutsceneArt.Length)
                 {
-                    Debug.Log("and here?");
                     preventInput = true;
 
                     if (!begining)
@@ -79,7 +74,6 @@ public class CutsceneText : MonoBehaviour
                     }
 
                     yield return new WaitForSeconds(1f);
-                    Debug.Log("is this playing");
                     SwitchCutsceneArt(counter);
                     transition.Play("Fade In");
                     yield return new WaitForSeconds(.5f);
