@@ -63,6 +63,7 @@ MonoBehaviour:
   timer: 1.5
   dashTimer: 3
   stepTimer: 0.3
+  iFrameTimer: 2
   explosionPrefab: {fileID: -7173215572119700692, guid: 74acdbccee3a400428fb35b62880d330, type: 3}
   lightningPrefab: {fileID: -7419050746634257968, guid: 91de701a1772e4941bfd8ca90f30b81c, type: 3}
   iciclePrefab: {fileID: 7772193594896229260, guid: 286e89ed882b0644d8b0dd57b649567b, type: 3}
@@ -230,9 +231,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volBG: 0
   volSFX: 0
-  SaveButton: {fileID: 0}
-  bgmObject: {fileID: 0}
-  sfxObject: {fileID: 0}
   bgmSlider: {fileID: 0}
   sfxSlider: {fileID: 0}
 --- !u!114 &6972627996894129146

@@ -38,11 +38,13 @@ public class Alpha : MonoBehaviour
     public float timer; //for spell
     public float dashTimer;
     public float stepTimer;
+    public float iFrameTimer;
 
     private float lastStepTime;
     private float lastShot1; //cooldown for the spell 1
     private float lastShot2;
     private float lastDash;
+    private float lastDamageTaken;
     private bool hasDashed = false;
     private bool canDoubleJump = false;
     private float lastDirectionFaced;
@@ -685,10 +687,16 @@ public class Alpha : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if(Time.time - lastDamageTaken < iFrameTimer)
+        {
+            return;
+        }
+
         Debug.Log("current health is: " + currentHealth);
         currentHealth = currentHealth - damage;
         Debug.Log(currentHealth);
         healthBar.SetHealth(currentHealth);
+        lastDamageTaken = Time.time;
     }
 
     public void DeathCheck()
