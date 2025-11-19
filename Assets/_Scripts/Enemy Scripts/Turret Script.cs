@@ -81,7 +81,7 @@ public class TurretScript : MonoBehaviour
 
 
         while (timer >= shootFrequency) {
-            Debug.Log("Fire!");
+            //Debug.Log("Fire!");
 
             if (lockOn) {
                 aimAtPlayer();
@@ -109,7 +109,7 @@ public class TurretScript : MonoBehaviour
 
         //Debug.Log("Player be like " + player.transform.position + "\n Enemy Be like " + transform.position);
 
-        Debug.Log(inRange + " for range");
+        //Debug.Log(inRange + " for range");
 
 
         if (rapidShot == false) {
@@ -119,14 +119,14 @@ public class TurretScript : MonoBehaviour
                 // Does the ray intersect any objects excluding the player layer
                 if (Physics.Raycast(transform.position, player.transform.position, out hit, 10f, terrainLayerMask)) {
                     Debug.DrawRay(transform.position, player.transform.position * hit.distance, Color.yellow);
-                    Debug.Log("Hit Terrain");
-                    Debug.Log("hit: " + hit.transform);
+                    //Debug.Log("Hit Terrain");
+                    //Debug.Log("hit: " + hit.transform);
 
                 } else {
 
 
-                    Debug.DrawRay(transform.position, transform.TransformDirection(player.transform.position) * 10f, Color.white);
-                    Debug.Log("Did not Hit");
+                    //Debug.DrawRay(transform.position, transform.TransformDirection(player.transform.position) * 10f, Color.white);
+                    //Debug.Log("Did not Hit");
 
                     if (triShot) {
                         if (shootLaser == false) {
@@ -195,7 +195,7 @@ public class TurretScript : MonoBehaviour
 
         if (other.tag == "Player Spell") {            
             health -= 1;
-            Debug.Log("Got Hit! Health is now: " + health);
+            //Debug.Log("Got Hit! Health is now: " + health);
         }
 
         if (other.tag == "Player") {
