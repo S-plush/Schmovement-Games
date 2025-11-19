@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -21,11 +22,17 @@ public class InventoryManager : MonoBehaviour
     private LoadoutsToFile LoadoutsToFileScript;
     private PickupAndDoorToFile PickupAndDoorToFileScript;
 
+    [SerializeField] private Button resumeButton;
+    private Color customColor = new Color(255, 255, 255, 0);
+    private ColorBlock colorBlock;
+
     public void Start()
     {
         MiscDataToFileScript = FindObjectOfType<MiscDataToFile>(); //initilize MiscDataToFileScript with the actual script
         LoadoutsToFileScript = FindObjectOfType<LoadoutsToFile>(); //initilize MiscDataToFileScript with the actual script
         PickupAndDoorToFileScript = FindObjectOfType<PickupAndDoorToFile>(); //initilize MiscDataToFileScript with the actual script
+
+        //colorBlock = resumeButton.colors;
     }
     //auxilary code/functionality for cursor selecting slots
     void ChangeSelectedSlot(int newValue)
@@ -85,6 +92,8 @@ public class InventoryManager : MonoBehaviour
     {
         Settings.SetActive(false);
         HUD.SetActive(true);
+        //colorBlock.normalColor = customColor;
+        //resumeButton.colors = colorBlock;
         Alpha.isGamePaused = false;
         Time.timeScale = 1.0f;
     }
