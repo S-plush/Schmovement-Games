@@ -8,6 +8,7 @@ public class MenuUI : MonoBehaviour
 {
     public GameObject mainMenu;
     public GameObject settingsMenu;
+    public GameObject CreditsMenu;
 
     public void PlayButtonResume()
     {
@@ -31,6 +32,11 @@ public class MenuUI : MonoBehaviour
     {
         MiscDataToFile.newGame = true;
         SceneManager.LoadScene("Opening Cutscene");
+    }
+
+    public void PlayTestAreaButton()
+    {
+        SceneManager.LoadScene("Enemy Test Area");
     }
 
     public void SettingsButton()
