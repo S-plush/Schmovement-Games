@@ -29,6 +29,7 @@ public class SpawnerCode : MonoBehaviour
 
     private System.Random random = new System.Random();
 
+    public GameObject lockDoor;
     public GameObject door;
 
     int tempNum = 0;
@@ -109,7 +110,13 @@ public class SpawnerCode : MonoBehaviour
         if (cleared)
         {
             door.SetActive(false);
+            lockDoor.SetActive(false);
         }
+        else if (activated) 
+        {
+            lockDoor.SetActive(true);
+        }
+
 
     }
 
@@ -133,9 +140,10 @@ public class SpawnerCode : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && cleared == false)
         {
             activated = true;
+            
         }
 
 
