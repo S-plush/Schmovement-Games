@@ -13,6 +13,7 @@ public class MoneyRotateCode : MonoBehaviour
 
     private void Start()
     {
+        /*
         UICounter = GameObject.Find("Canvas").transform.Find("ScrapCounter").gameObject;
         UIText = UICounter.transform.Find("Count").GetComponent<TMP_Text>();
         UIText.text = MoneyCount.ToString();
@@ -20,10 +21,11 @@ public class MoneyRotateCode : MonoBehaviour
 
         meshRenderer = GetComponent<MeshRenderer>();
         col = GetComponent<Collider>();
+        */
     }
 
     private void OnTriggerEnter(Collider other)
-    {
+    {/*
         if (other.CompareTag("Player"))
         {
             MoneyCount++;
@@ -36,6 +38,7 @@ public class MoneyRotateCode : MonoBehaviour
             //show UI for 3 seconds
             StartCoroutine(moneyUITimer());
         }
+        */
     }
 
     private void FixedUpdate()

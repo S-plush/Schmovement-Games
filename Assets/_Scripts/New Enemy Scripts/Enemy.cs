@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour
 
     public void triggerDeath() {
         if (health <= 0) {
-            //DropMoney();
+            DropMoney();
             Destroy(this.gameObject);
         }
     }

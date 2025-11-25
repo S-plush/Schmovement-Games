@@ -7383,6 +7383,71 @@ Transform:
   m_Children: []
   m_Father: {fileID: 967998211}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &755688082
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2173372283521590082, guid: 54a32d11c37779541a8e4a4f84a7d2af, type: 3}
+      propertyPath: UIText
+      value: 
+      objectReference: {fileID: 1000561348}
+    - target: {fileID: 2173372283521590082, guid: 54a32d11c37779541a8e4a4f84a7d2af, type: 3}
+      propertyPath: UICounter
+      value: 
+      objectReference: {fileID: 2412003957371457393}
+    - target: {fileID: 4824275692308721471, guid: 54a32d11c37779541a8e4a4f84a7d2af, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.317231
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824275692308721471, guid: 54a32d11c37779541a8e4a4f84a7d2af, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.8607011
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824275692308721471, guid: 54a32d11c37779541a8e4a4f84a7d2af, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10.167635
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824275692308721471, guid: 54a32d11c37779541a8e4a4f84a7d2af, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824275692308721471, guid: 54a32d11c37779541a8e4a4f84a7d2af, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824275692308721471, guid: 54a32d11c37779541a8e4a4f84a7d2af, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824275692308721471, guid: 54a32d11c37779541a8e4a4f84a7d2af, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824275692308721471, guid: 54a32d11c37779541a8e4a4f84a7d2af, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824275692308721471, guid: 54a32d11c37779541a8e4a4f84a7d2af, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824275692308721471, guid: 54a32d11c37779541a8e4a4f84a7d2af, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587928998383559005, guid: 54a32d11c37779541a8e4a4f84a7d2af, type: 3}
+      propertyPath: m_Name
+      value: Money Manager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 54a32d11c37779541a8e4a4f84a7d2af, type: 3}
 --- !u!1001 &763647914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23901,6 +23966,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1388398209}
     m_Modifications:
+    - target: {fileID: 1302152946580079938, guid: 9f742bd726ed23046be5ae19d95fe5af, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1613553776980701890, guid: 9f742bd726ed23046be5ae19d95fe5af, type: 3}
       propertyPath: m_LocalPosition.x
       value: -85.23
@@ -24226,6 +24295,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c98c4127a3677cb4aa88935271921cc7, type: 3}
+--- !u!1 &2412003957371457393 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5119471652338069793, guid: c98c4127a3677cb4aa88935271921cc7, type: 3}
+  m_PrefabInstance: {fileID: 2412003957371457392}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4359821882892363699
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24587,3 +24661,4 @@ SceneRoots:
   - {fileID: 1882822738}
   - {fileID: 1756408290}
   - {fileID: 1144172169}
+  - {fileID: 755688082}

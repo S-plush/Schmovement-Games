@@ -88,6 +88,9 @@ public class Alpha : MonoBehaviour
     [HideInInspector] public int maxMana;
     [HideInInspector] public int currentMana;
 
+    [HideInInspector] public int money;
+
+
     public TMP_Text stimCountText;
     public int maxStims;
     public int stimCount;

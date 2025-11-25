@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PickupScript : MonoBehaviour
 {
@@ -14,11 +15,17 @@ public class PickupScript : MonoBehaviour
 
     Alpha AlphaScript; //reference to the Alpha Script on the Player
 
+    GameObject temp;
+    MoneyManagerScript moneyManagerScript;
+
     void Start()
     {
         AlphaScript = FindObjectOfType<Alpha>(); //initilize AlphaScript with the actual script
 
         inventory = FindObjectOfType<InventoryManager>().gameObject;
+
+        temp = GameObject.Find("Money Manager");
+        moneyManagerScript = temp.GetComponent<MoneyManagerScript>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -52,8 +59,22 @@ public class PickupScript : MonoBehaviour
             AlphaScript.currentMana = AlphaScript.maxMana;
             AlphaScript.manaBar.SetMaxMana(AlphaScript.maxMana);
             AlphaScript.manaBar.SetMana(AlphaScript.currentMana);
+        }else if (pickupType == "Money") 
+        {
+            
+            AlphaScript.money += 1;
+            Debug.Log(AlphaScript.money);            
+            if (temp != null) {
+                moneyManagerScript.addMoney(AlphaScript.money);
+            } else {
+                Debug.Log("This is Null now");
+            }
+            
+
+
         }
 
-        Destroy(this.gameObject);
+
+            Destroy(this.gameObject);
     }
 }
