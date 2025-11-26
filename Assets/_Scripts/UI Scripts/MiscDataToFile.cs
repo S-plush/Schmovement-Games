@@ -107,7 +107,7 @@ public class MiscDataToFile : MonoBehaviour
             //AlphaScript.stimCount = 3;
             AlphaScript.currentlyEquippedLoadout = 1;
 
-            MoneyRotateCode.MoneyCount = 0;
+            MoneyManagerScript.MoneyCount = 0;
 
             //updating changing values
             AlphaScript.currentHealth = AlphaScript.maxHealth;
@@ -154,7 +154,7 @@ public class MiscDataToFile : MonoBehaviour
         dataIn += RespawnPoint.currentCheckpointSceneName + "\n"; //5
         numberOfEntries++;
 
-        dataIn += MoneyRotateCode.MoneyCount + "\n"; //6
+        dataIn += MoneyManagerScript.MoneyCount + "\n"; //6
         numberOfEntries++;
 
         //////////////////////////////////////////////////////////////////////ADD NEW VALUES TO THE SAVE FUNCTION HERE (only add at the bottom though, order matters)
@@ -182,7 +182,7 @@ public class MiscDataToFile : MonoBehaviour
         AlphaScript.currentlyEquippedLoadout = Int32.Parse(dataOut[3]);
         RespawnPoint.currentCheckpointName = dataOut[4];
         RespawnPoint.currentCheckpointSceneName = dataOut[5];
-        MoneyRotateCode.MoneyCount = Int32.Parse(dataOut[6]);
+        MoneyManagerScript.MoneyCount = Int32.Parse(dataOut[6]);
 
         //updating changing values
         AlphaScript.currentHealth = AlphaScript.maxHealth;

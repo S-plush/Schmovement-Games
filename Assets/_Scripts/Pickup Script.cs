@@ -62,10 +62,10 @@ public class PickupScript : MonoBehaviour
         }else if (pickupType == "Money") 
         {
             
-            AlphaScript.money += 1;
-            Debug.Log(AlphaScript.money);            
+            MoneyManagerScript.MoneyCount += 1;
+            //Debug.Log(MoneyManagerScript.MoneyCount);
             if (temp != null) {
-                moneyManagerScript.addMoney(AlphaScript.money);
+                moneyManagerScript.addMoney(MoneyManagerScript.MoneyCount);
             } else {
                 Debug.Log("This is Null now");
             }

@@ -9,7 +9,7 @@ public class Doors : MonoBehaviour
     [SerializeField] private GameObject leverObject;
     [SerializeField] private SwitchInteraction lever;
 
-    private void Start()
+    private void Awake()
     {
         if (leverObject != null)
         {

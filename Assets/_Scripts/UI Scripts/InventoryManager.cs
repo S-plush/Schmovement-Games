@@ -21,6 +21,7 @@ public class InventoryManager : MonoBehaviour
     private MiscDataToFile MiscDataToFileScript;
     private LoadoutsToFile LoadoutsToFileScript;
     private PickupAndDoorToFile PickupAndDoorToFileScript;
+    private SettingsToFile SettingsToFileScript;
 
     [SerializeField] private Button resumeButton;
     private Color customColor = new Color(255, 255, 255, 0);
@@ -31,6 +32,7 @@ public class InventoryManager : MonoBehaviour
         MiscDataToFileScript = FindObjectOfType<MiscDataToFile>(); //initilize MiscDataToFileScript with the actual script
         LoadoutsToFileScript = FindObjectOfType<LoadoutsToFile>(); //initilize MiscDataToFileScript with the actual script
         PickupAndDoorToFileScript = FindObjectOfType<PickupAndDoorToFile>(); //initilize MiscDataToFileScript with the actual script
+        SettingsToFileScript = FindObjectOfType<SettingsToFile>(); //initilize SettingsToFileSCript with the actual script
 
         //colorBlock = resumeButton.colors;
     }
@@ -103,6 +105,7 @@ public class InventoryManager : MonoBehaviour
         MiscDataToFileScript.saveAllMiscData();
         LoadoutsToFileScript.saveLoadoutsToFile();
         PickupAndDoorToFileScript.SaveAllPickupData();
+        SettingsToFileScript.SaveSettings();
         Time.timeScale = 1.0f;
         SceneManager.LoadScene("Main Menu");
     }    

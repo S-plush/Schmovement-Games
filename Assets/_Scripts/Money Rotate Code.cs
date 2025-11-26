@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoneyRotateCode : MonoBehaviour
 {
-    public static int MoneyCount;
+    //public static int MoneyCount;
 
     private GameObject UICounter;
     private TMP_Text UIText;
