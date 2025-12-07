@@ -22,7 +22,7 @@ public class DBHolder : MonoBehaviour
     {
         if (playerInside && Input.GetKeyDown(KeyCode.R) && !inDialogue)
         {
-            inDialogue = true;
+            alpha.IsInDialogue();
             Debug.Log("current dialogue num is: " + currentDialogue);
             alpha.PauseGame();
             characterDialogue[currentDialogue].SetActive(true);
@@ -54,13 +54,13 @@ public class DBHolder : MonoBehaviour
         if (currentDialogue == characterDialogue.Length - 1)
         {
             currentDialogue = characterDialogue.Length - 1;
-            inDialogue = false;
+            alpha.IsInDialogue();
             alpha.PauseGame();
         }
         else if(currentDialogue < characterDialogue.Length)
         {
             currentDialogue++;
-            inDialogue = false;
+            alpha.IsInDialogue();
             alpha.PauseGame();
         }
 
