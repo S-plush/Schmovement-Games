@@ -21,7 +21,7 @@ public class LightningSpell : MonoBehaviour
     {
         if(other.gameObject.tag == "Enemy")
         {
-            
+            Destroy(gameObject);
         }
         else
         {

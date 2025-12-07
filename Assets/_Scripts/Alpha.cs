@@ -75,6 +75,7 @@ public class Alpha : MonoBehaviour
 
     [Header("UI Stuff")]
     private DBHolder dialogueCutscene;
+    private bool inDialogue = false;
 
     public GameObject Inventory;
 
@@ -198,11 +199,7 @@ public class Alpha : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.I) && VentScript.playerInside == false && !Settings.activeSelf) //open inventory keybind (also saves spells that are in loadout slots when inventory is opened/closed)
         {
-            if(dialogueCutscene == null)
-            {
-                OpenMenu();
-            }
-            else if(!dialogueCutscene.InDialogueCheck())
+            if(!inDialogue)
             {
                 OpenMenu();
             }
@@ -684,6 +681,18 @@ public class Alpha : MonoBehaviour
         else if (!isGamePaused)
         {
             isGamePaused = true;
+        }
+    }
+
+    public void IsInDialogue()
+    {
+        if (!inDialogue)
+        {
+            inDialogue = true;
+        }
+        else if (inDialogue)
+        {
+            inDialogue = false;
         }
     }
 

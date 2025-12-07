@@ -9,8 +9,12 @@ public class SoundWaveSpell : MonoBehaviour
 
     [HideInInspector] public Alpha alpha;
 
+    [SerializeField] private Collider[] colliders;
+
     private int bounce = 3;
     private Vector3 aimingDirection;
+    private bool hasTriggered = false;
+    private int counter = 0;
 
     private void Awake()
     {
@@ -26,28 +30,45 @@ public class SoundWaveSpell : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("starting bounce " + bounce);
-        bounce--;
-        spell.damageValue++;
-        spell.knockbackValue = spell.knockbackValue + 5;
-
-        if (bounce < 0)
+        if (collision.gameObject.tag != "Enemy")
         {
-            Destroy(gameObject);
-            spell.damageValue = 1;
-            spell.knockbackValue = 15;
-            return;
-        }
+            bounce--;
+            spell.damageValue++;
+            spell.knockbackValue = spell.knockbackValue + 5;
 
-        var contact = collision.contacts[0];
-        Vector3 newVelocity = Vector3.Reflect(aimingDirection.normalized, contact.normal);
-        Aiming(newVelocity);
+            if (bounce < 0)
+            {
+                Destroy(gameObject);
+                spell.damageValue = 1;
+                spell.knockbackValue = 15;
+                return;
+            }
+
+            var contact = collision.contacts[0];
+            Vector3 newVelocity = Vector3.Reflect(aimingDirection.normalized, contact.normal);
+            Aiming(newVelocity);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (hasTriggered)
+        {
+            counter++;
+            return;
+        }
+
         if (other.gameObject.tag == "Enemy")
         {
+            for(int i = 0; i < colliders.Length; i++)
+            {
+                colliders[i].enabled = false;
+            }
 
+            spell.damageValue = 1;
+            spell.knockbackValue = 15;
+            hasTriggered = true;
+            Destroy(gameObject);
         }
         else if (other.gameObject.tag == "Player")
         {
