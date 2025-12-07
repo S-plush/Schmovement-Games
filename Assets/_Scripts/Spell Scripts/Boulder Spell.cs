@@ -29,7 +29,7 @@ public class BoulderSpell : MonoBehaviour
             Destroy(other.gameObject);
             Destroy(gameObject);
         }
-        else
+        else if(other.gameObject.tag != "Checkpoint" || other.gameObject.tag != "Money")
         {
             Destroy(gameObject);
         }

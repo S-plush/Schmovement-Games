@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5928a684e644836438022bf289f57899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NoHeal: 0
 --- !u!65 &8427921685262778666
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -77,7 +78,7 @@ GameObject:
   - component: {fileID: 4406039242019515895}
   m_Layer: 0
   m_Name: Checkpoints
-  m_TagString: Untagged
+  m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

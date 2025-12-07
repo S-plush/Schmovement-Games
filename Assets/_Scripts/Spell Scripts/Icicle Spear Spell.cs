@@ -24,7 +24,7 @@ public class IcicleSpearSpell : MonoBehaviour
             spell.damageValue++;
 
         }
-        else
+        else if (other.gameObject.tag != "Checkpoint" || other.gameObject.tag != "Money")
         {
             spell.damageValue = 1;
             Destroy(gameObject);

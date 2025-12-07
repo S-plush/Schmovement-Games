@@ -42,7 +42,7 @@ public class WindSpell : MonoBehaviour
                 Destroy(gameObject, .2f);
             }
         }
-        else
+        else if (other.gameObject.tag != "Checkpoint" || other.gameObject.tag != "Money")
         {
             Destroy(gameObject);
         }

@@ -23,7 +23,7 @@ public class LightningSpell : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        else
+        else if (other.gameObject.tag != "Checkpoint" || other.gameObject.tag != "Money")
         {
             Destroy(gameObject);
         }
