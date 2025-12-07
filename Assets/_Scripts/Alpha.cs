@@ -171,7 +171,7 @@ public class Alpha : MonoBehaviour
     {
         //Debug.Log("rotation is " + rotationPoint.rotation.z);
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !isDead)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !isDead && !isGamePaused)
         {
             if (currentMana > 0) //check if out of mana
             {
@@ -181,7 +181,7 @@ public class Alpha : MonoBehaviour
                 }
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Mouse1) && !isDead)
+        else if (Input.GetKeyDown(KeyCode.Mouse1) && !isDead && !isGamePaused)
         {
             if (currentMana > 0) //check if out of mana
             {
@@ -192,22 +192,20 @@ public class Alpha : MonoBehaviour
                 }
             }
         }
-        else if (Input.GetKeyDown(KeyCode.E) && !isGamePaused)
+        else if (Input.GetKeyDown(KeyCode.E) && !isGamePaused && !isDead)
         {
             MeleeAttack();
         }
 
-        if (Input.GetKeyDown(KeyCode.I)) //open inventory keybind (also saves spells that are in loadout slots when inventory is opened/closed)
+        if (Input.GetKeyDown(KeyCode.I) && VentScript.playerInside == false && !Settings.activeSelf) //open inventory keybind (also saves spells that are in loadout slots when inventory is opened/closed)
         {
             if(!inDialogue)
             {
                 OpenMenu();
             }
-
-                //LoadoutsToFileScript.saveLoadoutsToFile(); this happens in OpenMenu() now
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && !isGamePaused) //use of stim keybind
+        if (Input.GetKeyDown(KeyCode.Q) && !isGamePaused && (currentHealth != maxHealth || currentMana != maxMana)) //use of stim keybind
         {
             UseStim();
         }
@@ -322,7 +320,7 @@ public class Alpha : MonoBehaviour
         }
 
         //this is to open and close the settings menu
-        if (Input.GetKeyDown(KeyCode.Escape) && VentScript.playerInside == false) //updated to prevent menu storage bug with vent menu
+        if (Input.GetKeyDown(KeyCode.Escape) && VentScript.playerInside == false && !Inventory.activeInHierarchy) //prevents menu storage bug with vent menu
         {
 
             if (Settings.activeSelf)
@@ -339,6 +337,10 @@ public class Alpha : MonoBehaviour
                 Time.timeScale = 0.0f;
                 isGamePaused = true;
             }
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && Inventory.activeInHierarchy) //closes inventory if ESC is pushed while it is open
+        {
+            OpenMenu();
         }
 
         //ANIMATOR UPDATE PARAMETERS
